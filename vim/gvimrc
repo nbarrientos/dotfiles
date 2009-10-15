@@ -1,0 +1,27 @@
+" OS Specific ----------
+
+if has("gui_macvim")
+ 
+  " Auto resize
+  set fuoptions=maxvert,maxhorz 
+  
+  set guifont=Monaco:h12
+  
+  " Quitar la toolbar
+  set guioptions-=T
+  
+  " Mostrar siempre los tabs
+  set stal=2
+ 
+elseif has("x11")
+elseif has("gui_win32")
+end
+
+" General ---------------
+
+" Tamaño de la ventana
+set lines=55
+set columns=130
+
+" Esquema de colores
+colorscheme IR_black

@@ -1,0 +1,79 @@
+set nocompatible
+
+" Activar plugins dependientes de filext
+filetype plugin on
+
+" Coloreado de sintaxis
+syntax on
+colorscheme evening
+
+" Mostrar siempre la linea de estado
+set laststatus=2
+
+" Al hacer scroll, mantener siempre lineas encima y debajo del cursor
+set scrolloff=3
+
+"
+" Tabulaciones e identaciones
+"
+
+" Tamaño de la tabulación
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+
+" Tabulaciones usando blancos
+set expandtab
+
+" Mostrar números de línea
+set number
+
+" Al insertar una linea, mantener la tabulacion
+set autoindent
+
+" Detectar tokens que inducen a modificar la tabulación (i.e. '{')
+set smartindent
+
+" Activar la regla
+set ruler
+
+" Formato de la regla
+set rulerformat=%25(%n%m%r:\ %Y\ [%l,%v]\ %p%%%)
+
+"
+" Búsquedas
+"
+
+" Resaltar resultados 
+set hlsearch
+
+" Búsqueda incremental (busca según se escribe)
+set incsearch
+
+" Búsqueda case-insensitive
+set ignorecase 
+
+" Ignora 'ignorecase' si hay mayúsculas en la cadena de búsqueda
+set smartcase 
+
+" AutoCompletion (Uso: CTRL+X CTRL+O)
+autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+" Opciones dependientes de scripts
+
+" Activar syntax de elementos del DOM
+let javascript_enable_domhtmlcss=1
+
+" Los ficheros .js son tambien jquery (syntax)
+au BufRead,BufNewFile *.js set ft=javascript.jquery
+
+" Al editar mails con Apple Mail identificar
+" el filetype
+au BufRead,BufNewFile *.mail set filetype=mail
