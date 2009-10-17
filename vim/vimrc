@@ -13,6 +13,9 @@ set laststatus=2
 " Al hacer scroll, mantener siempre lineas encima y debajo del cursor
 set scrolloff=3
 
+" Limitar el tamaño de la linea automáticamente
+set textwidth=79
+
 "
 " Tabulaciones e identaciones
 "
@@ -56,17 +59,7 @@ set ignorecase
 " Ignora 'ignorecase' si hay mayúsculas en la cadena de búsqueda
 set smartcase 
 
-" AutoCompletion (Uso: CTRL+X CTRL+O)
-autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html :set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-" Opciones dependientes de scripts
+" Opciones dependientes de scripts/plugins
 
 " Activar syntax de elementos del DOM
 let javascript_enable_domhtmlcss=1
@@ -74,6 +67,5 @@ let javascript_enable_domhtmlcss=1
 " Los ficheros .js son tambien jquery (syntax)
 au BufRead,BufNewFile *.js set ft=javascript.jquery
 
-" Al editar mails con Apple Mail identificar
-" el filetype
-au BufRead,BufNewFile *.mail set filetype=mail
+" MacMail
+"let MailApp_from = "Nacho Barientos <nacho@criptonita.com>"
