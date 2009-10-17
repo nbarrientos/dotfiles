@@ -1,3 +1,6 @@
+" Comandos de plugins
+"  - TaskList: <Leader>t (Leader: \)
+
 set nocompatible
 
 " Activar plugins dependientes de filext
