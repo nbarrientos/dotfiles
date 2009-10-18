@@ -1,10 +1,15 @@
 " Comandos de plugins
-"  - TaskList: <Leader>t (Leader: \)
+"  - TaskList: <Leader>T (Current leader: ,)
+"  - Show taglist: <Leader>t
+"  - Comment in/out block: <Leader>c/C
 
 set nocompatible
 
 " Activar plugins dependientes de filext
 filetype plugin on
+
+" Poner el mapleader en un sitio mas comodo (default: \)
+let mapleader = ","
 
 " Coloreado de sintaxis
 syntax on
@@ -62,13 +67,39 @@ set ignorecase
 " Ignora 'ignorecase' si hay mayúsculas en la cadena de búsqueda
 set smartcase 
 
+"
 " Opciones dependientes de scripts/plugins
+"
 
 " Activar syntax de elementos del DOM
 let javascript_enable_domhtmlcss=1
 
 " Los ficheros .js son tambien jquery (syntax)
-au BufRead,BufNewFile *.js set ft=javascript.jquery
+"au BufRead,BufNewFile *.js set ft=javascript.jquery
+
+" Redefinir los mappings de BlockComment para usar el MapLeader
+noremap <silent> <Leader>c :call Comment()<CR>
+noremap <silent> <Leader>C :call UnComment()<CR>
+
+" Redefinir los mappings de Tasklist
+map <Leader>T <Plug>TaskList
+
+" Taglist
+
+" Path a exuberant ctags
+let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+
+" Atajo para activarla/desactivarla
+nnoremap <silent> <Leader>t :TlistToggle<CR>
+
+" Hacer que la nueva ventana tenga el foco
+let Tlist_GainFocus_On_ToggleOpen=1
+
+" Solo mostrar tags del buffer que esta activo
+let Tlist_Show_One_File = 1
+
+" Una vez seleccionado un tag, cerrar la ventana de tags
+let Tlist_Close_On_Select = 1
 
 " MacMail
 "let MailApp_from = "Nacho Barientos <nacho@criptonita.com>"
