@@ -1,0 +1,136 @@
+set editor="vim -u ~/.mutt/vimrc '+/^$/'"
+
+set imap_user = "nacho.barrientos@gmail.com"
+set imap_pass = ""
+
+set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
+set smtp_pass = ""
+set from = "nacho.barrientos@gmail.com"
+set realname = "Nacho Barrientos"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+#set record="+[Gmail]/Sent Mail"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set pager_index_lines=9
+set ispell="aspell --lang=en check"
+set pgp_sign_as="0xE103FC4D"
+
+set include="yes"
+set quit="ask-yes"
+
+#  set autoedit          # start editor without asking for to, subject,...
+  set auto_tag          # if something is tagged, run commands on tagged msgs.
+  set check_new         # search for new messages in maildir/MH folders.
+unset collapse_unread   # don't collapse threads with unread mails
+unset confirmappend     # prompt for confirm when appending message to ex. mbox
+  set edit_headers      # put headers in editor when composing messages
+unset pgp_replysign     # always sign reply to signed message
+unset pgp_replyencrypt  # always encrypt reply to encrypted message
+  set pgp_verify_sig    # always verify pgp signatures
+unset pgp_show_unusable # show non-usable keys on the PGP key selection menu?
+unset prompt_after      # display prompt after exit from pager
+  set sig_dashes        # prepend "-- \n" to the signature
+  set user_agent        # create User-Agent: Mutt/<Version> header.
+  set pager_stop        # tells pager not to switch to next message when at the bottom of a mail
+  set tilde             # Internal Pager: ~~~~ at and of message.
+unset wait_key          # Only "press a key" if return value non-zero.
+unset beep_new          # mutt will no beep whenever it prints a message notifying you of new mail
+  set help              # when set, help lines describing the bindings are displayed
+unset reply_self        # I won't ever reply myself
+  set status_on_top     # I prefer see status bar on top
+
+# ----- HTML rendering
+auto_view text/html
+
+# ----- Formats
+set folder_format="%2C %N %d      %f"
+set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
+
+# ----- Mail addresses
+unalternates *
+alternates (chipi|nacho)@criptonita.com|nacho@debian.org|(chipi|vicepresidente)@asturlinux.org|uo165635@uniovi.es
+alternates nacho.barrientos@gmail.com
+
+# ----- Headers customizing
+ignore    *
+unignore  from: subject to cc reply-to: date
+unignore  x-mailer user-agent x-operating-system list-id
+hdr_order date from subject to cc reply-to: list-id
+my_hdr    X-Operating-System: `uname -sr` (`uname -m`)
+
+# ----- Hooks
+# Ensure defaults
+send-hook . set signature="~/.signature"
+send-hook . "my_hdr From: Nacho Barrientos Arias <nacho@criptonita.com>"
+
+# Mailing list robots
+send-hook (-subscribe|-unsubscribe) set signature=""
+send-hook (-subscribe|-unsubscribe) set copy=no
+send-hook -request      set signature=""
+send-hook -request      set copy=no
+
+# From changes
+send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
+send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
+send-hook (uniovi\.es|debian\.org) 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
+send-hook fundacionctic.org 'my_hdr From: Nacho Barrientos Arias <ignacio.barrientos@fundacionctic.org>'
+
+# Getting rid of accidental quits
+#macro index q '<change-folder>?<toggle-mailboxes>'
+#macro browser q '<exit><quit>'
+
+# ------ Let's put some color!
+color attachment brightcyan     default
+color bold       green          default
+color error      red            default
+color header     brightyellow   default  "^from:"
+color header     green          default  "^to:"
+color header     green          default  "^cc:"
+color header     brightgreen    default  "^date:"
+color header     yellow         default  "^newsgroups:"
+color header     yellow         default  "^reply-to:"
+color header     brightcyan     default  "^subject:"
+color header     red            default  "^x-spam-rule:"
+color header     yellow         default  "^x-mailer:"
+color header     yellow         default  "^message-id:"
+color header     yellow         default  "^Organization:"
+color header     yellow         default  "^Organisation:"  
+color header     yellow         default  "^User-Agent:"  
+color header     yellow         default  "^X-Message-Flag:"
+color header     yellow         default  "^X-Spam-Status:"
+color indicator  white          blue
+color markers    red            default
+color message    white          blue
+color normal     white          default
+color quoted     cyan           default
+color quoted1    yellow         default
+color quoted2    red            default
+color quoted3    green          default
+color quoted4    cyan           default
+color quoted5    yellow         default
+color quoted6    red            default
+color quoted7    green          default
+color signature  brightred      default
+color status     brightyellow   blue
+color tilde      blue           default
+color tree       brightmagenta  default
+color underline  yellow         default
+color index      brightgreen    default  '~p' # mail to myself
+color index      brightcyan     default  '~P' # mail from myself
+color index      yellow         default  ~O # Old
+color index      brightyellow   default  ~N # New
+color index      magenta        default  ~F # Flagged
+color index      blue           default  ~T # Tagged
+color index      red            default  ~D # Deleted
+# Some patterns
+color body       brightgreen    default  "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]" # mails
+color body       cyan           default  "<URL:[^ ]*>"
+color body       yellow         default  "[;:][-_]?[)/(|P]+" # some smileys
+color body       brightblue     default  "\\b[^ ]+://[^ ]*" # urls colorizing (all protos)
+color body       brightblue     default  "([bB]ug)?#[[:digit:]]{5,6}" # matching bug numbers

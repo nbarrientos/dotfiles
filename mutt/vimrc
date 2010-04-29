@@ -1,0 +1,22 @@
+"" Vim tweaks for edit mails using Mutt
+
+source /etc/vim/vimrc
+
+set ts=2
+set expandtab
+set nobackup
+set nohlsearch
+set ruler
+set pastetoggle=<f12>
+
+set textwidth=70
+set formatoptions=tcq
+
+colorscheme evening
+
+nmap	<F1>	gqap
+nmap	<F2>	gqqj
+nmap	<F3>	kgqj
+map!	<F1>	<ESC>gqapi
+map!	<F2>	<ESC>gqqji
+map!	<F3>	<ESC>kgqji
