@@ -1,0 +1,3 @@
+colorscheme vimPgray
+
+map <silent> Y :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
