@@ -1,3 +1,6 @@
 colorscheme vimPgray
 
 map <silent> Y :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
+
+hi -a StatusLine font-size: 90%;
+hi -a CmdLine font-size: 90%;
