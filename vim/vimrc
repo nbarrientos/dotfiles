@@ -103,3 +103,7 @@ let Tlist_Close_On_Select = 1
 
 " MacMail
 "let MailApp_from = "Nacho Barientos <nacho@criptonita.com>"
+
+" F1 -> Esc (useful for thinkpads)
+map <F1> <Esc>
+imap <F1> <Esc>
