@@ -5,13 +5,11 @@ set imap_pass = ""
 
 set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
 set smtp_pass = ""
-set from = "nacho.barrientos@gmail.com"
-set realname = "Nacho Barrientos"
 
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set postponed="+[Gmail]/Drafts"
-#set record="+[Gmail]/Sent Mail"
+unset record
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
@@ -35,7 +33,7 @@ unset pgp_replyencrypt  # always encrypt reply to encrypted message
   set pgp_verify_sig    # always verify pgp signatures
 unset pgp_show_unusable # show non-usable keys on the PGP key selection menu?
 unset prompt_after      # display prompt after exit from pager
-  set sig_dashes        # prepend "-- \n" to the signature
+unset sig_dashes        # don't prepend "-- \n" to the signature
   set user_agent        # create User-Agent: Mutt/<Version> header.
   set pager_stop        # tells pager not to switch to next message when at the bottom of a mail
   set tilde             # Internal Pager: ~~~~ at and of message.
@@ -64,6 +62,10 @@ unignore  x-mailer user-agent x-operating-system list-id
 hdr_order date from subject to cc reply-to: list-id
 my_hdr    X-Operating-System: `uname -sr` (`uname -m`)
 
+# ----- Gmail deletion/archive operations
+macro index,pager d "<enter-command>unset trash\n <delete-message>" "Garchive message"
+macro index,pager \Cd "<enter-command>set trash='imaps://imap.gmail.com/[Gmail]/Trash'\n <delete-message>" "Gdelete message"
+
 # ----- Hooks
 # Ensure defaults
 send-hook . set signature="~/.signature"
@@ -75,11 +77,10 @@ send-hook (-subscribe|-unsubscribe) set copy=no
 send-hook -request      set signature=""
 send-hook -request      set copy=no
 
-# From changes
+# From hooks
 send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
 send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
-send-hook (uniovi\.es|debian\.org) 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
-send-hook fundacionctic.org 'my_hdr From: Nacho Barrientos Arias <ignacio.barrientos@fundacionctic.org>'
+send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
 
 # Getting rid of accidental quits
 #macro index q '<change-folder>?<toggle-mailboxes>'
