@@ -7,6 +7,7 @@ set expandtab
 set nobackup
 set nohlsearch
 set ruler
+set spell
 set pastetoggle=<f12>
 
 set textwidth=70
