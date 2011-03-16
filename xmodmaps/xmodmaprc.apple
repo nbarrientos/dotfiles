@@ -1,0 +1,7 @@
+! Backslash <-> Angle brackets (xkb bug?)
+keycode 49 = less greater less greater bar brokenbar
+keycode 94 = masculine ordfeminine masculine ordfeminine backslash backslash
+! Caps_Lock -> <CONTROL> ; Control_L -/> <CONTROL>
+remove lock = Caps_Lock
+remove control = Control_L
+add control = Caps_Lock
