@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
-ColorScheme=Linux
-Font=Terminus,11,-1,0,50,0,0,0,0,0
+ColorScheme=Nacho
+Font=Terminus,12,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=0
