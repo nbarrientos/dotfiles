@@ -2,5 +2,7 @@ colorscheme vimPgray
 
 map <silent> Y :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
 
-hi -a StatusLine font-size: 90%;
-hi -a CmdLine font-size: 90%;
+highlight -append StatusLine font-size: 90%;
+highlight -append CmdLine font-size: 90%;
+highlight -append TabText font-weight: bold;
+highlight TabIcon display: none;
