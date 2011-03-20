@@ -1,0 +1,15 @@
+remote
+debian
+downloads
+.*_history
+.dbus
+.*cache
+.adobe
+.macromedia
+.pulse*
+.mozilla
+.moc
+.viminfo
+.psi
+documents/ipod
+documents/iphone
