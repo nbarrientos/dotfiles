@@ -1,6 +1,8 @@
 remote
 debian
 downloads
+games
+*.swp
 .*_history
 .dbus
 .*cache
@@ -11,5 +13,6 @@ downloads
 .moc
 .viminfo
 .psi
+.texmf*
 documents/ipod
 documents/iphone
