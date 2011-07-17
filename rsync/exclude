@@ -14,5 +14,12 @@ games
 .viminfo
 .psi
 .texmf*
+.gtkpod
+.thumbnails
+.Skype
+.openoff*
 documents/ipod
 documents/iphone
+tmp
+public_html
+rsynced
