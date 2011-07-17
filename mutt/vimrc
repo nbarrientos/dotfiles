@@ -21,3 +21,5 @@ nmap	<F3>	kgqj
 map!	<F1>	<ESC>gqapi
 map!	<F2>	<ESC>gqqji
 map!	<F3>	<ESC>kgqji
+map   <F4>  :set spelllang=es<CR>
+map   <F5>  :set spelllang=en<CR>
