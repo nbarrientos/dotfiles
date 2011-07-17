@@ -1,14 +1,13 @@
 set editor="vim -u ~/.mutt/vimrc '+/^$/'"
 
-set imap_user = "nacho.barrientos@gmail.com"
-set imap_pass = ""
+# Hints from
+# http://www.df7cb.de/blog/2010/Using_multiple_IMAP_accounts_with_Mutt.html
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/account.gmail<enter><change-folder>!<enter>'
+macro index <f6> '<sync-mailbox><enter-command>source ~/.mutt/account.igalia<enter><change-folder>!<enter>'
 
-set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
-set smtp_pass = ""
+# Default account (Gmail ATM)
+source "~/.mutt/account.gmail"
 
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set postponed="+[Gmail]/Drafts"
 unset record
 
 set header_cache=~/.mutt/cache/headers
@@ -52,8 +51,8 @@ set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
 
 # ----- Mail addresses
 unalternates *
-alternates (chipi|nacho)@criptonita.com|nacho@debian.org|(chipi|vicepresidente)@asturlinux.org|uo165635@uniovi.es
-alternates nacho.barrientos@gmail.com
+alternates (chipi|nacho)@criptonita.com|nacho@debian.org|(chipi|vicepresidente)@asturlinux.org
+alternates nacho.barrientos@gmail.com|ibarrientos@igalia.com
 
 # ----- Headers customizing
 ignore    *
@@ -68,8 +67,8 @@ macro index,pager \Cd "<enter-command>set trash='imaps://imap.gmail.com/[Gmail]/
 
 # ----- Hooks
 # Ensure defaults
-send-hook . set signature="~/.signature"
-send-hook . "my_hdr From: Nacho Barrientos Arias <nacho@criptonita.com>"
+#send-hook . set signature="~/.signature"
+#send-hook . "my_hdr From: Nacho Barrientos Arias <nacho@criptonita.com>"
 
 # Mailing list robots
 send-hook (-subscribe|-unsubscribe) set signature=""

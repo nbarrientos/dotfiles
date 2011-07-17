@@ -1,0 +1,11 @@
+set from = "ibarrientos@igalia.com"
+
+set folder = "imaps://imap.igalia.com"
+set imap_user = "ibarrientos@igalia.com"
+set imap_pass = ""
+set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
+set smtp_pass = ""
+
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set signature = "~/.mutt/signature.igalia"
