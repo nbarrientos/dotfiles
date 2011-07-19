@@ -1,7 +1,7 @@
 set from = "ibarrientos@igalia.com"
 
-set folder = "imaps://imap.igalia.com"
-set imap_user = "ibarrientos@igalia.com"
+set folder = "imaps://mail.igalia.com"
+set imap_user = "ibarrientos"
 set imap_pass = ""
 set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
 set smtp_pass = ""
