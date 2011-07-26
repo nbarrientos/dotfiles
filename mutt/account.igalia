@@ -10,3 +10,5 @@ set smtp_pass = ""
 set spoolfile = "+INBOX"
 set postponed = "+Drafts"
 set signature = "~/.mutt/signature.igalia"
+set copy = yes
+set record = "+Sent"
