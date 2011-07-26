@@ -8,8 +8,6 @@ macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.igal
 # Default account (Gmail ATM)
 source "~/.mutt/account.gmail"
 
-unset record
-
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 set certificate_file=~/.mutt/certificates
