@@ -9,3 +9,6 @@ set smtp_pass = ""
 set spoolfile = "+INBOX"
 set postponed = "+[Gmail]/Drafts"
 set signature = "~/.mutt/signature.default"
+
+set copy = no
+unset record
