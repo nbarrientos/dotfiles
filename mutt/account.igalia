@@ -1,4 +1,4 @@
-set from = "ibarrientos@igalia.com"
+set from = "nacho@igalia.com"
 
 set folder = "imaps://mail.igalia.com"
 set imap_user = "ibarrientos"
