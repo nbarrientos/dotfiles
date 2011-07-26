@@ -3,7 +3,8 @@ set from = "nacho@igalia.com"
 set folder = "imaps://mail.igalia.com"
 set imap_user = "ibarrientos"
 set imap_pass = ""
-set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
+# mail.igalia.com (force auth by using external address all the time)
+set smtp_url = "smtps://ibarrientos@91.117.99.155/"
 set smtp_pass = ""
 
 set spoolfile = "+INBOX"
