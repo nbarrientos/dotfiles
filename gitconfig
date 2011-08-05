@@ -3,3 +3,11 @@
 	email = nacho@criptonita.com
 [color]
 	ui = auto
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  di = diff
+  br = branch
+  fp = format-patch
+  tr = log --graph --oneline --decorate
