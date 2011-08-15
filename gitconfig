@@ -11,3 +11,5 @@
   br = branch
   fp = format-patch
   tr = log --graph --oneline --decorate
+  pum = pull origin master
+  se = send-email
