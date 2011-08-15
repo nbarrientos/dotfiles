@@ -9,7 +9,7 @@ fi
 # -- Keyboard remappings
 
 # Built-in keyboard
-setxkbmap -option "altwin:swap_lalt_lwin" -option "ctrl:nocaps"
+setxkbmap -option "altwin:swap_lalt_lwin" -option "ctrl:nocaps" -layout es
 
 if [ -f /usr/bin/lsusb ]; then
   # Aluminum Apple keyboard
