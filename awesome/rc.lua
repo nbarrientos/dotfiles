@@ -208,7 +208,7 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "F12", nil, function () awful.util.spawn("xtrlock") end),
-    awful.key({ }, "XF86Eject", function () awful.util.spawn("xtrlock") end),
+    awful.key({ }, "XF86Launch1", function () awful.util.spawn("xtrlock") end),
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Shift" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
