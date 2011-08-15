@@ -18,6 +18,8 @@ set pgp_sign_as="0xE103FC4D"
 
 set include="yes"
 set quit="ask-yes"
+set imap_keepalive=300
+set timeout=0
 
 #  set autoedit          # start editor without asking for to, subject,...
   set auto_tag          # if something is tagged, run commands on tagged msgs.
