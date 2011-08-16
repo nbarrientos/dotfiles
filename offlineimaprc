@@ -1,6 +1,6 @@
 [general]
 # NOTE: cronjob calls the quiet UI with -u
-ui = ttyui
+ui = Blinkenlights
 accounts = Gmail, Igalia
 maxsyncaccounts = 2
 
