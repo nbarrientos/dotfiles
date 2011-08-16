@@ -1,14 +1,15 @@
-set from = "nacho@criptonita.com"
+# Gmail specific settings
+set from = "Nacho Barrientos <nacho@criptonita.com>"
 
-set folder = "imaps://imap.gmail.com:993"
-set imap_user = "nacho.barrientos@gmail.com"
-set imap_pass = ""
 set smtp_url = "smtp://nacho.barrientos@smtp.gmail.com:587/"
 set smtp_pass = ""
 
-set spoolfile = "+INBOX"
-set postponed = "+[Gmail]/Drafts"
+set spoolfile = "+gmail/INBOX"
+set postponed = "+gmail/Drafts"
 set signature = "~/.mutt/signature.default"
 
 set copy = no
 unset record
+
+macro index D "<save-message>+gmail/Trash<enter>" "move message to the trash"
+macro index S "<save-message>+gmail/Spam<enter>" "mark message as spam"

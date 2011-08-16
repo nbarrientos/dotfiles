@@ -1,9 +1,7 @@
 set editor="vim -u ~/.mutt/vimrc '+/^$/'"
 
-# Hints from
-# http://www.df7cb.de/blog/2010/Using_multiple_IMAP_accounts_with_Mutt.html
-macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.gmail<enter><change-folder>!<enter>'
-macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.igalia<enter><change-folder>!<enter>'
+set folder="~/mail"
+set mbox_type=Maildir
 
 # Default account (Gmail ATM)
 source "~/.mutt/account.gmail"
@@ -18,8 +16,6 @@ set pgp_sign_as="0xE103FC4D"
 
 set include="yes"
 set quit="ask-yes"
-set imap_keepalive=300
-set timeout=0
 
 #  set autoedit          # start editor without asking for to, subject,...
   set auto_tag          # if something is tagged, run commands on tagged msgs.
@@ -52,7 +48,7 @@ set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
 # ----- Mail addresses
 unalternates *
 alternates (chipi|nacho)@criptonita.com|nacho@debian.org|(chipi|vicepresidente)@asturlinux.org
-alternates nacho.barrientos@gmail.com|ibarrientos@igalia.com
+alternates nacho.barrientos@gmail.com|ibarrientos@igalia.com|nacho@igalia.com
 
 # ----- Headers customizing
 ignore    *
@@ -60,15 +56,6 @@ unignore  from: subject to cc reply-to: date
 unignore  x-mailer user-agent x-operating-system list-id
 hdr_order date from subject to cc reply-to: list-id
 my_hdr    X-Operating-System: `uname -sr` (`uname -m`)
-
-# ----- Gmail deletion/archive operations
-macro index,pager d "<enter-command>unset trash\n <delete-message>" "Garchive message"
-macro index,pager \Cd "<enter-command>set trash='imaps://imap.gmail.com/[Gmail]/Trash'\n <delete-message>" "Gdelete message"
-
-# ----- Hooks
-# Ensure defaults
-#send-hook . set signature="~/.signature"
-#send-hook . "my_hdr From: Nacho Barrientos Arias <nacho@criptonita.com>"
 
 # Mailing list robots
 send-hook (-subscribe|-unsubscribe) set signature=""
@@ -81,9 +68,9 @@ send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux
 send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
 send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
 
-# Getting rid of accidental quits
-#macro index q '<change-folder>?<toggle-mailboxes>'
-#macro browser q '<exit><quit>'
+# Folder hooks
+folder-hook gmail/* source ~/.mutt/account.gmail
+folder-hook igalia/* source ~/.mutt/account.igalia
 
 # ------ Let's put some color!
 color attachment brightcyan     default
