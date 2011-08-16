@@ -35,7 +35,5 @@ realdelete = no
 nametrans = lambda folder: re.sub('.*Spam$', 'Spam', 
     re.sub('.*Drafts$', 'Drafts', 
     re.sub('.*Sent Mail$', 'Sent', 
-    re.sub('.*Starred$', 'Flagged', 
-    re.sub('.*Important$', 'Important', 
-    re.sub('.*Trash$', 'Trash', 
-    re.sub('.*All Mail$', 'Archive', folder)))))))
+    re.sub('.*Trash$', 'Trash', folder))))
+folderfilter = lambda folder: folder not in ['[Gmail]/All Mail', '[Gmail]/Important', '[Gmail]/Starred']
