@@ -1,0 +1,41 @@
+[general]
+# NOTE: cronjob calls the quiet UI with -u
+ui = ttyui
+accounts = Gmail, Igalia
+maxsyncaccounts = 2
+
+[Account Igalia]
+localrepository = Igalia-Local
+remoterepository = Igalia-Remote
+autorefresh = 5
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+autorefresh = 10
+
+[Repository Igalia-Local]
+type = Maildir
+localfolders = ~/mail/igalia
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/mail/gmail
+
+[Repository Igalia-Remote]
+type = IMAP
+ssl = yes
+remotehost = mail.igalia.com
+remoteuser = ibarrientos
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = nacho.barrientos@gmail.com
+realdelete = no
+nametrans = lambda folder: re.sub('.*Spam$', 'Spam', 
+    re.sub('.*Drafts$', 'Drafts', 
+    re.sub('.*Sent Mail$', 'Sent', 
+    re.sub('.*Starred$', 'Flagged', 
+    re.sub('.*Important$', 'Important', 
+    re.sub('.*Trash$', 'Trash', 
+    re.sub('.*All Mail$', 'Archive', folder)))))))
