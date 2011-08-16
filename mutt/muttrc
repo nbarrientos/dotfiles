@@ -72,6 +72,10 @@ send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
 folder-hook gmail/* source ~/.mutt/account.gmail
 folder-hook igalia/* source ~/.mutt/account.igalia
 
+# Shortcuts for switching among INBOXes
+macro index,pager <f1> '<change-folder>+gmail/INBOX<enter>'
+macro index,pager <f2> '<change-folder>+igalia/INBOX<enter>'
+
 # ------ Let's put some color!
 color attachment brightcyan     default
 color bold       green          default
