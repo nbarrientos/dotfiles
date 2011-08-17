@@ -1,0 +1,2 @@
+#!/bin/sh
+exec konsole -e vim ${1+"$@"}
