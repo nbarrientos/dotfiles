@@ -8,6 +8,9 @@ set nocompatible
 " Activar plugins dependientes de filext
 filetype plugin on
 
+" Add extra extensions
+au BufRead,BufNewFile *.twiki set ft=twiki
+
 " Poner el mapleader en un sitio mas comodo (default: \)
 let mapleader = ","
 
