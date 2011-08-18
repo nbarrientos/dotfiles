@@ -18,5 +18,8 @@ if [ -f /usr/bin/lsusb ]; then
     && xmodmap ~/.xmodmaprc.apple
 fi
 
+# Disable Touchpad
+xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Synaptics Off" 8 1
+
 # Bootstrap Awesome
 exec awesome
