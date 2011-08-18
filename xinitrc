@@ -8,14 +8,15 @@ fi
 
 # -- Keyboard remappings
 
-# Built-in keyboard
-setxkbmap -option "altwin:swap_lalt_lwin" -option "ctrl:nocaps" -layout es
-
 if [ -f /usr/bin/lsusb ]; then
-  # Aluminum Apple keyboard
-  lsusb | grep -q "05ac:1006" \
-    && setxkbmap -option -model macintosh -layout es \
-    && xmodmap ~/.xmodmaprc.apple
+  if [ ! `lsusb | grep -q "05ac:1006"`]; then
+    # Aluminum Apple keyboard
+    setxkbmap -model macintosh -layout es -option "ctrl:nocaps";
+    xmodmap ~/.xmodmaprc.apple;
+  else
+    # Built-in keyboard
+    setxkbmap -option "altwin:swap_lalt_lwin" -option "ctrl:nocaps" -layout es;
+  fi
 fi
 
 # Disable Touchpad
