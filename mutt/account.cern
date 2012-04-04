@@ -1,0 +1,15 @@
+# cern specific settings
+set from = "Nacho Barrientos <nacho.barrientos@cern.ch>"
+
+set smtp_url = "smtp://ibarrien@smtp.cern.ch:587/"
+set smtp_pass = ""
+
+set spoolfile = "+cern/INBOX"
+set postponed = "+cern/Drafts"
+set signature = "~/.mutt/signature.default"
+
+set copy = yes
+set record = "+cern/Sent"
+
+macro index D "<save-message>+cern/Trash<enter>" "move message to the trash"
+macro index S "<save-message>+cern/Spam<enter>" "mark message as spam"

@@ -3,8 +3,8 @@ set editor="vim -u ~/.mutt/vimrc '+/^$/'"
 set folder="~/mail"
 set mbox_type=Maildir
 
-# Default account (Gmail ATM)
-source "~/.mutt/account.gmail"
+# Default account
+source "~/.mutt/account.cern"
 
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
@@ -47,8 +47,7 @@ set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
 
 # ----- Mail addresses
 unalternates *
-alternates (chipi|nacho)@criptonita.com|nacho@debian.org|(chipi|vicepresidente)@asturlinux.org
-alternates nacho.barrientos@gmail.com|ibarrientos@igalia.com|nacho@igalia.com
+alternates (ibarrien|nacho.barrientos|ignacio.barrientos.arias)@cern.ch
 
 # ----- Headers customizing
 ignore    *
@@ -64,17 +63,26 @@ send-hook -request      set signature=""
 send-hook -request      set copy=no
 
 # From hooks
-send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
-send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
-send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
+#send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
+#send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
+#send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
 
 # Folder hooks
-folder-hook gmail/* source ~/.mutt/account.gmail
-folder-hook igalia/* source ~/.mutt/account.igalia
+folder-hook cern/* source ~/.mutt/account.cern
 
 # Shortcuts for switching among INBOXes
-macro index,pager <f1> '<change-folder>+gmail/INBOX<enter>'
-macro index,pager <f2> '<change-folder>+igalia/INBOX<enter>'
+macro index,pager <f1> '<change-folder>+cern/INBOX<enter>'
+macro index,pager <f2> '<change-folder>+cern/Sent<enter>'
+macro index,pager <f3> '<change-folder>+cern/agile-infrastructure-discuss<enter>'
+macro index,pager <f3> '<change-folder>+cern/batch-operations<enter>'
+
+macro index,pager <f5> '<change-folder>+cern/cern-personnel<enter>'
+macro index,pager <f6> '<change-folder>+cern/cern-fellows<enter>'
+
+macro index,pager <f9> '<change-folder>+cern/it-dep<enter>'
+macro index,pager <f10> '<change-folder>+cern/it-dep-pes<enter>'
+macro index,pager <f11> '<change-folder>+cern/it-dep-pes-ps<enter>'
+macro index,pager <f12> '<change-folder>+cern/building-31<enter>'
 
 # ------ Let's put some color!
 color attachment brightcyan     default

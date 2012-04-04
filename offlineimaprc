@@ -1,19 +1,19 @@
 [general]
 # NOTE: cronjob calls the quiet UI with -u
 ui = Blinkenlights
-accounts = Gmail
+accounts = CERN
 maxsyncaccounts = 1
 
-[Account Gmail]
-localrepository = Gmail-Local
-remoterepository = Gmail-Remote
+[Account CERN]
+localrepository = CERN-Local
+remoterepository = CERN-Remote
 autorefresh = 10
 
-[Repository Gmail-Local]
+[Repository CERN-Local]
 type = Maildir
-localfolders = ~/mail/gmail
+localfolders = ~/mail/cern
 
-[Repository Gmail-Remote]
+[Repository CERN-Remote]
 type = Gmail
 remoteuser = nacho.barrientos.cern@gmail.com
 realdelete = no
