@@ -6,3 +6,7 @@ highlight -append StatusLine font-size: 90%;
 highlight -append CmdLine font-size: 90%;
 highlight -append TabText font-weight: bold;
 highlight TabIcon display: none;
+
+" Restrict link hints in Google search result list
+autocmd LocationChange '(?!google.com).*' :set hinttags&
+autocmd LocationChange 'google.com' :set hinttags='//h3[@class="r"]/a'
