@@ -11,7 +11,7 @@ require("naughty")
 --require("debian.menu")
 
 -- Obvious widgets
-require("obvious.battery")
+--require("obvious.battery")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -81,9 +81,6 @@ mytextclock = awful.widget.textclock({ align = "right" }, " %a %d, %H:%M ")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
-
--- Battery widget
-mybattery = obvious.battery()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -155,7 +152,6 @@ for s = 1, screen.count() do
         },
         --mylayoutbox[s],
         mytextclock,
-        mybattery,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
