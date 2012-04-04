@@ -13,3 +13,5 @@ set record = "+cern/Sent"
 
 macro index D "<save-message>+cern/Trash<enter>" "move message to the trash"
 macro index S "<save-message>+cern/Spam<enter>" "mark message as spam"
+
+send-hook cern\.ch set signature = "~/.mutt/signature.geek"
