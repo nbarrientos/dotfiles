@@ -113,3 +113,6 @@ let Tlist_Close_On_Select = 1
 " F1 -> Esc (useful for thinkpads)
 map <F1> <Esc>
 imap <F1> <Esc>
+
+" Open taglist and jump to it
+nnoremap <silent> <F8> :TlistToggle<CR>
