@@ -10,6 +10,6 @@
   di = diff
   br = branch
   fp = format-patch
-  tr = log --graph --oneline --decorate
+  tr = log --graph --oneline --decorate --all
   pum = pull origin master
   se = send-email
