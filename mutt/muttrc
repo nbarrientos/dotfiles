@@ -39,7 +39,7 @@ unset reply_self        # I won't ever reply myself
   set status_on_top     # I prefer see status bar on top
 
 # ----- HTML rendering
-auto_view text/html
+#auto_view text/html
 
 # ----- Formats
 set folder_format="%2C %N %d      %f"
