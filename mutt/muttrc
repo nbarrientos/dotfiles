@@ -51,6 +51,9 @@ set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
 unalternates *
 alternates (ibarrien|nacho.barrientos|ignacio.barrientos.arias)@cern.ch
 
+mailboxes =cern/INBOX =cern/Sent =cern/agile-infrastructure-discuss =cern/batch-operations =cern/ai-admins =cern/cern-personnel =cern/cern-fellows =cern/it-dep =cern/it-dep-pes =cern/it-dep-pes-ps =cern/building-31
+
+
 # ----- Headers customizing
 ignore    *
 unignore  from: subject to cc reply-to: date
@@ -135,3 +138,10 @@ color body       cyan           default  "<URL:[^ ]*>"
 color body       yellow         default  "[;:][-_]?[)/(|P]+" # some smileys
 color body       brightblue     default  "\\b[^ ]+://[^ ]*" # urls colorizing (all protos)
 color body       brightblue     default  "([bB]ug)?#[[:digit:]]{5,6}" # matching bug numbers
+
+# -- sidebar
+set sidebar_width=25
+color sidebar_new yellow default
+bind index,pager <insert> sidebar-prev
+bind index,pager <delete> sidebar-next
+bind index,pager <backspace> sidebar-open
