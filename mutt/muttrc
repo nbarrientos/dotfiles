@@ -17,6 +17,8 @@ set pgp_sign_as="0xE103FC4D"
 set include="yes"
 set quit="ask-yes"
 
+set query_command="/usr/local/lib/cern-ldap-query %s"
+
 #  set autoedit          # start editor without asking for to, subject,...
   set auto_tag          # if something is tagged, run commands on tagged msgs.
   set check_new         # search for new messages in maildir/MH folders.
