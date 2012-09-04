@@ -13,5 +13,6 @@
   tr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --date=relative
   tra = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --date=relative --all
   pum = pull origin master
-  panic = !tar cvf ../git_panic.tar *
+  panic = !tar cvf ../git_panic.tar * .git
   se = send-email
+  cl = !git clean -fd && git reset --hard
