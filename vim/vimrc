@@ -90,6 +90,8 @@ noremap <silent> <Leader>C :call UnComment()<CR>
 " Redefinir los mappings de Tasklist
 map <Leader>T <Plug>TaskList
 
+map <Leader>S :%s/\s\+$//cg
+
 " Taglist
 
 " Path a exuberant ctags
