@@ -1,7 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
+BoldIntense=true
 ColorScheme=Nacho
-Font=Terminus,12,-1,5,50,0,0,0,0,0
+Font=Terminus,11.6,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=0
