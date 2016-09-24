@@ -10,7 +10,7 @@ x-terminal-emulator.transparent: false
 x-terminal-emulator.shading: 1
 x-terminal-emulator.depth: 32
 x-terminal-emulator.perl-ext-common: default,matcher
-x-terminal-emulator.url-launcher: /usr/bin/xdg-open
+x-terminal-emulator.url-launcher: firefox
 x-terminal-emulator.matcher.rend.0: fg0
 x-terminal-emulator.matcher.button: 1
 x-terminal-emulator.fading: 20
