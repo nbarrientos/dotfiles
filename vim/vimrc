@@ -18,7 +18,9 @@ let mapleader = ","
 
 " Coloreado de sintaxis
 syntax on
-colorscheme evening
+set background=dark
+let g:solarized_termtrans=1
+colorscheme solarized
 
 " Mostrar siempre la linea de estado
 set laststatus=2
