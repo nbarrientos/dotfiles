@@ -3,6 +3,8 @@
 "  - Show taglist: <Leader>t
 "  - Comment in/out block: <Leader>c/C
 
+execute pathogen#infect()
+
 set nocompatible
 
 " Activar plugins dependientes de filext
