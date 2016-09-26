@@ -15,6 +15,6 @@ xscreensaver -nosplash &
 
 xrdb ~/.Xresources
 
-xrandr --output HDMI-1 --mode 1920x1200 --rotate normal --output HDMI-2 --mode 1920x1200 --left-of HDMI-1 --rotate left &
+xrandr --output HDMI-1 --mode 1920x1200 --rotate normal --output HDMI-2 --mode 1920x1200 --left-of HDMI-1 --rotate left --primary &
 
 exec i3
