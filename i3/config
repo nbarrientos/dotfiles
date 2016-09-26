@@ -3,6 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $primary_screen HDMI-2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -143,11 +144,11 @@ bindsym $mod+F12 exec amixer set Master playback 5%+ unmute
 bindsym XF86Launch1 exec i3lock
 
 # WS -> Screen assignments
-workspace "6: mail" output VGA1
-workspace "7: www" output VGA1
-workspace "8: chat" output VGA1
-workspace "9: music" output VGA1
-workspace "10: logs" output VGA1
+workspace "6: mail" output $primary_screen
+workspace "7: www" output $primary_screen
+workspace "8: chat" output $primary_screen
+workspace "9: music" output $primary_screen
+workspace "10: logs" output $primary_screen
 
 # App -> WS assignments (xprop)
 assign [class="Icedove"] 6: mail
