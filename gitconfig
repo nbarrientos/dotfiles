@@ -16,3 +16,5 @@
   panic = !tar cvf ../git_panic.tar * .git
   se = send-email
   cl = !git clean -fd && git reset --hard
+[http]
+  emptyAuth = true
