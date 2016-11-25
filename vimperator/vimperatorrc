@@ -1,10 +1,4 @@
-colorscheme vimPgray
-
-highlight -append StatusLine font-size: 90%;
-highlight -append CmdLine font-size: 90%;
-highlight -append TabText font-weight: bold;
-highlight CmdLine background: #191919; color: #afafaf; font-size: 9pt;
-highlight TabIcon display: none;
+colorscheme indigo
 
 " Clear special hint filters for everything else
 autocmd LocationChange '.*' :set hinttags&
