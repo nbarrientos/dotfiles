@@ -156,7 +156,7 @@ assign [class="Firefox"] 2: www
 assign [class="Mattermost"] 3: chat
 # assign [class="Spotify"] music
 # https://www.reddit.com/r/i3wm/comments/52dy4m/spotify_doesnt_start_at_assigned_workspace/
-#for_window [class="Spotify"] move to workspace music
+for_window [class="Spotify"] move to workspace "4: music"
 
 # App to autostart
 exec firefox
