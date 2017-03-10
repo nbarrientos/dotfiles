@@ -18,3 +18,7 @@
   cl = !git clean -fd && git reset --hard
 [http]
   emptyAuth = true
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
