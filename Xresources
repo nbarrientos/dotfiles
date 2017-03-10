@@ -16,6 +16,7 @@ x-terminal-emulator.matcher.button: 1
 x-terminal-emulator.fading: 20
 x-terminal-emulator.intensityStyles: false
 x-terminal-emulator.urgentOnBell: true
+x-terminal-emulator.print-pipe: "cat > /dev/null"
 
 ! Solarized color scheme for the X Window System
 !
