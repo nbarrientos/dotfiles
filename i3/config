@@ -179,7 +179,7 @@ workspace_auto_back_and_forth yes
 # https://faq.i3wm.org/question/853/how-to-jump-to-urgent-workspace/
 bindsym $mod+u [urgent=latest] focus
 
-bindsym $mod+F3 exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/pictures/screenshots/'
+bindsym $mod+F3 exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -s -e 'mv $f ~/afs/www/s/'
 
 client.focused #689d6a #689d6a #282828 #282828
 client.focused_inactive #1d2021 #1d2021 #928374 #282828
