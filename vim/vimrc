@@ -84,9 +84,6 @@ let javascript_enable_domhtmlcss=1
 " Los ficheros .js son tambien jquery (syntax)
 "au BufRead,BufNewFile *.js set ft=javascript.jquery
 
-" Los ficheros .pp son tambien ruby (syntax)
-au BufRead,BufNewFile *.pp set ft=ruby
-
 " Redefinir los mappings de BlockComment para usar el MapLeader
 noremap <silent> <Leader>c :call Comment()<CR>
 noremap <silent> <Leader>C :call UnComment()<CR>
