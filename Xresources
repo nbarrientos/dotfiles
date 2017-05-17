@@ -70,3 +70,9 @@ x-terminal-emulator.color12:                 S_base0
 x-terminal-emulator.color13:                 S_violet
 x-terminal-emulator.color14:                 S_base1
 x-terminal-emulator.color15:                 S_base3
+
+rofi.color-enabled: true
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
