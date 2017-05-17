@@ -29,8 +29,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start rofi (run mode)
+bindsym $mod+d exec rofi -show run
+
+# start rofi (ssh mode)
+bindsym $mod+o exec rofi -show ssh
 
 # change focus
 bindsym $mod+h focus left
