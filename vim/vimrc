@@ -5,7 +5,6 @@ filetype plugin on
 
 let mapleader = ","
 
-" Coloreado de sintaxis
 syntax on
 set background=dark
 let g:solarized_termtrans=1
@@ -51,14 +50,14 @@ set rulerformat=%25(%n%m%r:\ %Y\ [%l,%v]\ %p%%%)
 " Búsquedas
 "
 
-" Resaltar resultados 
+" Resaltar resultados
 set hlsearch
 
 " Búsqueda incremental (busca según se escribe)
 set incsearch
 
 " Búsqueda case-insensitive
-set ignorecase 
+set ignorecase
 
 " Ignora 'ignorecase' si hay mayúsculas en la cadena de búsqueda
 set smartcase 
