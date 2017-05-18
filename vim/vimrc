@@ -57,7 +57,10 @@ set incsearch
 set ignorecase
 
 " Ignora 'ignorecase' si hay mayúsculas en la cadena de búsqueda
-set smartcase 
+set smartcase
+
+autocmd Filetype mail setlocal spell
+autocmd Filetype markdown setlocal spell
 
 "
 " Opciones dependientes de scripts/plugins
