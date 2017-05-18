@@ -43,9 +43,6 @@ set smartindent
 " Activar la regla
 set ruler
 
-" Formato de la regla
-set rulerformat=%25(%n%m%r:\ %Y\ [%l,%v]\ %p%%%)
-
 "
 " Búsquedas
 "
