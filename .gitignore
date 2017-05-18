@@ -3,6 +3,7 @@ vim/.netrwhist
 vim/bundle
 vim/autoload
 vim/syntax
+vim/doc
 mutt/cache
 mutt/certificates
 vimperator/info
