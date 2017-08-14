@@ -12,6 +12,8 @@ xmodmap -e "keycode 119 = Super_L"
 
 # Xscreensaver
 xscreensaver -nosplash &
+# Mute/unmute sound after locking/unlocking
+perl .dotfiles/xscreensaver/bin/xscreensaver-mute.pl &
 
 xrdb ~/.Xresources
 
