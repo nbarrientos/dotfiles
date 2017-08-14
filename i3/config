@@ -163,7 +163,7 @@ workspace "4: music" output $primary_screen
 workspace "5: logs" output $primary_screen
 
 # App -> WS assignments (xprop)
-assign [class="Icedove"] 1: mail
+assign [class="Thunderbird"] 1: mail
 assign [class="Firefox"] 2: www
 assign [class="Mattermost"] 3: chat
 # assign [class="Spotify"] music
