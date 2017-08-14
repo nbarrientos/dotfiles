@@ -153,7 +153,7 @@ bindsym $mod+F11 exec amixer set Master playback 5%- unmute
 bindsym $mod+F12 exec amixer set Master playback 5%+ unmute 
 
 # Screenlock
-bindsym $mod+F9 exec "amixer set Master mute; xscreensaver-command -lock"
+bindsym $mod+F9 exec xscreensaver-command -lock
 
 # WS -> Screen assignments
 workspace "1: mail" output $primary_screen
