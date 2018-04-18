@@ -171,6 +171,7 @@ assign [class="Mattermost"] 3: chat
 for_window [class="Spotify"] move to workspace "4: music"
 
 # App to autostart
+exec --no-startup-id dunst
 exec firefox
 exec icedove
 exec spotify
