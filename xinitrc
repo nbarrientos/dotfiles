@@ -7,7 +7,7 @@
 #xmodmap -e "keycode 49 = Escape"
 
 # Kinesis Advantage
-setxkbmap -option "caps:escape" -layout us
+setxkbmap -option -option "caps:escape" -option "compose:rctrl" -layout us
 xmodmap -e "keycode 119 = Super_L"
 
 # Xscreensaver
