@@ -100,8 +100,8 @@ bind pager G  bottom
 bind index gg noop
 bind index gg first-entry
 bind index G  last-entry
-bind index,pager \Ck sidebar-prev
-bind index,pager \Cj sidebar-next
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 
 # ----- Colors
