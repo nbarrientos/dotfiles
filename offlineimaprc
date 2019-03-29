@@ -1,0 +1,23 @@
+[general]
+# NOTE: cronjob calls the quiet UI with -u
+ui = Blinkenlights
+accounts = CERN
+maxsyncaccounts = 1
+
+[Account CERN]
+localrepository = CERN-Local
+remoterepository = CERN-Remote
+autorefresh = 10
+
+[Repository CERN-Local]
+type = Maildir
+localfolders = ~/mail/cern
+
+[Repository CERN-Remote]
+type = IMAP
+ssl = yes
+auth_mechanisms = GSSAPI
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotehost = imap.cern.ch
+remoteuser = foo
+folderfilter = lambda folder: folder not in ['wontread', 'yum-updates']

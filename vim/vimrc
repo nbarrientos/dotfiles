@@ -85,3 +85,9 @@ let g:airline_powerline_fonts = 1
 
 :map <Leader>gs :Gstatus <Enter>
 :map <Leader>e :x <Enter>
+
+" https://github.com/altercation/vim-colors-solarized/issues/195#issuecomment-423978382
+set t_Cs=
+
+autocmd BufNewFile,BufRead /tmp/mutt* set noautoindent filetype=mail wm=0 nonumber spelllang=en_gb,fr,es
+autocmd BufNewFile,BufRead ~/tmp/mutt* set noautoindent filetype=mail wm=0 nonumber spelllang=en_gb,fr,es

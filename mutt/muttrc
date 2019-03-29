@@ -1,147 +1,111 @@
-set editor="vim -u ~/.mutt/vimrc '+/^$/'"
-
-set folder="~/mail"
-set mbox_type=Maildir
-
 # Default account
 source "~/.mutt/account.cern"
 
-set header_cache=~/.mutt/cache/headers
-set message_cachedir=~/.mutt/cache/bodies
-set certificate_file=~/.mutt/certificates
-
-set pager_index_lines=9
-set ispell="aspell --lang=en check"
-set pgp_sign_as="0xE103FC4D"
-
-set include="yes"
-set quit="ask-yes"
-
-set query_command="/usr/local/lib/cern-ldap-query %s"
-
-#  set autoedit          # start editor without asking for to, subject,...
+# ----- Misc boolean settings
+  set autoedit          # start the editor without asking for to, subject,...
   set auto_tag          # if something is tagged, run commands on tagged msgs.
+  set beep_new          # set the urgent flag if there's new email
   set check_new         # search for new messages in maildir/MH folders.
 unset collapse_unread   # don't collapse threads with unread mails
 unset confirmappend     # prompt for confirm when appending message to ex. mbox
   set edit_headers      # put headers in editor when composing messages
-unset pgp_replysign     # always sign reply to signed message
-unset pgp_replyencrypt  # always encrypt reply to encrypted message
+unset help              # do not show the help line describing the bindings
+  set include           # add a copy of the message to the reply
+unset markers           # no pluses at the beggining of continued lines
+unset mark_old          # read/unred is good enough
+  set pager_stop        # do not to switch to the next message when at the bottom of a mail
   set pgp_verify_sig    # always verify pgp signatures
-unset pgp_show_unusable # show non-usable keys on the PGP key selection menu?
 unset prompt_after      # display prompt after exit from pager
-unset sig_dashes        # don't prepend "-- \n" to the signature
+unset reply_self        # i won't ever reply to myself :)
+  set sig_dashes        # prepend "-- \n" to the signature
+  set status_on_top     # i prefer to see the status bar on the top
+  set tilde             # internal Pager: ~~~~ at and of message.
   set user_agent        # create User-Agent: Mutt/<Version> header.
-  set pager_stop        # tells pager not to switch to next message when at the bottom of a mail
-  set tilde             # Internal Pager: ~~~~ at and of message.
-unset wait_key          # Only "press a key" if return value non-zero.
-unset beep_new          # mutt will no beep whenever it prints a message notifying you of new mail
-  set help              # when set, help lines describing the bindings are displayed
-unset reply_self        # I won't ever reply myself
-  set status_on_top     # I prefer see status bar on top
+unset wait_key          # Only ask to "press a key" if the return value non-zero.
+
+# ----- Misc non-boolean settings
+set editor =            vim
+set mbox_type =         Maildir
+set sleep_time =        0 # do not pause when displaying status messages
+set pager_index_lines = 20
+set header_cache =      ~/.mutt/cache/headers
+set message_cachedir =  ~/.mutt/cache/bodies
+set certificate_file =  ~/.mutt/certificates
+set quit =              "ask-yes"
 
 # ----- HTML rendering
-#auto_view text/html
+auto_view text/html
+set mailcap_path =      ~/.mutt/mailcap
 
 # ----- Formats
-set folder_format="%2C %N %d      %f"
-set index_format="%4C %Z %4M %[!%d/%m %H:%M] %-23.23n \| %s"
+set folder_format =     "%2C %N %d      %f"
+set index_format =      "%Z %4M %[!%d/%m/%y %H:%M] %-23.23n \| %s"
 
 # ----- Mail addresses
 unalternates *
-alternates (ibarrien|nacho.barrientos|ignacio.barrientos.arias)@cern.ch
+alternates (nacho.barrientos|ignacio.barrientos.arias)@cern.ch
+lists @\.cern\.ch
 
-mailboxes =cern/INBOX =cern/Sent =cern/agile-infrastructure-discuss =cern/batch-operations =cern/ai-admins =cern/cern-personnel =cern/cern-fellows =cern/it-dep =cern/it-dep-pes =cern/it-dep-pes-ps =cern/building-31 =cern/c5-minutes
+# ----- Mailboxes
+mailboxes =ai-admins \
+          =ai-config-team \
+          =ai-jira \
+          =ai-jira-crm \
+          =building-31 \
+          =c5-minutes \
+          =cern-personnel \
+          =Drafts \
+          =foreman-announce \
+          =foreman-users \
+          =gitlab \
+          =i3-discuss \
+          =INBOX \
+          =it-dep \
+          =it-dep-cm \
+          =it-dep-cm-lcs \
+          =linux-users \
+          =oss-security \
+          =puppet-dev \
+          =puppet-users \
+          =rh-errata \
+          =Sent \
+          =service-desk \
+          =service-desk-crap \
+          =spanish-gang \
+          =Trash \
 
-
-# ----- Headers customizing
+# ----- Headers customising
 ignore    *
 unignore  from: subject to cc reply-to: date
 unignore  x-mailer user-agent x-operating-system list-id
 hdr_order date from subject to cc reply-to: list-id
 my_hdr    X-Operating-System: `uname -sr` (`uname -m`)
 
-# Mailing list robots
+# ----- Mailing list robots
 send-hook (-subscribe|-unsubscribe) set signature=""
 send-hook (-subscribe|-unsubscribe) set copy=no
 send-hook -request      set signature=""
 send-hook -request      set copy=no
 
-# From hooks
-#send-hook asturlinux\.org 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
-#send-hook swaml-devel\@lists.berlios.de 'my_hdr From: Nacho Barrientos Arias <chipi@asturlinux.org>'
-#send-hook debian\.org 'my_hdr From: Nacho Barrientos Arias <nacho@debian.org>'
+# ----- Sidebar settings and bindings [Neomutt only]
+set sidebar_visible =     yes
+set sidebar_format =      "%B%?F? [%F]?%* %?N?%N?"
+set sidebar_sort_method = path
+set mail_check_stats
 
-# Folder hooks
-folder-hook cern/* source ~/.mutt/account.cern
+# ----- Bindings
+bind pager gg noop
+bind pager gg top
+bind pager G  bottom
+bind index gg noop
+bind index gg first-entry
+bind index G  last-entry
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
 
-# Shortcuts for switching among INBOXes
-macro index,pager <f1> '<change-folder>+cern/INBOX<enter>'
-macro index,pager <f2> '<change-folder>+cern/Sent<enter>'
-macro index,pager <f3> '<change-folder>+cern/agile-infrastructure-discuss<enter>'
-macro index,pager <f4> '<change-folder>+cern/batch-operations<enter>'
-
-macro index,pager <f5> '<change-folder>+cern/cern-personnel<enter>'
-macro index,pager <f6> '<change-folder>+cern/cern-fellows<enter>'
-
-macro index,pager <f9> '<change-folder>+cern/it-dep<enter>'
-macro index,pager <f10> '<change-folder>+cern/it-dep-pes<enter>'
-macro index,pager <f11> '<change-folder>+cern/it-dep-pes-ps<enter>'
-macro index,pager <f12> '<change-folder>+cern/building-31<enter>'
-
-# ------ Let's put some color!
-color attachment brightcyan     default
-color bold       green          default
-color error      red            default
-color header     brightyellow   default  "^from:"
-color header     green          default  "^to:"
-color header     green          default  "^cc:"
-color header     brightgreen    default  "^date:"
-color header     yellow         default  "^newsgroups:"
-color header     yellow         default  "^reply-to:"
-color header     brightcyan     default  "^subject:"
-color header     red            default  "^x-spam-rule:"
-color header     yellow         default  "^x-mailer:"
-color header     yellow         default  "^message-id:"
-color header     yellow         default  "^Organization:"
-color header     yellow         default  "^Organisation:"  
-color header     yellow         default  "^User-Agent:"  
-color header     yellow         default  "^X-Message-Flag:"
-color header     yellow         default  "^X-Spam-Status:"
-color indicator  white          blue
-color markers    red            default
-color message    white          blue
-color normal     white          default
-color quoted     cyan           default
-color quoted1    yellow         default
-color quoted2    red            default
-color quoted3    green          default
-color quoted4    cyan           default
-color quoted5    yellow         default
-color quoted6    red            default
-color quoted7    green          default
-color signature  brightred      default
-color status     brightyellow   blue
-color tilde      blue           default
-color tree       brightmagenta  default
-color underline  yellow         default
-color index      brightgreen    default  '~p' # mail to myself
-color index      brightcyan     default  '~P' # mail from myself
-color index      yellow         default  ~O # Old
-color index      brightyellow   default  ~N # New
-color index      magenta        default  ~F # Flagged
-color index      blue           default  ~T # Tagged
-color index      red            default  ~D # Deleted
-# Some patterns
-color body       brightgreen    default  "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]" # mails
-color body       cyan           default  "<URL:[^ ]*>"
-color body       yellow         default  "[;:][-_]?[)/(|P]+" # some smileys
-color body       brightblue     default  "\\b[^ ]+://[^ ]*" # urls colorizing (all protos)
-color body       brightblue     default  "([bB]ug)?#[[:digit:]]{5,6}" # matching bug numbers
-
-# -- sidebar
-set sidebar_width=25
-color sidebar_new yellow default
-bind index,pager <insert> sidebar-prev
-bind index,pager <delete> sidebar-next
-bind index,pager <backspace> sidebar-open
+# ----- Colors
+source "~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
+color sidebar_highlight default black
+color sidebar_new cyan default
+color sidebar_divider yellow default

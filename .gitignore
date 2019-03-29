@@ -6,5 +6,6 @@ vim/syntax
 vim/doc
 mutt/cache
 mutt/certificates
+mutt/mutt-colors-solarized
 vimperator/info
 vimperator/colors

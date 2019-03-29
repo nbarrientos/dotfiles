@@ -163,7 +163,7 @@ workspace "4: music" output $primary_screen
 workspace "5: logs" output $primary_screen
 
 # App -> WS assignments (xprop)
-assign [class="Thunderbird"] 1: mail
+assign [title="neomutt"] 1: mail
 assign [class="Firefox"] 2: www
 assign [class="Mattermost"] 3: chat
 # assign [class="Spotify"] music
@@ -172,8 +172,8 @@ for_window [class="Spotify"] move to workspace "4: music"
 
 # App to autostart
 exec --no-startup-id dunst
+exec x-terminal-emulator -e neomutt
 exec firefox
-exec icedove
 exec spotify
 exec parcellite
 
