@@ -87,7 +87,7 @@ send-hook (-subscribe|-unsubscribe) set copy=no
 send-hook -request      set signature=""
 send-hook -request      set copy=no
 
-# ----- Sidebar settings and bindings [Neomutt only]
+# ----- Sidebar
 set sidebar_visible =     yes
 set sidebar_format =      "%B%?F? [%F]?%* %?N?%N?"
 set sidebar_sort_method = path
