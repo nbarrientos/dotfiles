@@ -44,7 +44,7 @@ set index_format =      "%Z %4M %[!%d/%m/%y %H:%M] %-23.23n \| %s"
 # ----- Mail addresses
 unalternates *
 alternates (nacho.barrientos|ignacio.barrientos.arias)@cern.ch
-lists @\.cern\.ch
+lists \.cern\.ch
 
 # ----- Mailboxes
 mailboxes =ai-admins \
