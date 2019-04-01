@@ -88,10 +88,11 @@ send-hook -request      set signature=""
 send-hook -request      set copy=no
 
 # ----- Sidebar
-set sidebar_visible =     yes
+set sidebar_visible
+set sidebar_next_new_wrap
+set mail_check_stats
 set sidebar_format =      "%B%?F? [%F]?%* %?N?%N?"
 set sidebar_sort_method = path
-set mail_check_stats
 
 # ----- Bindings
 bind pager gg noop
@@ -101,7 +102,7 @@ bind index gg noop
 bind index gg first-entry
 bind index G  last-entry
 bind index,pager \Cp sidebar-prev
-bind index,pager \Cn sidebar-next
+bind index,pager \Cn sidebar-next-new
 bind index,pager \Co sidebar-open
 
 # ----- Colors
