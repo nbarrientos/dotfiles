@@ -104,6 +104,10 @@ bind index G  last-entry
 bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next-new
 bind index,pager \Co sidebar-open
+bind index,pager / noop
+bind index,pager <esc>/ noop
+bind index,pager / search-reverse
+bind index,pager <esc>/ search
 
 # ----- Colors
 source "~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
