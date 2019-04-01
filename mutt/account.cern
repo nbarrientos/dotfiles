@@ -11,6 +11,6 @@ set postponed = "+Drafts"
 set signature = "~/.mutt/signature.cern"
 
 set copy = yes
-set record = "+Sent"
+set record = "+Sent Items"
 
 macro index D "<save-message>+Trash<enter>" "move message to the trash"
