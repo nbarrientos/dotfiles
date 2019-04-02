@@ -109,6 +109,7 @@ bind index,pager / noop
 bind index,pager <esc>/ noop
 bind index,pager / search-reverse
 bind index,pager <esc>/ search
+bind index,pager A group-reply
 
 # ----- Colors
 source "~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
