@@ -28,6 +28,7 @@ set editor =            vim
 set mbox_type =         Maildir
 set sleep_time =        0 # do not pause when displaying status messages
 set pager_index_lines = 20
+set timeout =           5
 set header_cache =      ~/.mutt/cache/headers
 set message_cachedir =  ~/.mutt/cache/bodies
 set certificate_file =  ~/.mutt/certificates
