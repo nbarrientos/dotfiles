@@ -36,6 +36,7 @@ set quit =              "ask-yes"
 
 # ----- HTML rendering
 auto_view text/html
+alternative_order text/plain text/enriched text/html
 set mailcap_path =      ~/.mutt/mailcap
 
 # ----- Formats
