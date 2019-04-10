@@ -2,7 +2,7 @@
 source "~/.mutt/account.cern"
 
 # ----- Misc boolean settings
-  set autoedit          # start the editor without asking for to, subject,...
+unset autoedit          # do not start the editor without asking for to, subject,...
   set auto_tag          # if something is tagged, run commands on tagged msgs.
   set beep_new          # set the urgent flag if there's new email
   set check_new         # search for new messages in maildir/MH folders.
@@ -33,6 +33,7 @@ set header_cache =      ~/.mutt/cache/headers
 set message_cachedir =  ~/.mutt/cache/bodies
 set certificate_file =  ~/.mutt/certificates
 set quit =              "ask-yes"
+set query_command =     "echo; grep -i %s ~/.mutt/xldap.db"
 
 # ----- HTML rendering
 auto_view text/html
@@ -112,6 +113,7 @@ bind index,pager <esc>/ noop
 bind index,pager / search-reverse
 bind index,pager <esc>/ search
 bind index,pager A group-reply
+bind editor <tab> complete-query
 
 # ----- Colors
 source "~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc"
