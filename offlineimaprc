@@ -20,4 +20,4 @@ auth_mechanisms = GSSAPI
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotehost = imap.cern.ch
 remoteuser = ibarrien
-folderfilter = lambda folder: folder in ['ai-admins', 'ai-config-team', 'ai-discuss', 'ai-jira', 'ai-jira-crm', 'building-31', 'c5-minutes', 'cern-personnel', 'Drafts', 'foreman-announce', 'foreman-users', 'gitlab', 'i3-discuss', 'INBOX', 'it-dep', 'it-dep-cm', 'it-dep-cm-lcs', 'linux-users', 'oss-security', 'puppet-dev', 'puppet-users', 'rh-errata', 'Sent Items', 'service-desk', 'service-desk-crap', 'spanish-gang', 'Trash']
+folderfilter = lambda folder: folder in ['ai-admins', 'ai-config-team', 'ai-discuss', 'ai-jira', 'ai-jira-crm', 'building-31', 'c5-minutes', 'cern-personnel', 'Drafts', 'foreman-announce', 'foreman-users', 'gitlab', 'guides-en', 'guides-es', 'i3-discuss', 'INBOX', 'it-dep', 'it-dep-cm', 'it-dep-cm-lcs', 'linux-users', 'oss-security', 'puppet-dev', 'puppet-users', 'rh-errata', 'Sent Items', 'service-desk', 'service-desk-crap', 'spanish-gang', 'Trash']
