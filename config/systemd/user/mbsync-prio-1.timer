@@ -1,0 +1,10 @@
+[Unit]
+Description=mbsync query timer [cern-prio-1]
+ConditionPathExists=%h/.mbsyncrc
+
+[Timer]
+OnBootSec=5m
+OnUnitInactiveSec=15m
+
+[Install]
+WantedBy=default.target

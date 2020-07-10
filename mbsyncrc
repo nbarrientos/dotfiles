@@ -1,0 +1,153 @@
+Create Slave
+Sync All
+SyncState *
+Expunge Both
+
+IMAPAccount CERN
+Host imap.cern.ch
+User ibarrien
+AuthMechs GSSAPI
+SSLType IMAPS
+SSLVersions TLSv1
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore cern-remote
+Account CERN
+
+MaildirStore cern-local
+Path ~/mail/cern/
+Inbox ~/mail/cern/INBOX
+
+Channel cern-inbox
+Master :cern-remote:INBOX
+Slave :cern-local:INBOX
+
+Channel cern-ai-admins
+Master :cern-remote:ai-admins
+Slave :cern-local:ai-admins
+
+Channel cern-ai-config-team
+Master :cern-remote:ai-config-team
+Slave :cern-local:ai-config-team
+
+Channel cern-ai-jira
+Master :cern-remote:ai-jira
+Slave :cern-local:ai-jira
+
+Channel cern-ai-jira-crm
+Master :cern-remote:ai-jira-crm
+Slave :cern-local:ai-jira-crm
+
+Channel cern-building-31
+Master :cern-remote:building-31
+Slave :cern-local:building-31
+
+Channel cern-c5-minutes
+Master :cern-remote:c5-minutes
+Slave :cern-local:c5-minutes
+
+Channel cern-cern-personnel
+Master :cern-remote:cern-personnel
+Slave :cern-local:cern-personnel
+
+Channel cern-foreman-announce
+Master :cern-remote:foreman-announce
+Slave :cern-local:foreman-announce
+
+Channel cern-foreman-users
+Master :cern-remote:foreman-users
+Slave :cern-local:foreman-users
+
+Channel cern-gitlab
+Master :cern-remote:gitlab
+Slave :cern-local:gitlab
+
+Channel cern-guides-en
+Master :cern-remote:guides-en
+Slave :cern-local:guides-en
+
+Channel cern-guides-es
+Master :cern-remote:guides-es
+Slave :cern-local:guides-es
+
+Channel cern-i3-discuss
+Master :cern-remote:i3-discuss
+Slave :cern-local:i3-discuss
+
+Channel cern-it-dep
+Master :cern-remote:it-dep
+Slave :cern-local:it-dep
+
+Channel cern-it-dep-cm
+Master :cern-remote:it-dep-cm
+Slave :cern-local:it-dep-cm
+
+Channel cern-it-dep-cm-lcs
+Master :cern-remote:it-dep-cm-lcs
+Slave :cern-local:it-dep-cm-lcs
+
+Channel cern-linux-users
+Master :cern-remote:linux-users
+Slave :cern-local:linux-users
+
+Channel cern-oss-security
+Master :cern-remote:oss-security
+Slave :cern-local:oss-security
+
+Channel cern-puppet-dev
+Master :cern-remote:puppet-dev
+Slave :cern-local:puppet-dev
+
+Channel cern-puppet-users
+Master :cern-remote:puppet-users
+Slave :cern-local:puppet-users
+
+Channel cern-rh-errata
+Master :cern-remote:rh-errata
+Slave :cern-local:rh-errata
+
+Channel cern-sent
+Master ":cern-remote:Sent Items"
+Slave ":cern-local:Sent Items"
+
+Channel cern-service-desk
+Master :cern-remote:service-desk
+Slave :cern-local:service-desk
+
+Channel cern-service-desk-crap
+Master :cern-remote:service-desk-crap
+Slave :cern-local:service-desk-crap
+
+Channel cern-spanish-gang
+Master :cern-remote:spanish-gang
+Slave :cern-local:spanish-gang
+
+Group cern-prio-0
+Channel cern-inbox
+
+Group cern-prio-1
+Channel cern-ai-admins
+Channel cern-ai-config-team
+Channel cern-ai-jira
+Channel cern-ai-jira-crm
+Channel cern-building-31
+Channel cern-c5-minutes
+Channel cern-cern-personnel
+Channel cern-foreman-announce
+Channel cern-foreman-users
+Channel cern-gitlab
+Channel cern-guides-en
+Channel cern-guides-es
+Channel cern-i3-discuss
+Channel cern-it-dep
+Channel cern-it-dep-cm
+Channel cern-it-dep-cm-lcs
+Channel cern-linux-users
+Channel cern-oss-security
+Channel cern-puppet-dev
+Channel cern-puppet-users
+Channel cern-rh-errata
+Channel cern-sent
+Channel cern-service-desk
+Channel cern-service-desk-crap
+Channel cern-spanish-gang

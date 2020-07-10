@@ -1,0 +1,11 @@
+[Unit]
+Description=mbsync service [cern-prio-1]
+Documentation=man:mbsync(1)
+ConditionPathExists=%h/.mbsyncrc
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync cern-prio-1
+
+[Install]
+WantedBy=mail.target
