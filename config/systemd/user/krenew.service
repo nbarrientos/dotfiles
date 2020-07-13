@@ -1,0 +1,10 @@
+[Unit]
+Description=Automatically renew my kerberos ticket
+After=autofs.service
+
+[Service]
+ExecStart=/usr/bin/krenew -K 60 -v
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
