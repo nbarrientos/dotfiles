@@ -20,7 +20,7 @@ autocutsel -f -s PRIMARY
 
 xrdb ~/.Xresources
 
-xrandr --output HDMI-1 --mode 1920x1200 --rotate normal --output HDMI-2 --mode 1920x1200 --left-of HDMI-1 --rotate left --primary &
+xrandr --output DP-1 --mode 2560x1440 --rotate normal --output HDMI-2 --mode 1920x1200 --left-of DP-1 --rotate left --primary &
 
 xbindkeys
 
