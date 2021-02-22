@@ -39,6 +39,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package all-the-icons-ivy
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
+
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -48,6 +51,10 @@
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
   :init
