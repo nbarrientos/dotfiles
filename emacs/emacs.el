@@ -102,6 +102,8 @@
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+(setq compilation-scroll-output 'first-error)
+
 (use-package multi-compile)
 (setq multi-compile-alist '(
 			    (ruby-mode . (("cern-p6-rubocop" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile rubocop'"
