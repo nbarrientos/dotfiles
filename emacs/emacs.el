@@ -74,6 +74,12 @@
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("C-o" . ace-window)))
 
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1))
+
 ;; Mail
 (server-start)
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
