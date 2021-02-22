@@ -111,7 +111,7 @@
 (dolist (hook '(text-mode-hook mail-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(prog-mode-hook))
-  (add-hook hook (lambda () (flyspell-prog-mode 1))))
+  (add-hook hook (lambda () (flyspell-prog-mode))))
 
 ;; Add color support to compilation buffers
 (require 'ansi-color)
