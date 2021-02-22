@@ -24,6 +24,6 @@ xrandr --output DP-1 --mode 2560x1440 --rotate normal --output HDMI-2 --mode 192
 
 xbindkeys
 
-keepassxc
+keepassxc &
 
 exec i3
