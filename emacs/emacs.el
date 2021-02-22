@@ -18,7 +18,7 @@
 
 (load-theme 'wombat)
 
-(global-set-key (kbd "<escape>") 'keyboard-quit)
+(define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -44,6 +44,7 @@
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
+	 ([escape] . minibuffer-keyboard-quit)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
