@@ -18,7 +18,7 @@
 
 (load-theme 'wombat)
 
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<escape>") 'keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
