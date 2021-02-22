@@ -24,7 +24,7 @@ unset reply_self        # i won't ever reply to myself :)
 unset wait_key          # Only ask to "press a key" if the return value non-zero.
 
 # ----- Misc non-boolean settings
-set editor =            vim
+set editor =            emacsclient
 set mbox_type =         Maildir
 set sleep_time =        0 # do not pause when displaying status messages
 set pager_index_lines = 20
