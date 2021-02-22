@@ -73,7 +73,7 @@
 
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind (("C-o" . ace-window)))
+  :bind (("M-o" . ace-window)))
 
 (use-package which-key
   :init (which-key-mode)
