@@ -109,21 +109,27 @@
 (setq multi-compile-alist '(
 			    (ruby-mode . (("cern-p6-rubocop" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile rubocop'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
-					  ("cern-p6-test" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile test'"
+					  ("cern-p6-all-tests" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile test'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
 					  ("cern-p6-bundle-update" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle update'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
 					  ;; Standard Puppet module
 					  ("p6-rubocop" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake rubocop'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
-					  ("p6-test" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake test'"
+					  ("p6-all-tests" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake test'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
 					  ("p6-bundle-update" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle update'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
 					  ))
+			    ("_spec\\.rb\\'" . (("cern-p6-single-test" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile spec SPEC=%path'"
+						 (locate-dominating-file buffer-file-name "metadata.json"))
+						;; Standard Puppet module
+						("p6-single-test" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake spec SPEC=%path'"
+						 (locate-dominating-file buffer-file-name "metadata.json"))
+						))
 			    ))
 
-(custom-set-variables
+(custom-set-variables 
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
