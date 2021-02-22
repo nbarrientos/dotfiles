@@ -14,6 +14,7 @@
                             (setq show-trailing-whitespace nil)))
 
 (global-display-line-numbers-mode t)
+(add-hook 'vterm-mode-hook (lambda () (linum-mode 0)))
 
 (load-theme 'wombat)
 
@@ -79,6 +80,8 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
+
+(use-package vterm)
 
 ;; Mail
 (server-start)
