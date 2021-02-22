@@ -98,13 +98,32 @@
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+(use-package multi-compile)
+(setq multi-compile-alist '(
+			    (ruby-mode . (("cern-p6-rubocop" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile rubocop'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ("cern-p6-test" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile test'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ("cern-p6-bundle-update" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle update'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ;; Standard Puppet module
+					  ("p6-rubocop" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake rubocop'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ("p6-test" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake test'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ("p6-bundle-update" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle update'"
+					   (locate-dominating-file buffer-file-name "metadata.json"))
+					  ))
+			    ))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
