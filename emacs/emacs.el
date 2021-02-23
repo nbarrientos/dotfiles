@@ -142,6 +142,7 @@
 (setq compilation-scroll-output 'first-error)
 
 (setq nb-mc-env-pv "PUPPET_VERSION=\"~>6\"")
+(setq nb-mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
 ;; CERN environment
 (setq nb-mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " nb-mc-env-pv))
 (setq nb-mc-c-bundle (format "schroot -- bash -c '%s bundle %%s'" nb-mc-c-env))
@@ -154,25 +155,17 @@
 (use-package multi-compile
   :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist
-      `((ruby-mode . (("cern-p-rubocop" ,(format nb-mc-c-rake "rubocop")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("cern-p-all-tests" ,(format nb-mc-c-rake "test")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("cern-p-bundle-update" ,(format nb-mc-c-bundle "update")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
+      `((ruby-mode . (("cern-p-rubocop" ,(format nb-mc-c-rake "rubocop") ,nb-mc-root)
+		      ("cern-p-all-tests" ,(format nb-mc-c-rake "test") ,nb-mc-root)
+		      ("cern-p-bundle-update" ,(format nb-mc-c-bundle "update") ,nb-mc-root)
 		      ;; Standard Puppet module
-		      ("p-rubocop" ,(format nb-mc-rake "rubocop")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("p-all-tests" ,(format nb-mc-rake "test")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("p-bundle-update" ,(format nb-mc-bundle "update")
-		       (locate-dominating-file buffer-file-name "metadata.json"))
+		      ("p-rubocop" ,(format nb-mc-rake "rubocop") ,nb-mc-root)
+		      ("p-all-tests" ,(format nb-mc-rake "test") ,nb-mc-root)
+		      ("p-bundle-update" ,(format nb-mc-bundle "update") ,nb-mc-root)
 		      ))
-	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format nb-mc-c-rake "spec SPEC=%path")
-			     (locate-dominating-file buffer-file-name "metadata.json"))
+	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format nb-mc-c-rake "spec SPEC=%path") ,nb-mc-root)
 			    ;; Standard Puppet module
-			    ("p-single-test" ,(format nb-mc-rake "spec SPEC=%path")
-			     (locate-dominating-file buffer-file-name "metadata.json"))
+			    ("p-single-test" ,(format nb-mc-rake "spec SPEC=%path") ,nb-mc-root)
 			    ))
 	))
 
