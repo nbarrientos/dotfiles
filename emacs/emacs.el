@@ -141,27 +141,37 @@
 (setq compilation-ask-about-save nil)
 (setq compilation-scroll-output 'first-error)
 
+(setq nb-mc-env-pv "PUPPET_VERSION=\"~>6\"")
+;; CERN environment
+(setq nb-mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " nb-mc-env-pv))
+(setq nb-mc-c-bundle (format "schroot -- bash -c '%s bundle %%s'" nb-mc-c-env))
+(setq nb-mc-c-rake (format nb-mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
+;; Standard Puppet module
+(setq nb-mc-env nb-mc-env-pv)
+(setq nb-mc-bundle (format "schroot -- bash -c '%s bundle %%s'" nb-mc-env))
+(setq nb-mc-rake (format nb-mc-bundle "exec rake %s"))
+
 (use-package multi-compile
   :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist
-      '((ruby-mode . (("cern-p6-rubocop" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile rubocop'"
+      `((ruby-mode . (("cern-p-rubocop" ,(format nb-mc-c-rake "rubocop")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("cern-p6-all-tests" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile test'"
+		      ("cern-p-all-tests" ,(format nb-mc-c-rake "test")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("cern-p6-bundle-update" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle update'"
+		      ("cern-p-bundle-update" ,(format nb-mc-c-bundle "update")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
 		      ;; Standard Puppet module
-		      ("p6-rubocop" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake rubocop'"
+		      ("p-rubocop" ,(format nb-mc-rake "rubocop")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("p6-all-tests" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake test'"
+		      ("p-all-tests" ,(format nb-mc-rake "test")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
-		      ("p6-bundle-update" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle update'"
+		      ("p-bundle-update" ,(format nb-mc-bundle "update")
 		       (locate-dominating-file buffer-file-name "metadata.json"))
 		      ))
-	("_spec\\.rb\\'" . (("cern-p6-single-test" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile spec SPEC=%path'"
+	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format nb-mc-c-rake "spec SPEC=%path")
 			     (locate-dominating-file buffer-file-name "metadata.json"))
 			    ;; Standard Puppet module
-			    ("p6-single-test" "schroot -- bash -c 'PUPPET_VERSION=\"~>6\" bundle exec rake spec SPEC=%path'"
+			    ("p-single-test" ,(format nb-mc-rake "spec SPEC=%path")
 			     (locate-dominating-file buffer-file-name "metadata.json"))
 			    ))
 	))
