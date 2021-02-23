@@ -128,8 +128,8 @@
 
 (setq compilation-scroll-output 'first-error)
 
-(use-package multi-compile)
-(global-set-key (kbd (concat "C-x " "m")) 'multi-compile-run)
+(use-package multi-compile
+  :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist '(
 			    (ruby-mode . (("cern-p6-rubocop" "schroot -- bash -c 'BUNDLE_GEMFILE=../ci/Gemfile PUPPET_VERSION=\"~>6\" bundle exec rake --rakefile ../ci/Rakefile rubocop'"
 					   (locate-dominating-file buffer-file-name "metadata.json"))
