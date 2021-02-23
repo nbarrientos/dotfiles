@@ -6,7 +6,6 @@
 (set-fringe-mode 10)
 (menu-bar-mode -1)
 
-;; Set up the visible bell
 (setq visible-bell t)
 
 (setq show-trailing-whitespace t)
