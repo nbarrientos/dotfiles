@@ -16,8 +16,6 @@
 (global-display-line-numbers-mode t)
 (add-hook 'vterm-mode-hook (lambda () (linum-mode 0)))
 
-(load-theme 'wombat)
-
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -67,6 +65,13 @@
 	 ("C-x f" . counsel-find-file)))
 
 (use-package swiper)
+
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-material t)
+  (doom-themes-visual-bell-config))
 
 (use-package doom-modeline
   :ensure t
@@ -154,7 +159,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
