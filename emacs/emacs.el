@@ -126,6 +126,7 @@
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+(setq compilation-ask-about-save nil)
 (setq compilation-scroll-output 'first-error)
 
 (use-package multi-compile
