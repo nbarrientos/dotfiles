@@ -20,12 +20,12 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(global-whitespace-mode)
 (add-function :filter-return whitespace-enable-predicate
    (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
 ;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
 ;;(setq whitespace-global-modes '(not magit-mode))
 (setq whitespace-style '(face trailing tabs empty big-indent))
-(global-whitespace-mode)
 
 (require 'package)
 
