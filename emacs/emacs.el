@@ -104,7 +104,9 @@
 
 (use-package magit
   :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-status)))
+         ("C-x C-g" . magit-status))
+  :custom
+  (magit-save-repository-buffers 'dontask))
 
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
