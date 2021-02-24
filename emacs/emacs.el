@@ -21,6 +21,9 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(global-set-key [home] 'beginning-of-buffer)
+(global-set-key [end] 'end-of-buffer)
+
 (global-whitespace-mode)
 (add-function :filter-return whitespace-enable-predicate
    (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
