@@ -133,7 +133,8 @@
           (prog-mode . goto-address-prog-mode)
           (magit-mode . goto-address-mode))
   :bind (:map goto-address-highlight-keymap
-              ("C-c RET" . my/kill-url-at-point))
+              ("C-c RET" . my/kill-url-at-point)
+	      ("<mouse-2>" . my/kill-url-at-point))
   :commands (goto-address-prog-mode
              goto-address-mode))
 
