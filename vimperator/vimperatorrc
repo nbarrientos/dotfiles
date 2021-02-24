@@ -1,9 +1,0 @@
-colorscheme indigo
-
-" Clear special hint filters for everything else
-autocmd LocationChange '.*' :set hinttags&
-" Restrict link hints in Google search result list
-autocmd LocationChange 'www.google.com' :set hinttags='//h3[@class="r"]/a'
-" Hacker news
-autocmd LocationChange 'news.ycombinator.com' :set hinttags='//td[@class="title"]/a'
-set editor="x-terminal-emulator -e vim"
