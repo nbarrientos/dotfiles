@@ -122,7 +122,7 @@
 
 (use-package vterm)
 
-; Highlight URLs and kill them instead of opening them
+;; Highlight URLs and kill them instead of opening them
 (require 'url-util)
 (defun my/kill-url-at-point ()
   "Kill the url at point."
