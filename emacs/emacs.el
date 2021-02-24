@@ -122,6 +122,21 @@
 
 (use-package vterm)
 
+; Highlight URLs and kill them instead of opening them
+(require 'url-util)
+(defun my/kill-url-at-point ()
+  "Kill the url at point."
+  (interactive)
+  (kill-new (url-get-url-at-point)))
+(use-package goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+          (prog-mode . goto-address-prog-mode)
+          (magit-mode . goto-address-mode))
+  :bind (:map goto-address-highlight-keymap
+              ("C-c RET" . my/kill-url-at-point))
+  :commands (goto-address-prog-mode
+             goto-address-mode))
+
 ;; Mail
 (server-start)
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
@@ -179,7 +194,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
