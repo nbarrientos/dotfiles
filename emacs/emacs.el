@@ -8,6 +8,8 @@
 
 (setq visible-bell t)
 
+(setq vc-follow-symlinks t)
+
 (setq show-trailing-whitespace t)
 (add-hook 'shell-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
