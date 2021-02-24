@@ -67,6 +67,7 @@
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
+	 ("C-x C-b" . counsel-switch-buffer)
          ("C-x b" . counsel-switch-buffer)
          ("C-x C-f" . counsel-find-file)
 	 ("C-x f" . counsel-find-file)))
