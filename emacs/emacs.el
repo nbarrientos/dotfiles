@@ -125,6 +125,7 @@
 ;; Mail
 (server-start)
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(add-hook 'mail-mode-hook #'auto-fill-mode)
 
 ;; Spelling
 (setq ispell-dictionary "british")
