@@ -166,7 +166,7 @@
   (mu4e-trash-folder  "/cern/Trash")
   (mu4e-bookmarks
    '(( :name "Unread messages in INBOX"
-       :query "flag:unread maildir:\"/cern/INBOX\""
+       :query "flag:unread and maildir:\"/cern/INBOX\""
        :key ?i)
      ( :name  "All unread messages"
        :query "flag:unread AND NOT flag:trashed"
