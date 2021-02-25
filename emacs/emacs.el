@@ -77,7 +77,9 @@
 	 ("C-x C-b" . counsel-switch-buffer)
          ("C-x b" . counsel-switch-buffer)
          ("C-x C-f" . counsel-find-file)
-	 ("C-x f" . counsel-find-file)))
+	 ("C-x f" . counsel-find-file)
+	 ("C-h v" . counsel-describe-variable)
+	 ("C-h f" . counsel-describe-function)))
 
 (use-package swiper)
 
