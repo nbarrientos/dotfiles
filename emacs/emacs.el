@@ -6,6 +6,8 @@
 (set-fringe-mode 10)
 (menu-bar-mode -1)
 
+(server-start)
+
 (setq visible-bell t)
 
 (setq vc-follow-symlinks t)
@@ -134,21 +136,44 @@
 (use-package goto-addr
   :hook ((compilation-mode . goto-address-mode)
           (prog-mode . goto-address-prog-mode)
-          (magit-mode . goto-address-mode))
+          (magit-mode . goto-address-mode)
+	  (mu4e-view-mode . goto-address-mode))
   :bind (:map goto-address-highlight-keymap
               ("C-c RET" . my/kill-url-at-point)
 	      ("<mouse-2>" . my/kill-url-at-point))
   :commands (goto-address-prog-mode
              goto-address-mode))
 
-;; Mail
-(server-start)
-(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
-(add-hook 'mail-mode-hook #'auto-fill-mode)
+(use-package mu4e
+  :ensure nil
+  :custom
+  (mu4e-change-filenames-when-moving t)
+  (mu4e-confirm-quit nil)
+  (mu4e-update-interval (* 5 60))
+  (mu4e-get-mail-command "true") ; mbsync is run by a systemd timer (only re-index)
+  (mu4e-html2text-command "lynx -dump -stdin")
+  (mu4e-compose-signature " bye\n Nacho\n http://cern.ch/nacho")
+  (mu4e-view-show-addresses t)
+  (mu4e-compose-dont-reply-to-self t)
+  (mu4e-maildir "~/Mail")
+  (mu4e-drafts-folder "/cern/Drafts")
+  (mu4e-sent-folder   "/cern/Sent Items")
+  (mu4e-trash-folder  "/cern/Trash")
+  :config
+  (setq user-mail-address "nacho.barrientos@cern.ch")
+  (setq user-full-name "Nacho Barrientos")
+  (setq message-send-mail-function 'smtpmail-send-it)
+  (setq smtpmail-smtp-server "smtp.cern.ch")
+  (setq smtpmail-smtp-service 587)
+  (setq smtpmail-smtp-user "ibarrien"))
+
+(use-package mu4e-alert
+  :custom
+  (mu4e-alert-interesting-mail-query "flag:unread AND maildir:\"/cern/INBOX\""))
 
 ;; Spelling
 (setq ispell-dictionary "british")
-(dolist (hook '(text-mode-hook mail-mode-hook))
+(dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
@@ -198,7 +223,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
@@ -206,4 +231,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
