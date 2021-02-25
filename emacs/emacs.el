@@ -169,7 +169,7 @@
        :query "flag:unread and maildir:\"/cern/INBOX\""
        :key ?i)
      ( :name  "All unread messages"
-       :query "flag:unread AND NOT flag:trashed"
+       :query "flag:unread and not flag:trashed"
        :key ?u)
      ( :name "Today's messages"
        :query "date:today..now"
