@@ -171,7 +171,9 @@
 
 (use-package mu4e-alert
   :custom
-  (mu4e-alert-interesting-mail-query "flag:unread AND maildir:\"/cern/INBOX\""))
+  (mu4e-alert-interesting-mail-query "flag:unread AND maildir:\"/cern/INBOX\"")
+  :config
+  (mu4e-alert-enable-mode-line-display))
 
 ;; Spelling
 (setq ispell-dictionary "british")
