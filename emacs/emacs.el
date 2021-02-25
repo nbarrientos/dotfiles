@@ -164,6 +164,19 @@
   (mu4e-drafts-folder "/cern/Drafts")
   (mu4e-sent-folder   "/cern/Sent Items")
   (mu4e-trash-folder  "/cern/Trash")
+  (mu4e-bookmarks
+   '(( :name "Unread messages in INBOX"
+       :query "flag:unread maildir:\"/cern/INBOX\""
+       :key ?i)
+     ( :name  "All unread messages"
+       :query "flag:unread AND NOT flag:trashed"
+       :key ?u)
+     ( :name "Today's messages"
+       :query "date:today..now"
+       :key ?t)
+     ( :name "Last 7 days"
+       :query "date:7d..now"
+       :key ?w)))
   :config
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
