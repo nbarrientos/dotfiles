@@ -24,6 +24,7 @@
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq auth-source-save-behavior nil)
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
