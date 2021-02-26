@@ -209,31 +209,31 @@
 (setq compilation-ask-about-save nil)
 (setq compilation-scroll-output 'first-error)
 
-(setq nb-mc-env-pv "PUPPET_VERSION=\"~>6\"")
-(setq nb-mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
+(setq my/mc-env-pv "PUPPET_VERSION=\"~>6\"")
+(setq my/mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
 ;; CERN environment
-(setq nb-mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " nb-mc-env-pv))
-(setq nb-mc-c-bundle (format "schroot -- bash -c '%s bundle %%s'" nb-mc-c-env))
-(setq nb-mc-c-rake (format nb-mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
+(setq my/mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " my/mc-env-pv))
+(setq my/mc-c-bundle (format "schroot -- bash -c '%s bundle %%s'" my/mc-c-env))
+(setq my/mc-c-rake (format my/mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
 ;; Standard Puppet module
-(setq nb-mc-env nb-mc-env-pv)
-(setq nb-mc-bundle (format "schroot -- bash -c '%s bundle %%s'" nb-mc-env))
-(setq nb-mc-rake (format nb-mc-bundle "exec rake %s"))
+(setq my/mc-env my/mc-env-pv)
+(setq my/mc-bundle (format "schroot -- bash -c '%s bundle %%s'" my/mc-env))
+(setq my/mc-rake (format my/mc-bundle "exec rake %s"))
 
 (use-package multi-compile
   :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist
-      `((ruby-mode . (("cern-p-rubocop" ,(format nb-mc-c-rake "rubocop") ,nb-mc-root)
-		      ("cern-p-all-tests" ,(format nb-mc-c-rake "test") ,nb-mc-root)
-		      ("cern-p-bundle-update" ,(format nb-mc-c-bundle "update") ,nb-mc-root)
+      `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-rake "rubocop") ,my/mc-root)
+		      ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
+		      ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
 		      ;; Standard Puppet module
-		      ("p-rubocop" ,(format nb-mc-rake "rubocop") ,nb-mc-root)
-		      ("p-all-tests" ,(format nb-mc-rake "test") ,nb-mc-root)
-		      ("p-bundle-update" ,(format nb-mc-bundle "update") ,nb-mc-root)
+		      ("p-rubocop" ,(format my/mc-rake "rubocop") ,my/mc-root)
+		      ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
+		      ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
 		      ))
-	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format nb-mc-c-rake "spec SPEC=%path") ,nb-mc-root)
+	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
 			    ;; Standard Puppet module
-			    ("p-single-test" ,(format nb-mc-rake "spec SPEC=%path") ,nb-mc-root)
+			    ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
 			    ))
 	))
 
