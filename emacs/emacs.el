@@ -33,6 +33,9 @@
 ;;(setq whitespace-global-modes '(not magit-mode))
 (setq whitespace-style '(face trailing tabs empty big-indent))
 
+;; Option (1-2): is a typical prompt for 2FA tokens at CERN
+(add-to-list 'password-word-equivalents "Option")
+
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
