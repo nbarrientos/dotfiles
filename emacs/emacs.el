@@ -117,6 +117,9 @@
 (use-package rpm-spec-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
+(use-package sh-script
+  :custom
+  (sh-basic-offset 2))
 
 (use-package highlight-parentheses)
 
