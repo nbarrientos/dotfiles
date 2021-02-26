@@ -194,6 +194,7 @@
        :query "date:7d..now"
        :key ?w)))
   :config
+  (add-to-list 'mu4e-view-fields :user-agent t)
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'smtpmail-send-it)
