@@ -117,6 +117,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
 (use-package sh-script
+  :ensure nil
   :custom
   (sh-basic-offset 2))
 
