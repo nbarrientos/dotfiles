@@ -62,7 +62,7 @@
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
-	 ([escape] . minibuffer-keyboard-quit)
+         ([escape] . minibuffer-keyboard-quit)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
@@ -79,13 +79,13 @@
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-	 ("C-x C-b" . counsel-switch-buffer)
+         ("C-x C-b" . counsel-switch-buffer)
          ("C-x b" . counsel-switch-buffer)
          ("C-b" . counsel-switch-buffer)
          ("C-x C-f" . counsel-find-file)
-	 ("C-x f" . counsel-find-file)
-	 ("C-h v" . counsel-describe-variable)
-	 ("C-h f" . counsel-describe-function)))
+         ("C-x f" . counsel-find-file)
+         ("C-h v" . counsel-describe-variable)
+         ("C-h f" . counsel-describe-function)))
 
 (use-package swiper)
 
@@ -157,10 +157,10 @@
   :hook ((compilation-mode . goto-address-mode)
           (prog-mode . goto-address-prog-mode)
           (magit-mode . goto-address-mode)
-	  (mu4e-view-mode . goto-address-mode))
+          (mu4e-view-mode . goto-address-mode))
   :bind (:map goto-address-highlight-keymap
               ("C-c RET" . my/kill-url-at-point)
-	      ("<mouse-2>" . my/kill-url-at-point))
+              ("<mouse-2>" . my/kill-url-at-point))
   :commands (goto-address-prog-mode
              goto-address-mode))
 
@@ -240,20 +240,20 @@
   :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist
       `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-rake "rubocop") ,my/mc-root)
-		      ("cern-p-rubocop-autocorrect" ,(format my/mc-c-rake "rubocop -a") ,my/mc-root)
-		      ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
-		      ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
-		      ;; Standard Puppet module
-		      ("p-rubocop" ,(format my/mc-rake "rubocop") ,my/mc-root)
-		      ("p-rubocop-autocorrect" ,(format my/mc-rake "rubocop -a") ,my/mc-root)
-		      ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
-		      ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
-		      ))
-	("_spec\\.rb\\'" . (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
-			    ;; Standard Puppet module
-			    ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
-			    ))
-	))
+                      ("cern-p-rubocop-autocorrect" ,(format my/mc-c-rake "rubocop -a") ,my/mc-root)
+                      ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
+                      ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
+                      ;; Standard Puppet module
+                      ("p-rubocop" ,(format my/mc-rake "rubocop") ,my/mc-root)
+                      ("p-rubocop-autocorrect" ,(format my/mc-rake "rubocop -a") ,my/mc-root)
+                      ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
+                      ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
+                      ))
+        ("_spec\\.rb\\'" . (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
+                            ;; Standard Puppet module
+                            ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
+                            ))
+        ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
