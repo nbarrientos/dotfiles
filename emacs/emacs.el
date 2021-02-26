@@ -74,7 +74,8 @@
 
 (use-package ivy-rich
   :init
-  (ivy-rich-mode 1))
+  (ivy-rich-mode 1)
+  (ivy-rich-project-root-cache-mode))
 
 (use-package smex) ; adds last used cmds to counsel-M-x
 
