@@ -12,6 +12,8 @@
 
 (setq vc-follow-symlinks t)
 
+(setq-default indent-tabs-mode nil)
+
 (setq show-trailing-whitespace t)
 (add-hook 'shell-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
