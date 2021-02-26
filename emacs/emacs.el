@@ -232,10 +232,12 @@
   :bind (("C-x m" . multi-compile-run)))
 (setq multi-compile-alist
       `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-rake "rubocop") ,my/mc-root)
+		      ("cern-p-rubocop-autocorrect" ,(format my/mc-c-rake "rubocop -a") ,my/mc-root)
 		      ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
 		      ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
 		      ;; Standard Puppet module
 		      ("p-rubocop" ,(format my/mc-rake "rubocop") ,my/mc-root)
+		      ("p-rubocop-autocorrect" ,(format my/mc-rake "rubocop -a") ,my/mc-root)
 		      ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
 		      ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
 		      ))
