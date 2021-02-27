@@ -8,6 +8,8 @@
 
 (server-start)
 
+(set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
+
 (setq visible-bell t)
 
 (setq vc-follow-symlinks t)
