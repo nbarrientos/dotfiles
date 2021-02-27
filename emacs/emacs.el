@@ -214,6 +214,8 @@
   :config
   (mu4e-alert-enable-mode-line-display))
 
+(mu4e t)
+
 ;; Spelling
 (setq ispell-dictionary "british")
 (dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
