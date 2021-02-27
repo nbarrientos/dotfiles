@@ -41,6 +41,8 @@
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
 
+(setq dired-listing-switches "-NGalhv --group-directories-first")
+
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
