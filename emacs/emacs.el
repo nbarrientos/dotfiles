@@ -140,8 +140,13 @@
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status))
+  :config
+  (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
   :custom
-  (magit-save-repository-buffers 'dontask))
+  (magit-save-repository-buffers 'dontask)
+  (magit-clone-default-directory "~/dev/")
+  (magit-clone-url-format "https://%h/%n.git")
+  (magit-clone-set-remote.pushDefault t))
 
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
