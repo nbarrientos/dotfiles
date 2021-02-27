@@ -123,6 +123,8 @@
   :custom
   (sh-basic-offset 2))
 
+(use-package gitignore-templates)
+
 (use-package highlight-parentheses)
 
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -264,7 +266,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
