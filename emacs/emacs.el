@@ -6,6 +6,8 @@
 (set-fringe-mode 10)
 (menu-bar-mode -1)
 
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
 (server-start)
 
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
