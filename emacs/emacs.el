@@ -148,6 +148,23 @@
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t))
 
+(defun my/clone-module (module-name)
+  "Clone a Puppet module from gitlab.cern.ch/ai"
+  (interactive "sModule name: ")
+  (magit-clone-internal
+   ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
+   (magit-clone--name-to-url (concat "it-puppet-module-" module-name))
+   magit-clone-default-directory
+   nil))
+
+(defun my/clone-hostgroup (hostgroup-name)
+  "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
+  (interactive "sTop-level hostgroup name: ")
+  (magit-clone-internal
+   (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
+   magit-clone-default-directory
+   nil))
+
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("M-o" . ace-window)))
