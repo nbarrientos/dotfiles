@@ -139,6 +139,14 @@
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode 1)
+  :custom
+  (undo-tree-visualizer-diff t)
+  (undo-tree-visualizer-timestamps t)
+  (undo-tree-visualizer-relative-timestamps t))
+
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status))
@@ -296,7 +304,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
