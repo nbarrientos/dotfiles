@@ -45,6 +45,9 @@
 
 (setq dired-listing-switches "-NGalhv --group-directories-first")
 
+(require 'tramp)
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
