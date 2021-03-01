@@ -136,6 +136,9 @@
   :ensure nil
   :custom
   (sh-basic-offset 2))
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode)))
 
 (use-package gitignore-templates)
 
@@ -313,7 +316,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(web-mode undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
