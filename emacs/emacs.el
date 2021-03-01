@@ -69,8 +69,7 @@
 
 (use-package ivy
   :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
+  :bind (:map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
          ([escape] . minibuffer-keyboard-quit)
          ("C-d" . ivy-reverse-i-search-kill))
@@ -98,7 +97,13 @@
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)))
 
-(use-package swiper)
+(defun my/swiper-repeat-last-search ()
+  "Start swiper with the last thing searched for."
+  (interactive)
+  (swiper (car swiper-history)))
+(use-package swiper
+  :bind (("C-s" . swiper)
+         ("C-S-s" . my/swiper-repeat-last-search)))
 
 (use-package doom-themes
   :config
