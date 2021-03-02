@@ -105,8 +105,7 @@
   (interactive)
   (swiper (car swiper-history)))
 (use-package swiper
-  :bind (("C-s" . swiper)
-         ("C-S-s" . my/swiper-repeat-last-search)))
+  :bind (("C-s" . swiper)))
 
 (use-package doom-themes
   :config
