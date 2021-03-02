@@ -22,8 +22,8 @@
 (add-hook 'shell-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
 
-(global-display-line-numbers-mode t)
-(add-hook 'vterm-mode-hook (lambda () (linum-mode 0)))
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'text-mode-hook 'linum-mode)
 
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
