@@ -24,6 +24,7 @@
 
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
+(add-hook 'conf-mode-hook 'linum-mode)
 
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
