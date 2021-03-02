@@ -232,6 +232,7 @@
   (mu4e-compose-signature " bye\n Nacho\n http://cern.ch/nacho")
   (mu4e-view-show-addresses t)
   (mu4e-compose-dont-reply-to-self t)
+  (mu4e-hide-index-messages nil)
   (mu4e-headers-date-format "%d/%m/%y")
   (mu4e-maildir "~/Mail")
   (mu4e-drafts-folder "/cern/Drafts")
