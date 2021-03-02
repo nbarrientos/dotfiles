@@ -202,8 +202,6 @@
   :config
   (setq which-key-idle-delay 5))
 
-(use-package vterm)
-
 ;; Highlight URLs and kill them instead of opening them
 (require 'url-util)
 (defun my/kill-url-at-point ()
@@ -322,7 +320,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(eshell-bookmark web-mode undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile vterm which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
+   '(eshell-bookmark web-mode undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
  '(send-mail-function 'mailclient-send-it))
 
 (custom-set-faces
