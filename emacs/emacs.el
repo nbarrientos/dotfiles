@@ -4,7 +4,8 @@
  vc-follow-symlinks t
  indent-tabs-mode nil
  auth-source-save-behavior nil
- custom-file null-device)
+ custom-file null-device
+ make-backup-files nil)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
