@@ -42,8 +42,6 @@
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
 
-(setq dired-listing-switches "-NGalhv --group-directories-first")
-
 (require 'tramp)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 
@@ -62,6 +60,11 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package dired
+  :ensure nil
+  :custom
+  dired-listing-switches "-NGalhv --group-directories-first")
 
 (use-package all-the-icons-ivy
   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
