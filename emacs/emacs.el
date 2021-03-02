@@ -18,6 +18,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(setq-default custom-file null-device)
+
 (setq show-trailing-whitespace t)
 (add-hook 'shell-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
@@ -254,6 +256,7 @@
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'smtpmail-send-it)
+  (setq send-mail-function 'smtpmail-send-it)
   (setq smtpmail-smtp-server "smtp.cern.ch")
   (setq smtpmail-smtp-service 587)
   (setq smtpmail-smtp-user "ibarrien"))
@@ -313,19 +316,3 @@
                             ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
                             ))
         ))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(eshell-bookmark web-mode undo-tree gitignore-templates editorconfig rpm-spec-mode smex mu4e-alert goto-address thing-edit url-util markdown-mode doom-themes ivy-rich counsel yaml-mode multi-compile which-key ace-window rake rspec-mode magit highlight-parentheses use-package swiper puppet-mode doom-modeline command-log-mode))
- '(send-mail-function 'mailclient-send-it))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
