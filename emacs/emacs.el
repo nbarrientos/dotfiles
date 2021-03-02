@@ -1,4 +1,10 @@
-(setq inhibit-startup-message t)
+(setq-default
+ inhibit-startup-message t
+ visible-bell t
+ vc-follow-symlinks t
+ indent-tabs-mode nil
+ auth-source-save-behavior nil
+ custom-file null-device)
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -12,14 +18,6 @@
 
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
 
-(setq visible-bell t)
-
-(setq vc-follow-symlinks t)
-
-(setq-default indent-tabs-mode nil)
-
-(setq-default custom-file null-device)
-
 (setq show-trailing-whitespace t)
 (add-hook 'shell-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)))
@@ -30,7 +28,6 @@
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq auth-source-save-behavior nil)
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
