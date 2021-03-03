@@ -103,7 +103,8 @@
          ("C-x C-f" . counsel-find-file)
          ("C-x f" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
-         ("C-h f" . counsel-describe-function)))
+         ("C-h f" . counsel-describe-function)
+         ("C-x r b" . counsel-bookmark)))
 
 (use-package swiper
   :bind (("C-s" . swiper)))
