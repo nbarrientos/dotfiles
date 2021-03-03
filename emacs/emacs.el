@@ -63,6 +63,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package whole-line-or-region
+  :init
+  (whole-line-or-region-global-mode))
+
 (use-package dired
   :ensure nil
   :custom
