@@ -100,10 +100,6 @@
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)))
 
-(defun my/swiper-repeat-last-search ()
-  "Start swiper with the last thing searched for."
-  (interactive)
-  (swiper (car swiper-history)))
 (use-package swiper
   :bind (("C-s" . swiper)))
 
