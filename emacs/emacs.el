@@ -86,7 +86,12 @@
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1)
-  (ivy-rich-project-root-cache-mode))
+  (ivy-rich-project-root-cache-mode)
+  :config
+  (ivy-rich-modify-columns
+   'ivy-switch-buffer
+   '((ivy-rich-switch-buffer-project (:width 30))
+     (ivy-rich-switch-buffer-major-mode (:width 20)))))
 
 (use-package smex) ; adds last used cmds to counsel-M-x
 
