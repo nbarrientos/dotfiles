@@ -88,10 +88,10 @@
   :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
-  :init
+  :after (ivy)
+  :config
   (ivy-rich-mode 1)
   (ivy-rich-project-root-cache-mode)
-  :config
   (ivy-rich-modify-columns
    'ivy-switch-buffer
    '((ivy-rich-switch-buffer-project (:width 30))
