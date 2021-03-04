@@ -174,6 +174,24 @@
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
 
+(use-package eshell
+  :ensure nil
+  :custom
+  (eshell-banner-message ""))
+
+(use-package eshell-prompt-extras
+  :after (eshell)
+  :config
+  (with-eval-after-load "esh-opt"
+    (autoload 'epe-theme-dakrone "eshell-prompt-extras")
+    (setq eshell-highlight-prompt nil
+          eshell-prompt-function 'epe-theme-dakrone))
+  (defun epe-git-p () nil) ; no git info on the prompt
+  :custom
+  (epe-show-python-info nil)
+  :custom-face
+  (epe-symbol-face ((t (:inherit eshell-ls-missing)))))
+
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status)
