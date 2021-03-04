@@ -277,6 +277,10 @@
   :config
   (mu4e-alert-enable-mode-line-display))
 
+(use-package mu4e-marker-icons
+  :custom
+  (mu4e-marker-icons-mode 1))
+
 (mu4e t)
 
 ;; Spelling
