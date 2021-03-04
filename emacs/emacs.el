@@ -88,7 +88,7 @@
   :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
-  :after (ivy)
+  :after (ivy counsel)
   :config
   (ivy-rich-mode 1)
   (ivy-rich-project-root-cache-mode)
