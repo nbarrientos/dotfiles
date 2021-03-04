@@ -82,7 +82,10 @@
          ([escape] . minibuffer-keyboard-quit)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))
+  (ivy-mode 1)
+  :custom
+  (ivy-use-virtual-buffers 'recentf)
+  (ivy-virtual-abbreviate 'abbreviate))
 
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
