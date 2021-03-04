@@ -248,6 +248,11 @@
   (mu4e-drafts-folder "/cern/Drafts")
   (mu4e-sent-folder   "/cern/Sent Items")
   (mu4e-trash-folder  "/cern/Trash")
+  (mu4e-headers-fields
+   '(( :human-date    .  12)
+     ( :flags         .  10)
+     ( :from          .  22)
+     ( :subject       .  nil)))
   (mu4e-bookmarks
    '(( :name "Unread messages in INBOX"
        :query "flag:unread and maildir:\"/cern/INBOX\""
