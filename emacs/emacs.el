@@ -177,7 +177,8 @@
 (use-package eshell
   :ensure nil
   :custom
-  (eshell-banner-message ""))
+  (eshell-banner-message "")
+  (eshell-scroll-to-bottom-on-input 'all))
 
 (use-package eshell-prompt-extras
   :after (eshell)
