@@ -232,6 +232,7 @@
 
 (use-package mu4e
   :ensure nil
+  :bind ("<f8>" . mu4e)
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit nil)
