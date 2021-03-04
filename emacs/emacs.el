@@ -260,7 +260,11 @@
        :key ?t)
      ( :name "Last 7 days"
        :query "date:7d..now"
-       :key ?w)))
+       :key ?w)
+     ( :name "Flagged messages"
+       :query "flag:flagged"
+       :key ?f
+       :hide-unread t)))
   :config
   (add-to-list 'mu4e-view-fields :user-agent t)
   (setq user-mail-address "nacho.barrientos@cern.ch")
