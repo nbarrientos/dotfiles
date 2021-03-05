@@ -153,7 +153,8 @@
   (sh-basic-offset 2))
 (use-package web-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
 
 (use-package gitignore-templates)
 
