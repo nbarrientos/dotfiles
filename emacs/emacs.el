@@ -391,7 +391,7 @@
                      (concat "sAMAccountName=" account)
                      "xldap.cern.ch"
                      nil)))
-      (princ (format "%s:%s\n" (car e) (car (cdr e)))))))
+      (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))))
 
 (defun my/gimme-url (filename)
   (interactive "fFile Path:")
