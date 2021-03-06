@@ -104,7 +104,10 @@
 
 (use-package smex) ; adds last used cmds to counsel-M-x
 
+(use-package helpful)
+
 (use-package counsel
+  :after (helpful)
   :bind (("M-x" . counsel-M-x)
          ("C-x C-b" . ivy-switch-buffer)
          ("C-x b" . ivy-switch-buffer)
@@ -113,7 +116,10 @@
          ("C-x f" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
-         ("C-x r b" . counsel-bookmark)))
+         ("C-x r b" . counsel-bookmark))
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable))
 
 (use-package swiper
   :bind (("C-s" . swiper)))
