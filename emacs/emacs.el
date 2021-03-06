@@ -5,7 +5,8 @@
  indent-tabs-mode nil
  auth-source-save-behavior nil
  custom-file null-device
- make-backup-files nil)
+ make-backup-files nil
+ auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
