@@ -371,6 +371,28 @@
                          ))
      )))
 
+(use-package ldap
+  :ensure nil
+  :custom
+  (ldap-host-parameters-alist
+   '(("xldap.cern.ch"
+      base "OU=Users,OU=Organic Units,DC=cern,DC=ch"
+      auth simple
+      passwd ""
+      scope subtree))))
+
+(defun my/cern-ldap-user (account)
+  (interactive "sAccount: ")
+  (with-temp-buffer-window
+      "*LDAP results*"
+      #'temp-buffer-show-function
+      nil
+    (dolist (e (car (ldap-search
+                     (concat "sAMAccountName=" account)
+                     "xldap.cern.ch"
+                     nil)))
+      (princ (format "%s:%s\n" (car e) (car (cdr e)))))))
+
 (defun my/gimme-url (filename)
   (interactive "fFile Path:")
   (let* ((hash
