@@ -159,13 +159,12 @@
 
 (use-package gitignore-templates)
 
-(use-package highlight-parentheses)
-
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
+(use-package paren
+  :ensure nil
+  :config
+  (show-paren-mode)
+  :custom
+  (show-paren-style 'mixed))
 
 (use-package undo-tree
   :config
