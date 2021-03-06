@@ -370,3 +370,15 @@
                          ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
                          ))
      )))
+
+(defun my/gimme-url (filename)
+  (interactive "fFile Path:")
+  (let* ((hash
+          (with-temp-buffer
+           (insert-file-contents filename)
+           (sha1 (buffer-string))))
+         (new-filename
+          (concat hash (url-file-extension filename))))
+    (progn
+      (copy-file filename (concat "~/afs/www/bucket/" new-filename) t)
+      (kill-new (concat "https://cern.ch/nacho/bucket/" new-filename)))))
