@@ -169,6 +169,13 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after (yasnippet))
+
 (use-package gitignore-templates)
 
 (use-package paren
