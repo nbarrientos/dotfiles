@@ -366,6 +366,7 @@
       scope subtree))))
 
 (defun my/cern-ldap-user (account)
+  "Do an LDAP query returning all attributes for account in a new buffer"
   (interactive "sAccount: ")
   (with-temp-buffer-window
       "*LDAP results*"
@@ -381,6 +382,7 @@
     (conf-mode)))
 
 (defun my/gimme-url (filename)
+  "Copy a file to the bucket a put the URL in the kill ring"
   (interactive "fFile Path:")
   (let* ((hash
           (with-temp-buffer
