@@ -116,6 +116,7 @@
          ("C-x f" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
+         ("C-h k" . helpful-key)
          ("C-x r b" . counsel-bookmark))
   :custom
   (counsel-describe-function-function #'helpful-callable)
