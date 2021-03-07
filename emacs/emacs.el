@@ -391,7 +391,10 @@
                      (concat "sAMAccountName=" account)
                      "xldap.cern.ch"
                      nil)))
-      (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))))
+      (princ (format "%s:%s\n" (nth 0 e) (nth 1 e)))))
+  (with-current-buffer
+      "*LDAP results*"
+    (conf-mode)))
 
 (defun my/gimme-url (filename)
   (interactive "fFile Path:")
