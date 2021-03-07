@@ -45,9 +45,6 @@
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
 
-(require 'tramp)
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -67,6 +64,13 @@
 (use-package whole-line-or-region
   :init
   (whole-line-or-region-global-mode))
+
+(use-package tramp
+  :ensure nil
+  :config
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  :custom
+  (tramp-default-method "ssh"))
 
 (use-package dired
   :ensure nil
