@@ -373,6 +373,7 @@
 
 (use-package ldap
   :ensure nil
+  :commands (ldap-search)
   :custom
   (ldap-host-parameters-alist
    '(("xldap.cern.ch"
