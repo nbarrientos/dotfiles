@@ -7,7 +7,7 @@ nftables::simplerule{'${1:rule_name}':
   chain     => '${3:$$(yas-choose-value '("default_in" "default_out" "default_fw"))}',
   comment   => '${4:A comment for $1}',
   dport     => $5,
-  proto     => ${6:$$(yas-choose-value '("tcp" "tcp4" "tcp6" "udp" "udp4" "udp6"))}, # Default: all
-  set_type  => ${7:$$(yas-choose-value '("ip" "ip6"))}, # Mandatory only if saddr or daddr are sets
+  proto     => '${6:$$(yas-choose-value '("tcp" "tcp4" "tcp6" "udp" "udp4" "udp6"))}', # Default: all
+  set_type  => '${7:$$(yas-choose-value '("ip" "ip6"))}', # Mandatory only if saddr or daddr are sets
   sport     => $8,
 }
