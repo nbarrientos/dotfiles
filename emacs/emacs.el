@@ -178,6 +178,13 @@
 (use-package yasnippet-snippets
   :after (yasnippet))
 
+(use-package smart-tab
+  :config
+  (global-smart-tab-mode 1)
+  (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
+  :custom
+  (smart-tab-using-hippie-expand t))
+
 (use-package gitignore-templates)
 
 (use-package paren
