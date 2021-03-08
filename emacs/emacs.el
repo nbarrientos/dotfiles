@@ -172,6 +172,7 @@
 (use-package yasnippet
   :config
   (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
+  (delete 'try-expand-line hippie-expand-try-functions-list)
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
