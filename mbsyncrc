@@ -122,6 +122,10 @@ Channel cern-spanish-gang
 Master :cern-remote:spanish-gang
 Slave :cern-local:spanish-gang
 
+Channel cern-centos-devel
+Master :cern-remote:centos-devel
+Slave :cern-local:centos-devel
+
 Group cern-prio-0
 Channel cern-inbox
 
@@ -133,6 +137,7 @@ Channel cern-ai-jira-crm
 Channel cern-building-31
 Channel cern-c5-minutes
 Channel cern-cern-personnel
+Channel cern-centos-devel
 Channel cern-foreman-announce
 Channel cern-foreman-users
 Channel cern-gitlab
