@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: nftables::set
+# key: nftables::set
+# https://github.com/voxpupuli/puppet-nftables/blob/master/REFERENCE.md#nftablesset
+# --
+
+nftables::set{'${1:set_name}':
+  elements => [$2],
+  flags    => [$3], # (optional) "constant" "dynamic" "interval" "timeout"
+  type     => '${4:$$(yas-choose-value '("ipv4_addr" "ipv6_addr" "ether_addr" "inet_proto" "inet_service" "mark"))}',
+  size     => ${5:1}, # (optional) max size
+}
