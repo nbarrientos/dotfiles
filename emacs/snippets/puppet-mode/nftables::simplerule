@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: nftables::simplerule
 # key: nftables::simplerule
+# https://github.com/voxpupuli/puppet-nftables/blob/master/REFERENCE.md#nftablessimplerule
 # --
 nftables::simplerule{'${1:rule_name}':
   action    => '${2:$$(yas-choose-value '("accept" "continue" "drop" "return"))}',
