@@ -209,6 +209,12 @@
 
 (use-package eshell
   :ensure nil
+  :hook
+  (eshell-mode . (lambda ()
+                   (define-key eshell-mode-map (kbd "<up>") 'previous-line)
+                   (define-key eshell-mode-map (kbd "<down>") 'next-line)
+                   (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-matching-input-from-input)
+                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
