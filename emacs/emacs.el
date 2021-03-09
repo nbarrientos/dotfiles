@@ -379,8 +379,8 @@ The command will be prefixed with `bundle exec` if RuboCop is bundled."
   :bind (("C-x m" . multi-compile-run))
   :custom
   (multi-compile-alist
-   `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-rake "rubocop") ,my/mc-root)
-                   ("cern-p-rubocop-autocorrect" ,(format my/mc-c-rake "rubocop -a") ,my/mc-root)
+   `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
+                   ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)
                    ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
                    ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
                    ;; Standard Puppet module
