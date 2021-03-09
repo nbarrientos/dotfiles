@@ -150,19 +150,9 @@
          (compilation-filter-hook . inf-ruby-minor-mode)))
 (use-package puppet-mode)
 (use-package rspec-mode)
-(use-package rubocop)
-
-;; Pending: https://github.com/rubocop/rubocop-emacs/pull/28
-(defun rubocop-build-command (command path)
-  "Build the full command to be run based on COMMAND and PATH.
-The command will be prefixed with `bundle exec` if RuboCop is bundled."
-  (concat
-   (format "schroot -d %s -- " (rubocop-project-root))
-   (if (and (not rubocop-prefer-system-executable) (rubocop-bundled-p)) "bundle exec " "")
-   command
-   (rubocop-build-requires)
-   " "
-   path))
+(use-package rubocop
+  :custom
+  (rubocop-run-in-chroot t))
 
 (use-package rake)
 (use-package yaml-mode)
