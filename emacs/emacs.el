@@ -6,6 +6,7 @@
  auth-source-save-behavior nil
  custom-file null-device
  make-backup-files nil
+ help-window-select t
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (scroll-bar-mode -1)
