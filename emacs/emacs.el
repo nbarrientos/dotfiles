@@ -146,6 +146,8 @@
   :config
   (editorconfig-mode 1))
 
+(use-package enh-ruby-mode
+  :mode (("\\.rb\\'" . enh-ruby-mode)))
 (use-package inf-ruby
   :hook ((ruby-mode-hook . inf-ruby-minor-mode)
          (compilation-filter-hook . inf-ruby-minor-mode)))
