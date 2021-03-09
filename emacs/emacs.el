@@ -287,7 +287,8 @@ The command will be prefixed with `bundle exec` if RuboCop is bundled."
 
 (use-package mu4e
   :ensure nil
-  :bind ("<f8>" . mu4e)
+  :bind (("<f8>" . mu4e)
+         ("<f7>" . mu4e-headers-search-bookmark))
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit nil)
