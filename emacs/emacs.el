@@ -21,9 +21,6 @@
 
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
 
-(setq show-trailing-whitespace t)
-(add-hook 'shell-mode-hook (lambda ()
-                            (setq show-trailing-whitespace nil)))
 
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
@@ -35,13 +32,6 @@
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
-
-(global-whitespace-mode)
-(add-function :filter-return whitespace-enable-predicate
-   (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
-;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
-;;(setq whitespace-global-modes '(not magit-mode))
-(setq whitespace-style '(face trailing tabs empty big-indent))
 
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
@@ -61,6 +51,20 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package whitespace
+  :config
+  (global-whitespace-mode)
+  :hook
+  (prog-mode . (lambda () (setq show-trailing-whitespace t)))
+  (text-mode . (lambda () (setq show-trailing-whitespace t)))
+  (conf-mode . (lambda () (setq show-trailing-whitespace t)))
+  :custom
+  (whitespace-style '(face trailing tabs empty big-indent)))
+(add-function :filter-return whitespace-enable-predicate
+   (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
+;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
+;;(setq whitespace-global-modes '(not magit-mode))
 
 (use-package whole-line-or-region
   :init
