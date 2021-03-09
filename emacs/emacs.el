@@ -379,7 +379,8 @@ The command will be prefixed with `bundle exec` if RuboCop is bundled."
 (setq my/mc-rake (format my/mc-bundle "exec rake %s"))
 
 (use-package multi-compile
-  :bind (("C-x m" . multi-compile-run))
+  :bind (("C-x b" . recompile)
+         ("C-x B" . multi-compile-run))
   :custom
   (multi-compile-alist
    `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
