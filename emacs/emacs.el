@@ -21,11 +21,6 @@
 
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
 
-
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'text-mode-hook 'linum-mode)
-(add-hook 'conf-mode-hook 'linum-mode)
-
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -51,6 +46,12 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package linum
+  :ensure nil
+  :hook ((prog-mode . linum-mode)
+         (text-mode . linum-mode)
+         (conf-mode . linum-mode)))
 
 (use-package whitespace
   :config
