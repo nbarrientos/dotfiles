@@ -152,6 +152,7 @@
 (use-package rspec-mode)
 (use-package rubocop)
 
+;; Pending: https://github.com/rubocop/rubocop-emacs/pull/28
 (defun rubocop-build-command (command path)
   "Build the full command to be run based on COMMAND and PATH.
 The command will be prefixed with `bundle exec` if RuboCop is bundled."
