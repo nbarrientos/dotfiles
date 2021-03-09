@@ -150,6 +150,19 @@
          (compilation-filter-hook . inf-ruby-minor-mode)))
 (use-package puppet-mode)
 (use-package rspec-mode)
+(use-package rubocop)
+
+(defun rubocop-build-command (command path)
+  "Build the full command to be run based on COMMAND and PATH.
+The command will be prefixed with `bundle exec` if RuboCop is bundled."
+  (concat
+   (format "schroot -d %s -- " (rubocop-project-root))
+   (if (and (not rubocop-prefer-system-executable) (rubocop-bundled-p)) "bundle exec " "")
+   command
+   (rubocop-build-requires)
+   " "
+   path))
+
 (use-package rake)
 (use-package yaml-mode)
 (use-package markdown-mode
@@ -371,8 +384,6 @@
                    ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
                    ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
                    ;; Standard Puppet module
-                   ("p-rubocop" ,(format my/mc-rake "rubocop") ,my/mc-root)
-                   ("p-rubocop-autocorrect" ,(format my/mc-rake "rubocop -a") ,my/mc-root)
                    ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
                    ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
                    ))
