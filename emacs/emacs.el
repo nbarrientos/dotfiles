@@ -249,6 +249,8 @@
          ("C-x G" . magit-dispatch))
   :config
   (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
+  (transient-append-suffix 'magit-push "-n"
+    '(1 "-M" "Create MR in Gitlab" "--push-option=merge_request.create"))
   :custom
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
