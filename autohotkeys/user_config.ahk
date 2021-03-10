@@ -10,19 +10,51 @@
 ; === END OF INSTRUCTIONS ===
 ; ===========================
 
-Delete & 1::switchDesktopByNumber(1)
-Delete & 2::switchDesktopByNumber(2)
-Delete & 3::switchDesktopByNumber(3)
-Delete & 4::switchDesktopByNumber(4)
-Delete & 5::switchDesktopByNumber(5)
-Delete & 6::switchDesktopByNumber(6)
-Delete & 7::switchDesktopByNumber(7)
-Delete & 8::switchDesktopByNumber(8)
-Delete & 9::switchDesktopByNumber(9)
+SetTitleMatchMode, RegEx
+
+Delete & 1::
+switchDesktopByNumber(1)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 2::
+switchDesktopByNumber(2)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 3::
+switchDesktopByNumber(3)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 4::
+switchDesktopByNumber(4)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 5::
+switchDesktopByNumber(5)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 6::
+switchDesktopByNumber(6)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 7::
+switchDesktopByNumber(7)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 8::
+switchDesktopByNumber(8)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
+Delete & 9::
+switchDesktopByNumber(9)
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
 
 Delete & l::switchDesktopToRight()
 Delete & h::switchDesktopToLeft()
-Delete & tab::switchDesktopToLastOpened()
+Delete & tab::
+switchDesktopToLastOpened()
+WinActivateBottomOnCurrentVirtualDesktop()
+Return
 
 ; Swap CapsLock and Esc
 Capslock::Esc
