@@ -64,6 +64,12 @@ Capslock::Esc
 Delete & j::WinActivateBottomOnCurrentVirtualDesktop()
 Delete & k::WinActivateBottomOnCurrentVirtualDesktop()
 
+#IfWinActive, ahk_class MozillaWindowClass
+^s:: send ^f
+
+#IfWinActive, Mattermost ahk_class MozillaWindowClass
+^b:: send ^k
+
 WinActivateBottomOnCurrentVirtualDesktop(){
     list := ""
     LastWin := ""
