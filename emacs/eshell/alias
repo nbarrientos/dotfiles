@@ -1,0 +1,2 @@
+alias em find-file $1
+alias pdb4q ai-pdb --pdb-timeout 120 raw pdb/query/v4/$1
