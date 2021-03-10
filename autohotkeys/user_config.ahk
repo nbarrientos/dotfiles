@@ -98,3 +98,8 @@ IsWindowOnCurrentVirtualDesktop(hWnd) {
         return false, ErrorLevel := true
     return onCurrentDesktop, ErrorLevel := false
 }
+
+Delete & Down::SoundSet, -5
+Delete & Up::SoundSet, +5
+Delete & m::SoundSet, +1, , mute
+
