@@ -162,7 +162,6 @@
   :custom
   (rubocop-run-in-chroot t))
 
-(use-package rake)
 (use-package yaml-mode)
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
