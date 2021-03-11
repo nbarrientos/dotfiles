@@ -7,6 +7,7 @@
  custom-file null-device
  make-backup-files nil
  help-window-select t
+ confirm-kill-emacs 'y-or-n-p
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (scroll-bar-mode -1)
