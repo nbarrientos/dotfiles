@@ -21,8 +21,6 @@
 
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
 
-(define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-set-key [home] 'beginning-of-buffer)
@@ -92,7 +90,6 @@
   :diminish
   :bind (:map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
-         ([escape] . minibuffer-keyboard-quit)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1)
@@ -261,7 +258,7 @@
 
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind (("M-o" . ace-window)))
+  :bind (("<escape>" . ace-window)))
 
 (use-package which-key
   :init (which-key-mode)
