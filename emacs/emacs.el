@@ -17,8 +17,6 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(server-start)
-
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
 
 (define-key minibuffer-local-map (kbd "<escape>") 'minibuffer-keyboard-quit)
