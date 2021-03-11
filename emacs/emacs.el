@@ -381,14 +381,14 @@
          ("C-x B" . multi-compile-run))
   :custom
   (multi-compile-alist
-   `((ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
-                   ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)
-                   ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
-                   ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
-                   ;; Standard Puppet module
-                   ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
-                   ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
-                   ))
+   `((enh-ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
+                       ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)
+                       ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
+                       ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
+                       ;; Standard Puppet module
+                       ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
+                       ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
+                       ))
      ("_spec\\.rb\\'" . (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
                          ;; Standard Puppet module
                          ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
