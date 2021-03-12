@@ -18,58 +18,8 @@ x-terminal-emulator.intensityStyles: false
 x-terminal-emulator.urgentOnBell: true
 x-terminal-emulator.print-pipe: "cat > /dev/null"
 
-! Solarized color scheme for the X Window System
-!
-! http://ethanschoonover.com/solarized
-! https://github.com/solarized/xresources
-
-
-! Common
-
-#define S_yellow        #b58900
-#define S_orange        #cb4b16
-#define S_red           #dc322f
-#define S_magenta       #d33682
-#define S_violet        #6c71c4
-#define S_blue          #268bd2
-#define S_cyan          #2aa198
-#define S_green         #859900
-
-
-! Dark
-
-#define S_base03        #002b36
-#define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
-
-x-terminal-emulator.background:              S_base03
-x-terminal-emulator.foreground:              S_base0
-x-terminal-emulator.fadeColor:               S_base03
-x-terminal-emulator.cursorColor:             S_base1
-x-terminal-emulator.pointerColorBackground:  S_base01
-x-terminal-emulator.pointerColorForeground:  S_base1
-
-x-terminal-emulator.color0:                  S_base02
-x-terminal-emulator.color1:                  S_red
-x-terminal-emulator.color2:                  S_green
-x-terminal-emulator.color3:                  S_yellow
-x-terminal-emulator.color4:                  S_blue
-x-terminal-emulator.color5:                  S_magenta
-x-terminal-emulator.color6:                  S_cyan
-x-terminal-emulator.color7:                  S_base2
-x-terminal-emulator.color9:                  S_orange
-x-terminal-emulator.color8:                  S_base03
-x-terminal-emulator.color10:                 S_base01
-x-terminal-emulator.color11:                 S_base00
-x-terminal-emulator.color12:                 S_base0
-x-terminal-emulator.color13:                 S_violet
-x-terminal-emulator.color14:                 S_base1
-x-terminal-emulator.color15:                 S_base3
+x-terminal-emulator.background:              black
+x-terminal-emulator.foreground:              white
 
 rofi.color-enabled: true
 rofi.color-window: #002b37, #002b37, #003642
