@@ -395,6 +395,10 @@
                          ))
      )))
 
+;; Host-specific configuration :)
+(when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
+  (load-file (format "~/.emacs.d/%s.el" system-name)))
+
 (use-package ldap
   :ensure nil
   :commands (ldap-search)
