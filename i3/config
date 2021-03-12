@@ -147,9 +147,9 @@ bar {
 }
 
 # Volume
-bindsym $mod+F10 exec amixer set Master toggle
-bindsym $mod+F11 exec amixer set Master playback 5%- unmute
-bindsym $mod+F12 exec amixer set Master playback 5%+ unmute 
+bindsym $mod+F10 exec pamixer -t
+bindsym $mod+F11 exec pamixer -d 5
+bindsym $mod+F12 exec pamixer -i 5 --allow-boost
 
 # Screenlock
 bindsym $mod+F9 exec xscreensaver-command -lock
