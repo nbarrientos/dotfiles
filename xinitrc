@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Thinkpad USB keyboard
-#setxkbmap -option "ctrl:nocaps" -option "altwin:swap_alt_win" -layout us
-#xset m 7 1;
-#xmodmap -e "keycode 9 = backslash backslash backslash"
-#xmodmap -e "keycode 49 = Escape"
-
 # Kinesis Advantage
 setxkbmap -option -option "caps:escape" -option "compose:rctrl" -layout us
 xmodmap -e "keycode 119 = Super_L"
