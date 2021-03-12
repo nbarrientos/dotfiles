@@ -1,23 +1,5 @@
 [user]
-	name = Nacho Barrientos
+        name = Nacho Barrientos
 	email = nacho.barrientos@cern.ch
-[color]
-	ui = auto
-[alias]
-  st = status
-  ci = commit
-  co = checkout
-  di = diff
-  br = branch
-  fp = format-patch
-  pum = pull origin master
-  se = send-email
-  cl = !git clean -fd && git reset --hard
 [http]
-  emptyAuth = true
-[diff]
-  tool = vimdiff
-[difftool]
-  prompt = false
-[pull]
-	rebase = false
+        emptyAuth = true
