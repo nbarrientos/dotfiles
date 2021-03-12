@@ -73,24 +73,24 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: mail
-bindsym $mod+2 workspace 2: www
-bindsym $mod+3 workspace 3: chat
+bindsym $mod+1 workspace 1: www
+bindsym $mod+2 workspace 2: chat
+bindsym $mod+3 workspace 3: c0
 bindsym $mod+4 workspace 4: music
-bindsym $mod+5 workspace 5: logs
-bindsym $mod+6 workspace 6: c1
+bindsym $mod+5 workspace 5: c1
+bindsym $mod+6 workspace 6: emacs
 bindsym $mod+7 workspace 7: c2
 bindsym $mod+8 workspace 8: c3
 bindsym $mod+9 workspace 9: c4
 bindsym $mod+0 workspace 10: c5
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1: mail
-bindsym $mod+Shift+2 move container to workspace 2: www
-bindsym $mod+Shift+3 move container to workspace 3: chat
+bindsym $mod+Shift+1 move container to workspace 1: www
+bindsym $mod+Shift+2 move container to workspace 2: chat
+bindsym $mod+Shift+3 move container to workspace 3: c0
 bindsym $mod+Shift+4 move container to workspace 4: music
-bindsym $mod+Shift+5 move container to workspace 5: logs
-bindsym $mod+Shift+6 move container to workspace 6: c1
+bindsym $mod+Shift+5 move container to workspace 5: c1
+bindsym $mod+Shift+6 move container to workspace 6: emacs
 bindsym $mod+Shift+7 move container to workspace 7: c2
 bindsym $mod+Shift+8 move container to workspace 8: c3
 bindsym $mod+Shift+9 move container to workspace 9: c4
@@ -155,12 +155,13 @@ bindsym $mod+F12 exec pamixer -i 5 --allow-boost
 bindsym $mod+F9 exec xscreensaver-command -lock
 
 # App -> WS assignments (xprop)
-assign [title="mutt"] 1: mail
-assign [class="Firefox"] 2: www
-assign [class="Mattermost"] 3: chat
+assign [class="Firefox"] 1: www
+assign [class="TelegramDesktop"] 2: chat
+assign [class="Signal"] 2: chat
+assign [class="Emacs"] 6: emacs
 # assign [class="Spotify"] music
 # https://www.reddit.com/r/i3wm/comments/52dy4m/spotify_doesnt_start_at_assigned_workspace/
-for_window [class="Spotify"] move to workspace "4: music"
+#for_window [class="Spotify"] move to workspace "4: music"
 
 # App to autostart
 exec --no-startup-id dunst
