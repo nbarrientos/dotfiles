@@ -5,7 +5,7 @@ x-terminal-emulator.scrollBar: false
 x-terminal-emulator.scrollTtyOutput: false
 x-terminal-emulator.scrollWithBuffer: true
 x-terminal-emulator.scrollTtyKeypress: true
-x-terminal-emulator.font: xft:Terminus (TTF):size=12:autohint=true:antialias=false
+x-terminal-emulator.font: xft:Terminus:size=12:autohint=true:antialias=false
 x-terminal-emulator.transparent: false
 x-terminal-emulator.shading: 1
 x-terminal-emulator.depth: 32
