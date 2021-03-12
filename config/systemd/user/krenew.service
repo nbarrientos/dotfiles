@@ -3,7 +3,7 @@ Description=Automatically renew my kerberos ticket
 After=autofs.service
 
 [Service]
-ExecStart=/usr/bin/krenew -K 60 -v -t -i
+ExecStart=/usr/bin/krenew -K 60 -v -i
 Restart=always
 
 [Install]
