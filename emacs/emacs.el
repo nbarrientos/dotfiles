@@ -188,6 +188,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
+(use-package i3wm-config-mode)
 
 (use-package yasnippet
   :config
