@@ -149,9 +149,9 @@ bar {
 }
 
 # Volume
-bindsym $mod+F10 exec pamixer -t
-bindsym $mod+F11 exec pamixer -d 5
-bindsym $mod+F12 exec pamixer -i 5 --allow-boost
+bindsym $mod+m exec pamixer -t
+bindsym $mod+Down exec pamixer -d 5
+bindsym $mod+Up exec pamixer -i 5 --allow-boost
 
 # Screenlock
 bindsym $mod+F9 exec xscreensaver-command -lock
