@@ -83,6 +83,18 @@
   (dired-listing-switches "-NGalhv --group-directories-first")
   (dired-auto-revert-buffer t))
 
+(use-package pinentry
+  :config
+  (pinentry-start))
+(when (file-exists-p "~/.gnupg/gpg-agent.conf")
+  (shell-command "gpg-connect-agent /bye")
+  ;; Don't forget to add the keygrips to .gnupg/sshcontrol!
+  (setenv "SSH_AUTH_SOCK"
+          (replace-regexp-in-string
+           "\n$"
+           ""
+           (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket 2>/dev/null"))))
+
 (use-package all-the-icons-ivy
   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
 
