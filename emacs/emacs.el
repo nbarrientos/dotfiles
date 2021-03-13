@@ -15,7 +15,6 @@
 (tooltip-mode -1)
 (set-fringe-mode 10)
 (menu-bar-mode -1)
-(global-hl-line-mode)
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
@@ -235,8 +234,7 @@
                    (define-key eshell-mode-map (kbd "<up>") 'previous-line)
                    (define-key eshell-mode-map (kbd "<down>") 'next-line)
                    (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-matching-input-from-input)
-                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)
-                   (setq-local global-hl-line-mode nil)))
+                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
