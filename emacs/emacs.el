@@ -299,7 +299,7 @@
          ("<f7>" . mu4e-headers-search-bookmark))
   :custom
   (mu4e-change-filenames-when-moving t)
-  (mu4e-confirm-quit nil)
+  (mu4e-confirm-quit t)
   (mu4e-update-interval (* 5 60))
   (mu4e-get-mail-command "true") ; mbsync is run by a systemd timer (only re-index)
   (mu4e-html2text-command "lynx -dump -stdin")
