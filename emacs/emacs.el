@@ -46,11 +46,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package linum
+(use-package display-line-numbers
   :ensure nil
-  :hook ((prog-mode . linum-mode)
-         (text-mode . linum-mode)
-         (conf-mode . linum-mode)))
+  :hook ((prog-mode . display-line-numbers-mode)
+         (text-mode . display-line-numbers-mode)
+         (conf-mode . display-line-numbers-mode)))
 
 (use-package whitespace
   :config
