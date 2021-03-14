@@ -208,6 +208,12 @@
 
 (use-package gitignore-templates)
 
+(use-package virtualenvwrapper
+  :config
+  (venv-initialize-eshell)
+  :custom
+  (venv-location "~/venvs"))
+
 (use-package paren
   :ensure nil
   :config
