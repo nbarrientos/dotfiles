@@ -171,6 +171,11 @@
 (use-package rubocop
   :custom
   (rubocop-run-in-chroot t))
+;; Pending https://github.com/rubocop/rubocop-emacs/pull/36
+(defun rubocop-ensure-installed ()
+  "Check if RuboCop is installed."
+  (unless (or (executable-find "rubocop") (rubocop-bundled-p) rubocop-run-in-chroot)
+    (error "RuboCop is not installed")))
 
 (use-package yaml-mode)
 (use-package markdown-mode
