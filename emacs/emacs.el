@@ -252,6 +252,19 @@ Does not delete the prompt."
     (insert "*** output flushed ***\n")
     (kill-region (point) (eshell-end-of-output))))
 
+;; Inspiration from:
+;; https://github.com/protesilaos/dotfiles/blob/master/emacs/.emacs.d/prot-lisp/prot-eshell.el
+(defun my/eshell-export-output ()
+  "Produce a buffer with output of the last Eshell command."
+  (interactive)
+  (let ((eshell-output (buffer-substring-no-properties
+                        (eshell-beginning-of-output)
+                        (eshell-end-of-output))))
+    (with-current-buffer (get-buffer-create "*Exported Eshell output*")
+      (erase-buffer)
+      (insert eshell-output)
+      (switch-to-buffer-other-window (current-buffer)))))
+
 (use-package eshell
   :ensure nil
   :hook
@@ -260,7 +273,8 @@ Does not delete the prompt."
                    (define-key eshell-mode-map (kbd "<down>") 'next-line)
                    (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-matching-input-from-input)
                    (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)
-                   (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)))
+                   (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)
+                   (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-output)))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
