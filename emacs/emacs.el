@@ -307,9 +307,21 @@
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t))
 
+(defun my/toggle-single-window ()
+  "Toggles between a single window configuration and
+the previously multi-windowed one"
+  (interactive)
+  (if (one-window-p)
+    (when (boundp 'my-saved-window-configuration)
+      (set-window-configuration my-saved-window-configuration))
+    (progn
+      (setq my-saved-window-configuration (current-window-configuration))
+      (delete-other-windows))))
+
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind (("<escape>" . ace-window)))
+  :bind (("<escape>" . ace-window)
+         ("C-x 1" . my/toggle-single-window)))
 
 (use-package which-key
   :init (which-key-mode)
