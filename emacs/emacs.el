@@ -240,6 +240,18 @@
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
 
+;; I'm puzzled about the fact that a function that has the word kill
+;; in its name does not actually kill the text in question. The original
+;; one does 'delete-region' instead. This cannot be a bug. Is it?
+(defun my/eshell-kill-output ()
+  "Kill all output from interpreter since last input.
+Does not delete the prompt."
+  (interactive)
+  (save-excursion
+    (goto-char (eshell-beginning-of-output))
+    (insert "*** output flushed ***\n")
+    (kill-region (point) (eshell-end-of-output))))
+
 (use-package eshell
   :ensure nil
   :hook
@@ -247,7 +259,8 @@
                    (define-key eshell-mode-map (kbd "<up>") 'previous-line)
                    (define-key eshell-mode-map (kbd "<down>") 'next-line)
                    (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-matching-input-from-input)
-                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)))
+                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)
+                   (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
