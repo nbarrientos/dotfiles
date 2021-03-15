@@ -240,31 +240,6 @@
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
 
-;; I'm puzzled about the fact that a function that has the word kill
-;; in its name does not actually kill the text in question. The original
-;; one does 'delete-region' instead. This cannot be a bug. Is it?
-(defun my/eshell-kill-output ()
-  "Kill all output from interpreter since last input.
-Does not delete the prompt."
-  (interactive)
-  (save-excursion
-    (goto-char (eshell-beginning-of-output))
-    (insert "*** output flushed ***\n")
-    (kill-region (point) (eshell-end-of-output))))
-
-;; Inspiration from:
-;; https://github.com/protesilaos/dotfiles/blob/master/emacs/.emacs.d/prot-lisp/prot-eshell.el
-(defun my/eshell-export-output ()
-  "Produce a buffer with output of the last Eshell command."
-  (interactive)
-  (let ((eshell-output (buffer-substring-no-properties
-                        (eshell-beginning-of-output)
-                        (eshell-end-of-output))))
-    (with-current-buffer (get-buffer-create "*Exported Eshell output*")
-      (erase-buffer)
-      (insert eshell-output)
-      (switch-to-buffer-other-window (current-buffer)))))
-
 (use-package eshell
   :ensure nil
   :hook
@@ -276,6 +251,31 @@ Does not delete the prompt."
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)
                    (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-output)
                    (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)))
+  :config
+  ;; I'm puzzled about the fact that a function that has the word kill
+  ;; in its name does not actually kill the text in question. The original
+  ;; one does 'delete-region' instead. This cannot be a bug. Is it?
+  (defun my/eshell-kill-output ()
+    "Kill all output from interpreter since last input.
+    Does not delete the prompt."
+    (interactive)
+    (save-excursion
+      (goto-char (eshell-beginning-of-output))
+      (insert "*** output flushed ***\n")
+      (kill-region (point) (eshell-end-of-output))))
+
+  ;; Inspiration from:
+  ;; https://github.com/protesilaos/dotfiles/blob/master/emacs/.emacs.d/prot-lisp/prot-eshell.el
+  (defun my/eshell-export-output ()
+    "Produce a buffer with output of the last Eshell command."
+    (interactive)
+    (let ((eshell-output (buffer-substring-no-properties
+                          (eshell-beginning-of-output)
+                          (eshell-end-of-output))))
+      (with-current-buffer (get-buffer-create "*Exported Eshell output*")
+        (erase-buffer)
+        (insert eshell-output)
+        (switch-to-buffer-other-window (current-buffer)))))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
