@@ -274,7 +274,8 @@ Does not delete the prompt."
                    (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-matching-input-from-input)
                    (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-matching-input-from-input)
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)
-                   (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-output)))
+                   (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-output)
+                   (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)))
   :custom
   (eshell-banner-message "")
   (eshell-scroll-to-bottom-on-input 'all))
