@@ -321,7 +321,9 @@ the previously multi-windowed one"
       (set-window-configuration my-saved-window-configuration))
     (progn
       (setq my-saved-window-configuration (current-window-configuration))
-      (delete-other-windows)))))
+      (delete-other-windows))))
+  :custom
+  (aw-scope 'frame))
 
 (use-package which-key
   :init (which-key-mode)
@@ -415,6 +417,74 @@ the previously multi-windowed one"
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
+
+(use-package exwm
+  :config
+  (add-hook 'exwm-update-class-hook
+            (lambda ()
+              (exwm-workspace-rename-buffer exwm-class-name)))
+
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+
+  (setq exwm-input-global-keys
+        `(
+          ([?\s-r]
+           . exwm-reset)
+          ([?\s-c]
+           . exwm-input-toggle-keyboard)
+          ([?\s-d] .
+           (lambda (command)
+             (interactive (list (read-shell-command "$ ")))
+             (start-process-shell-command command nil command)))
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))
+          ([?\s-m] .
+           (lambda ()
+             (interactive)
+             (shell-command "pamixer -t &>/dev/null")))
+          (,(kbd "s-<down>") .
+           (lambda ()
+             (interactive)
+             (shell-command "pamixer -d 5 &>/dev/null")))
+          (,(kbd "s-<up>") .
+           (lambda ()
+             (interactive)
+             (shell-command "pamixer -i 5 --allow-boost &>/dev/null")))
+          ([?\s-l] .
+           (lambda ()
+             (interactive)
+             (shell-command "xscreensaver-command -lock &>/dev/null")))
+          ([?\s-s] .
+           (lambda ()
+             (interactive)
+             (shell-command "import png:- | xclip -selection c -t image/png &>/dev/null")))))
+
+  (setq exwm-input-simulation-keys
+        '(
+          ([?\C-a] . [home])
+          ([?\C-e] . [end])
+          ([?\M-v] . [prior])
+          ([?\C-v] . [next])
+          ([?\C-d] . [delete])
+          ([?\C-k] . [S-end delete])))
+
+  (add-hook 'exwm-manage-finish-hook
+          (lambda ()
+            (when (and exwm-class-name
+                       (string= exwm-class-name "firefox"))
+              (exwm-input-set-local-simulation-keys
+               '(([?\C-s] . [?\C-f])))))) ; Swiper!
+
+  (setq display-time-24hr-format t)
+  (setq display-time-default-load-average nil)
+  (display-time-mode)
+
+  (exwm-enable))
 
 ;; Add color support to compilation buffers
 (require 'ansi-color)
