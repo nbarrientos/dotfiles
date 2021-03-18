@@ -440,11 +440,11 @@ the previously multi-windowed one"
              (interactive)
              (counsel-linux-app)))
           ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-%d" i)) .
+                      `(,(kbd (format "s-%d" (car i))) .
                         (lambda ()
                           (interactive)
-                          (exwm-workspace-switch-create ,i))))
-                    (number-sequence 0 9))
+                          (switch-to-buffer ,(cdr i)))))
+                    '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (6 . "*eshell*")))
           ([?\s-s] .
            (lambda ()
              (interactive)
@@ -467,6 +467,10 @@ the previously multi-windowed one"
                '(([?\C-s] . [?\C-f])))))) ; Swiper!
 
   (define-key exwm-mode-map (kbd "C-c") nil)
+  ;; Buffer switching
+  (add-to-list 'exwm-input-prefix-keys ?\C-b)
+  ;; Window switching
+  (add-to-list 'exwm-input-prefix-keys (aref (kbd "<escape>") 0))
 
   (setq display-time-24hr-format t)
   (setq display-time-default-load-average nil)
