@@ -434,9 +434,9 @@ the previously multi-windowed one"
           ([?\s-c]
            . exwm-input-toggle-keyboard)
           ([?\s-d] .
-           (lambda (command)
-             (interactive (list (read-shell-command "$ ")))
-             (start-process-shell-command command nil command)))
+           (lambda ()
+             (interactive)
+             (counsel-linux-app)))
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
