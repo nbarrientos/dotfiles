@@ -26,6 +26,7 @@
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-f"))
 
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
