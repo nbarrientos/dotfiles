@@ -433,6 +433,8 @@ the previously multi-windowed one"
            . exwm-reset)
           ([?\s-c]
            . exwm-input-toggle-keyboard)
+          ([?\s-f]
+           . exwm-layout-toggle-fullscreen)
           ([?\s-d] .
            (lambda ()
              (interactive)
