@@ -466,6 +466,8 @@ the previously multi-windowed one"
               (exwm-input-set-local-simulation-keys
                '(([?\C-s] . [?\C-f])))))) ; Swiper!
 
+  (define-key exwm-mode-map (kbd "C-c") nil)
+
   (setq display-time-24hr-format t)
   (setq display-time-default-load-average nil)
   (display-time-mode)
