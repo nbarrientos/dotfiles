@@ -427,7 +427,7 @@ the previously multi-windowed one"
           ([?\s-c]
            . exwm-input-toggle-keyboard)
           ([?\s-f]
-           . exwm-layout-toggle-fullscreen)
+           . my/toggle-single-window)
           ([?\s-d] .
            (lambda ()
              (interactive)
