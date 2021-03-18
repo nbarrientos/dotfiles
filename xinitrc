@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Kinesis Advantage
-setxkbmap -option -option "caps:escape" -option "compose:rctrl" -layout us
-xmodmap -e "keycode 119 = Super_L"
-
 # Xscreensaver
 xscreensaver -nosplash &
 

@@ -415,6 +415,8 @@ the previously multi-windowed one"
             (lambda ()
               (exwm-workspace-rename-buffer exwm-class-name)))
 
+  (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
+
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
 
