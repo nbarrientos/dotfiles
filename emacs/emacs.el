@@ -333,18 +333,11 @@ the previously multi-windowed one"
 
 ;; Highlight URLs and kill them instead of opening them
 (require 'url-util)
-(defun my/kill-url-at-point ()
-  "Kill the url at point."
-  (interactive)
-  (kill-new (url-get-url-at-point)))
 (use-package goto-addr
   :hook ((compilation-mode . goto-address-mode)
           (prog-mode . goto-address-prog-mode)
           (magit-mode . goto-address-mode)
           (mu4e-view-mode . goto-address-mode))
-  :bind (:map goto-address-highlight-keymap
-              ("C-c RET" . my/kill-url-at-point)
-              ("<mouse-2>" . my/kill-url-at-point))
   :commands (goto-address-prog-mode
              goto-address-mode))
 
