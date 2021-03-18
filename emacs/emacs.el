@@ -344,8 +344,6 @@ the previously multi-windowed one"
 
 (use-package mu4e
   :ensure nil
-  :bind (("<f8>" . mu4e)
-         ("<f7>" . mu4e-headers-search-bookmark))
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit t)
@@ -439,6 +437,10 @@ the previously multi-windowed one"
                           (interactive)
                           (switch-to-buffer ,(cdr i)))))
                     '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (6 . "*eshell*")))
+          ([?\s-7]
+           . mu4e-headers-search-bookmark)
+          ([?\s-8]
+           . mu4e)
           ([?\s-s] .
            (lambda ()
              (interactive)
