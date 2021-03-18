@@ -1,25 +1,25 @@
 ! Thanks @icotc!
 
-x-terminal-emulator.saveLines: 20000
-x-terminal-emulator.scrollBar: false
-x-terminal-emulator.scrollTtyOutput: false
-x-terminal-emulator.scrollWithBuffer: true
-x-terminal-emulator.scrollTtyKeypress: true
-x-terminal-emulator.font: xft:Terminus:size=12:autohint=true:antialias=false
-x-terminal-emulator.transparent: false
-x-terminal-emulator.shading: 1
-x-terminal-emulator.depth: 32
-x-terminal-emulator.perl-ext-common: default,matcher
-x-terminal-emulator.url-launcher: firefox
-x-terminal-emulator.matcher.rend.0: fg0
-x-terminal-emulator.matcher.button: 1
-x-terminal-emulator.fading: 20
-x-terminal-emulator.intensityStyles: false
-x-terminal-emulator.urgentOnBell: true
-x-terminal-emulator.print-pipe: "cat > /dev/null"
+urxvt.saveLines: 20000
+urxvt.scrollBar: false
+urxvt.scrollTtyOutput: false
+urxvt.scrollWithBuffer: true
+urxvt.scrollTtyKeypress: true
+urxvt.font: xft:Terminus:size=12:autohint=true:antialias=false
+urxvt.transparent: false
+urxvt.shading: 1
+urxvt.depth: 32
+urxvt.perl-ext-common: default,matcher
+urxvt.url-launcher: firefox
+urxvt.matcher.rend.0: fg0
+urxvt.matcher.button: 1
+urxvt.fading: 20
+urxvt.intensityStyles: false
+urxvt.urgentOnBell: true
+urxvt.print-pipe: "cat > /dev/null"
 
-x-terminal-emulator.background:              black
-x-terminal-emulator.foreground:              white
+urxvt.background:              black
+urxvt.foreground:              white
 
 rofi.color-enabled: true
 rofi.color-window: #002b37, #002b37, #003642
