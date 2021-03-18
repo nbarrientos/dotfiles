@@ -445,22 +445,6 @@ the previously multi-windowed one"
                           (interactive)
                           (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))
-          ([?\s-m] .
-           (lambda ()
-             (interactive)
-             (shell-command "pamixer -t &>/dev/null")))
-          (,(kbd "s-<down>") .
-           (lambda ()
-             (interactive)
-             (shell-command "pamixer -d 5 &>/dev/null")))
-          (,(kbd "s-<up>") .
-           (lambda ()
-             (interactive)
-             (shell-command "pamixer -i 5 --allow-boost &>/dev/null")))
-          ([?\s-l] .
-           (lambda ()
-             (interactive)
-             (shell-command "xscreensaver-command -lock &>/dev/null")))
           ([?\s-s] .
            (lambda ()
              (interactive)
@@ -487,6 +471,24 @@ the previously multi-windowed one"
   (display-time-mode)
 
   (exwm-enable))
+
+(use-package desktop-environment
+  :after (exwm)
+  :config
+  (exwm-input-set-key (kbd "s-<up>") #'desktop-environment-volume-increment)
+  (exwm-input-set-key (kbd "s-<down>") #'desktop-environment-volume-decrement)
+  (exwm-input-set-key (kbd "s-m") #'desktop-environment-toggle-mute)
+  (exwm-input-set-key (kbd "s-l") #'desktop-environment-lock-screen)
+  ;; (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
+  :custom
+  (desktop-environment-volume-get-command "pamixer --get-volume")
+  (desktop-environment-volume-set-command "pamixer %s")
+  (desktop-environment-volume-get-regexp "\\([0-9]+\\)")
+  (desktop-environment-volume-normal-increment "-i 5 --allow-boost")
+  (desktop-environment-volume-normal-decrement "-d 5")
+  (desktop-environment-volume-toggle-command "pamixer -t")
+  ;; (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png")
+  (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
 ;; Add color support to compilation buffers
 (require 'ansi-color)
