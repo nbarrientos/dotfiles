@@ -1,0 +1,12 @@
+/* Needs toolkit.legacyUserProfileCustomizations.stylesheets true */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
+/* Remove vertical scrollbar */
+
+:-moz-any(#content,#appcontent) browser{
+ margin-right:-14px!important;
+ overflow-y:scroll;
+ margin-bottom:-14px!important;
+ overflow-x:scroll;
+}
