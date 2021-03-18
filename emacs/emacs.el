@@ -454,8 +454,6 @@ the previously multi-windowed one"
         '(
           ([?\C-a] . [home])
           ([?\C-e] . [end])
-          ([?\M-v] . [prior])
-          ([?\C-v] . [next])
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])))
 
