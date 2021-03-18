@@ -3,9 +3,6 @@
 # Xscreensaver
 xscreensaver -nosplash &
 
-#autocutsel -f
-#autocutsel -f -s PRIMARY
-
 xrdb ~/.Xresources
 
 xrandr --output DP-0 --mode 2560x1440 -r 144 --primary &
