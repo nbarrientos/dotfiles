@@ -471,6 +471,12 @@ the previously multi-windowed one"
   (setq display-time-default-load-average nil)
   (display-time-mode)
 
+  (add-hook 'exwm-init-hook
+            (lambda ()
+              (progn
+                (split-window-right)
+                (eshell))))
+
   (exwm-enable))
 
 (use-package desktop-environment
@@ -593,6 +599,3 @@ the previously multi-windowed one"
    (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
    magit-clone-default-directory
    nil))
-
-(split-window-right)
-(eshell)
