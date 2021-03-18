@@ -1,7 +1,7 @@
 ! Swap caps lock and escape
 remove Lock = Caps_Lock
-keysym Escape = Caps_Lock
-keysym Caps_Lock = Escape
+keysym F8 = Caps_Lock
+keysym Caps_Lock = F8
 add Lock = Caps_Lock
 
 ! Delete -> Super_L

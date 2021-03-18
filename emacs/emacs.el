@@ -309,7 +309,7 @@
 
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind (("<escape>" . ace-window)
+  :bind (("<f8>" . ace-window)
          ("C-x 1" . my/toggle-single-window))
   :config
   (defun my/toggle-single-window ()
@@ -465,7 +465,7 @@ the previously multi-windowed one"
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
   ;; Window switching
-  (add-to-list 'exwm-input-prefix-keys (aref (kbd "<escape>") 0))
+  (define-key exwm-mode-map (kbd "<f8>") 'ace-window)
 
   (setq display-time-24hr-format t)
   (setq display-time-default-load-average nil)
