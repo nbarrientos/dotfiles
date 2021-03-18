@@ -596,3 +596,6 @@ the previously multi-windowed one"
    (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
    magit-clone-default-directory
    nil))
+
+(split-window-right)
+(eshell)
