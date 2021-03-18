@@ -296,7 +296,6 @@
 
 (use-package magit
   :bind (("C-x g" . magit-status)
-         ("C-x C-g" . magit-status)
          ("C-x G" . magit-dispatch))
   :config
   (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
