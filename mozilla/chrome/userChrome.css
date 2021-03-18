@@ -10,3 +10,9 @@
  margin-bottom:-14px!important;
  overflow-x:scroll;
 }
+
+/* Remove white flash */
+
+#tabbrowser-tabpanels {
+  background: var(--toolbar-bgcolor) !important;
+}
