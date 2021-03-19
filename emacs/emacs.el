@@ -354,6 +354,7 @@ the previously multi-windowed one"
   (mu4e-view-show-addresses t)
   (mu4e-compose-dont-reply-to-self t)
   (mu4e-hide-index-messages t)
+  (mu4e-headers-leave-behavior 'apply)
   (mu4e-headers-date-format "%d/%m/%y")
   (mu4e-maildir "~/Mail")
   (mu4e-drafts-folder "/cern/Drafts")
