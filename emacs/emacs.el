@@ -279,6 +279,7 @@
         (switch-to-buffer-other-window (current-buffer)))))
   :custom
   (eshell-banner-message "")
+  (eshell-history-size 20000)
   (eshell-scroll-to-bottom-on-input 'all))
 
 (use-package eshell-prompt-extras
