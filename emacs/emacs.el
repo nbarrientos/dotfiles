@@ -429,6 +429,12 @@ the previously multi-windowed one"
            . exwm-input-toggle-keyboard)
           ([?\s-f]
            . my/toggle-single-window)
+          ([?\s-h]
+           . split-window-below)
+          ([?\s-v]
+           . split-window-right)
+          ([?\s-k]
+           . delete-window)
           ([?\s-d] .
            (lambda ()
              (interactive)
