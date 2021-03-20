@@ -122,8 +122,7 @@
 (use-package bicycle
   :after outline
   :bind (:map outline-minor-mode-map
-              ([C-tab] . bicycle-cycle)
-              ([C-M-tab] . bicycle-cycle-global)))
+              ([C-tab] . bicycle-cycle)))
 
 ;;;; URLs
 (require 'url-util)
