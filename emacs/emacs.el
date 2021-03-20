@@ -117,6 +117,12 @@
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t))
 
+;;; Spelling and grammar
+(setq ispell-dictionary "british")
+(dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
+(dolist (hook '(prog-mode-hook))
+  (add-hook hook (lambda () (flyspell-prog-mode))))
 ;;; TRAMP
 (use-package tramp
   :ensure nil
@@ -439,13 +445,6 @@ the previously multi-windowed one"
   (mu4e-marker-icons-mode 1))
 
 (mu4e t)
-
-;;; Spelling and grammar
-(setq ispell-dictionary "british")
-(dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
-(dolist (hook '(prog-mode-hook))
-  (add-hook hook (lambda () (flyspell-prog-mode))))
 
 ;;; Window manager
 (use-package exwm
