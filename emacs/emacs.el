@@ -101,7 +101,7 @@
                 (line-number-at-pos nil t)
                 line))))
   :hook
-  (emacs-lisp-mode . outline-minor-mode)
+  ((emacs-lisp-mode . outline-minor-mode)
   (emacs-lisp-mode . hs-minor-mode)
   (markdown-mode . outline-minor-mode)
   (markdown-mode . hs-minor-mode)
@@ -112,7 +112,7 @@
                          'my/outline-imenu-prev-index-position-function)
                         (setq-local
                          imenu-extract-index-name-function
-                         'my/outline-imenu-extract-index-name-function))))
+                         'my/outline-imenu-extract-index-name-function)))))
 
 (use-package outline-minor-faces
   :after outline
