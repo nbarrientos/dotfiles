@@ -51,13 +51,15 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;;; Visibility (line numbers, whitespace, outline...)
+;;; Visibility
+;;;; Line numbers
 (use-package display-line-numbers
   :ensure nil
   :hook ((prog-mode . display-line-numbers-mode)
          (text-mode . display-line-numbers-mode)
          (conf-mode . display-line-numbers-mode)))
 
+;;;; White spaces
 (use-package whitespace
   :config
   (global-whitespace-mode)
@@ -72,6 +74,7 @@
 ;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
 ;;(setq whitespace-global-modes '(not magit-mode))
 
+;;;; Sexp delimiters highlighting
 (use-package paren
   :ensure nil
   :config
@@ -79,6 +82,7 @@
   :custom
   (show-paren-style 'mixed))
 
+;;;; Outline
 (use-package outline
   :ensure nil
   :config
@@ -118,6 +122,7 @@
               ([C-tab] . bicycle-cycle)
               ([C-M-tab] . bicycle-cycle-global)))
 
+;;;; URLs
 (require 'url-util)
 (use-package goto-addr
   :hook ((compilation-mode . goto-address-mode)
