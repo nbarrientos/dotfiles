@@ -455,6 +455,9 @@ the previously multi-windowed one"
 
 (mu4e t)
 
+;;; Elfeed
+(use-package elfeed)
+
 ;;; Window manager
 (use-package exwm
   :config
