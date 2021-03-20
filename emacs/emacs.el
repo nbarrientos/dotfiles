@@ -30,8 +30,6 @@
 (global-unset-key (kbd "C-f"))
 
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
-(add-to-list 'password-word-equivalents "Option")
-
 ;;; Use-package
 
 (require 'package)
@@ -143,6 +141,7 @@
            ""
            (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket 2>/dev/null"))))
 
+(add-to-list 'password-word-equivalents "Option")
 ;;; Dired
 (use-package dired
   :ensure nil
