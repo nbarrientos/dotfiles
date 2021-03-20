@@ -95,13 +95,16 @@
            (buffer-substring-no-properties
             (line-beginning-position)
             (line-end-position))))
-      (when (string-prefix-p ";;;" line)
+      (when (or (and (equal major-mode 'emacs-lisp-mode) (string-prefix-p ";;;" line))
+                (and (equal major-mode 'markdown-mode) (string-prefix-p "#" line)))
         (format "%d %s"
                 (line-number-at-pos nil t)
                 line))))
   :hook
   (emacs-lisp-mode . outline-minor-mode)
   (emacs-lisp-mode . hs-minor-mode)
+  (markdown-mode . outline-minor-mode)
+  (markdown-mode . hs-minor-mode)
   (outline-minor-mode .
                       (lambda ()
                         (setq-local
