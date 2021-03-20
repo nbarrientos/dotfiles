@@ -86,33 +86,11 @@
 (use-package outline
   :ensure nil
   :config
-  ;; When outline-minor-mode is enabled use imenu to navigate
-  ;; among sections.
-  (defun my/outline-imenu-prev-index-position-function ()
-    (outline-previous-heading))
-  (defun my/outline-imenu-extract-index-name-function ()
-    (let ((line
-           (buffer-substring-no-properties
-            (line-beginning-position)
-            (line-end-position))))
-      (when (or (and (equal major-mode 'emacs-lisp-mode) (string-prefix-p ";;;" line))
-                (and (equal major-mode 'markdown-mode) (string-prefix-p "#" line)))
-        (format "%d %s"
-                (line-number-at-pos nil t)
-                line))))
   :hook
   ((emacs-lisp-mode . outline-minor-mode)
   (emacs-lisp-mode . hs-minor-mode)
   (markdown-mode . outline-minor-mode)
-  (markdown-mode . hs-minor-mode)
-  (outline-minor-mode .
-                      (lambda ()
-                        (setq-local
-                         imenu-prev-index-position-function
-                         'my/outline-imenu-prev-index-position-function)
-                        (setq-local
-                         imenu-extract-index-name-function
-                         'my/outline-imenu-extract-index-name-function)))))
+  (markdown-mode . hs-minor-mode)))
 
 (use-package outline-minor-faces
   :after outline
