@@ -1,3 +1,4 @@
+;;; Basic configuration of built-in features
 (setq-default
  inhibit-startup-message t
  visible-bell t
@@ -31,6 +32,8 @@
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
 
+;;; Use-package
+
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -47,6 +50,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;;; Visibility (line numbers, whitespace, outline...)
 (use-package display-line-numbers
   :ensure nil
   :hook ((prog-mode . display-line-numbers-mode)
@@ -67,22 +71,59 @@
 ;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
 ;;(setq whitespace-global-modes '(not magit-mode))
 
+(use-package paren
+  :ensure nil
+  :config
+  (show-paren-mode)
+  :custom
+  (show-paren-style 'mixed))
+
+(use-package outline
+  :ensure nil
+  :hook
+  (emacs-lisp-mode . outline-minor-mode)
+  (emacs-lisp-mode . hs-minor-mode))
+
+(use-package outline-minor-faces
+  :after outline
+  :config (add-hook 'outline-minor-mode-hook
+                    'outline-minor-faces-add-font-lock-keywords))
+
+(use-package bicycle
+  :after outline
+  :bind (:map outline-minor-mode-map
+              ([C-tab] . bicycle-cycle)
+              ([C-M-tab] . bicycle-cycle-global)))
+
+(require 'url-util)
+(use-package goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+          (prog-mode . goto-address-prog-mode)
+          (magit-mode . goto-address-mode)
+          (mu4e-view-mode . goto-address-mode))
+  :commands (goto-address-prog-mode
+             goto-address-mode))
+
+;;; Killing, Yanking and Undo
 (use-package whole-line-or-region
   :init
   (whole-line-or-region-global-mode))
 
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode 1)
+  :custom
+  (undo-tree-visualizer-diff t)
+  (undo-tree-visualizer-timestamps t)
+  (undo-tree-visualizer-relative-timestamps t))
+
+;;; TRAMP
 (use-package tramp
   :ensure nil
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
   :custom
   (tramp-default-method "ssh"))
-
-(use-package dired
-  :ensure nil
-  :custom
-  (dired-listing-switches "-NGalhv --group-directories-first")
-  (dired-auto-revert-buffer t))
 
 (use-package pinentry
   :config
@@ -96,6 +137,15 @@
            ""
            (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket 2>/dev/null"))))
 
+;;; Dired
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-listing-switches "-NGalhv --group-directories-first")
+  (dired-auto-revert-buffer t))
+
+;;; Auto completion
+;;;; Ivy-Counsel-Swiper
 (use-package all-the-icons-ivy
   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
 
@@ -125,8 +175,6 @@
 
 (use-package smex) ; adds last used cmds to counsel-M-x
 
-(use-package helpful)
-
 (use-package counsel
   :after (helpful)
   :bind (("M-x" . counsel-M-x)
@@ -146,6 +194,24 @@
 (use-package swiper
   :bind (("C-s" . swiper)))
 
+;;;; Snippets
+(use-package yasnippet
+  :config
+  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
+  (delete 'try-expand-line hippie-expand-try-functions-list)
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after (yasnippet))
+
+;;;; Tabbing
+(use-package smart-tab
+  :config
+  (global-smart-tab-mode 1)
+  (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
+  :custom
+  (smart-tab-using-hippie-expand t))
+;;; Themes and modeline
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
@@ -158,10 +224,8 @@
   :custom
   (doom-modeline-height 30))
 
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1))
-
+;;; Modes for coding
+;;;; Programming languages
 (use-package enh-ruby-mode
   :mode (("\\.rb\\'" . enh-ruby-mode)))
 (use-package inf-ruby
@@ -178,6 +242,7 @@
   (unless (or (executable-find "rubocop") (rubocop-bundled-p) rubocop-run-in-chroot)
     (error "RuboCop is not installed")))
 
+;;;; Markup, scripting and conf
 (use-package yaml-mode)
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -197,22 +262,10 @@
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
 (use-package i3wm-config-mode)
 
-(use-package yasnippet
+;;;; Misc
+(use-package editorconfig
   :config
-  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
-  (delete 'try-expand-line hippie-expand-try-functions-list)
-  (yas-global-mode 1))
-
-(use-package yasnippet-snippets
-  :after (yasnippet))
-
-(use-package smart-tab
-  :config
-  (global-smart-tab-mode 1)
-  (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
-  :custom
-  (smart-tab-using-hippie-expand t))
-
+  (editorconfig-mode 1))
 (use-package gitignore-templates)
 
 (use-package virtualenvwrapper
@@ -221,21 +274,7 @@
   :custom
   (venv-location "~/venvs"))
 
-(use-package paren
-  :ensure nil
-  :config
-  (show-paren-mode)
-  :custom
-  (show-paren-style 'mixed))
-
-(use-package undo-tree
-  :config
-  (global-undo-tree-mode 1)
-  :custom
-  (undo-tree-visualizer-diff t)
-  (undo-tree-visualizer-timestamps t)
-  (undo-tree-visualizer-relative-timestamps t))
-
+;;; Eshell
 (use-package eshell-bookmark
   :after eshell
   :config
@@ -295,6 +334,7 @@
   :custom-face
   (epe-symbol-face ((t (:inherit eshell-ls-missing)))))
 
+;;; Magit
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x G" . magit-dispatch))
@@ -308,6 +348,7 @@
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t))
 
+;;; Movement and window switching
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("<f8>" . ace-window)
@@ -326,22 +367,15 @@ the previously multi-windowed one"
   :custom
   (aw-scope 'frame))
 
+;;; Help
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 5))
 
-;; Highlight URLs and kill them instead of opening them
-(require 'url-util)
-(use-package goto-addr
-  :hook ((compilation-mode . goto-address-mode)
-          (prog-mode . goto-address-prog-mode)
-          (magit-mode . goto-address-mode)
-          (mu4e-view-mode . goto-address-mode))
-  :commands (goto-address-prog-mode
-             goto-address-mode))
-
+(use-package helpful)
+;;; Mu4e
 (use-package mu4e
   :ensure nil
   :custom
@@ -406,13 +440,14 @@ the previously multi-windowed one"
 
 (mu4e t)
 
-;; Spelling
+;;; Spelling and grammar
 (setq ispell-dictionary "british")
 (dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
 
+;;; Window manager
 (use-package exwm
   :config
   (add-hook 'exwm-update-class-hook
@@ -507,7 +542,7 @@ the previously multi-windowed one"
   ;; (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png")
   (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
-;; Add color support to compilation buffers
+;;; Building and compiling
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
   (toggle-read-only)
@@ -549,10 +584,11 @@ the previously multi-windowed one"
                          ))
      )))
 
-;; Host-specific configuration :)
+;;; Host-specific configuration
 (when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
   (load-file (format "~/.emacs.d/%s.el" system-name)))
 
+;;; LDAP
 (use-package ldap
   :ensure nil
   :commands (ldap-search)
@@ -564,6 +600,7 @@ the previously multi-windowed one"
       passwd ""
       scope subtree))))
 
+;;; CERN-specific goodies
 (defun my/cern-ldap-user (account)
   "Do an LDAP query returning all attributes for account in a new buffer"
   (interactive "sAccount: ")
