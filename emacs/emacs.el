@@ -112,6 +112,17 @@
   :commands (goto-address-prog-mode
              goto-address-mode))
 
+;;;; Grep
+(use-package rg
+  :bind
+  ((:map rg-mode-map
+        ("C-<down>" . rg-next-file)
+        ("C-<up>" . rg-prev-file))
+  ("C-x p" . rg))
+  :custom
+  (rg-group-result t)
+  (rg-buffer-name "ripgrep"))
+
 ;;; Killing, Yanking and Undo
 (use-package whole-line-or-region
   :init
