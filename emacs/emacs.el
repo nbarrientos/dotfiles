@@ -20,12 +20,15 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
+
+;;;; Fonts
+(set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
+
+;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-f"))
 
