@@ -480,6 +480,14 @@ the previously multi-windowed one"
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
 
+  (defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
+    "Switches to to-buffer-name if it exists. If the current buffer is
+to-buffer-name then it switches back to the previous buffer."
+    (when (get-buffer to-buffer-name)
+      (if (string-equal to-buffer-name (buffer-name))
+          (switch-to-prev-buffer)
+        (switch-to-buffer to-buffer-name))))
+
   (setq exwm-input-global-keys
         `(
           ([?\s-r]
@@ -502,7 +510,7 @@ the previously multi-windowed one"
                       `(,(kbd (format "s-%d" (car i))) .
                         (lambda ()
                           (interactive)
-                          (switch-to-buffer ,(cdr i)))))
+                          (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
                     '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (6 . "*eshell*")))
           ([?\s-7]
            . mu4e-headers-search-bookmark)
