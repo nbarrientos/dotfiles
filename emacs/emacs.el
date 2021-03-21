@@ -541,8 +541,8 @@ to-buffer-name then it switches back to the previous buffer."
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'ace-window)
 
-  (setq display-time-24hr-format t)
   (setq display-time-default-load-average nil)
+  (setq display-time-format "%d/%b %H:%M")
   (display-time-mode)
 
   (add-hook 'exwm-init-hook
