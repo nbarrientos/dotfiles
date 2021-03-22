@@ -184,7 +184,8 @@
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers 'recentf)
-  (ivy-virtual-abbreviate 'abbreviate))
+  (ivy-virtual-abbreviate 'abbreviate)
+  (ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
 
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
