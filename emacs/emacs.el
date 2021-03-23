@@ -115,10 +115,10 @@
 ;;;; Grep
 (use-package rg
   :bind
-  ((:map rg-mode-map
-        ("C-<down>" . rg-next-file)
-        ("C-<up>" . rg-prev-file))
-  ("C-x p" . rg))
+  (("C-x p" . rg)
+   :map rg-mode-map
+   ("C-<down>" . rg-next-file)
+   ("C-<up>" . rg-prev-file))
   :custom
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
