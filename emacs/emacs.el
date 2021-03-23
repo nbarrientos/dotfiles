@@ -143,6 +143,7 @@
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
 ;;; TRAMP
+(add-to-list 'password-word-equivalents "Option")
 (use-package tramp
   :ensure nil
   :config
@@ -162,7 +163,6 @@
            ""
            (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket 2>/dev/null"))))
 
-(add-to-list 'password-word-equivalents "Option")
 ;;; Dired
 (use-package dired
   :ensure nil
