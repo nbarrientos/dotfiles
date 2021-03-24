@@ -13,4 +13,6 @@ keepassxc &
 
 pasystray &
 
+dunst &
+
 exec emacs
