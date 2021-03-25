@@ -53,12 +53,17 @@
 
 ;;; Visibility
 ;;;; Line numbers
-(use-package display-line-numbers
-  :ensure nil
-  :hook ((prog-mode . display-line-numbers-mode)
-         (text-mode . display-line-numbers-mode)
-         (conf-mode . display-line-numbers-mode)))
-
+(define-minor-mode my/line-numbers-highlight-line-mode
+  "Shows line numbers and highlights the current line"
+  :initial nil
+  (if my/line-numbers-highlight-line-mode
+      (progn
+        (display-line-numbers-mode 1)
+        (hl-line-mode 1))
+    (progn
+      (display-line-numbers-mode 0)
+      (hl-line-mode 0))))
+(bind-key "<f9>" #'my/line-numbers-highlight-line-mode)
 ;;;; White spaces
 (use-package whitespace
   :config
