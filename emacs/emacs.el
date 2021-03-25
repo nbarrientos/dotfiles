@@ -259,7 +259,7 @@
   (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
   :custom
   (smart-tab-using-hippie-expand t))
-;;; Themes and modeline
+;;; Look and feel
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
@@ -271,6 +271,13 @@
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 30))
+
+(use-package frame
+  :ensure nil
+  :custom
+  (window-divider-default-right-width 10)
+  :config
+  (window-divider-mode 1))
 
 ;;; Modes for coding
 ;;;; Programming languages
