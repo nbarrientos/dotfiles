@@ -71,6 +71,7 @@ ruby
 rxvt-unicode
 schroot
 strace
+stow
 sudo
 terminus-font
 texinfo
