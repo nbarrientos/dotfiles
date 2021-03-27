@@ -589,6 +589,8 @@ to-buffer-name then it switches back to the previous buffer."
   (exwm-input-set-key (kbd "s-<down>") #'desktop-environment-volume-decrement)
   (exwm-input-set-key (kbd "s-m") #'desktop-environment-toggle-mute)
   (exwm-input-set-key (kbd "s-l") #'desktop-environment-lock-screen)
+  (exwm-input-set-key (kbd "<XF86AudioPlay>") #'desktop-environment-toggle-music)
+  (exwm-input-set-key (kbd "<XF86AudioNext>") #'desktop-environment-music-next)
   ;; (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
   :custom
   (desktop-environment-volume-get-command "pamixer --get-volume")
