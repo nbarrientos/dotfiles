@@ -5,6 +5,7 @@ aspell-es
 aspell-fr
 autoconf
 automake
+autorandr
 base
 bind
 binutils
