@@ -172,6 +172,11 @@
   :custom
   (tramp-default-method "ssh"))
 
+(use-package em-tramp
+  :ensure nil
+  :config
+  (setq password-cache-expiry 300))
+
 (use-package pinentry
   :config
   (pinentry-start))
