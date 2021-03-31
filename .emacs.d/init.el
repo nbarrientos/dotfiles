@@ -644,19 +644,21 @@ to-buffer-name then it switches back to the previous buffer."
          ("C-x B" . multi-compile-run))
   :custom
   (multi-compile-alist
-   `((enh-ruby-mode . (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
-                       ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)
-                       ("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
-                       ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
-                       ;; Standard Puppet module
-                       ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
-                       ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)
-                       ))
-     ("_spec\\.rb\\'" . (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
-                         ;; Standard Puppet module
-                         ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root)
-                         ))
-     )))
+   `(
+     ;; Rubocop tasks for all Ruby (SPEC) files.
+     (enh-ruby-mode .
+      (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
+       ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)))
+     ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
+     ((or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode)) .
+      (("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
+       ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
+       ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
+       ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)))
+     ;; Single test runs when it's a SPEC file
+     ("_spec\\.rb\\'" .
+      (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
+       ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root))))))
 
 ;;; Host-specific configuration
 (when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
