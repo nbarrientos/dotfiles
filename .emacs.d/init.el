@@ -197,6 +197,14 @@
   (dired-listing-switches "-NGalhv --group-directories-first")
   (dired-auto-revert-buffer t))
 
+(use-package dired-subtree
+  :bind (:map dired-mode-map
+              ([tab] . dired-subtree-toggle)
+              ([C-tab] . dired-subtree-cycle))
+  :custom
+  (dired-subtree-line-prefix "  |-")
+  (dired-subtree-use-backgrounds nil))
+
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
 (use-package all-the-icons-ivy
