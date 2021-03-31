@@ -1,4 +1,3 @@
-;;; -*- mode: text; -*-
 aspell
 aspell-en
 aspell-es
@@ -14,6 +13,7 @@ bluez-utils
 ccid
 chrony
 cyrus-sasl-gssapi
+d-feet
 debootstrap
 dhcpcd
 dialog
@@ -29,7 +29,6 @@ flex
 gcc
 git
 grub
-hopenpgp-tools
 htop
 hunspell-es_es
 hunspell-fr
@@ -55,14 +54,17 @@ nvidia-settings
 openssh
 os-prober
 package-query
+pacman-contrib
 pamixer
 pasystray
 patch
 pavucontrol
 pcsclite
+piper
+pipewire-pulse
 pkgconf
+playerctl
 pulseaudio-alsa
-pulseaudio-bluetooth
 puppet
 python-language-server
 python-pip
@@ -71,14 +73,16 @@ ripgrep
 ruby
 rxvt-unicode
 schroot
-strace
 stow
+strace
 sudo
 terminus-font
 texinfo
 ttf-dejavu
 ttf-hack
 ttf-liberation
+unzip
+upower
 usbutils
 wget
 which
