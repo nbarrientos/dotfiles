@@ -141,6 +141,8 @@
    :map rg-mode-map
    ("C-<down>" . rg-next-file)
    ("C-<up>" . rg-prev-file))
+  :config
+  (add-to-list 'rg-custom-type-aliases '("texi" . "*.texi"))
   :custom
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
