@@ -33,7 +33,6 @@
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-f"))
 
-;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 ;;; Use-package
 
 (require 'package)
@@ -65,6 +64,7 @@
       (display-line-numbers-mode 0)
       (hl-line-mode 0))))
 (bind-key "<f9>" #'my/line-numbers-highlight-line-mode)
+
 ;;;; White spaces
 (use-package whitespace
   :config
@@ -166,7 +166,9 @@
   (add-hook hook (lambda () (flyspell-mode 1))))
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
+
 ;;; TRAMP
+;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
 (use-package tramp
   :ensure nil
@@ -275,6 +277,7 @@
   (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
   :custom
   (smart-tab-using-hippie-expand t))
+
 ;;; Look and feel
 (use-package doom-themes
   :config
@@ -445,6 +448,7 @@ the previously multi-windowed one"
   (setq which-key-idle-delay 5))
 
 (use-package helpful)
+
 ;;; Mu4e
 (use-package mu4e
   :ensure nil
