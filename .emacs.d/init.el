@@ -667,6 +667,34 @@ to-buffer-name then it switches back to the previous buffer."
       (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
        ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root))))))
 
+;;; Org
+(use-package org-agenda
+  :ensure nil
+  :hook
+  (org-agenda-finalize . org-agenda-to-appt)
+  :custom
+  (org-agenda-files '("~/org")))
+
+;;; Notifications
+(use-package appt
+  :ensure nil
+  :config
+  (defun my/appt-display (min-to-app new-time msg)
+    (notifications-notify
+     :body msg
+     :category "appointment"
+     :title (format "Appointment in %s minutes!" min-to-app)
+     :urgency 'critical))
+  (appt-activate 1)
+  (org-agenda-to-appt)
+  (run-with-timer (* 60 60) (* 60 60) 'org-agenda-to-appt)
+  :custom
+  (appt-display-mode-line nil)
+  (appt-message-warning-time 15)
+  (appt-display-interval 5)
+  (appt-display-format 'window)
+  (appt-disp-window-function 'my/appt-display))
+
 ;;; Host-specific configuration
 (when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
   (load-file (format "~/.emacs.d/%s.el" system-name)))
