@@ -668,6 +668,34 @@ to-buffer-name then it switches back to the previous buffer."
        ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root))))))
 
 ;;; Org
+(use-package org
+  :ensure nil
+  :bind
+  (("C-c o c" . org-capture)
+   ("C-c o s" . org-store-link))
+  :config
+  ;; Inspired by: https://elmord.org/blog/?entry=20180214-exwm-org-capture
+  (defun my/exwm-get-firefox-url ()
+    "Use EXWM to copy and extract the URL in the address bar"
+    (exwm-input--fake-key ?\C-l)
+    (sleep-for 0.05)
+    (exwm-input--fake-key ?\C-c)
+    (sleep-for 0.05)
+    (gui-backend-get-selection 'CLIPBOARD 'STRING))
+
+  (defun my/exwm-org-store-link ()
+    "Attempt to store an Org link in Firefox windows"
+    (when (and (equal major-mode 'exwm-mode)
+               (member exwm-class-name '("firefox")))
+      (org-store-link-props
+       :type "http"
+       :link (my/exwm-get-firefox-url)
+       :description exwm-title)))
+
+  (org-link-set-parameters "firefox" :store 'my/exwm-org-store-link)
+  :custom
+  (org-default-notes-file (concat org-directory "/notes.org")))
+
 (use-package org-agenda
   :ensure nil
   :hook
