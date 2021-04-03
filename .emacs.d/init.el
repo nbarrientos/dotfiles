@@ -700,6 +700,8 @@ to-buffer-name then it switches back to the previous buffer."
   :ensure nil
   :hook
   (org-agenda-finalize . org-agenda-to-appt)
+  :config
+  (setq calendar-week-start-day 1)
   :custom
   (org-agenda-files '("~/org")))
 
