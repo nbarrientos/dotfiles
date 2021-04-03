@@ -684,7 +684,10 @@ to-buffer-name then it switches back to the previous buffer."
      :body msg
      :category "appointment"
      :title (format "Appointment in %s minutes!" min-to-app)
-     :urgency 'critical))
+     :urgency 'critical
+     :actions '("org-agenda" "Open org-agenda")
+     ;; Dunst: middle-click to trigger the action
+     :on-action (lambda (id key) (org-agenda-list))))
   (appt-activate 1)
   (org-agenda-to-appt)
   (run-with-timer (* 60 60) (* 60 60) 'org-agenda-to-appt)
