@@ -303,8 +303,8 @@
 (use-package enh-ruby-mode
   :mode (("\\.rb\\'" . enh-ruby-mode)))
 (use-package inf-ruby
-  :hook ((ruby-mode-hook . inf-ruby-minor-mode)
-         (compilation-filter-hook . inf-ruby-minor-mode)))
+  :hook ((ruby-mode . inf-ruby-minor-mode)
+         (compilation-filter . inf-ruby-minor-mode)))
 (use-package puppet-mode)
 (use-package rspec-mode)
 (use-package rubocop
