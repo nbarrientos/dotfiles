@@ -392,7 +392,8 @@
   :custom
   (eshell-banner-message "")
   (eshell-history-size 20000)
-  (eshell-scroll-to-bottom-on-input 'all))
+  (eshell-scroll-to-bottom-on-input 'all)
+  (eshell-scroll-to-bottom-on-output 'all))
 
 (use-package eshell-prompt-extras
   :after (eshell)
