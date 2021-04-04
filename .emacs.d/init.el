@@ -11,6 +11,7 @@
  confirm-kill-emacs 'y-or-n-p
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
+(server-start)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
