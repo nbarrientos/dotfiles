@@ -562,7 +562,7 @@ to-buffer-name then it switches back to the previous buffer."
                         (lambda ()
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
-                    '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (6 . "*eshell*")))
+                    '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (5 . "*eww*") (6 . "*eshell*")))
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
