@@ -541,6 +541,9 @@ the previously multi-windowed one"
     :keybinding "d")
   (defengine github
     "https://github.com/search?ref=simplesearch&q=%s")
+  (defengine cern-gitlab
+    "https://gitlab.cern.ch/search?search=%s"
+    :keybinding "l")
   (defengine google
     "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&q=%s"
     :keybinding "g")
