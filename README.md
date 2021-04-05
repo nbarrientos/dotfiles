@@ -9,6 +9,7 @@ $ git clone git@github.com:nbarrientos/dotfiles.git ~/.dotfiles
 $ mkdir -p ~/.config/systemd/user
 $ mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
 $ mkdir -p ~/.gnupg
+$ mkdir -p ~/.local/share/applications
 $ cd .dotfiles
 $ stow -v .
 ```

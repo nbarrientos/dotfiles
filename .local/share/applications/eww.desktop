@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Eww
+GenericName=Web Browser
+Comment=Browse the World Wide Web
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
+Exec=emacsclient --eval "(eww \"%u\")"
+Icon=emacs
+Type=Application
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=Emacs
+Keywords=Internet;WWW;Browser;Web;Explorer
