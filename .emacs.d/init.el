@@ -254,8 +254,10 @@
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
          ("C-h k" . helpful-key)
-         ("C-x r b" . counsel-bookmark))
+         ("C-x r b" . counsel-bookmark)
+         ("M-y" . counsel-yank-pop))
   :custom
+  (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable))
 
