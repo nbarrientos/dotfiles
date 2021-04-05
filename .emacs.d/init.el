@@ -548,7 +548,8 @@ the previously multi-windowed one"
     "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&q=%s"
     :keybinding "g")
   (defengine google-maps
-    "https://www.google.com/maps/search/%s/")
+    "https://www.google.com/maps/search/%s/"
+    :keybinding "M")
   (defengine openstreetmap
     "https://www.openstreetmap.org/search?query=%s"
     :keybinding "m")
