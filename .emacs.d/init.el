@@ -532,6 +532,7 @@ the previously multi-windowed one"
           ("docs\\.google\\.com" . browse-url-firefox)
           ("google\\.com/maps" . browse-url-firefox)
           ("openstreetmap\\.org" . browse-url-firefox)
+          ("its\\.cern\\.ch" . browse-url-firefox)
           ("." . eww-browse-url))))
 
 (use-package engine-mode
