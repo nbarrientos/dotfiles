@@ -26,6 +26,7 @@
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
+(global-set-key (kbd "C-d") 'mark-word)
 
 ;;;; Fonts
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
