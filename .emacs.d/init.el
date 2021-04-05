@@ -520,6 +520,18 @@ the previously multi-windowed one"
 ;;; Elfeed
 (use-package elfeed)
 
+;;; Web browsing
+(use-package eww
+  :ensure nil
+  :config
+  (setq browse-url-browser-function
+        '(("youtube\\.com" . browse-url-firefox)
+          ("github\\.com" . browse-url-firefox)
+          ("twitter\\.com" . browse-url-firefox)
+          ("docs\\.google\\.com" . browse-url-firefox)
+          ("google\\.com/maps" . browse-url-firefox)
+          ("openstreetmap\\.org" . browse-url-firefox)
+          ("." . eww-browse-url))))
 ;;; Window manager
 (use-package exwm
   :config
