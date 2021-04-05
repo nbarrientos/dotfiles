@@ -756,6 +756,23 @@ to-buffer-name then it switches back to the previous buffer."
   :custom
   (org-agenda-files '("~/org")))
 
+(use-package org-protocol
+  :ensure nil
+  :config
+  (defun my/org-protocol-eww-handler (props)
+    (eww (plist-get props :url))
+    nil)
+  ;; https://marcowahl.gitlab.io/emacs-blog-mw/2021/20210126.html
+  ;; Requires:
+  ;; * Adding 'network.protocol-handler.expose.org-protocol'=false to FF
+  ;; * Creating a bookmarklet:
+  ;; ** javascript:location.href='org-protocol://eww?url='+encodeURIComponent(location.href)
+  ;; * Open org-protocol:// links with emacsclient
+  (add-to-list 'org-protocol-protocol-alist
+               '("eww"
+                 :protocol "eww"
+                 :function my/org-protocol-eww-handler)))
+
 ;;; Notifications
 (use-package appt
   :ensure nil
