@@ -532,6 +532,30 @@ the previously multi-windowed one"
           ("google\\.com/maps" . browse-url-firefox)
           ("openstreetmap\\.org" . browse-url-firefox)
           ("." . eww-browse-url))))
+
+(use-package engine-mode
+  :config
+  (defengine duckduckgo
+    "https://duckduckgo.com/html?q=%s"
+    :keybinding "d")
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s")
+  (defengine google
+    "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&q=%s"
+    :keybinding "g")
+  (defengine google-maps
+    "https://www.google.com/maps/search/%s/")
+  (defengine openstreetmap
+    "https://www.openstreetmap.org/search?query=%s"
+    :keybinding "m")
+  (defengine wikipedia
+    "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+    :keybinding "w")
+  (defengine youtube
+    "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+  (engine/set-keymap-prefix (kbd "C-c s"))
+  (engine-mode t))
+
 ;;; Window manager
 (use-package exwm
   :config
