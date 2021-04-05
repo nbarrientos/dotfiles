@@ -558,7 +558,7 @@ the previously multi-windowed one"
     :keybinding "w")
   (defengine youtube
     "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
-  (engine/set-keymap-prefix (kbd "C-c s"))
+  (engine/set-keymap-prefix (kbd "C-x y"))
   (engine-mode t))
 
 ;;; Window manager
