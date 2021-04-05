@@ -527,6 +527,7 @@ the previously multi-windowed one"
   (setq browse-url-browser-function
         '(("youtube\\.com" . browse-url-firefox)
           ("github\\.com" . browse-url-firefox)
+          ("gitlab\\.cern\\.ch" . browse-url-firefox)
           ("twitter\\.com" . browse-url-firefox)
           ("docs\\.google\\.com" . browse-url-firefox)
           ("google\\.com/maps" . browse-url-firefox)
