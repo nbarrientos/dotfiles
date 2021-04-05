@@ -506,7 +506,8 @@ the previously multi-windowed one"
   (setq send-mail-function 'smtpmail-send-it)
   (setq smtpmail-smtp-server "smtp.cern.ch")
   (setq smtpmail-smtp-service 587)
-  (setq smtpmail-smtp-user "ibarrien"))
+  (setq smtpmail-smtp-user "ibarrien")
+  (setq mail-user-agent 'mu4e-user-agent))
 
 (use-package mu4e-alert
   :custom
