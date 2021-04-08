@@ -142,7 +142,8 @@
   (("C-x p" . rg)
    :map rg-mode-map
    ("C-<down>" . rg-next-file)
-   ("C-<up>" . rg-prev-file))
+   ("C-<up>" . rg-prev-file)
+   ("RET" . find-file-at-point))
   :config
   (add-to-list 'rg-custom-type-aliases '("texi" . "*.texi"))
   :custom
