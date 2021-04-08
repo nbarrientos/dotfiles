@@ -773,6 +773,15 @@ to-buffer-name then it switches back to the previous buffer."
                  :protocol "eww"
                  :function my/org-protocol-eww-handler)))
 
+(use-package org-capture
+  :ensure nil
+  :config
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "~/org/notes.org" "Tasks")
+           "* TODO %?\n  %u\n  %a")
+          ("w" "CERN meeting" entry (file+olp "~/org/calendar.org" "CERN" "Meetings")
+           "* %(with-current-buffer \"*eww*\" (plist-get eww-data :title))%?\n  %^{Date and time?}T\n  %a"))))
+
 ;;; Notifications
 (use-package appt
   :ensure nil
