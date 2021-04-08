@@ -256,6 +256,18 @@
          ("C-h k" . helpful-key)
          ("C-x r b" . counsel-bookmark)
          ("M-y" . counsel-yank-pop))
+  :config
+  ;; Pending https://github.com/abo-abo/swiper/pull/2844/
+  (defun counsel--esh-dir-history-action-cd (pair)
+    (eshell/cd (car pair)))
+  (cl-defun counsel-esh-dir-history ()
+    "Use Ivy to navigate and jump through Eshell's directory stack."
+    (interactive)
+    (require 'em-dirs)
+    (ivy-read "Directory to change to: " (ivy-history-contents eshell-last-dir-ring)
+              :keymap ivy-reverse-i-search-map
+              :action #'counsel--esh-dir-history-action-cd
+              :caller #'counsel-esh-dir-history))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
@@ -368,7 +380,8 @@
                    (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-prompt)
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-output)
                    (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-output)
-                   (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)))
+                   (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)
+                   (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)))
   :config
   ;; I'm puzzled about the fact that a function that has the word kill
   ;; in its name does not actually kill the text in question. The original
