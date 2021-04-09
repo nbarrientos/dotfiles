@@ -260,6 +260,8 @@
   ;; Pending https://github.com/abo-abo/swiper/pull/2844/
   (defun counsel--esh-dir-history-action-cd (pair)
     (eshell/cd (car pair)))
+  (defun counsel--esh-dir-history-action-edit (pair)
+    (ivy--action-insert (format "cd %s" (car pair))))
   (cl-defun counsel-esh-dir-history ()
     "Use Ivy to navigate and jump through Eshell's directory stack."
     (interactive)
@@ -268,6 +270,9 @@
               :keymap ivy-reverse-i-search-map
               :action #'counsel--esh-dir-history-action-cd
               :caller #'counsel-esh-dir-history))
+  (ivy-set-actions
+   'counsel-esh-dir-history
+   '(("e" counsel--esh-dir-history-action-edit "edit")))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
