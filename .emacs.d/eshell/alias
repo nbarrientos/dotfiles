@@ -1,3 +1,4 @@
-alias sudo eshell/sudo $*
-alias pdb4q ai-pdb --pdb-timeout 120 raw pdb/query/v4/$1
+alias ssh cd /ssh:$1:/
 alias em find-file $1
+alias pdb4q ai-pdb --pdb-timeout 120 raw pdb/query/v4/$1
+alias sudo eshell/sudo $*
