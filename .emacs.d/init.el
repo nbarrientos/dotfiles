@@ -259,8 +259,13 @@
   :config
   ;; Pending https://github.com/abo-abo/swiper/pull/2844/
   (defun counsel--esh-dir-history-action-cd (pair)
+    "Default action for counsel-esh-dir-history. It just changes the
+current working directory to the one selected by the user"
     (eshell/cd (car pair)))
   (defun counsel--esh-dir-history-action-edit (pair)
+    "Action for counsel-esh-dir-history to dump the selected
+directory to the Eshell buffer prefixed by \"cd \", allowing the
+caller to modify parts of the directory before switching to it."
     (ivy--action-insert (format "cd %s" (car pair))))
   (cl-defun counsel-esh-dir-history ()
     "Use Ivy to navigate and jump through Eshell's directory stack."
