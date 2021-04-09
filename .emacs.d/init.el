@@ -284,7 +284,8 @@ caller to modify parts of the directory before switching to it."
   (counsel-describe-variable-function #'helpful-variable))
 
 (use-package swiper
-  :bind (("C-s" . swiper)))
+  :bind (("C-s" . swiper)
+         ("C-M-s" . swiper-thing-at-point)))
 
 ;;;; Snippets
 (use-package yasnippet
