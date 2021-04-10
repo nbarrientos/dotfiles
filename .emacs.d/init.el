@@ -228,6 +228,17 @@
   (ivy-virtual-abbreviate 'abbreviate)
   (ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
 
+(use-package ivy-posframe
+  :config
+  (ivy-posframe-mode 1)
+  :custom
+  (ivy-posframe-display-functions-alist
+   '((swiper . ivy-display-function-fallback)
+     (t      . ivy-posframe-display)))
+  (ivy-posframe-height-alist '((counsel-yank-pop . 40)
+                               (t                . 20)))
+  (ivy-posframe-min-width 200))
+
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
 
