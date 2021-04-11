@@ -316,15 +316,21 @@ caller to modify parts of the directory before switching to it."
   (smart-tab-using-hippie-expand t))
 
 ;;; Look and feel
-(use-package doom-themes
+(use-package modus-themes
+  :after (doom-modeline)
+  :init
+  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-slanted-constructs nil)
+  (setq modus-themes-mode-line '3d)
+  (setq modus-themes-syntax 'yellow-comments-green-strings)
+  (setq modus-themes-region 'bg-only)
+  (modus-themes-load-themes)
   :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-dracula t)
-  (doom-themes-visual-bell-config))
+  (modus-themes-load-vivendi)
+  :hook
+  (modus-themes-after-load-theme . doom-modeline-mode))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 30))
 
@@ -445,7 +451,7 @@ caller to modify parts of the directory before switching to it."
   :custom
   (epe-show-python-info nil)
   :custom-face
-  (epe-symbol-face ((t (:inherit eshell-ls-missing)))))
+  (epe-symbol-face ((t (:inherit eshell-ls-executable)))))
 
 ;;; Magit
 (use-package magit
