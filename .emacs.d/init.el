@@ -220,7 +220,7 @@
   :diminish
   :bind (:map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
-         ("C-d" . ivy-reverse-i-search-kill))
+         ([C-return] . ivy-restrict-to-matches))
   :config
   (ivy-mode 1)
   :custom
