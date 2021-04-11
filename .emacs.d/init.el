@@ -8,7 +8,6 @@
  custom-file null-device
  make-backup-files nil
  help-window-select t
- confirm-kill-emacs 'y-or-n-p
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
@@ -27,6 +26,7 @@
 (global-set-key [end] 'end-of-buffer)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
+(global-unset-key (kbd "C-x C-c"))
 
 ;;;; Fonts
 (set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
