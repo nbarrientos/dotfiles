@@ -269,18 +269,23 @@
   :config
   ;; Pending https://github.com/abo-abo/swiper/pull/2844/
   (defun counsel--esh-dir-history-action-cd (pair)
-    "Default action for counsel-esh-dir-history. It just changes the
-current working directory to the one selected by the user"
+    "Change the current working directory to the selection.
+This function is the default action for `counsel-esh-dir-history'
+and changes the working directory in Eshell to the selected
+candidate which must be provided as the `car' of PAIR."
     (eshell/cd (car pair)))
   (defun counsel--esh-dir-history-action-edit (pair)
-    "Action for counsel-esh-dir-history to dump the selected
-directory to the Eshell buffer prefixed by \"cd \", allowing the
-caller to modify parts of the directory before switching to it."
-    (ivy--action-insert (format "cd %s" (car pair))))
-  (cl-defun counsel-esh-dir-history ()
-    "Use Ivy to navigate and jump through Eshell's directory stack."
+    "Insert the selection to the Eshell buffer prefixed by \"cd \".
+This function is an action for `counsel-esh-dir-history' to
+insert the selected directory (provided as the `car' of PAIR) to
+the Eshell buffer prefixed by \"cd \", allowing the caller to
+modify parts of the directory before switching to it."
+    (insert (format "cd %s" (car pair))))
+  (defun counsel-esh-dir-history ()
+    "Use Ivy to browse Eshell's directory stack."
     (interactive)
     (require 'em-dirs)
+    (defvar eshell-last-dir-ring)
     (ivy-read "Directory to change to: " (ivy-history-contents eshell-last-dir-ring)
               :keymap ivy-reverse-i-search-map
               :action #'counsel--esh-dir-history-action-cd
