@@ -666,6 +666,8 @@ to-buffer-name then it switches back to the previous buffer."
            . split-window-right)
           ([?\s-k]
            . delete-window)
+          ([?\s-b]
+           . balance-windows)
           ([?\s-d] .
            (lambda ()
              (interactive)
