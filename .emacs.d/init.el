@@ -324,6 +324,26 @@ caller to modify parts of the directory before switching to it."
   :custom
   (smart-tab-using-hippie-expand t))
 
+;;;; Expand
+(use-package hippie-expand
+  :ensure nil
+  :bind
+  (("C-n" . hippie-expand))
+  :config
+  (global-unset-key (kbd "M-/"))
+  :custom
+  (hippie-expand-try-functions-list
+   '(try-expand-dabbrev
+     try-expand-dabbrev-all-buffers
+     try-expand-dabbrev-from-kill
+     try-complete-file-name-partially
+     try-complete-file-name
+     try-expand-all-abbrevs
+     try-expand-list
+     try-expand-line
+     try-complete-lisp-symbol-partially
+     try-complete-lisp-symbol)))
+
 ;;; Look and feel
 (use-package doom-themes
   :config
