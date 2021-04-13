@@ -321,14 +321,6 @@ modify parts of the directory before switching to it."
 (use-package yasnippet-snippets
   :after (yasnippet))
 
-;;;; Tabbing
-(use-package smart-tab
-  :config
-  (global-smart-tab-mode 1)
-  (add-to-list 'smart-tab-disabled-major-modes 'mu4e-compose-mode)
-  :custom
-  (smart-tab-using-hippie-expand t))
-
 ;;;; Expand
 (use-package hippie-expand
   :ensure nil
