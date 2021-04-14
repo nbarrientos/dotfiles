@@ -845,6 +845,10 @@ to-buffer-name then it switches back to the previous buffer."
           ("w" "CERN meeting" entry (file+olp "~/org/calendar.org" "CERN" "Meetings")
            "* %(with-current-buffer \"*eww*\" (plist-get eww-data :title))%?\n  %^{Date and time?}T\n  %a"))))
 
+(use-package org-tree-slide
+  :custom
+  (org-tree-slide-slide-in-effect nil))
+
 ;;; Notifications
 (use-package appt
   :ensure nil
