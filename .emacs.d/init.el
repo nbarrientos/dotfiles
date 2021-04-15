@@ -512,12 +512,6 @@ the previously multi-windowed one"
   (bookmark-save-flag 1))
 
 ;;; Help
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 5))
-
 (use-package helpful)
 
 ;;; Mu4e
