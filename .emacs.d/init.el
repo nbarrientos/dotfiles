@@ -807,7 +807,8 @@ to-buffer-name then it switches back to the previous buffer."
 
   (org-link-set-parameters "firefox" :store 'my/exwm-org-store-link)
   :custom
-  (org-default-notes-file (concat org-directory "/notes.org")))
+  (org-default-notes-file (concat org-directory "/notes.org"))
+  (org-startup-folded 'content))
 
 (use-package org-agenda
   :ensure nil
