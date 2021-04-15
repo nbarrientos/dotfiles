@@ -506,6 +506,11 @@ the previously multi-windowed one"
   :custom
   (aw-scope 'frame))
 
+(use-package bookmark
+  :ensure nil
+  :custom
+  (bookmark-save-flag 1))
+
 ;;; Help
 (use-package which-key
   :init (which-key-mode)
