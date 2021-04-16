@@ -936,3 +936,10 @@ to-buffer-name then it switches back to the previous buffer."
    (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
    magit-clone-default-directory
    nil))
+
+;;; Misc
+;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
+(defun my/unfill-region ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-region (region-beginning) (region-end) nil)))
