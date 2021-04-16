@@ -379,6 +379,8 @@ modify parts of the directory before switching to it."
   (unless (or (executable-find "rubocop") (rubocop-bundled-p) rubocop-run-in-chroot)
     (error "RuboCop is not installed")))
 
+(use-package go-mode)
+
 ;;;; Markup, scripting and conf
 (use-package yaml-mode)
 (use-package markdown-mode
