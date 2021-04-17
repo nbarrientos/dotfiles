@@ -379,7 +379,12 @@ modify parts of the directory before switching to it."
   (unless (or (executable-find "rubocop") (rubocop-bundled-p) rubocop-run-in-chroot)
     (error "RuboCop is not installed")))
 
-(use-package go-mode)
+(use-package go-mode
+  :hook
+  ((go-mode . (lambda ()
+                (make-local-variable 'whitespace-style)
+                (setq whitespace-style
+                      (remove 'tabs whitespace-style))))))
 
 ;;;; Markup, scripting and conf
 (use-package yaml-mode)
