@@ -385,6 +385,7 @@ modify parts of the directory before switching to it."
                 (make-local-variable 'whitespace-style)
                 (setq whitespace-style
                       (remove 'tabs whitespace-style))))))
+(use-package go-dlv)
 
 ;;;; Markup, scripting and conf
 (use-package yaml-mode)
