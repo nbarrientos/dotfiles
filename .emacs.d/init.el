@@ -388,6 +388,7 @@ modify parts of the directory before switching to it."
 (use-package go-dlv)
 
 ;;;; Markup, scripting and conf
+(use-package json-mode)
 (use-package yaml-mode)
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
