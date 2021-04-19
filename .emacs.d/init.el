@@ -473,6 +473,7 @@ modify parts of the directory before switching to it."
         (erase-buffer)
         (insert eshell-output)
         (switch-to-buffer-other-window (current-buffer)))))
+  (setenv "EDITOR" "emacsclient")
   :custom
   (eshell-banner-message "")
   (eshell-history-size 20000)
