@@ -362,13 +362,22 @@ modify parts of the directory before switching to it."
   (window-divider-mode 1))
 
 ;;; Modes for coding
+;;;; Syntax checking
+(use-package flycheck
+  :bind
+  ("<f12>" . flycheck-mode)
+  :custom
+  (flycheck-highlighting-mode . nil))
+
 ;;;; Programming languages
 (use-package enh-ruby-mode
   :mode (("\\.rb\\'" . enh-ruby-mode)))
 (use-package inf-ruby
   :hook ((ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-minor-mode)))
-(use-package puppet-mode)
+(use-package puppet-mode
+  :hook ((puppet-mode . (lambda ()
+                          (setq flycheck-disabled-checkers '(puppet-parser))))))
 (use-package rspec-mode)
 (use-package rubocop
   :custom
