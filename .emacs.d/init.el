@@ -232,6 +232,7 @@
   :config
   (ivy-posframe-mode 1)
   :custom
+  (posframe-mouse-banish nil)
   (ivy-posframe-display-functions-alist
    '((swiper . ivy-display-function-fallback)
      (t      . ivy-posframe-display)))
