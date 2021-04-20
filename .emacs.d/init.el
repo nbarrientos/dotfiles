@@ -372,6 +372,10 @@ modify parts of the directory before switching to it."
 
 ;;;; Programming languages
 (use-package enh-ruby-mode
+  :hook ((enh-ruby-mode . (lambda ()
+                            (setq
+                             flycheck-ruby-rubocop-executable
+                             "~/.local/bin/rubocop"))))
   :mode (("\\.rb\\'" . enh-ruby-mode)))
 (use-package inf-ruby
   :hook ((ruby-mode . inf-ruby-minor-mode)
