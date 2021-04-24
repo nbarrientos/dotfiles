@@ -547,7 +547,7 @@ the previously multi-windowed one"
   (mu4e-update-interval (* 5 60))
   (mu4e-get-mail-command "true") ; mbsync is run by a systemd timer (only re-index)
   ;; (mu4e-html2text-command "lynx -dump -stdin")
-  (mu4e-view-use-gnus nil)
+  (mu4e-view-use-gnus t)
   (mu4e-compose-signature " bye\n Nacho\n http://cern.ch/nacho")
   (mu4e-view-show-addresses t)
   (mu4e-compose-dont-reply-to-self t)
@@ -591,7 +591,10 @@ the previously multi-windowed one"
   (setq smtpmail-smtp-server "smtp.cern.ch")
   (setq smtpmail-smtp-service 587)
   (setq smtpmail-smtp-user "ibarrien")
-  (setq mail-user-agent 'mu4e-user-agent))
+  (setq mail-user-agent 'mu4e-user-agent)
+  (with-eval-after-load "mm-decode"
+    (add-to-list 'mm-discouraged-alternatives "text/html")
+    (add-to-list 'mm-discouraged-alternatives "text/richtext")))
 
 (use-package mu4e-alert
   :custom
