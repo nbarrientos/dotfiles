@@ -315,8 +315,6 @@ modify parts of the directory before switching to it."
 ;;;; Snippets
 (use-package yasnippet
   :config
-  (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
-  (delete 'try-expand-line hippie-expand-try-functions-list)
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
@@ -331,7 +329,8 @@ modify parts of the directory before switching to it."
   (global-unset-key (kbd "M-/"))
   :custom
   (hippie-expand-try-functions-list
-   '(try-expand-dabbrev
+   '(yas-hippie-try-expand
+     try-expand-dabbrev
      try-expand-dabbrev-all-buffers
      try-expand-dabbrev-from-kill
      try-complete-file-name-partially
