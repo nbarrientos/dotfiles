@@ -623,6 +623,7 @@ the previously multi-windowed one"
           ("google\\.com/maps" . browse-url-firefox)
           ("openstreetmap\\.org" . browse-url-firefox)
           ("its\\.cern\\.ch" . browse-url-firefox)
+          ("cern\\.service-now\\.com" . browse-url-firefox)
           ("." . eww-browse-url)))
   :custom
   (eww-use-external-browser-for-content-type
