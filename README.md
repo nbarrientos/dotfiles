@@ -2,7 +2,7 @@
 
 Here you can find most of the configuration files that I use everyday
 at work and when I hack in my free time. I keep some bits in private
-repositories to which you may found references. This is mainly for
+repositories to which you may find references. This is mainly for
 privacy reasons.
 
 As you can see I mostly live inside Emacs, which apart from being a
