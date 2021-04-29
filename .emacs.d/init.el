@@ -260,7 +260,7 @@
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . ivy-switch-buffer-other-window)
          ("C-b" . ivy-switch-buffer)
-         ("C-x C-f" . my/counsel-file-jump-project-root)
+         ("C-x C-f" . my/counsel-fzf-project-root)
          ("C-x f" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
@@ -294,15 +294,15 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-esh-dir-history
    '(("e" counsel--esh-dir-history-action-edit "edit")))
-  (defun my/counsel-file-jump-project-root ()
-    "Calls counsel-file-jump with the current project root as root"
+  (defun my/counsel-fzf-project-root ()
+    "Calls counsel-fzf with the current project root as root"
     (interactive)
     (let ((proot (doom-modeline-project-root)))
       (if (or (equal (expand-file-name proot) (expand-file-name "~/")) (null proot))
           (progn
             (ding)
             (message (format "Likely to have to list too many files, not doing this!")))
-        (counsel-file-jump nil proot))))
+        (counsel-fzf nil proot))))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
