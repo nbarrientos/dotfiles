@@ -298,10 +298,10 @@ modify parts of the directory before switching to it."
     "Calls counsel-file-jump with the current project root as root"
     (interactive)
     (let ((proot (doom-modeline-project-root)))
-      (if (equal proot "~/")
+      (if (or (equal (expand-file-name proot) (expand-file-name "~/")) (null proot))
           (progn
             (ding)
-            (message (format "Project root is ~/, not doing this!")))
+            (message (format "Likely to have to list too many files, not doing this!")))
         (counsel-file-jump nil proot))))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
