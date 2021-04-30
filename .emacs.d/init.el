@@ -302,7 +302,7 @@ modify parts of the directory before switching to it."
           (progn
             (ding)
             (message (format "Likely to have to list too many files, not doing this!")))
-        (counsel-fzf nil proot))))
+        (counsel-fzf nil proot (format "fzf in %s: " proot)))))
   (setenv
    "FZF_DEFAULT_COMMAND"
    "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
