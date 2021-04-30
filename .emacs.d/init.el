@@ -303,6 +303,9 @@ modify parts of the directory before switching to it."
             (ding)
             (message (format "Likely to have to list too many files, not doing this!")))
         (counsel-fzf nil proot))))
+  (setenv
+   "FZF_DEFAULT_COMMAND"
+   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
