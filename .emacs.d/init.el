@@ -169,6 +169,23 @@
 (dolist (hook '(prog-mode-hook))
   (add-hook hook (lambda () (flyspell-prog-mode))))
 
+(defadvice ispell-internal-change-dictionary
+    (after ispell-internal-change-dictionary-call-hook activate)
+  "When using a keyword to set the dict to use (ispell-dictionary-keyword),
+ispell-internal-change-dictionary is called when the buffer is
+loaded (instead of ispell-dictionary-keyword) so the change dict
+hooks are not called. I need this to happen here as well so when
+I visit a file with dict settings (using Local IspellDict, for
+example) the input method is changed automatically as well"
+  (run-hooks 'ispell-change-dictionary-hook))
+
+(add-hook 'ispell-change-dictionary-hook
+          (lambda ()
+            (cond ((equal ispell-local-dictionary "french")
+                   (activate-input-method "latin-1-prefix"))
+                  ((equal ispell-local-dictionary "spanish")
+                   (activate-input-method "latin-1-prefix")))))
+
 ;;; TRAMP
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
