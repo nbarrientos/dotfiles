@@ -679,7 +679,7 @@ the previously multi-windowed one"
   :config
   (add-hook 'exwm-update-class-hook
             (lambda ()
-              (exwm-workspace-rename-buffer exwm-class-name)))
+              (exwm-workspace-rename-buffer (downcase exwm-class-name))))
 
   (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
 
@@ -719,7 +719,7 @@ to-buffer-name then it switches back to the previous buffer."
                         (lambda ()
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
-                    '((1 . "firefox") (2 . "TelegramDesktop") (3 . "Signal") (5 . "*eww*") (6 . "*eshell*")))
+                    '((1 . "firefox") (2 . "telegramdesktop") (3 . "signal") (5 . "*eww*") (6 . "*eshell*")))
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
@@ -739,7 +739,7 @@ to-buffer-name then it switches back to the previous buffer."
   (add-hook 'exwm-manage-finish-hook
           (lambda ()
             (when (and exwm-class-name
-                       (string= exwm-class-name "firefox"))
+                       (string= (downcase exwm-class-name) "firefox"))
               (exwm-input-set-local-simulation-keys
                '(([?\C-s] . [?\C-f])))))) ; Swiper!
 
