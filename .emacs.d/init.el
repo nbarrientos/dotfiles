@@ -231,7 +231,11 @@ example) the input method is changed automatically as well"
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
 (use-package all-the-icons-ivy
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+  :config
+  (add-to-list 'all-the-icons-mode-icon-alist
+               '(exwm-mode all-the-icons-octicon "browser"
+                           :v-adjust 0.2 :face all-the-icons-purple)))
 
 (use-package ivy
   :diminish
