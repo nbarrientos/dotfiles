@@ -29,7 +29,7 @@
 (global-unset-key (kbd "C-x C-c"))
 
 ;;;; Fonts
-(set-face-attribute 'default nil :font "Hack" :height 110) ; deb: fonts-hack
+(set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
