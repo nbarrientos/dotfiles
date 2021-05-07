@@ -472,7 +472,26 @@ modify parts of the directory before switching to it."
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-ring-save-outputs)
                    (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-last-output)
                    (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)
-                   (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)))
+                   (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)
+                   ;; When calling dabbrev, hippie-expand uses strings
+                   ;; containing words and symbols to:
+                   ;;   1) determine the string to expand
+                   ;;   2) determine what to expand it with
+                   ;; (see hippie-expand-dabbrev-as-symbol)
+                   ;; so for instance if I'm typing "curl foo/bar" on
+                   ;; an eshell buffer, as "/" is a symbol in eshell
+                   ;; mode, it will use "foo/bar" as string to
+                   ;; expand. In some cases this is undesirable, for
+                   ;; instance when completing URLs, as it's more
+                   ;; likely that I'll want to expand the current
+                   ;; component ("bar"), not the whole URL. Moving "/"
+                   ;; to a non-symbol syntax class works around
+                   ;; this. I can't just set
+                   ;; hippie-expand-dabbrev-as-symbol to false because
+                   ;; if I did h-e wouldn't expand FQDNs, i.e. "bar"
+                   ;; would be expanded to "barhost" and not
+                   ;; "barhost.example.org"
+                   (modify-syntax-entry ?/ "|")))
   :config
   (defun my/eshell-kill-ring-save-outputs ()
     "Add to the kill ring CURRENT-PREFIX-ARG outputs, including prompts.
