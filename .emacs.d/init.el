@@ -168,19 +168,21 @@
   :bind (("<f7>" . my/ispell-cycle-dictionary))
   :init
   (setq my/ispell-dictionary-list '("british" "french" "spanish" "british"))
+  ;; When we're back to the British English dictionary we want to set
+  ;; the input method to nil, but that's implicit when calling assoc
+  ;; below :)
+  (setq my/dictionary-input-method-alist
+        '(("french" . "latin-1-prefix")
+          ("spanish" . "latin-1-prefix")))
   :hook ((text-mode . flyspell-mode)
          (mu4e-compose-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode)
          (ispell-change-dictionary
           .
           (lambda ()
-            (cond ((equal ispell-local-dictionary "french")
-                   (activate-input-method "latin-1-prefix"))
-                  ((equal ispell-local-dictionary "spanish")
-                   (activate-input-method "latin-1-prefix"))
-                  ((equal ispell-local-dictionary "british")
-                   (activate-input-method nil))))))
-
+            (activate-input-method
+             (cdr
+              (assoc ispell-local-dictionary my/dictionary-input-method-alist))))))
   :config
   (defadvice ispell-internal-change-dictionary
       (after ispell-internal-change-dictionary-call-hook activate)
