@@ -163,28 +163,54 @@
   (undo-tree-visualizer-relative-timestamps t))
 
 ;;; Spelling and grammar
-(setq ispell-dictionary "british")
-(dolist (hook '(text-mode-hook mu4e-compose-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
-(dolist (hook '(prog-mode-hook))
-  (add-hook hook (lambda () (flyspell-prog-mode))))
+(use-package ispell
+  :ensure nil
+  :bind (("<f7>" . my/ispell-cycle-dictionary))
+  :init
+  (setq my/ispell-dictionary-list '("british" "french" "spanish" "british"))
+  :hook ((text-mode . flyspell-mode)
+         (mu4e-compose-mode . flyspell-mode)
+         (prog-mode . flyspell-prog-mode)
+         (ispell-change-dictionary
+          .
+          (lambda ()
+            (cond ((equal ispell-local-dictionary "french")
+                   (activate-input-method "latin-1-prefix"))
+                  ((equal ispell-local-dictionary "spanish")
+                   (activate-input-method "latin-1-prefix"))
+                  ((equal ispell-local-dictionary "british")
+                   (activate-input-method nil))))))
 
-(defadvice ispell-internal-change-dictionary
-    (after ispell-internal-change-dictionary-call-hook activate)
-  "When using a keyword to set the dict to use (ispell-dictionary-keyword),
+  :config
+  (defadvice ispell-internal-change-dictionary
+      (after ispell-internal-change-dictionary-call-hook activate)
+    "When using a keyword to set the dict to use (ispell-dictionary-keyword),
 ispell-internal-change-dictionary is called when the buffer is
 loaded (instead of ispell-dictionary-keyword) so the change dict
 hooks are not called. I need this to happen here as well so when
 I visit a file with dict settings (using Local IspellDict, for
 example) the input method is changed automatically as well"
-  (run-hooks 'ispell-change-dictionary-hook))
+    (run-hooks 'ispell-change-dictionary-hook))
 
-(add-hook 'ispell-change-dictionary-hook
-          (lambda ()
-            (cond ((equal ispell-local-dictionary "french")
-                   (activate-input-method "latin-1-prefix"))
-                  ((equal ispell-local-dictionary "spanish")
-                   (activate-input-method "latin-1-prefix")))))
+  (defun my/ispell-cycle-dictionary ()
+    "Cycle through the list of dictionaries that I typically use.
+The 'circular' list is defined in the variable
+my/ispell-dictionary-list."
+    (interactive)
+    (let ((next-dictionary)
+          (current-dictionary ispell-local-dictionary))
+      (when (null current-dictionary)
+        (setq current-dictionary ispell-current-dictionary))
+      (setq next-dictionary
+            (nth
+             (+ 1
+                (seq-position
+                 my/ispell-dictionary-list
+                 current-dictionary))
+             my/ispell-dictionary-list))
+      (ispell-change-dictionary next-dictionary)))
+  :custom
+  (ispell-dictionary "british"))
 
 ;;; TRAMP
 ;; Option (1-2): is a typical prompt for 2FA tokens at CERN
