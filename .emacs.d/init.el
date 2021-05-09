@@ -582,6 +582,11 @@ If no universal argument is passed, assume only one output"
   (magit-clone-set-remote.pushDefault t))
 
 ;;; Movement and window switching
+(use-package mwim
+  :bind
+  (("C-a" . mwim-beginning-of-code-or-line)
+   ("C-e" . mwim-end-of-code-or-line)))
+
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("<f8>" . ace-window)
