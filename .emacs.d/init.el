@@ -158,7 +158,7 @@
   :config
   (global-undo-tree-mode 1)
   :custom
-  (undo-tree-visualizer-diff t)
+  (undo-tree-visualizer-diff nil)
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t))
 
