@@ -861,6 +861,7 @@ to-buffer-name then it switches back to the previous buffer."
   :bind (("C-x b" . recompile)
          ("C-x B" . multi-compile-run))
   :custom
+  (multi-compile-completion-system 'ivy)
   (multi-compile-alist
    `(
      ;; Rubocop tasks for all Ruby (SPEC) files.
