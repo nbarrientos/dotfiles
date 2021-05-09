@@ -280,6 +280,10 @@ my/ispell-dictionary-list."
 (use-package ivy-posframe
   :config
   (ivy-posframe-mode 1)
+  (defun my/ivy-posframe-get-size ()
+    (let ((height (or ivy-posframe-height ivy-height))
+          (width (round (* .70 (frame-width)))))
+      (list :height height :width width :min-height height :min-width width)))
   :custom
   (posframe-mouse-banish nil)
   (ivy-posframe-display-functions-alist
@@ -287,7 +291,7 @@ my/ispell-dictionary-list."
      (t      . ivy-posframe-display)))
   (ivy-posframe-height-alist '((counsel-yank-pop . 40)
                                (t                . 20)))
-  (ivy-posframe-min-width 200))
+  (ivy-posframe-size-function 'my/ivy-posframe-get-size))
 
 (use-package all-the-icons-ivy-rich
   :init (all-the-icons-ivy-rich-mode 1))
