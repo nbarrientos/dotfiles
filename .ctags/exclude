@@ -1,0 +1,15 @@
+spec/fixtures/*
+.github/*
+.vscode/*
+README.md
+REFERENCE.md
+CHANGELOG.md
+metadata.json
+code/.github/*
+code/.vscode/*
+code/README.md
+code/REFERENCE.md
+code/CHANGELOG.md
+code/metadata.json
+code/spec/fixtures/*
+ci/*

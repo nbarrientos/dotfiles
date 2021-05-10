@@ -888,6 +888,11 @@ to-buffer-name then it switches back to the previous buffer."
       (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
        ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root))))))
 
+(defun my/regenerate-ctags ()
+    (interactive)
+    (setq default-directory (doom-modeline-project-root))
+    (compile "ctags -e -R --exclude=@/home/nacho/.ctags/exclude --exclude=@.gitignore"))
+
 ;;; Org
 (use-package org
   :ensure nil
