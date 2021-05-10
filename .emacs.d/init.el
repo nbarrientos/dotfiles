@@ -640,6 +640,7 @@ the previously multi-windowed one"
   (mu4e-drafts-folder "/cern/Drafts")
   (mu4e-sent-folder   "/cern/Sent Items")
   (mu4e-trash-folder  "/cern/Trash")
+  (mu4e-completing-read-function 'ivy-completing-read)
   (mu4e-headers-fields
    '(( :human-date    .  12)
      ( :flags         .  10)
