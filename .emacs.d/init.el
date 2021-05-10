@@ -505,6 +505,7 @@ modify parts of the directory before switching to it."
                    (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-last-output)
                    (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)
                    (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)
+                   (define-key eshell-mode-map (kbd "C-c l") 'eshell/clear)
                    ;; When calling dabbrev, hippie-expand uses strings
                    ;; containing words and symbols to:
                    ;;   1) determine the string to expand
