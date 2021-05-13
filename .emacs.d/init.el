@@ -47,14 +47,14 @@
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(set-fringe-mode 10)
-(menu-bar-mode -1)
-(mouse-avoidance-mode 'jump)
-
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(when window-system
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+  (mouse-avoidance-mode 'jump)
+  (add-hook 'window-setup-hook 'toggle-frame-maximized t))
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
@@ -1243,7 +1243,8 @@ the previously multi-windowed one"
 (use-package exwm
   :config
   (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
+  (when window-system
+    (exwm-systemtray-enable))
 
   (setq-default my/exwm--do-not-mass-kill nil)
   (defun my/exwm-toggle-or-set-buffer-protection (&optional arg value)
@@ -1440,7 +1441,8 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
                 (eshell))))
 
-  (exwm-enable))
+  (when window-system
+    (exwm-enable))
 
 (use-package time
   :ensure nil
@@ -1655,7 +1657,8 @@ and adapted to use simulations keys to have a common yank keystroke."
      :urgency (if (= 0 (string-to-number min-to-app)) 'critical 'normal)
      :actions '("org-agenda" "Open org-agenda")
      :on-action (lambda (id key) (org-agenda-list))))
-  (appt-activate 1)
+  (when window-system
+    (appt-activate 1))
   (org-agenda-to-appt)
   (run-with-timer (* 60 60) (* 60 60) 'org-agenda-to-appt)
   :custom
