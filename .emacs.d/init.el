@@ -1,3 +1,36 @@
+;;; init.el --- Nacho Barrientos' Emacs configuration  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2021  Nacho Barrientos
+
+;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
+;; URL: https://github.com/nbarrientos/dotfiles/tree/master/.emacs.d
+;; Package-Requires: ((emacs "27.1"))
+
+;; This file is not part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation, either version 3 of the
+;; License, or any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; As you can see I mostly live inside Emacs, which apart from being a
+;; magnificent editor, I also use as my window manager, my news reader,
+;; my shell, my e-mail client, my calendar/planner, my web browser
+;; (combined with Firefox) and as an interface to many non-Emacs-native
+;; utilities like Git or Ripgrep.
+
+;;; Code:
+
 ;;; Basic configuration of built-in features
 (setq-default
  inhibit-startup-message t
@@ -1080,3 +1113,5 @@ to-buffer-name then it switches back to the previous buffer."
   (interactive)
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
+
+;;; init.el ends here
