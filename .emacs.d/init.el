@@ -903,31 +903,36 @@ to-buffer-name then it switches back to the previous buffer."
   (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
 ;;; Building and compiling
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(use-package ansi-color
+  :ensure nil)
 
-(setq compilation-ask-about-save nil)
-(setq compilation-scroll-output 'first-error)
-
-(setq my/mc-env-pv "PUPPET_VERSION=\"~>6\" ")
-(setq my/mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
-(setq my/mc-bundle-cmd "%s schroot -p -- bundle %%s")
-;; CERN environment
-(setq my/mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " my/mc-env-pv))
-(setq my/mc-c-bundle (format my/mc-bundle-cmd my/mc-c-env))
-(setq my/mc-c-rake (format my/mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
-;; Standard Puppet module
-(setq my/mc-env my/mc-env-pv)
-(setq my/mc-bundle (format my/mc-bundle-cmd my/mc-env))
-(setq my/mc-rake (format my/mc-bundle "exec rake %s"))
+(use-package compile
+  :ensure nil
+  :config
+  (defun my/colorize-compilation-buffer ()
+    (toggle-read-only)
+    (ansi-color-apply-on-region compilation-filter-start (point))
+    (toggle-read-only))
+  (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
+  :custom
+  (compilation-ask-about-save nil)
+  (compilation-scroll-output 'first-error))
 
 (use-package multi-compile
   :bind (("C-x b" . recompile)
          ("C-x B" . multi-compile-run))
+  :init
+  (setq my/mc-env-pv "PUPPET_VERSION=\"~>6\" ")
+  (setq my/mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
+  (setq my/mc-bundle-cmd "%s schroot -p -- bundle %%s")
+  ;; CERN environment
+  (setq my/mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " my/mc-env-pv))
+  (setq my/mc-c-bundle (format my/mc-bundle-cmd my/mc-c-env))
+  (setq my/mc-c-rake (format my/mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
+  ;; Standard Puppet module
+  (setq my/mc-env my/mc-env-pv)
+  (setq my/mc-bundle (format my/mc-bundle-cmd my/mc-env))
+  (setq my/mc-rake (format my/mc-bundle "exec rake %s"))
   :custom
   (multi-compile-completion-system 'ivy)
   (multi-compile-alist
