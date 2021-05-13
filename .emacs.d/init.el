@@ -326,7 +326,11 @@ my/ispell-dictionary-list."
    '((ivy-rich-switch-buffer-project (:width 30))
      (ivy-rich-switch-buffer-major-mode (:width 20)))))
 
-(use-package smex) ; adds last used cmds to counsel-M-x
+(use-package amx
+  :after (ivy)
+  :custom
+  (amx-backend 'ivy)
+  (amx-history-length 50))
 
 (use-package counsel
   :after (helpful)
