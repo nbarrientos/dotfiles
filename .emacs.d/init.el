@@ -11,14 +11,14 @@
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(set-fringe-mode 10)
-(menu-bar-mode -1)
-(mouse-avoidance-mode 'jump)
-
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(when window-system
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (set-fringe-mode 10)
+  (menu-bar-mode -1)
+  (mouse-avoidance-mode 'jump)
+  (add-hook 'window-setup-hook 'toggle-frame-maximized t))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -768,7 +768,8 @@ the previously multi-windowed one"
   (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
 
   (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
+  (when window-system
+    (exwm-systemtray-enable))
 
   (defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
     "Switches to to-buffer-name if it exists. If the current buffer is
@@ -843,7 +844,8 @@ to-buffer-name then it switches back to the previous buffer."
                 (split-window-right)
                 (eshell))))
 
-  (exwm-enable))
+  (when window-system
+    (exwm-enable))
 
 (use-package desktop-environment
   :after (exwm)
@@ -997,7 +999,8 @@ to-buffer-name then it switches back to the previous buffer."
      :actions '("org-agenda" "Open org-agenda")
      ;; Dunst: middle-click to trigger the action
      :on-action (lambda (id key) (org-agenda-list))))
-  (appt-activate 1)
+  (when window-system
+    (appt-activate 1))
   (org-agenda-to-appt)
   (run-with-timer (* 60 60) (* 60 60) 'org-agenda-to-appt)
   :custom
