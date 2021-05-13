@@ -149,10 +149,17 @@
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
 
-;;; Killing, Yanking and Undo
+;;; Killing, Yanking, Comments and Undo
 (use-package whole-line-or-region
   :init
-  (whole-line-or-region-global-mode))
+  (whole-line-or-region-global-mode)
+  ;; This package takes over the default binding for `comment-dwim'
+  ;; which is bound to M-;. Unfortunatelly this is not
+  ;; configurable. I'm rebinding it globally later on but to avoid
+  ;; ordering issues, make sure that it's not part of this keymap at
+  ;; all.
+  :bind (:map whole-line-or-region-local-mode-map
+              ("M-;" . nil)))
 
 (use-package undo-tree
   :config
@@ -161,6 +168,19 @@
   (undo-tree-visualizer-diff nil)
   (undo-tree-visualizer-timestamps t)
   (undo-tree-visualizer-relative-timestamps t))
+
+(use-package newcomment
+  :ensure nil
+  :bind (("M-;" . comment-line)
+         ("M-RET" . comment-indent-new-line))
+  :hook ((prog-mode . (lambda ()
+                        (set (make-local-variable
+                               'comment-auto-fill-only-comments)
+                              t)))))
+
+(use-package simple
+  :ensure nil
+  :hook ((prog-mode . auto-fill-mode)))
 
 ;;; Spelling and grammar
 (use-package ispell
