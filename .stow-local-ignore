@@ -4,6 +4,7 @@ README.md
 init.sh
 .git
 .gitignore
+.github
 xmodmap
 # Can't be linked because it has to be added to a given profile
 # .mozilla/firefox/aabb33.default-release/chrome/userChrome.css ->

@@ -1,3 +1,5 @@
+[![](https://github.com/nbarrientos/dotfiles/workflows/Emacs/badge.svg)](https://github.com/nbarrientos/dotfiles/actions?query=workflow%3AEmacs)
+
 # What's this?
 
 Here you can find most of the configuration files that I use everyday
