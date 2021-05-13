@@ -1,0 +1,25 @@
+name: "Emacs"
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Emacs and mu4e
+      run: |
+        pacman -Sy --noconfirm emacs git gmime3 xapian-core
+        su nobody -s /bin/sh -c "git clone https://aur.archlinux.org/mu.git /tmp/mu"
+        su nobody -s /bin/sh -c "cd /tmp/mu && makepkg -s"
+        pacman -U --noconfirm /tmp/mu/*.zst
+    - name: Init mu db
+      run: |
+        mkdir .cache maildir
+        mu init --maildir maildir/
+    - uses: leotaku/elisp-check@master
+      with:
+        check: load-file
+        file: .emacs.d/init.el
