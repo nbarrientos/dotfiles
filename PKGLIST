@@ -1,3 +1,4 @@
+android-tools
 aspell
 aspell-en
 aspell-es
@@ -12,6 +13,7 @@ bison
 bluez-utils
 ccid
 chrony
+ctags
 cyrus-sasl-gssapi
 d-feet
 debootstrap
@@ -40,6 +42,7 @@ hunspell-fr
 ifplugd
 iperf3
 isync
+jq
 keepassxc
 kstart
 linux
@@ -48,7 +51,9 @@ lsof
 lynx
 m4
 make
+mediainfo
 mlocate
+mplayer
 mtr
 mu
 net-tools
@@ -71,7 +76,6 @@ pipewire-pulse
 pkgconf
 playerctl
 pulseaudio-alsa
-puppet
 puppet-lint
 python-argcomplete
 python-bcrypt
@@ -83,6 +87,7 @@ python-pylint
 python-virtualenv
 ripgrep
 ruby
+ruby2.7
 rxvt-unicode
 schroot
 stow
@@ -92,6 +97,7 @@ terminus-font
 texinfo
 ttf-dejavu
 ttf-hack
+ttf-jetbrains-mono
 ttf-liberation
 unzip
 upower
@@ -146,4 +152,6 @@ xorg-xwininfo
 xorg-xwud
 xpdf
 xscreensaver
+yamllint
 yaourt
+zip
