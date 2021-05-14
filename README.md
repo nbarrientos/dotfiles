@@ -11,6 +11,10 @@ my shell, my e-mail client, my calendar/planner, my web browser
 (combined with Firefox) and as an interface to many non-Emacs-native
 utilities like Git or Ripgrep.
 
+Most of the keybindings declared by this configuration are aimed to be
+comfortable when typing on a [Kinesis
+Advantage](https://kinesis-ergo.com/products/#advantage2) keyboard.
+
 This repository is constantly evolving and receives new patches as I
 learn about new things (mostly Emacs packages). Feel free to explore
 the contents and to make use of any ideas that you might find
