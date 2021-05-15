@@ -1114,18 +1114,12 @@ otherwise it returns nil."
          (with-temp-buffer
            (eshell-command (concat "ai-rc --same-project-as " fqdn) t)
            (keep-lines "^export OS_PROJECT_NAME")
-           (replace-string "\"" "")
            (unless (string-empty-p (buffer-string))
-             (substring (buffer-string) 7 -2)))))
+             (replace-string "\"" "")
+             (car (last (split-string (substring (buffer-string) 7 -2) "=")))))))
     (unless (null project-name)
-        (setq
-         tramp-remote-process-environment
-         (delete (seq-find (lambda (x)
-                             (s-starts-with-p "OS_PROJECT_NAME" x))
-                           tramp-remote-process-environment)
-                 tramp-remote-process-environment))
-        (add-to-list 'tramp-remote-process-environment project-name)
-        (car (last (split-string project-name "="))))))
+      (my/setenv-tramp "OS_PROJECT_NAME" project-name)
+      project-name)))
 
 ;;; Misc
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
@@ -1133,5 +1127,19 @@ otherwise it returns nil."
   (interactive)
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
+
+(defun my/setenv-tramp (variable value)
+  "Like `setenv' but acting on `tramp-remote-process-environment'.
+Adds the element VARIABLE=VALUE to
+`tramp-remote-process-environment', erasing any other occurrence
+of the variable before inserting."
+  (setq
+   tramp-remote-process-environment
+   (delete (seq-find (lambda (x)
+                       (s-starts-with-p (concat variable "=") x))
+                     tramp-remote-process-environment)
+           tramp-remote-process-environment))
+  (let ((key-value-pair (format "%s=%s" variable value)))
+    (add-to-list 'tramp-remote-process-environment key-value-pair)))
 
 ;;; init.el ends here
