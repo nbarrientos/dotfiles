@@ -1075,17 +1075,16 @@ to-buffer-name then it switches back to the previous buffer."
     (conf-mode)))
 
 (defun my/gimme-url (filename)
-  "Copy a file to the bucket a put the URL in the kill ring"
+  "Copy FILENAME to the bucket a put the URL in the kill ring"
   (interactive "fFile Path:")
   (let* ((hash
           (with-temp-buffer
-           (insert-file-contents filename)
-           (sha1 (buffer-string))))
+            (insert-file-contents filename)
+            (sha1 (buffer-string))))
          (new-filename
           (concat hash (url-file-extension filename))))
-    (progn
-      (copy-file filename (concat "~/afs/www/bucket/" new-filename) t)
-      (kill-new (concat "https://cern.ch/nacho/bucket/" new-filename)))))
+    (copy-file filename (concat "~/afs/www/bucket/" new-filename) t)
+    (kill-new (concat "https://cern.ch/nacho/bucket/" new-filename))))
 
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
