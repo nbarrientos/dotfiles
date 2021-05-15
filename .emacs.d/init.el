@@ -1104,6 +1104,29 @@ to-buffer-name then it switches back to the previous buffer."
    magit-clone-default-directory
    nil))
 
+(defun my/os-same-project-as (fqdn)
+  "Set the current OpenStack project to the same as FQDN's.
+This function is meant to be executed from Eshell in a CWD where
+ai-rc is installed. If `tramp-remote-process-environment' has
+been successfully updated, then it returns the new project name,
+otherwise it returns nil."
+  (let ((project-name
+         (with-temp-buffer
+           (eshell-command (concat "ai-rc --same-project-as " fqdn) t)
+           (keep-lines "^export OS_PROJECT_NAME")
+           (replace-string "\"" "")
+           (unless (string-empty-p (buffer-string))
+             (substring (buffer-string) 7 -2)))))
+    (unless (null project-name)
+        (setq
+         tramp-remote-process-environment
+         (delete (seq-find (lambda (x)
+                             (s-starts-with-p "OS_PROJECT_NAME" x))
+                           tramp-remote-process-environment)
+                 tramp-remote-process-environment))
+        (add-to-list 'tramp-remote-process-environment project-name)
+        (car (last (split-string project-name "="))))))
+
 ;;; Misc
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
 (defun my/unfill-region ()
