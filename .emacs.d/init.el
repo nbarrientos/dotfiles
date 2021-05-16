@@ -1127,18 +1127,19 @@ otherwise it returns nil."
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
 
-(defun my/setenv-tramp (variable value)
+(defun my/setenv-tramp (variable &optional value)
   "Like `setenv' but acting on `tramp-remote-process-environment'.
-Adds the element VARIABLE=VALUE to
-`tramp-remote-process-environment', erasing any other occurrence
-of the variable before inserting."
+Removes the first occurrence of VARIABLE in
+`tramp-remote-process-environment' and then adds VARIABLE=VALUE
+if VALUE is not nil."
   (setq
    tramp-remote-process-environment
    (delete (seq-find (lambda (x)
                        (s-starts-with-p (concat variable "=") x))
                      tramp-remote-process-environment)
            tramp-remote-process-environment))
-  (let ((key-value-pair (format "%s=%s" variable value)))
-    (add-to-list 'tramp-remote-process-environment key-value-pair)))
+  (when value
+    (let ((key-value-pair (format "%s=%s" variable value)))
+      (add-to-list 'tramp-remote-process-environment key-value-pair))))
 
 ;;; init.el ends here
