@@ -1127,6 +1127,19 @@ otherwise it returns nil."
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
 
+(defun my/getenv-tramp (variable &optional keyvalue)
+  "Similar to `getenv' but acting on `tramp-remote-process-environment'.
+If KEYVALUE is not nil then VARIABLE=VALUE is returned, otherwise
+VALUE. When there's no such a VARIABLE set then nil is returned."
+  (let ((current-variable-value
+        (seq-find (lambda (x)
+                       (s-starts-with-p (concat variable "=") x))
+                  tramp-remote-process-environment)))
+    (when current-variable-value
+      (if keyvalue
+          current-variable-value
+        (car (last (split-string current-variable-value "=")))))))
+
 (defun my/setenv-tramp (variable &optional value)
   "Like `setenv' but acting on `tramp-remote-process-environment'.
 Removes the first occurrence of VARIABLE in
@@ -1134,9 +1147,7 @@ Removes the first occurrence of VARIABLE in
 if VALUE is not nil."
   (setq
    tramp-remote-process-environment
-   (delete (seq-find (lambda (x)
-                       (s-starts-with-p (concat variable "=") x))
-                     tramp-remote-process-environment)
+   (delete (my/getenv-tramp variable t)
            tramp-remote-process-environment))
   (when value
     (let ((key-value-pair (format "%s=%s" variable value)))
