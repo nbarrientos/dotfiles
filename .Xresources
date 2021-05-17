@@ -2,7 +2,7 @@
 
 urxvt.saveLines: 20000
 urxvt.scrollBar: false
-urxvt.font: xft:Terminus:size=12:autohint=true:antialias=false
+urxvt.font: xft:JetBrainsMono:size=11:autohint=true:antialias=true
 urxvt.perl-ext-common: default,matcher
 urxvt.url-launcher: firefox
 
