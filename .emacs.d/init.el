@@ -369,8 +369,8 @@ my/ispell-dictionary-list."
 (use-package counsel
   :after (helpful)
   :bind (("M-x" . counsel-M-x)
-         ("C-x b" . ivy-switch-buffer-other-window)
          ("C-b" . ivy-switch-buffer)
+         ("M-b" . ivy-switch-buffer-other-window)
          ("C-x C-f" . my/counsel-fzf-project-root)
          ("C-x f" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
