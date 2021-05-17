@@ -321,8 +321,9 @@ my/ispell-dictionary-list."
 (use-package ivy
   :diminish
   :bind (:map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ([C-return] . ivy-restrict-to-matches))
+              ("TAB" . ivy-alt-done)
+              ("M-k" . ivy-switch-buffer-kill)
+              ([C-return] . ivy-restrict-to-matches))
   :config
   (ivy-mode 1)
   :custom
