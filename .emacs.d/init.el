@@ -623,7 +623,7 @@ If no universal argument is passed, assume only one output"
   :custom-face
   (epe-symbol-face ((t (:inherit eshell-ls-missing)))))
 
-;;; Magit
+;;; Magit and Git
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x G" . magit-dispatch))
@@ -636,6 +636,10 @@ If no universal argument is passed, assume only one output"
   (magit-clone-default-directory "~/dev/")
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t))
+
+(use-package git-link
+  :custom
+  (git-link-use-commit t))
 
 ;;; Movement and window switching
 (use-package mwim
