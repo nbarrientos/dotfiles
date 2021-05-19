@@ -466,7 +466,8 @@ modify parts of the directory before switching to it."
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 30))
+  (doom-modeline-height 30)
+  (doom-modeline-buffer-file-name-style 'truncate-with-project))
 
 (use-package frame
   :ensure nil
