@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: define
+# key: define
+# https://puppet.com/docs/puppet/latest/lang_defined_types.html
+# --
+# @summary Summary for ${1:`(replace-regexp-in-string "/" "::" (replace-regexp-in-string ".*\/manifests\/" "" (file-name-sans-extension (buffer-file-name))))`}
+#
+# @example the description of what the example does goes here.
+#   $1{'my_instance':
+#     ensure => present,
+#   }
+# @param ensure
+#   Should the resource be created.
+#
+# @param foo
+#   This is an example description for parameter foo.
+define $1 (
+  Enum['present','absent'] $ensure = 'present',
+  String $foo = $title,
+) {
+  $0
+}
