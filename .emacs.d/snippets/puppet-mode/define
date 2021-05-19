@@ -3,7 +3,7 @@
 # key: define
 # https://puppet.com/docs/puppet/latest/lang_defined_types.html
 # --
-# @summary Summary for ${1:`(replace-regexp-in-string "/" "::" (replace-regexp-in-string ".*\/manifests\/" "" (file-name-sans-extension (buffer-file-name))))`}
+# @summary Summary for ${1:`(concat (read-string "Module name: ") "::" (replace-regexp-in-string "/" "::" (replace-regexp-in-string ".*\/manifests\/" "" (file-name-sans-extension (buffer-file-name)))))`}
 #
 # @example the description of what the example does goes here.
 #   $1{'my_instance':
