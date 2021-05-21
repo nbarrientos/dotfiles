@@ -109,7 +109,8 @@
   (text-mode . (lambda () (setq show-trailing-whitespace t)))
   (conf-mode . (lambda () (setq show-trailing-whitespace t)))
   :custom
-  (whitespace-style '(face trailing tabs empty big-indent)))
+  (whitespace-style '(face trailing tabs empty big-indent))
+  (whitespace-global-modes '(not erc-mode)))
 (add-function :filter-return whitespace-enable-predicate
    (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
 ;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
@@ -1125,6 +1126,40 @@ otherwise it returns nil."
     (unless (null project-name)
       (my/setenv-tramp "OS_PROJECT_NAME" project-name)
       project-name)))
+
+;;; IRC
+(use-package erc
+  :ensure nil
+  :config
+  (erc-spelling-mode)
+  :custom
+  (erc-nick "nacho")
+  (erc-email-userid "nacho")
+  (erc-user-full-name "Nacho Barrientos"))
+
+(use-package erc-networks
+  :ensure nil
+  :config
+  (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
+  (add-to-list 'erc-server-alist
+               '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6667)))
+
+(use-package erc-track
+  :ensure nil
+  :config
+  (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
+    (add-to-list 'erc-track-exclude-types msg)))
+
+(defvar my/libera-nacho-password nil)
+(use-package erc-services
+  :ensure nil
+  :config
+  (erc-services-mode 1)
+  :custom
+  (erc-prompt-for-nickserv-password nil)
+  (erc-nickserv-passwords
+   `((Libera.Chat
+      (("nacho" . ,my/libera-nacho-password))))))
 
 ;;; Misc
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
