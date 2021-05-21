@@ -4,11 +4,10 @@ SyncState *
 Expunge Both
 
 IMAPAccount CERN
-Host imap.cern.ch
+Host cernmail.cern.ch
 User ibarrien
 AuthMechs GSSAPI
 SSLType IMAPS
-SSLVersions TLSv1
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore cern-remote
