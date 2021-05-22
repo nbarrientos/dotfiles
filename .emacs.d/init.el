@@ -61,6 +61,8 @@
 (global-set-key (kbd "C-d") 'mark-word)
 (global-unset-key (kbd "C-x C-c"))
 
+(add-to-list 'yank-excluded-properties 'face)
+
 ;;;; Fonts
 (set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
 
