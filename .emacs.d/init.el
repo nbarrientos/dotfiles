@@ -1143,6 +1143,7 @@ otherwise it returns nil."
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
   (erc-fill-column (- (/ (frame-width) 2) 3))
+  (erc-hide-list '("PART" "QUIT"))
   (erc-auto-query 'bury)
   (erc-kill-server-buffer-on-quit t)
   (erc-kill-queries-on-quit t)
