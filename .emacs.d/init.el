@@ -1145,6 +1145,7 @@ otherwise it returns nil."
   (erc-fill-column 124)
   (erc-kill-server-buffer-on-quit t)
   (erc-kill-queries-on-quit t)
+  (erc-user-mode "+iRw")
   (erc-nick "nacho")
   (erc-server "irc.libera.chat")
   (erc-email-userid "nacho")
