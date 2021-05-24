@@ -472,6 +472,7 @@ modify parts of the directory before switching to it."
   :custom
   (doom-modeline-height 30)
   (doom-modeline-buffer-encoding nil)
+  (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-buffer-file-name-style 'truncate-with-project))
 
 (use-package frame
