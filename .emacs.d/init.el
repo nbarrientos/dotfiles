@@ -1145,6 +1145,7 @@ otherwise it returns nil."
   (erc-fill-column (- (/ (frame-width) 2) 3))
   (erc-hide-list '("PART" "QUIT"))
   (erc-auto-query 'bury)
+  (erc-join-buffer 'bury)
   (erc-kill-server-buffer-on-quit t)
   (erc-kill-queries-on-quit t)
   (erc-disable-ctcp-replies t)
