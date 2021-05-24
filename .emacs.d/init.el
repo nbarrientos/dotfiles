@@ -1140,6 +1140,9 @@ otherwise it returns nil."
   :config
   (erc-spelling-mode)
   :custom
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 14)
+  (erc-fill-column 124)
   (erc-nick "nacho")
   (erc-server "irc.libera.chat")
   (erc-email-userid "nacho")
