@@ -1141,6 +1141,7 @@ otherwise it returns nil."
   (erc-spelling-mode)
   :custom
   (erc-nick "nacho")
+  (erc-server "irc.libera.chat")
   (erc-email-userid "nacho")
   (erc-user-full-name "Nacho Barrientos"))
 
