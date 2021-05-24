@@ -1143,6 +1143,8 @@ otherwise it returns nil."
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
   (erc-fill-column 124)
+  (erc-kill-server-buffer-on-quit t)
+  (erc-kill-queries-on-quit t)
   (erc-nick "nacho")
   (erc-server "irc.libera.chat")
   (erc-email-userid "nacho")
