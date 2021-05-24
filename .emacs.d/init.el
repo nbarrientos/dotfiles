@@ -845,6 +845,8 @@ to-buffer-name then it switches back to the previous buffer."
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
                     '((1 . "firefox") (2 . "telegramdesktop") (3 . "signal") (5 . "*eww*") (6 . "*eshell*")))
+          ([?\s-4]
+           . erc-track-switch-buffer)
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
