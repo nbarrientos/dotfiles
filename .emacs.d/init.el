@@ -461,10 +461,11 @@ modify parts of the directory before switching to it."
 ;;; Look and feel
 (use-package doom-themes
   :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
   (load-theme 'doom-dracula t)
-  (doom-themes-visual-bell-config))
+  (doom-themes-visual-bell-config)
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t))
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
