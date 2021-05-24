@@ -1142,7 +1142,7 @@ otherwise it returns nil."
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
-  (erc-fill-column 124)
+  (erc-fill-column (- (/ (frame-width) 2) 3))
   (erc-kill-server-buffer-on-quit t)
   (erc-kill-queries-on-quit t)
   (erc-user-mode "+iRw")
