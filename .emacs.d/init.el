@@ -1158,6 +1158,12 @@ otherwise it returns nil."
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
     (add-to-list 'erc-track-exclude-types msg)))
 
+(use-package erc-join
+  :ensure nil
+  :custom
+  (erc-autojoin-timing 'ident)
+  (erc-autojoin-channels-alist '(("libera.chat" "#emacs" "#erc" "#archlinux" "#theforeman"))))
+
 (defvar my/libera-nacho-password nil)
 (use-package erc-services
   :ensure nil
