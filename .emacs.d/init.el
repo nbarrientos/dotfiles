@@ -168,6 +168,7 @@
   :hook ((compilation-mode . goto-address-mode)
           (prog-mode . goto-address-prog-mode)
           (magit-mode . goto-address-mode)
+          (yaml-mode . goto-address-prog-mode)
           (mu4e-view-mode . goto-address-mode))
   :commands (goto-address-prog-mode
              goto-address-mode))
