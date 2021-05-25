@@ -1169,7 +1169,18 @@ otherwise it returns nil."
   :ensure nil
   :config
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
-    (add-to-list 'erc-track-exclude-types msg)))
+    (add-to-list 'erc-track-exclude-types msg))
+  :custom
+  (erc-format-query-as-channel-p nil)
+  (erc-track-priority-faces-only 'all)
+  (erc-track-faces-priority-list
+   '(erc-error-face
+     erc-current-nick-face
+     erc-keyword-face
+     erc-nick-msg-face
+     erc-direct-msg-face
+     erc-notice-face
+     erc-prompt-face)))
 
 (use-package erc-join
   :ensure nil
