@@ -1180,6 +1180,14 @@ otherwise it returns nil."
   :ensure nil
   :config
   (erc-services-mode 1)
+  ;; This will be part of Emacs28
+  (add-to-list 'erc-nickserv-alist
+               '(Libera.Chat
+                 "NickServ!NickServ@services.libera.chat"
+                 "This\\s-nickname\\s-is\\s-registered.\\s-Please\\s-choose"
+                 "NickServ"
+                 "IDENTIFY" nil nil
+                 "You\\s-are\\s-now\\s-identified\\s-for\\s-"))
   :custom
   (erc-prompt-for-nickserv-password nil)
   (erc-nickserv-passwords
