@@ -318,6 +318,7 @@ my/ispell-dictionary-list."
 (use-package all-the-icons-ivy
   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
   :config
+  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
   (add-to-list 'all-the-icons-mode-icon-alist
                '(exwm-mode all-the-icons-octicon "browser"
                            :v-adjust 0.2 :face all-the-icons-purple)))
