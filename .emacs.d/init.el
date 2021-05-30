@@ -473,6 +473,8 @@ modify parts of the directory before switching to it."
   :config
   (load-theme 'doom-dracula t)
   (doom-themes-visual-bell-config)
+  (custom-set-faces
+   `(ivy-modified-buffer ((t (:inherit default :foreground unspecified)))))
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t))
