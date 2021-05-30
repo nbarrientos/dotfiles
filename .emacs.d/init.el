@@ -409,6 +409,7 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-esh-dir-history
    '(("e" counsel--esh-dir-history-action-edit "edit")))
+  ;; FZF
   (defun my/counsel-fzf-project-root ()
     "Calls counsel-fzf with the current project root as root"
     (interactive)
@@ -421,6 +422,13 @@ modify parts of the directory before switching to it."
   (setenv
    "FZF_DEFAULT_COMMAND"
    "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
+  (defun my/counsel-fzf-other-window (x)
+    "Find file X in current fzf directory other window."
+    (let ((default-directory counsel--fzf-dir))
+      (find-file-other-window x)))
+  (ivy-set-actions
+   'counsel-fzf
+   '(("j" my/counsel-fzf-other-window "other window")))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
