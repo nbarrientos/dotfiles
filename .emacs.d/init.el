@@ -344,7 +344,7 @@ my/ispell-dictionary-list."
           (width (round (* .70 (frame-width)))))
       (list :height height :width width :min-height height :min-width width)))
   :custom
-  (posframe-mouse-banish nil)
+  (posframe-mouse-banish `(,(frame-width) . 0))
   (ivy-posframe-display-functions-alist
    '((swiper . ivy-display-function-fallback)
      (t      . ivy-posframe-display)))
