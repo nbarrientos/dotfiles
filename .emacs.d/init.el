@@ -689,6 +689,10 @@ the previously multi-windowed one"
   :custom
   (bookmark-save-flag 1))
 
+(use-package beginend
+  :config
+  (beginend-global-mode))
+
 ;;; Help
 (use-package helpful)
 
