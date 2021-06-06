@@ -330,6 +330,13 @@ my/ispell-dictionary-list."
               ("M-k" . ivy-switch-buffer-kill)
               ([C-return] . ivy-restrict-to-matches))
   :config
+  (defun my/ivy-switch-buffer-firefox ()
+    "Use ivy to select a Firefox window (buffer)."
+    (interactive)
+    (minibuffer-with-setup-hook
+        (lambda ()
+          (insert "^f# "))
+      (ivy-switch-buffer)))
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers 'recentf)
@@ -438,12 +445,6 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-fzf
    '(("j" my/counsel-fzf-other-window "other window")))
-  (defun my/counsel-switch-buffer-firefox ()
-    "Use counsel to select a Firefox window."
-    (minibuffer-with-setup-hook
-        (lambda ()
-          (insert "^f# "))
-      (counsel-switch-buffer)))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
@@ -894,7 +895,7 @@ to-buffer-name then it switches back to the previous buffer."
           ([?\s-1] .
            (lambda ()
              (interactive)
-             (my/counsel-switch-buffer-firefox)))
+             (my/ivy-switch-buffer-firefox)))
           ([?\s-t] .
            (lambda ()
              (interactive)
