@@ -360,6 +360,14 @@ my/ispell-dictionary-list."
   :config
   (ivy-rich-mode 1)
   (ivy-rich-project-root-cache-mode)
+  (ivy-rich-set-columns
+   'counsel-find-file
+   '((all-the-icons-ivy-rich-file-icon)
+     (ivy-read-file-transformer)))
+  (ivy-rich-set-columns
+   'counsel-fzf
+   '((all-the-icons-ivy-rich-file-icon)
+     (all-the-icons-ivy-rich-file-name)))
   (ivy-rich-modify-columns
    'ivy-switch-buffer
    '((ivy-rich-switch-buffer-project (:width 30))
