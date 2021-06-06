@@ -16,3 +16,6 @@
 #tabbrowser-tabpanels {
   background: var(--toolbar-bgcolor) !important;
 }
+
+/* Remove tab bar */
+#TabsToolbar { visibility: collapse !important; }

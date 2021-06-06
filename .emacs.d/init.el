@@ -430,6 +430,12 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-fzf
    '(("j" my/counsel-fzf-other-window "other window")))
+  (defun my/counsel-switch-buffer-firefox ()
+    "Use counsel to select a Firefox window."
+    (minibuffer-with-setup-hook
+        (lambda ()
+          (insert "^f# "))
+      (counsel-switch-buffer)))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
@@ -819,14 +825,23 @@ the previously multi-windowed one"
 ;;; Window manager
 (use-package exwm
   :config
-  (add-hook 'exwm-update-class-hook
+  (add-hook 'exwm-update-title-hook
             (lambda ()
-              (exwm-workspace-rename-buffer (downcase exwm-class-name))))
+              (exwm-workspace-rename-buffer (my/exwm-buffer-name))))
 
   (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
 
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
+
+  (defun my/exwm-buffer-name ()
+    "Guesses the buffer name using the title and the class of the X client.
+It also removes annoying notification counters."
+    (let ((b-f (string-trim (replace-regexp-in-string "([[:digit:]]+)" "" exwm-title))))
+      (pcase (downcase exwm-class-name)
+        ("firefox" (concat "F# " (string-remove-suffix " — Mozilla Firefox" b-f)))
+        ("urxvt" exwm-class-name)
+        (_ b-f))))
 
   (defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
     "Switches to to-buffer-name if it exists. If the current buffer is
@@ -861,13 +876,21 @@ to-buffer-name then it switches back to the previous buffer."
                         (lambda ()
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
-                    '((1 . "firefox") (2 . "telegramdesktop") (3 . "signal") (5 . "*eww*") (6 . "*eshell*")))
+                    '((2 . "Telegram") (3 . "Signal") (5 . "*eww*") (6 . "*eshell*")))
           ([?\s-4]
            . erc-track-switch-buffer)
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
            . mu4e)
+          ([?\s-1] .
+           (lambda ()
+             (interactive)
+             (my/counsel-switch-buffer-firefox)))
+          ([?\s-t] .
+           (lambda ()
+             (interactive)
+             (start-process "" nil "/usr/bin/firefox")))
           ([?\s-s] .
            (lambda ()
              (interactive)
