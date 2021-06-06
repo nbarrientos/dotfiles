@@ -908,7 +908,8 @@ to-buffer-name then it switches back to the previous buffer."
             (when (and exwm-class-name
                        (string= (downcase exwm-class-name) "firefox"))
               (exwm-input-set-local-simulation-keys
-               '(([?\C-s] . [?\C-f])))))) ; Swiper!
+               '(([?\C-s] . [?\C-f]) ; Swiper!
+                 ([?\C-t] . nil)))))) ; Prevent accidental tab creation
 
   (define-key exwm-mode-map (kbd "C-c") nil)
   ;; Buffer switching
