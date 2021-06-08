@@ -848,7 +848,7 @@ the previously multi-windowed one"
 It also removes annoying notification counters."
     (let ((b-f (string-trim (replace-regexp-in-string "([[:digit:]]+)" "" exwm-title))))
       (pcase (downcase exwm-class-name)
-        ("firefox" (concat "F# " (string-remove-suffix " — Mozilla Firefox" b-f)))
+        ("firefox" (concat "F# " (replace-regexp-in-string " [-—] Mozilla Firefox$" "" b-f)))
         ("urxvt" exwm-class-name)
         (_ b-f))))
 
