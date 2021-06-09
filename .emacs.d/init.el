@@ -790,16 +790,7 @@ the previously multi-windowed one"
   :ensure nil
   :config
   (setq browse-url-browser-function
-        '(("youtube\\.com" . browse-url-firefox)
-          ("github\\.com" . browse-url-firefox)
-          ("gitlab\\.cern\\.ch" . browse-url-firefox)
-          ("twitter\\.com" . browse-url-firefox)
-          ("docs\\.google\\.com" . browse-url-firefox)
-          ("google\\.com/maps" . browse-url-firefox)
-          ("openstreetmap\\.org" . browse-url-firefox)
-          ("its\\.cern\\.ch" . browse-url-firefox)
-          ("cern\\.service-now\\.com" . browse-url-firefox)
-          ("." . eww-browse-url)))
+        '(("." . browse-url-firefox)))
   :custom
   (eww-use-external-browser-for-content-type
    "\\`\\(video/\\|audio/\\|application/ogg\\|application/pdf\\)"))
