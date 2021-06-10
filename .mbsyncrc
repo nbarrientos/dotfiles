@@ -21,6 +21,10 @@ Channel cern-inbox
 Master :cern-remote:INBOX
 Slave :cern-local:INBOX
 
+Channel cern-drafts
+Master :cern-remote:Drafts
+Slave :cern-local:Drafts
+
 Channel cern-ai-admins
 Master :cern-remote:ai-admins
 Slave :cern-local:ai-admins
@@ -127,6 +131,7 @@ Slave :cern-local:centos-devel
 
 Group cern-prio-0
 Channel cern-inbox
+Channel cern-drafts
 Channel cern-sent
 
 Group cern-prio-1
