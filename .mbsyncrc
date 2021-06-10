@@ -127,6 +127,7 @@ Slave :cern-local:centos-devel
 
 Group cern-prio-0
 Channel cern-inbox
+Channel cern-sent
 
 Group cern-prio-1
 Channel cern-ai-admins
@@ -151,7 +152,6 @@ Channel cern-oss-security
 Channel cern-puppet-dev
 Channel cern-puppet-users
 Channel cern-rh-errata
-Channel cern-sent
 Channel cern-service-desk
 Channel cern-service-desk-crap
 Channel cern-spanish-gang
