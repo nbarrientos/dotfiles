@@ -5,7 +5,7 @@ ConditionPathExists=%h/.mbsyncrc
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync cern-prio-1
+ExecStart=/home/nacho/.local/bin/mbsync cern-prio-1
 
 [Install]
 WantedBy=mail.target
