@@ -865,8 +865,6 @@ to-buffer-name then it switches back to the previous buffer."
            . split-window-right)
           ([?\s-k]
            . delete-window)
-          ([?\s-b]
-           . balance-windows)
           ([?\s-d] .
            (lambda ()
              (interactive)
@@ -891,6 +889,16 @@ to-buffer-name then it switches back to the previous buffer."
            (lambda ()
              (interactive)
              (start-process "" nil "/usr/bin/firefox")))
+          ([?\s-=]
+           . balance-windows)
+          ([?\s-+] .
+           (lambda ()
+             (interactive)
+             (exwm-layout-enlarge-window-horizontally 100)))
+          ([?\s--] .
+           (lambda ()
+             (interactive)
+             (exwm-layout-shrink-window-horizontally 100)))
           ([?\s-s] .
            (lambda ()
              (interactive)
