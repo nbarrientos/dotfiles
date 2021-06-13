@@ -905,6 +905,8 @@ to-buffer-name then it switches back to the previous buffer."
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])))
 
+  (setq exwm-manage-force-tiling t)
+
   (define-key exwm-mode-map (kbd "C-c") nil)
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
