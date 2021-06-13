@@ -825,12 +825,6 @@ the previously multi-windowed one"
 ;;; Window manager
 (use-package exwm
   :config
-  (add-hook 'exwm-update-title-hook
-            (lambda ()
-              (exwm-workspace-rename-buffer (my/exwm-buffer-name))))
-
-  (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
-
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
 
@@ -911,14 +905,6 @@ to-buffer-name then it switches back to the previous buffer."
           ([?\C-d] . [delete])
           ([?\C-k] . [S-end delete])))
 
-  (add-hook 'exwm-manage-finish-hook
-          (lambda ()
-            (when (and exwm-class-name
-                       (string= (downcase exwm-class-name) "firefox"))
-              (exwm-input-set-local-simulation-keys
-               '(([?\C-s] . [?\C-f]) ; Swiper!
-                 ([?\C-t] . nil)))))) ; Prevent accidental tab creation
-
   (define-key exwm-mode-map (kbd "C-c") nil)
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
@@ -929,10 +915,23 @@ to-buffer-name then it switches back to the previous buffer."
   (setq display-time-format "%d/%b %H:%M")
   (display-time-mode)
 
+  (add-hook 'exwm-update-title-hook
+            (lambda ()
+              (exwm-workspace-rename-buffer (my/exwm-buffer-name))))
+
+  (add-hook 'exwm-manage-finish-hook
+          (lambda ()
+            (when (and exwm-class-name
+                       (string= (downcase exwm-class-name) "firefox"))
+              (exwm-input-set-local-simulation-keys
+               '(([?\C-s] . [?\C-f]) ; Swiper!
+                 ([?\C-t] . nil)))))) ; Prevent accidental tab creation
+
   (add-hook 'exwm-init-hook
             (lambda ()
               (progn
                 (split-window-right)
+                (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
                 (eshell))))
 
   (exwm-enable))
