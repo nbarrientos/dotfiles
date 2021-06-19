@@ -28,7 +28,7 @@ unfolded and
 
 ``` 1c-enterprise
 $ git clone git@github.com:nbarrientos/dotfiles.git ~/.dotfiles
-$ mkdir -p ~/.config/systemd/user
+$ mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
 $ mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
 $ mkdir -p ~/.gnupg
 $ mkdir -p ~/.local/share/applications
