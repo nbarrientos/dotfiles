@@ -815,7 +815,7 @@ the previously multi-windowed one"
     :keybinding "w")
   (defengine youtube
     "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
-  (engine/set-keymap-prefix (kbd "C-x y"))
+  (engine/set-keymap-prefix (kbd "C-j"))
   (engine-mode t))
 
 ;;; Window manager
@@ -906,6 +906,8 @@ to-buffer-name then it switches back to the previous buffer."
   (define-key exwm-mode-map (kbd "C-c") nil)
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
+  ;; Engine mode
+  (add-to-list 'exwm-input-prefix-keys ?\C-j)
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'ace-window)
 
