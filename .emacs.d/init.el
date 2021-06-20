@@ -311,7 +311,6 @@ my/ispell-dictionary-list."
   :diminish
   :bind (:map ivy-minibuffer-map
               ("TAB" . ivy-alt-done)
-              ("M-k" . ivy-switch-buffer-kill)
               ([C-return] . ivy-restrict-to-matches))
   :config
   (defun my/ivy-switch-buffer-firefox ()
