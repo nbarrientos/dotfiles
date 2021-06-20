@@ -146,22 +146,6 @@
   :bind (:map outline-minor-mode-map
               ([C-tab] . bicycle-cycle)))
 
-;;;; Whiteroom
-(use-package writeroom-mode
-  :bind
-  ("<f11>" . writeroom-mode)
-  :custom
-  (writeroom-restore-window-config t)
-  (writeroom-width 100)
-  :hook
-  ((writeroom-mode-enable .
-                          (lambda ()
-                            (when (executable-find "dunstctl")
-                              (shell-command "dunstctl set-paused true"))))
-   (writeroom-mode-disable .
-                           (lambda ()
-                             (when (executable-find "dunstctl")
-                               (shell-command "dunstctl set-paused false"))))))
 ;;;; URLs
 (require 'url-util)
 (use-package goto-addr
