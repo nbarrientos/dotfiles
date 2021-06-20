@@ -544,6 +544,7 @@ modify parts of the directory before switching to it."
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
 
 (use-package csv-mode)
+(use-package jq-mode)
 ;;;; Misc
 (use-package editorconfig
   :config
