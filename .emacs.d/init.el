@@ -801,6 +801,9 @@ the previously multi-windowed one"
   (defengine google
     "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&q=%s"
     :keybinding "g")
+  (defengine google-first
+    "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&btnI=1&sourceid=navclient&gfns=1&q=%s"
+    :keybinding "f")
   (defengine google-maps
     "https://www.google.com/maps/search/%s/"
     :keybinding "M")
