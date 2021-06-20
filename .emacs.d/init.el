@@ -621,6 +621,15 @@ If no universal argument is passed, assume only one output"
         (erase-buffer)
         (insert eshell-output)
         (switch-to-buffer-other-window (current-buffer)))))
+  (defun eshell/tcd (&optional directory)
+    "Change the default directory to DIRECTORY but TRAMP-aware.
+Like `eshell/cd' but taking into account that the current
+directory might be in a remote file system. If that's the case,
+the current TRAMP root is prepended to DIRECTORY."
+    (let ((tramp-root (file-remote-p default-directory)))
+      (if tramp-root
+          (eshell/cd (concat tramp-root (or directory "")))
+        (eshell/cd directory))))
   (setenv "EDITOR" "emacsclient")
   :custom
   (eshell-banner-message "")
