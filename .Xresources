@@ -3,8 +3,11 @@
 urxvt.saveLines: 20000
 urxvt.scrollBar: false
 urxvt.font: xft:JetBrainsMono:size=11:autohint=true:antialias=true
-urxvt.perl-ext-common: default,matcher
+urxvt.perl-ext-common: default,matcher,selection-to-clipboard
 urxvt.url-launcher: firefox
+urxvt.keysym.Shift-Control-V: eval:paste_clipboard
+urxvt.iso14755: false
+urxvt.iso14755_52: false
 
 *.foreground: #F8F8F2
 *.background: #282A36

@@ -902,10 +902,7 @@ to-buffer-name then it switches back to the previous buffer."
 
   (setq exwm-input-simulation-keys
         '(
-          ([?\C-a] . [home])
-          ([?\C-e] . [end])
-          ([?\C-d] . [delete])
-          ([?\C-k] . [S-end delete])))
+          ([?\C-y] . [?\C-v])))
 
   (setq exwm-manage-force-tiling t)
 
@@ -921,6 +918,24 @@ to-buffer-name then it switches back to the previous buffer."
   (setq display-time-format "%d/%b %H:%M")
   (display-time-mode)
 
+  (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
+
+  (defun my/exwm-counsel-yank-pop ()
+    "Same as `counsel-yank-pop' and paste into exwm buffer.
+Stolen from https://github.com/DamienCassou/gpastel#for-exwmcounsel-users
+and adapted to use simulations keys to have a common yank keystroke."
+    (interactive)
+    (let ((inhibit-read-only t)
+          (yank-pop-change-selection t))
+      (call-interactively #'counsel-yank-pop))
+    (when (derived-mode-p 'exwm-mode)
+      ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
+      (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
+      (let ((keys (gethash [?\C-y]
+                       exwm-input--simulation-keys)))
+        (dolist (key keys)
+          (exwm-input--fake-key key)))))
+
   (add-hook 'exwm-update-title-hook
             (lambda ()
               (exwm-workspace-rename-buffer (my/exwm-buffer-name))))
@@ -928,10 +943,18 @@ to-buffer-name then it switches back to the previous buffer."
   (add-hook 'exwm-manage-finish-hook
           (lambda ()
             (when (and exwm-class-name
+                       (string= (downcase exwm-class-name) "urxvt"))
+              (exwm-input-set-local-simulation-keys
+               (append
+                exwm-input-simulation-keys
+                '(([?\C-y] . [?\C-\S-v])))))
+            (when (and exwm-class-name
                        (string= (downcase exwm-class-name) "firefox"))
               (exwm-input-set-local-simulation-keys
-               '(([?\C-s] . [?\C-f]) ; Swiper!
-                 ([?\C-t] . nil)))))) ; Prevent accidental tab creation
+               (append
+                exwm-input-simulation-keys
+                '(([?\C-s] . [?\C-f]) ; Swiper!
+                  ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
 
   (add-hook 'exwm-init-hook
             (lambda ()
