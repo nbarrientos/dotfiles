@@ -3,3 +3,6 @@
 	email = nacho.barrientos@cern.ch
 [http]
         emptyAuth = true
+
+[gitlab "gitlab.cern.ch/api/v4"]
+	user = ibarrien

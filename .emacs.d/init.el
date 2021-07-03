@@ -664,6 +664,12 @@ the current TRAMP root is prepended to DIRECTORY."
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t))
 
+(use-package forge
+  :after magit
+  :config
+  (add-to-list 'forge-alist
+               '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository)))
+
 (use-package git-link
   :custom
   (git-link-use-commit t))
