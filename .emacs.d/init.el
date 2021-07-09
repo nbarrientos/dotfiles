@@ -313,13 +313,20 @@ my/ispell-dictionary-list."
               ("TAB" . ivy-alt-done)
               ([C-return] . ivy-restrict-to-matches))
   :config
+  (defun my/ivy-switch-buffer-by-prefix (prefix)
+    "Use ivy to select a buffer prefixed by PREFIX#."
+    (minibuffer-with-setup-hook
+        (lambda ()
+          (insert (concat "^" prefix "# ")))
+      (ivy-switch-buffer)))
   (defun my/ivy-switch-buffer-firefox ()
     "Use ivy to select a Firefox window (buffer)."
     (interactive)
-    (minibuffer-with-setup-hook
-        (lambda ()
-          (insert "^f# "))
-      (ivy-switch-buffer)))
+    (my/ivy-switch-buffer-by-prefix "f"))
+  (defun my/ivy-switch-buffer-urxvt ()
+    "Use ivy to select an URXVT window (buffer)."
+    (interactive)
+    (my/ivy-switch-buffer-by-prefix "u"))
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers 'recentf)
@@ -836,7 +843,7 @@ It also removes annoying notification counters."
     (let ((b-f (string-trim (replace-regexp-in-string "([[:digit:]]+)" "" exwm-title))))
       (pcase (downcase exwm-class-name)
         ("firefox" (concat "F# " (replace-regexp-in-string " [-—] Mozilla Firefox$" "" b-f)))
-        ("urxvt" exwm-class-name)
+        ("urxvt" (concat "U# " (replace-regexp-in-string ":.*$" "" exwm-title)))
         (_ b-f))))
 
   (defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
@@ -877,6 +884,10 @@ to-buffer-name then it switches back to the previous buffer."
            . mu4e-headers-search-bookmark)
           ([?\s-8]
            . mu4e)
+          ([?\s-9] .
+           (lambda ()
+             (interactive)
+             (my/ivy-switch-buffer-urxvt)))
           ([?\s-1] .
            (lambda ()
              (interactive)
