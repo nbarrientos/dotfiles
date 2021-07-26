@@ -129,6 +129,10 @@ Channel cern-centos-devel
 Master :cern-remote:centos-devel
 Slave :cern-local:centos-devel
 
+Channel cern-market
+Master :cern-remote:cern-market
+Slave :cern-local:cern-market
+
 Group cern-prio-0
 Channel cern-inbox
 Channel cern-drafts
@@ -153,6 +157,7 @@ Channel cern-it-dep
 Channel cern-it-dep-cm
 Channel cern-it-dep-cm-lcs
 Channel cern-linux-users
+Channel cern-market
 Channel cern-oss-security
 Channel cern-puppet-dev
 Channel cern-puppet-users
