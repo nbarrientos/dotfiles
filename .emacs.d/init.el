@@ -1074,7 +1074,7 @@ and adapted to use simulations keys to have a common yank keystroke."
       (org-store-link-props
        :type "http"
        :link (my/exwm-get-firefox-url)
-       :description exwm-title)))
+       :description (replace-regexp-in-string " [-—] Mozilla Firefox$" "" exwm-title))))
 
   (org-link-set-parameters "firefox" :store 'my/exwm-org-store-link)
   :custom
