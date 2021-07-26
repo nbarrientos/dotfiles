@@ -735,6 +735,7 @@ the previously multi-windowed one"
   (mu4e-split-view nil)
   (mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
   (mu4e-headers-date-format "%d/%m/%y")
+  (mu4e-headers-time-format "%R")
   (mu4e-maildir "~/Mail")
   (mu4e-drafts-folder "/cern/Drafts")
   (mu4e-sent-folder   "/cern/Sent Items")
