@@ -1114,7 +1114,7 @@ and adapted to use simulations keys to have a common yank keystroke."
         '(("t" "Todo" entry (file+headline "~/org/notes.org" "Tasks")
            "* TODO %?\n  %u\n  %a")
           ("w" "CERN meeting" entry (file+olp "~/org/calendar.org" "CERN" "Meetings")
-           "* %(with-current-buffer \"*eww*\" (plist-get eww-data :title))%?\n  %^{Date and time?}T\n  %a"))))
+           "* %(string-trim-left (buffer-name (plist-get org-capture-plist :original-buffer)) \"^F# \") %?\n  %^{Date and time?}T\n  %a"))))
 
 (use-package org-tree-slide
   :custom
