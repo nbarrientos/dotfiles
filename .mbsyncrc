@@ -77,10 +77,6 @@ Channel cern-guides-es
 Master :cern-remote:guides-es
 Slave :cern-local:guides-es
 
-Channel cern-i3-discuss
-Master :cern-remote:i3-discuss
-Slave :cern-local:i3-discuss
-
 Channel cern-it-dep
 Master :cern-remote:it-dep
 Slave :cern-local:it-dep
@@ -156,7 +152,6 @@ Channel cern-foreman-users
 Channel cern-gitlab
 Channel cern-guides-en
 Channel cern-guides-es
-Channel cern-i3-discuss
 Channel cern-it-dep
 Channel cern-it-dep-cm
 Channel cern-it-dep-cm-lcs
