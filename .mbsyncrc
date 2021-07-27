@@ -25,6 +25,10 @@ Channel cern-drafts
 Master :cern-remote:Drafts
 Slave :cern-local:Drafts
 
+Channel cern-spam
+Master :cern-remote:Spam
+Slave :cern-local:Spam
+
 Channel cern-ai-admins
 Master :cern-remote:ai-admins
 Slave :cern-local:ai-admins
@@ -165,3 +169,4 @@ Channel cern-rh-errata
 Channel cern-service-desk
 Channel cern-service-desk-crap
 Channel cern-spanish-gang
+Channel cern-spam

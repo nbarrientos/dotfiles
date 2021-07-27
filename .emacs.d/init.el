@@ -751,13 +751,13 @@ the previously multi-windowed one"
        :query "flag:unread and maildir:\"/cern/INBOX\""
        :key ?i)
      ( :name  "All unread messages"
-       :query "flag:unread and not flag:trashed"
+       :query "flag:unread and not flag:trashed and not maildir:\"/cern/Spam\""
        :key ?u)
      ( :name "Today's messages"
-       :query "date:today..now"
+       :query "date:today..now and not maildir:\"/cern/Spam\""
        :key ?t)
      ( :name "Last 7 days"
-       :query "date:7d..now"
+       :query "date:7d..now and not maildir:\"/cern/Spam\""
        :key ?w)
      ( :name "Flagged messages"
        :query "flag:flagged"
