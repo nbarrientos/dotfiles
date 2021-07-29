@@ -726,7 +726,7 @@ the previously multi-windowed one"
   (mu4e-update-interval (* 5 60))
   (mu4e-get-mail-command "true") ; mbsync is run by a systemd timer (only re-index)
   ;; (mu4e-html2text-command "lynx -dump -stdin")
-  (mu4e-view-use-gnus t)
+  (mu4e-view-use-gnus t) ;; Once all clients are upgraded to 1.6.0 this can go
   (mu4e-compose-signature " bye\n Nacho\n http://cern.ch/nacho")
   (mu4e-view-show-addresses t)
   (mu4e-compose-dont-reply-to-self t)
