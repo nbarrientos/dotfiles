@@ -63,6 +63,8 @@
 
 (add-to-list 'yank-excluded-properties 'face)
 
+(put 'narrow-to-region 'disabled nil)
+
 ;;;; Fonts
 (set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
 
