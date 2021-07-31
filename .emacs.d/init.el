@@ -786,7 +786,9 @@ the previously multi-windowed one"
   (setq mu4e-headers-related-label    '("R" . ""))
   (with-eval-after-load "mm-decode"
     (add-to-list 'mm-discouraged-alternatives "text/html")
-    (add-to-list 'mm-discouraged-alternatives "text/richtext")))
+    (add-to-list 'mm-discouraged-alternatives "text/richtext"))
+  :bind (:map mu4e-headers-mode-map
+              ("r" . nil)))
 
 (use-package mu4e-marker-icons
   :custom
