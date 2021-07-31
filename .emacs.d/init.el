@@ -788,12 +788,6 @@ the previously multi-windowed one"
     (add-to-list 'mm-discouraged-alternatives "text/html")
     (add-to-list 'mm-discouraged-alternatives "text/richtext")))
 
-(use-package mu4e-alert
-  :custom
-  (mu4e-alert-interesting-mail-query "flag:unread AND maildir:\"/cern/INBOX\"")
-  :config
-  (mu4e-alert-enable-mode-line-display))
-
 (use-package mu4e-marker-icons
   :custom
   (mu4e-marker-icons-mode 1))
