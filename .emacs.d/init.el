@@ -663,7 +663,10 @@ the current TRAMP root is prepended to DIRECTORY."
 (use-package magit
   :bind (("C-x g" . magit-status)
          ("C-x G" . magit-dispatch)
-         ("C-c g" . magit-file-dispatch))
+         ("C-c g" . magit-file-dispatch)
+         :map magit-section-mode-map
+         ("C-<up>" . magit-section-backward-sibling)
+         ("C-<down>" . magit-section-forward-sibling))
   :config
   (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
   (transient-append-suffix 'magit-push "-n"
