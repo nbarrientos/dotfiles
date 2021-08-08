@@ -299,6 +299,13 @@ my/ispell-dictionary-list."
   (dired-subtree-line-prefix "  |-")
   (dired-subtree-use-backgrounds nil))
 
+(use-package dired-aux
+  :ensure nil
+  :defer t
+  :config
+  (add-to-list 'dired-compress-file-suffixes
+               '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
+
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
 (use-package all-the-icons-ivy
