@@ -682,7 +682,8 @@ the current TRAMP root is prepended to DIRECTORY."
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
   (magit-clone-url-format "https://%h/%n.git")
-  (magit-clone-set-remote.pushDefault t))
+  (magit-clone-set-remote.pushDefault t)
+  (magit-list-refs-sortby "-creatordate"))
 
 (use-package forge
   :after magit
