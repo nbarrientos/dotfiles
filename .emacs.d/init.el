@@ -527,7 +527,11 @@ modify parts of the directory before switching to it."
 (use-package inf-ruby
   :hook ((ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-minor-mode)))
-(use-package puppet-mode)
+(use-package puppet-mode
+  :hook ((puppet-mode . (lambda ()
+                          (setq
+                           flycheck-puppet-lint-executable
+                           "~/.local/bin/puppet-lint")))))
 (use-package rspec-mode)
 
 (use-package go-mode
