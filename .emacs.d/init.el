@@ -1145,6 +1145,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   (org-tree-slide-slide-in-effect nil))
 
 ;;; Notifications
+(use-package notifications
+  :ensure nil)
+
 (use-package appt
   :ensure nil
   :config
