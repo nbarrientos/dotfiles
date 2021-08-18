@@ -391,13 +391,19 @@ my/ispell-dictionary-list."
          ("C-b" . ivy-switch-buffer)
          ("M-b" . ivy-switch-buffer-other-window)
          ("C-x C-f" . my/counsel-fzf-project-root)
-         ("C-x f" . counsel-find-file)
+         ("C-x f" . my/counsel-find-file-no-tramp)
+         ("C-x F" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
          ("C-h k" . helpful-key)
          ("C-x r b" . counsel-bookmark)
          ("M-y" . counsel-yank-pop))
   :config
+  (defun my/counsel-find-file-no-tramp (&optional initial-input initial-directory)
+    (interactive)
+    (if (string-prefix-p "/ssh:" default-directory)
+        (counsel-find-file "" "~/")
+      (counsel-find-file initial-input initial-directory)))
   ;; Pending https://github.com/abo-abo/swiper/pull/2844/
   (defun counsel--esh-dir-history-action-cd (pair)
     "Change the current working directory to the selection.
