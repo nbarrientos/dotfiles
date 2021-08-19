@@ -491,7 +491,7 @@ modify parts of the directory before switching to it."
 ;;; Look and feel
 (use-package doom-themes
   :config
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-tomorrow-night t)
   (doom-themes-visual-bell-config)
   (custom-set-faces
    '(ivy-modified-buffer ((t (:inherit default :foreground unspecified)))))
