@@ -712,7 +712,6 @@ the current TRAMP root is prepended to DIRECTORY."
    ("C-e" . mwim-end-of-code-or-line)))
 
 (use-package ace-window
-  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind (("<f8>" . ace-window)
          ("C-x 1" . my/toggle-single-window))
   :config
@@ -726,8 +725,13 @@ the previously multi-windowed one"
     (progn
       (setq my-saved-window-configuration (current-window-configuration))
       (delete-other-windows))))
+  (ace-window-display-mode)
   :custom
-  (aw-scope 'frame))
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-scope 'frame)
+  (aw-display-mode-overlay nil)
+  (aw-background nil)
+  (aw-minibuffer-flag t))
 
 (use-package bookmark
   :ensure nil
