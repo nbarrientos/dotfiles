@@ -687,7 +687,8 @@ the current TRAMP root is prepended to DIRECTORY."
   :config
   (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
   (transient-append-suffix 'magit-push "-n"
-    '(1 "-M" "Create MR in Gitlab" "--push-option=merge_request.create"))
+    '(1 "-M" "Create MR in Gitlab"
+        "--push-option=merge_request.create --push-option=merge_request.unassign=22"))
   :custom
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
