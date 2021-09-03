@@ -693,6 +693,7 @@ the current TRAMP root is prepended to DIRECTORY."
     '(1 "-U" "Unassign MR in Gitlab"
         "--push-option=merge_request.unassign=22"))
   :custom
+  (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
   (magit-clone-url-format "https://%h/%n.git")
