@@ -819,7 +819,8 @@ the previously multi-windowed one"
     (add-to-list 'mm-discouraged-alternatives "text/html")
     (add-to-list 'mm-discouraged-alternatives "text/richtext"))
   :bind (:map mu4e-headers-mode-map
-              ("r" . nil)))
+              ("r" . nil)
+              ("d" . 'mu4e-headers-mark-for-delete)))
 
 (use-package mu4e-marker-icons
   :custom
