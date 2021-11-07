@@ -1,11 +1,11 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-settings 6.00 for nacho on Wed Aug  4 09:08:47 2021.
+# Written by xscreensaver-settings 6.01 for nacho on Sun Oct 17 12:10:11 2021.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	0:07:00
+timeout:	0:04:00
 cycle:		0:10:00
 lock:		True
-lockTimeout:	0:05:00
+lockTimeout:	0:15:00
 passwdTimeout:	0:00:30
 visualID:	default
 installColormap:    True

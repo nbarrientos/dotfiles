@@ -267,6 +267,11 @@ my/ispell-dictionary-list."
   :custom
   (tramp-default-method "ssh"))
 
+(use-package tramp-sh
+  :ensure nil
+  :custom
+  (tramp-use-ssh-controlmaster-options nil))
+
 (use-package em-tramp
   :ensure nil
   :config
