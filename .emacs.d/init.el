@@ -265,6 +265,7 @@ my/ispell-dictionary-list."
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
   :custom
+  (tramp-verbose 2)
   (tramp-default-method "ssh"))
 
 (use-package tramp-sh
