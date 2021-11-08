@@ -686,11 +686,13 @@ the current TRAMP root is prepended to DIRECTORY."
              "/"
            prompt-path)
          'epe-dir-face)))
-     (epe-colorize-with-face
-      (concat "@" (if (epe-remote-p)
-                      (epe-remote-host)
-                    (system-name)))
-      'epe-remote-face)
+     (if (epe-remote-p)
+         (epe-colorize-with-face
+          (concat "@" (epe-remote-host))
+          'epe-remote-face)
+       (epe-colorize-with-face
+        (concat "@" (system-name))
+        'epe-git-face))
      (epe-colorize-with-face "\nλ" 'epe-status-face)
      " "))
   (with-eval-after-load "esh-opt"
