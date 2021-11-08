@@ -639,6 +639,7 @@ If no universal argument is passed, assume only one output"
             (setq times 1)
           (setq times current-prefix-arg))
         (eshell-previous-prompt times)
+        (forward-line -1) ; Two lines prompt
         (beginning-of-line)
         (message (format "Shell output added to the kill ring (%d commands)" times))
         (kill-ring-save (point) (eshell-end-of-output)))))
@@ -674,15 +675,23 @@ the current TRAMP root is prepended to DIRECTORY."
 (use-package eshell-prompt-extras
   :after (eshell)
   :config
+  (defun my/epe-theme-prompt ()
+    (setq eshell-prompt-regexp "^λ ")
+    (concat
+     (let ((prompt-path (epe-fish-path (tramp-file-local-name (eshell/pwd)))))
+       (format
+        (epe-colorize-with-face "[%s]" 'epe-remote-face)
+        (epe-colorize-with-face prompt-path 'epe-dir-face)))
+     (epe-colorize-with-face
+      (concat "@"  (if (epe-remote-p)
+                       (epe-remote-host)
+                     (system-name)))
+      'epe-remote-face)
+     (epe-colorize-with-face "\nλ" 'epe-status-face)
+     " "))
   (with-eval-after-load "esh-opt"
-    (autoload 'epe-theme-dakrone "eshell-prompt-extras")
     (setq eshell-highlight-prompt nil
-          eshell-prompt-function 'epe-theme-dakrone))
-  (defun epe-git-p () nil) ; no git info on the prompt
-  :custom
-  (epe-show-python-info nil)
-  :custom-face
-  (epe-symbol-face ((t (:inherit eshell-ls-missing)))))
+          eshell-prompt-function 'my/epe-theme-prompt)))
 
 ;;; Magit and Git
 (use-package magit
