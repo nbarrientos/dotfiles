@@ -693,7 +693,9 @@ the current TRAMP root is prepended to DIRECTORY."
        (epe-colorize-with-face
         (concat "@" (system-name))
         'epe-git-face))
-     (epe-colorize-with-face "\nλ" 'epe-status-face)
+     (if (eshell-exit-success-p)
+         (epe-colorize-with-face "\nλ" 'success)
+       (epe-colorize-with-face "\nλ" 'error))
      " "))
   (with-eval-after-load "esh-opt"
     (setq eshell-highlight-prompt nil
