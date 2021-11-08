@@ -326,7 +326,6 @@ my/ispell-dictionary-list."
   :diminish
   :bind (:map ivy-minibuffer-map
               ("TAB" . ivy-alt-done)
-              ([M-return] . ivy-immediate-done)
               ([C-return] . ivy-restrict-to-matches))
   :config
   (defun my/ivy-switch-buffer-by-prefix (prefix)
@@ -347,6 +346,7 @@ my/ispell-dictionary-list."
   :custom
   (ivy-use-virtual-buffers 'recentf)
   (ivy-virtual-abbreviate 'abbreviate)
+  (ivy-use-selectable-prompt t)
   (ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
 
 (use-package ivy-posframe
