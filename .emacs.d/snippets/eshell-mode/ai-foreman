@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ai-foreman -l
+# key: ai-fl
+# ai-foreman(1)
+# --
+
+ai-foreman -l $0 showhost
