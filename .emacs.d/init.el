@@ -683,9 +683,9 @@ the current TRAMP root is prepended to DIRECTORY."
         (epe-colorize-with-face "[%s]" 'epe-remote-face)
         (epe-colorize-with-face prompt-path 'epe-dir-face)))
      (epe-colorize-with-face
-      (concat "@"  (if (epe-remote-p)
-                       (epe-remote-host)
-                     (system-name)))
+      (concat "@" (if (epe-remote-p)
+                      (epe-remote-host)
+                    (system-name)))
       'epe-remote-face)
      (epe-colorize-with-face "\nλ" 'epe-status-face)
      " "))
