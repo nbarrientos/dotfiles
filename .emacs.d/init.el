@@ -904,6 +904,27 @@ the previously multi-windowed one"
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
 
+  (setq-default my/exwm--do-not-mass-kill nil)
+  (defun my/exwm-toggle-buffer-protection ()
+    "Protect an EXWM from being mass deleted."
+    (interactive)
+    (when (eq major-mode 'exwm-mode)
+      (if my/exwm--do-not-mass-kill
+          (kill-local-variable 'my/exwm--do-not-mass-kill)
+        (setq-local my/exwm--do-not-mass-kill t))
+      (message "EXWM buffer protection set to %s" my/exwm--do-not-mass-kill)))
+  (defun my/exwm-kill-unprotected-by-prefix (prefix)
+    "Kill all EXWM buffers with PREFIX that have `my/exwm--do-not-mass-kill' set to nil."
+    (interactive "sPrefix: ")
+    (dolist (buf (buffer-list (current-buffer)))
+      (with-current-buffer buf
+        (when
+            (and
+             (eq major-mode 'exwm-mode)
+             (string-prefix-p (concat prefix "#") (buffer-name))
+             (not my/exwm--do-not-mass-kill))
+          (kill-buffer)))))
+
   (defun my/exwm-buffer-name ()
     "Guesses the buffer name using the title and the class of the X client.
 It also removes annoying notification counters."
@@ -963,6 +984,10 @@ to-buffer-name then it switches back to the previous buffer."
            (lambda ()
              (interactive)
              (start-process "" nil "/usr/bin/firefox")))
+          ([?\s-p] .
+           (lambda ()
+             (interactive)
+             (my/exwm-toggle-buffer-protection)))
           ([?\s-=]
            . balance-windows)
           ([?\s-+] .
