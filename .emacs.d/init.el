@@ -666,6 +666,8 @@ the current TRAMP root is prepended to DIRECTORY."
           (eshell/cd (concat tramp-root (or directory "")))
         (eshell/cd directory))))
   (setenv "EDITOR" "emacsclient")
+  (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
+  (add-to-list 'directory-abbrev-alist '("/afs/cern.ch/user/i/ibarrien" . "~"))
   :custom
   (eshell-banner-message "")
   (eshell-history-size 20000)
