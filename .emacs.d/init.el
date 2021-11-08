@@ -342,6 +342,7 @@ my/ispell-dictionary-list."
     "Use ivy to select an URXVT window (buffer)."
     (interactive)
     (my/ivy-switch-buffer-by-prefix "u"))
+  (setcdr (assoc t ivy-format-functions-alist) #'ivy-format-function-line)
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers 'recentf)
