@@ -32,6 +32,7 @@ $ mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
 $ mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
 $ mkdir -p ~/.gnupg
 $ mkdir -p ~/.local/share/applications
+$ mkdir -p ~/.ssh/controlmasters
 $ cd .dotfiles
 $ stow -v .
 ```
