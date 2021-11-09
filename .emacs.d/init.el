@@ -1056,6 +1056,7 @@ and adapted to use simulations keys to have a common yank keystroke."
                (append
                 exwm-input-simulation-keys
                 '(([?\C-s] . [?\C-f]) ; Swiper!
+                  ([?\C-g] . [escape])
                   ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
 
   (add-hook 'exwm-init-hook
