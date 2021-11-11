@@ -774,6 +774,13 @@ the previously multi-windowed one"
   :config
   (beginend-global-mode))
 
+(use-package drag-stuff
+  :bind
+  (("M-<up>" . drag-stuff-up)
+   ("M-<down>" . drag-stuff-down))
+  :config
+  (drag-stuff-global-mode))
+
 ;;; Help
 (use-package helpful)
 
