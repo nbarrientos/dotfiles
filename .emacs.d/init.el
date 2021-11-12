@@ -708,6 +708,8 @@ the current TRAMP root is prepended to DIRECTORY."
   :bind (("C-x g" . magit-status)
          ("C-x G" . magit-dispatch)
          ("C-c g" . magit-file-dispatch)
+         :map magit-mode-map
+         ("x" . magit-reset-hard)
          :map magit-section-mode-map
          ("C-<up>" . magit-section-backward-sibling)
          ("C-<down>" . magit-section-forward-sibling))
