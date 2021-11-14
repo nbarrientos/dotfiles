@@ -903,7 +903,8 @@ the previously multi-windowed one"
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :keybinding "w")
   (defengine youtube
-    "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+    "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+    :keybinding "y")
   (engine/set-keymap-prefix (kbd "C-j"))
   (engine-mode t))
 
