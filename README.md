@@ -33,6 +33,7 @@ $ mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
 $ mkdir -p ~/.gnupg
 $ mkdir -p ~/.local/share/applications
 $ mkdir -p ~/.ssh/controlmasters
+$ mkdir -p ~/venvs
 $ cd .dotfiles
 $ stow -v .
 ```
