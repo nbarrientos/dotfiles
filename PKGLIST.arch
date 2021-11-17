@@ -91,7 +91,6 @@ rpm-tools
 rsync
 ruby2.7
 rxvt-unicode
-schroot
 sshfs
 stow
 strace

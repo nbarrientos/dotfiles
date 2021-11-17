@@ -1120,7 +1120,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   :init
   (setq my/mc-env-pv "PUPPET_VERSION=\"~>6\" ")
   (setq my/mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
-  (setq my/mc-bundle-cmd "%s schroot -p -- bundle %%s")
+  ;; sudo ln -s /usr/bin/ruby-2.7 /usr/bin/ruby
+  ;; sudo ln -s /usr/bin/bundle-2.7 /usr/bin/bundle
+  (setq my/mc-bundle-cmd "%s bundle-2.7 %%s")
   ;; CERN environment
   (setq my/mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " my/mc-env-pv))
   (setq my/mc-c-bundle (format my/mc-bundle-cmd my/mc-c-env))
