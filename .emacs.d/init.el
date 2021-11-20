@@ -1143,6 +1143,9 @@ and adapted to use simulations keys to have a common yank keystroke."
              (format "rake %s" task))))
       (my/multi-compile--bundle module-origin "exec" rake-task)))
 
+  (defun my/multi-compile--cern-module-p ()
+    (s-contains-p "it-puppet" buffer-file-name))
+
   (defun my/multi-compile--find-root ()
       (locate-dominating-file buffer-file-name "metadata.json"))
   :custom
@@ -1152,7 +1155,7 @@ and adapted to use simulations keys to have a common yank keystroke."
      ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
-       (s-contains-p "it-puppet" buffer-file-name)) .
+       (my/multi-compile--cern-module-p)) .
        (("all-tests"
          ,(my/multi-compile--bundle-rake 'cern "test")
          (my/multi-compile--find-root))
@@ -1161,7 +1164,7 @@ and adapted to use simulations keys to have a common yank keystroke."
          (my/multi-compile--find-root))))
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
-       (not (s-contains-p "it-puppet" buffer-file-name))) .
+       (not (my/multi-compile--cern-module-p))) .
        (("all-tests"
          ,(my/multi-compile--bundle-rake 'upstream "test")
          (my/multi-compile--find-root))
@@ -1175,7 +1178,7 @@ and adapted to use simulations keys to have a common yank keystroke."
         (my/multi-compile--find-root))))
      ((and
        (string-match "_spec\\.rb$" buffer-file-name)
-       (not (s-contains-p "it-puppet" buffer-file-name))) .
+       (not (my/multi-compile--cern-module-p))) .
        (("single-test"
          ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")
          (my/multi-compile--find-root)))))))
