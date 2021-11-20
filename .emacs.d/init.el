@@ -1147,14 +1147,6 @@ and adapted to use simulations keys to have a common yank keystroke."
   (multi-compile-completion-system 'ivy)
   (multi-compile-alist
    `(
-     ;; Rubocop tasks for all Ruby (SPEC) files.
-     (enh-ruby-mode .
-      (("cern-p-rubocop"
-        ,(my/multi-compile--bundle 'cern "exec" "rubocop --format emacs")
-        (my/multi-compile--find-root))
-       ("cern-p-rubocop-autocorrect"
-        ,(my/multi-compile--bundle 'cern "exec" "rubocop -a --format emacs")
-        (my/multi-compile--find-root))))
      ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
