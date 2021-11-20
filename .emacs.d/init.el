@@ -1159,30 +1159,30 @@ and adapted to use simulations keys to have a common yank keystroke."
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (s-contains-p "it-puppet" buffer-file-name)) .
-       (("p-all-tests"
+       (("all-tests"
          ,(my/multi-compile--bundle-rake 'cern "test")
          (my/multi-compile--find-root))
-        ("p-bundle-update"
+        ("bundle-update"
          ,(my/multi-compile--bundle 'cern "update")
          (my/multi-compile--find-root))))
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (not (s-contains-p "it-puppet" buffer-file-name))) .
-       (("p-all-tests"
+       (("all-tests"
         ,(my/multi-compile--bundle-rake 'upstream "test")
         (my/multi-compile--find-root))
-       ("p-bundle-update"
+       ("bundle-update"
         ,(my/multi-compile--bundle 'upstream "update")
         (my/multi-compile--find-root))))
      ;; Single test runs when it's a SPEC file
      ((string-match ".+it-puppet.+_spec\\.rb$" buffer-file-name) .
-      (("p-single-test"
+      (("single-test"
         ,(my/multi-compile--bundle-rake 'cern "spec SPEC=%path")
         (my/multi-compile--find-root))))
      ((and
        (string-match "_spec\\.rb$" buffer-file-name)
        (not (s-contains-p "it-puppet" buffer-file-name))) .
-       (("p-single-test"
+       (("single-test"
         ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")
         (my/multi-compile--find-root)))))))
 
