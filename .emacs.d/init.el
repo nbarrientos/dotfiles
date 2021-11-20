@@ -1129,8 +1129,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   ;; sudo ln -s /usr/bin/ruby-2.7 /usr/bin/ruby
   ;; sudo ln -s /usr/bin/bundle-2.7 /usr/bin/bundle
   (defun my/multi-compile--bundle (module-origin cmd &optional args)
-    (let ((cmdline (list (my/multi-compile--bundle-environment module-origin)
-                         (format "bundle-2.7 %s" cmd))))
+    (let* ((ruby-version "2.7")
+           (cmdline (list (my/multi-compile--bundle-environment module-origin)
+                         (format "bundle-%s %s" ruby-version cmd))))
       (when args
         (add-to-list 'cmdline args t))
       (string-join cmdline " ")))
