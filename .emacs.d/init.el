@@ -1120,7 +1120,8 @@ and adapted to use simulations keys to have a common yank keystroke."
          ("C-x B" . multi-compile-run))
   :init
   (defun my/multi-compile--bundle-environment (module-origin)
-    (let ((environment (list "PUPPET_VERSION=\"~>6\"")))
+    (let* ((puppet-version "~>6")
+           (environment (list (format "PUPPET_VERSION=\"%s\"" puppet-version))))
       (when (eq module-origin 'cern)
         (add-to-list 'environment "BUNDLE_GEMFILE=../ci/Gemfile"))
       (string-join environment " ")))
