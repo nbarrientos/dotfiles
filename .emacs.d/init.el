@@ -1119,37 +1119,64 @@ and adapted to use simulations keys to have a common yank keystroke."
   :bind (("C-x b" . recompile)
          ("C-x B" . multi-compile-run))
   :init
-  (setq my/mc-env-pv "PUPPET_VERSION=\"~>6\" ")
-  (setq my/mc-root '(locate-dominating-file buffer-file-name "metadata.json"))
+  (defun my/multi-compile--bundle-environment (module-origin)
+    (let ((environment (list "PUPPET_VERSION=\"~>6\"")))
+      (when (eq module-origin 'cern)
+        (add-to-list 'environment "BUNDLE_GEMFILE=../ci/Gemfile"))
+      (string-join environment " ")))
+
   ;; sudo ln -s /usr/bin/ruby-2.7 /usr/bin/ruby
   ;; sudo ln -s /usr/bin/bundle-2.7 /usr/bin/bundle
-  (setq my/mc-bundle-cmd "%s bundle-2.7 %%s")
-  ;; CERN environment
-  (setq my/mc-c-env (concat "BUNDLE_GEMFILE=../ci/Gemfile " my/mc-env-pv))
-  (setq my/mc-c-bundle (format my/mc-bundle-cmd my/mc-c-env))
-  (setq my/mc-c-rake (format my/mc-c-bundle "exec rake --rakefile ../ci/Rakefile %s"))
-  ;; Standard Puppet module
-  (setq my/mc-env my/mc-env-pv)
-  (setq my/mc-bundle (format my/mc-bundle-cmd my/mc-env))
-  (setq my/mc-rake (format my/mc-bundle "exec rake %s"))
+  (defun my/multi-compile--bundle (module-origin cmd &optional args)
+    (let ((cmdline (list (my/multi-compile--bundle-environment module-origin)
+                         (format "bundle-2.7 %s" cmd))))
+      (when args
+        (add-to-list 'cmdline args t))
+      (string-join cmdline " ")))
+
+  (defun my/multi-compile--bundle-rake (module-origin task)
+    (let ((rake-task
+           (if (eq module-origin 'cern)
+               (format "rake --rakefile ../ci/Rakefile %s" task)
+             (format "rake %s" task))))
+      (my/multi-compile--bundle module-origin "exec" rake-task)))
+
+  (defun my/multi-compile--find-root ()
+      (locate-dominating-file buffer-file-name "metadata.json"))
   :custom
   (multi-compile-completion-system 'ivy)
   (multi-compile-alist
    `(
      ;; Rubocop tasks for all Ruby (SPEC) files.
      (enh-ruby-mode .
-      (("cern-p-rubocop" ,(format my/mc-c-bundle "exec rubocop --format emacs") ,my/mc-root)
-       ("cern-p-rubocop-autocorrect" ,(format my/mc-c-bundle "exec rubocop -a --format emacs") ,my/mc-root)))
+      (("cern-p-rubocop"
+        ,(my/multi-compile--bundle 'cern "exec" "rubocop --format emacs")
+        (my/multi-compile--find-root))
+       ("cern-p-rubocop-autocorrect"
+        ,(my/multi-compile--bundle 'cern "exec" "rubocop -a --format emacs")
+        (my/multi-compile--find-root))))
      ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
      ((or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode)) .
-      (("cern-p-all-tests" ,(format my/mc-c-rake "test") ,my/mc-root)
-       ("cern-p-bundle-update" ,(format my/mc-c-bundle "update") ,my/mc-root)
-       ("p-all-tests" ,(format my/mc-rake "test") ,my/mc-root)
-       ("p-bundle-update" ,(format my/mc-bundle "update") ,my/mc-root)))
+      (("cern-p-all-tests"
+        ,(my/multi-compile--bundle-rake 'cern "test")
+        (my/multi-compile--find-root))
+       ("cern-p-bundle-update"
+        ,(my/multi-compile--bundle 'cern "update")
+        (my/multi-compile--find-root))
+       ("p-all-tests"
+        ,(my/multi-compile--bundle-rake 'upstream "test")
+        (my/multi-compile--find-root))
+       ("p-bundle-update"
+        ,(my/multi-compile--bundle 'upstream "update")
+        (my/multi-compile--find-root))))
      ;; Single test runs when it's a SPEC file
      ("_spec\\.rb\\'" .
-      (("cern-p-single-test" ,(format my/mc-c-rake "spec SPEC=%path") ,my/mc-root)
-       ("p-single-test" ,(format my/mc-rake "spec SPEC=%path") ,my/mc-root))))))
+      (("cern-p-single-test"
+        ,(my/multi-compile--bundle-rake 'cern "spec SPEC=%path")
+        (my/multi-compile--find-root))
+       ("p-single-test"
+        ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")
+        (my/multi-compile--find-root)))))))
 
 (defun my/regenerate-ctags ()
     (interactive)
