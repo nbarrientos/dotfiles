@@ -125,7 +125,7 @@
   :config
   (show-paren-mode)
   :custom
-  (show-paren-style 'mixed))
+  (show-paren-style 'parenthesis))
 
 ;;;; Outline
 (use-package outline
