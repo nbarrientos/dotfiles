@@ -1146,42 +1146,31 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/multi-compile--cern-module-p ()
     (s-contains-p "it-puppet" (or buffer-file-name "")))
 
-  (defun my/multi-compile--find-root ()
+  (defun my/multi-compile--find-module-root ()
       (locate-dominating-file buffer-file-name "metadata.json"))
   :custom
   (multi-compile-completion-system 'ivy)
+  (multi-compile-default-directory-function #'my/multi-compile--find-module-root)
   (multi-compile-alist
    `(
      ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (my/multi-compile--cern-module-p)) .
-       (("all-tests"
-         ,(my/multi-compile--bundle-rake 'cern "test")
-         (my/multi-compile--find-root))
-        ("bundle-update"
-         ,(my/multi-compile--bundle 'cern "update")
-         (my/multi-compile--find-root))))
+       (("all-tests" . ,(my/multi-compile--bundle-rake 'cern "test"))
+        ("bundle-update" . ,(my/multi-compile--bundle 'cern "update"))))
      ((and
        (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (not (my/multi-compile--cern-module-p))) .
-       (("all-tests"
-         ,(my/multi-compile--bundle-rake 'upstream "test")
-         (my/multi-compile--find-root))
-        ("bundle-update"
-         ,(my/multi-compile--bundle 'upstream "update")
-         (my/multi-compile--find-root))))
+       (("all-tests" . ,(my/multi-compile--bundle-rake 'upstream "test"))
+        ("bundle-update" . ,(my/multi-compile--bundle 'upstream "update"))))
      ;; Single test runs when it's a SPEC file
      ((string-match ".+it-puppet.+_spec\\.rb$" (or buffer-file-name "")) .
-      (("single-test"
-        ,(my/multi-compile--bundle-rake 'cern "spec SPEC=%path")
-        (my/multi-compile--find-root))))
+      (("single-test" . ,(my/multi-compile--bundle-rake 'cern "spec SPEC=%path"))))
      ((and
        (string-match "_spec\\.rb$" (or buffer-file-name ""))
        (not (my/multi-compile--cern-module-p))) .
-       (("single-test"
-         ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")
-         (my/multi-compile--find-root)))))))
+       (("single-test" . ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")))))))
 
 (defun my/regenerate-ctags ()
     (interactive)
