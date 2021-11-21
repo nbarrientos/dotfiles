@@ -70,7 +70,6 @@
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-f"))
 
 ;;; Use-package
 
@@ -204,6 +203,9 @@
 (use-package simple
   :ensure nil
   :hook ((prog-mode . auto-fill-mode)))
+
+(use-package expand-region
+  :bind ("C-f" . er/expand-region))
 
 ;;; Spelling and grammar
 (use-package ispell
