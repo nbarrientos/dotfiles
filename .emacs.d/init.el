@@ -1144,7 +1144,7 @@ and adapted to use simulations keys to have a common yank keystroke."
       (my/multi-compile--bundle module-origin "exec" rake-task)))
 
   (defun my/multi-compile--cern-module-p ()
-    (s-contains-p "it-puppet" buffer-file-name))
+    (s-contains-p "it-puppet" (or buffer-file-name "")))
 
   (defun my/multi-compile--find-root ()
       (locate-dominating-file buffer-file-name "metadata.json"))
@@ -1172,12 +1172,12 @@ and adapted to use simulations keys to have a common yank keystroke."
          ,(my/multi-compile--bundle 'upstream "update")
          (my/multi-compile--find-root))))
      ;; Single test runs when it's a SPEC file
-     ((string-match ".+it-puppet.+_spec\\.rb$" buffer-file-name) .
+     ((string-match ".+it-puppet.+_spec\\.rb$" (or buffer-file-name "")) .
       (("single-test"
         ,(my/multi-compile--bundle-rake 'cern "spec SPEC=%path")
         (my/multi-compile--find-root))))
      ((and
-       (string-match "_spec\\.rb$" buffer-file-name)
+       (string-match "_spec\\.rb$" (or buffer-file-name ""))
        (not (my/multi-compile--cern-module-p))) .
        (("single-test"
          ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")
