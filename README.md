@@ -24,16 +24,9 @@ interesting.
 
 Clone the dotfiles, create the necessary directories so some trees are
 unfolded and
-[Stow](https://www.gnu.org/software/stow/manual/stow.html) it!
+[Stow](https://www.gnu.org/software/stow/manual/stow.html) it! or,
 
 ``` 1c-enterprise
-$ git clone git@github.com:nbarrientos/dotfiles.git ~/.dotfiles
-$ mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
-$ mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
-$ mkdir -p ~/.gnupg
-$ mkdir -p ~/.local/share/applications
-$ mkdir -p ~/.ssh/controlmasters
-$ mkdir -p ~/venvs
-$ cd .dotfiles
-$ stow -v .
+$ cd ~
+$ bash init.sh
 ```
