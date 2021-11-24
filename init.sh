@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo pacman -S --noconfirm git
-git clone git@github.com:nbarrientos/dotfiles.git ~/.dotfiles
+git clone https://github.com/nbarrientos/dotfiles.git ~/.dotfiles
 sudo pacman -S --needed - < .dotfiles/PKGLIST.native.arch
 mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
 mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
