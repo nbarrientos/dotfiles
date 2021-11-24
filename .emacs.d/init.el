@@ -749,10 +749,11 @@ the current TRAMP root is prepended to DIRECTORY."
   (("C-a" . mwim-beginning-of-code-or-line)
    ("C-e" . mwim-end-of-code-or-line)))
 
-(use-package ace-window
-  :bind (("<f8>" . ace-window)
+(use-package window
+  :ensure nil
+  :bind (("<f8>" . other-window)
          ("C-x 1" . my/toggle-single-window))
-  :config
+  :init
   (defun my/toggle-single-window ()
   "Toggles between a single window configuration and
 the previously multi-windowed one"
@@ -762,14 +763,7 @@ the previously multi-windowed one"
       (set-window-configuration my-saved-window-configuration))
     (progn
       (setq my-saved-window-configuration (current-window-configuration))
-      (delete-other-windows))))
-  (ace-window-display-mode)
-  :custom
-  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  (aw-scope 'frame)
-  (aw-display-mode-overlay nil)
-  (aw-background nil)
-  (aw-minibuffer-flag t))
+      (delete-other-windows)))))
 
 (use-package bookmark
   :ensure nil
@@ -1029,7 +1023,7 @@ to-buffer-name then it switches back to the previous buffer."
   ;; Engine mode
   (add-to-list 'exwm-input-prefix-keys ?\C-j)
   ;; Window switching
-  (define-key exwm-mode-map (kbd "<f8>") 'ace-window)
+  (define-key exwm-mode-map (kbd "<f8>") 'other-window)
 
   (setq display-time-default-load-average nil)
   (setq display-time-format "%d/%b %H:%M")
