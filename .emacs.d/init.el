@@ -205,7 +205,9 @@
   :hook ((prog-mode . auto-fill-mode)))
 
 (use-package expand-region
-  :bind ("C-f" . er/expand-region))
+  :bind ("C-f" . er/expand-region)
+  :custom
+  (expand-region-show-usage-message nil))
 
 ;;; Spelling and grammar
 (use-package ispell
