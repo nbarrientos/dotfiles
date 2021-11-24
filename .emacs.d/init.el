@@ -1059,6 +1059,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
   (add-hook 'exwm-manage-finish-hook
             (lambda ()
+              (setq-local default-directory "~")
               (when (and exwm-class-name
                          (string= (downcase exwm-class-name) "urxvt"))
                 (exwm-input-set-local-simulation-keys
