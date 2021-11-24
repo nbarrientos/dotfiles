@@ -1058,21 +1058,21 @@ and adapted to use simulations keys to have a common yank keystroke."
               (exwm-workspace-rename-buffer (my/exwm-buffer-name))))
 
   (add-hook 'exwm-manage-finish-hook
-          (lambda ()
-            (when (and exwm-class-name
-                       (string= (downcase exwm-class-name) "urxvt"))
-              (exwm-input-set-local-simulation-keys
-               (append
-                exwm-input-simulation-keys
-                '(([?\C-y] . [?\C-\S-v])))))
-            (when (and exwm-class-name
-                       (string= (downcase exwm-class-name) "firefox"))
-              (exwm-input-set-local-simulation-keys
-               (append
-                exwm-input-simulation-keys
-                '(([?\C-s] . [?\C-f]) ; Swiper!
-                  ([?\C-g] . [escape])
-                  ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
+            (lambda ()
+              (when (and exwm-class-name
+                         (string= (downcase exwm-class-name) "urxvt"))
+                (exwm-input-set-local-simulation-keys
+                 (append
+                  exwm-input-simulation-keys
+                  '(([?\C-y] . [?\C-\S-v])))))
+              (when (and exwm-class-name
+                         (string= (downcase exwm-class-name) "firefox"))
+                (exwm-input-set-local-simulation-keys
+                 (append
+                  exwm-input-simulation-keys
+                  '(([?\C-s] . [?\C-f]) ; Swiper!
+                    ([?\C-g] . [escape])
+                    ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
 
   (add-hook 'exwm-init-hook
             (lambda ()
