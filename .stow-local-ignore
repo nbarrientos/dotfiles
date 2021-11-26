@@ -1,5 +1,7 @@
-PKGLIST.arch
+PKGLIST.native.arch
+PKGLIST.foreign.arch
 README.md
+init.sh
 .git
 .gitignore
 xmodmap
