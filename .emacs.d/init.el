@@ -571,6 +571,7 @@ modify parts of the directory before switching to it."
 (use-package rpm-spec-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
+(use-package archive-rpm)
 (use-package sh-script
   :ensure nil
   :custom
