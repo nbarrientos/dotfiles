@@ -744,6 +744,12 @@ the current TRAMP root is prepended to DIRECTORY."
   :custom
   (git-link-use-commit t))
 
+(use-package ediff-init
+  :ensure nil
+  :config
+  ;; https://github.com/ch11ng/exwm/issues/353
+  (advice-add 'ediff-window-display-p :override #'ignore))
+
 ;;; Movement and window switching
 (use-package mwim
   :bind
