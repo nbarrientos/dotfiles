@@ -4,5 +4,8 @@
 [http]
         emptyAuth = true
 
+[merge]
+	conflictStyle = diff3
+
 [gitlab "gitlab.cern.ch/api/v4"]
 	user = ibarrien
