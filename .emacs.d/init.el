@@ -873,6 +873,23 @@ the previously multi-windowed one"
 ;;; Elfeed
 (use-package elfeed)
 
+;;; Multimedia
+(use-package eradio
+  :ensure t
+  :custom
+  (eradio-player '("mpv" "--no-video" "--no-terminal"))
+  (eradio-channels '(;; French
+                     ("Option Musique" . "http://stream.srg-ssr.ch/m/option-musique/mp3_128")
+                     ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/mp3_128")
+                     ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/mp3_128")
+                     ;; Spanish
+                     ("RNE" . "https://rtvelivestream.akamaized.net/rne_r1_main.m3u8")
+                     ("RPA" . "https://cdnlive2.shooowit.net/rtpalive/smil:radio.smil/playlist.m3u8")
+                     ;; English
+                     ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
+                     ("BBC2" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two")
+                     ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk"))))
+
 ;;; Web browsing
 (use-package eww
   :ensure nil
@@ -996,6 +1013,10 @@ to-buffer-name then it switches back to the previous buffer."
            (lambda ()
              (interactive)
              (my/ivy-switch-buffer-firefox)))
+          ([?\s-r] .
+           (lambda ()
+             (interactive)
+             (eradio-toggle)))
           ([?\s-t] .
            (lambda ()
              (interactive)
