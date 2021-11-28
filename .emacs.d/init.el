@@ -231,15 +231,16 @@
              (cdr
               (assoc ispell-local-dictionary my/dictionary-input-method-alist))))))
   :config
-  (defadvice ispell-internal-change-dictionary
-      (after ispell-internal-change-dictionary-call-hook activate)
-    "When using a keyword to set the dict to use (ispell-dictionary-keyword),
-ispell-internal-change-dictionary is called when the buffer is
-loaded (instead of ispell-dictionary-keyword) so the change dict
-hooks are not called. I need this to happen here as well so when
-I visit a file with dict settings (using Local IspellDict, for
-example) the input method is changed automatically as well"
-    (run-hooks 'ispell-change-dictionary-hook))
+  ;; When using a keyword to set the dict to use
+  ;; (ispell-dictionary-keyword), ispell-internal-change-dictionary is
+  ;; called when the buffer is loaded (instead of
+  ;; ispell-dictionary-keyword) so the change dict hooks are not
+  ;; called. I need this to happen here as well so when I visit a file
+  ;; with dict settings (using Local IspellDict, for example) the
+  ;; input method is changed automatically as well.
+  (advice-add 'ispell-internal-change-dictionary
+              :after (lambda ()
+                       (run-hooks 'ispell-change-dictionary-hook)))
 
   (defun my/ispell-cycle-dictionary ()
     "Cycle through the list of dictionaries that I typically use.
