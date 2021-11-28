@@ -888,7 +888,8 @@ the previously multi-windowed one"
                      ;; English
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
                      ("BBC2" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two")
-                     ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk"))))
+                     ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk")
+                     ("BBC Scotland" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_scotland_fm"))))
 
 ;;; Web browsing
 (use-package eww
