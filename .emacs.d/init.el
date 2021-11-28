@@ -245,7 +245,7 @@
   (defun my/ispell-cycle-dictionary ()
     "Cycle through the list of dictionaries that I typically use.
 The 'circular' list is defined in the variable
-my/ispell-dictionary-list."
+`my/ispell-dictionary-list'."
     (interactive)
     (let ((next-dictionary)
           (current-dictionary ispell-local-dictionary))
