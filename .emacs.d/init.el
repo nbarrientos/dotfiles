@@ -879,9 +879,9 @@ the previously multi-windowed one"
   :custom
   (eradio-player '("mpv" "--no-video" "--no-terminal"))
   (eradio-channels '(;; French
-                     ("Option Musique" . "http://stream.srg-ssr.ch/m/option-musique/mp3_128")
-                     ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/mp3_128")
-                     ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/mp3_128")
+                     ("Option Musique" . "http://stream.srg-ssr.ch/m/option-musique/aacp_96.m3u")
+                     ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/aacp_96.m3u")
+                     ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
                      ;; Spanish
                      ("RNE" . "https://rtvelivestream.akamaized.net/rne_r1_main.m3u8")
                      ("RPA" . "https://cdnlive2.shooowit.net/rtpalive/smil:radio.smil/playlist.m3u8")
