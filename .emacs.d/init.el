@@ -1050,6 +1050,7 @@ to-buffer-name then it switches back to the previous buffer."
   (define-key exwm-mode-map (kbd "C-c") nil)
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
+  (add-to-list 'exwm-input-prefix-keys ?\M-b)
   ;; Engine mode
   (add-to-list 'exwm-input-prefix-keys ?\C-j)
   ;; Window switching
