@@ -519,7 +519,7 @@ modify parts of the directory before switching to it."
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-irc-buffers t)
-  (doom-modeline-buffer-file-name-style 'truncate-with-project))
+  (doom-modeline-buffer-file-name-style 'relative-from-project))
 
 (use-package frame
   :ensure nil
