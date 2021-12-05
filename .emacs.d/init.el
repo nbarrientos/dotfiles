@@ -37,7 +37,6 @@
  visible-bell t
  vc-follow-symlinks t
  indent-tabs-mode nil
- auth-source-save-behavior nil
  custom-file null-device
  make-backup-files nil
  help-window-select t
@@ -175,6 +174,7 @@
 (use-package auth-source
   :ensure nil
   :custom
+  (auth-source-save-behavior nil)
   ;; Read credentials from KeepassXC too via the Secret Service API.
   ;; For this to work, KXC has to have this integration enabled and
   ;; some password groups shared via SS API. Also, those secrets must
