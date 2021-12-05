@@ -1419,7 +1419,9 @@ otherwise it returns nil."
 (use-package erc-networks
   :ensure nil
   :config
+  ;; This will be part of Emacs28
   (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
+  ;; This will be part of Emacs28
   (add-to-list 'erc-server-alist
                '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6667)))
 
