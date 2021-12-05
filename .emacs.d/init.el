@@ -171,6 +171,18 @@
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
 
+;;; Auth Source
+(use-package auth-source
+  :ensure nil
+  :custom
+  ;; Read credentials from KeepassXC too via the Secret Service API.
+  ;; For this to work, KXC has to have this integration enabled and
+  ;; some password groups shared via SS API. Also, those secrets must
+  ;; expose attributes (advanced tab) like 'host', 'port' and/or
+  ;; 'user' so they can be found by auth-source. Ex:
+  ;; (auth-source-search :type 'secrets :host "irc.libera.chat")
+  (auth-sources '("secrets:Passwords")))
+
 ;;; Killing, Yanking, Comments and Undo
 (use-package whole-line-or-region
   :init
