@@ -1446,7 +1446,6 @@ otherwise it returns nil."
   (erc-autojoin-timing 'ident)
   (erc-autojoin-channels-alist '(("libera.chat" "#emacs" "#erc" "#archlinux" "#theforeman"))))
 
-(defvar my/libera-nacho-password nil)
 (use-package erc-services
   :ensure nil
   :config
@@ -1460,10 +1459,12 @@ otherwise it returns nil."
                  "IDENTIFY" nil nil
                  "You\\s-are\\s-now\\s-identified\\s-for\\s-"))
   :custom
-  (erc-prompt-for-nickserv-password nil)
-  (erc-nickserv-passwords
-   `((Libera.Chat
-      (("nacho" . ,my/libera-nacho-password))))))
+  ;; The password will be consumed from auth-source. For this the
+  ;; secret must expose the following attributes:
+  ;;   'host' -> 'irc.libera.chat'
+  ;;   'user' -> 'nacho'
+  (erc-prompt-for-password nil)
+  (erc-prompt-for-nickserv-password nil))
 
 ;;; Misc
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
