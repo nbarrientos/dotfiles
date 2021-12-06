@@ -7,4 +7,4 @@ ExecStart=/usr/bin/krenew -K 60 -v -i
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
