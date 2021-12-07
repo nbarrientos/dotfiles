@@ -1012,6 +1012,12 @@ to-buffer-name then it switches back to the previous buffer."
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
                     '((2 . "Telegram") (3 . "Signal") (5 . "*eww*") (6 . "*eshell*")))
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-<f%d>" i)) .
+                        (lambda (arg)
+                          (interactive "P")
+                          (my/bm-switch-to-buffer arg))))
+                    '(1 2 3 4 5))
           ([?\s-4]
            . erc-track-switch-buffer)
           ([?\s-7]
@@ -1500,5 +1506,23 @@ if VALUE is not nil."
   (when value
     (let ((key-value-pair (format "%s=%s" variable value)))
       (add-to-list 'tramp-remote-process-environment key-value-pair))))
+
+(setq my/bm-key-mapping nil)
+(defun my/bm-switch-to-buffer (arg)
+  "Switches to the buffer associated to `last-command-event'.
+If there's no mapping configured it sets it. With prefix argument
+remaps `last-command-event' to the current buffer."
+  (interactive "P")
+  (when arg
+    (setq my/bm-key-mapping
+          (plist-put my/bm-key-mapping last-command-event nil)))
+  (let ((buffer (plist-get my/bm-key-mapping last-command-event)))
+    (if buffer
+        (switch-to-buffer buffer)
+      (setq my/bm-key-mapping
+            (plist-put my/bm-key-mapping last-command-event (current-buffer)))
+      (message (format "Added %s as shortcut for buffer <%s>"
+                       (key-description (vector last-command-event))
+                       (current-buffer))))))
 
 ;;; init.el ends here
