@@ -1006,20 +1006,22 @@ to-buffer-name then it switches back to the previous buffer."
            (lambda ()
              (interactive)
              (counsel-linux-app)))
+          ([?\s-1] .
+           (lambda ()
+             (interactive)
+             (my/ivy-switch-buffer-firefox)))
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" (car i))) .
                         (lambda ()
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
-                    '((2 . "Telegram") (3 . "Signal") (5 . "*eww*") (6 . "*eshell*")))
+                    '((2 . "Telegram") (3 . "Signal") (6 . "*eshell*")))
           ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-<f%d>" i)) .
+                      `(,(kbd (format "s-%d" i)) .
                         (lambda (arg)
                           (interactive "P")
                           (my/bm-switch-to-buffer arg))))
-                    '(1 2 3 4 5))
-          ([?\s-4]
-           . erc-track-switch-buffer)
+                    '(4 5))
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
@@ -1028,10 +1030,8 @@ to-buffer-name then it switches back to the previous buffer."
            (lambda ()
              (interactive)
              (my/ivy-switch-buffer-urxvt)))
-          ([?\s-1] .
-           (lambda ()
-             (interactive)
-             (my/ivy-switch-buffer-firefox)))
+          ([?\s-0]
+           . erc-track-switch-buffer)
           ([?\s-r] .
            (lambda ()
              (interactive)
