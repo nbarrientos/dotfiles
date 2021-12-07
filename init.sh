@@ -9,6 +9,7 @@ mkdir -p ~/.gnupg
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.ssh/controlmasters
 mkdir -p ~/venvs
+mkdir -p ~/Downloads
 mkdir -p ~/mail/cern
 pushd .dotfiles
 stow -v .
