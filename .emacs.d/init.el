@@ -1507,20 +1507,20 @@ if VALUE is not nil."
     (let ((key-value-pair (format "%s=%s" variable value)))
       (add-to-list 'tramp-remote-process-environment key-value-pair))))
 
-(setq my/bm-key-mapping nil)
+(setq my/bm-key-alist nil)
 (defun my/bm-switch-to-buffer (arg)
   "Switches to the buffer associated to `last-command-event'.
 If there's no mapping configured it sets it. With prefix argument
 remaps `last-command-event' to the current buffer."
   (interactive "P")
   (when arg
-    (setq my/bm-key-mapping
-          (plist-put my/bm-key-mapping last-command-event nil)))
-  (let ((buffer (plist-get my/bm-key-mapping last-command-event)))
+    (setq my/bm-key-alist
+          (assq-delete-all last-command-event my/bm-key-alist)))
+  (let ((buffer (cdr (assq last-command-event my/bm-key-alist))))
     (if buffer
         (switch-to-buffer buffer)
-      (setq my/bm-key-mapping
-            (plist-put my/bm-key-mapping last-command-event (current-buffer)))
+      (add-to-list 'my/bm-key-alist
+                   (cons last-command-event (current-buffer)))
       (message (format "Added %s as shortcut for buffer <%s>"
                        (key-description (vector last-command-event))
                        (current-buffer))))))
