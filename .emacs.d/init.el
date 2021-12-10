@@ -1518,7 +1518,10 @@ remaps `last-command-event' to the current buffer."
           (assq-delete-all last-command-event my/bm-key-alist)))
   (let ((buffer (cdr (assq last-command-event my/bm-key-alist))))
     (if buffer
-        (my/switch-to-buffer-if-exists-back-and-forth (buffer-name buffer))
+        (if (buffer-live-p buffer)
+            (my/switch-to-buffer-if-exists-back-and-forth (buffer-name buffer))
+          (ding)
+          (message "This buffer has been killed"))
       (add-to-list 'my/bm-key-alist
                    (cons last-command-event (current-buffer)))
       (message (format "Added %s as shortcut for buffer <%s>"
