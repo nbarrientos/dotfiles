@@ -980,14 +980,6 @@ It also removes annoying notification counters."
         ("urxvt" (concat "U# " (replace-regexp-in-string ":.*$" "" exwm-title)))
         (_ b-f))))
 
-  (defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
-    "Switches to to-buffer-name if it exists. If the current buffer is
-to-buffer-name then it switches back to the previous buffer."
-    (when (get-buffer to-buffer-name)
-      (if (string-equal to-buffer-name (buffer-name))
-          (switch-to-prev-buffer)
-        (switch-to-buffer to-buffer-name))))
-
   (setq exwm-input-global-keys
         `(
           ([?\s-r]
@@ -1506,6 +1498,14 @@ if VALUE is not nil."
   (when value
     (let ((key-value-pair (format "%s=%s" variable value)))
       (add-to-list 'tramp-remote-process-environment key-value-pair))))
+
+(defun my/switch-to-buffer-if-exists-back-and-forth (to-buffer-name)
+  "Switches to to-buffer-name if it exists. If the current buffer is
+to-buffer-name then it switches back to the previous buffer."
+  (when (get-buffer to-buffer-name)
+    (if (string-equal to-buffer-name (buffer-name))
+        (switch-to-prev-buffer)
+      (switch-to-buffer to-buffer-name))))
 
 (setq my/bm-key-alist nil)
 (defun my/bm-switch-to-buffer (arg)
