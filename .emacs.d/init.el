@@ -1012,7 +1012,7 @@ It also removes annoying notification counters."
                       `(,(kbd (format "s-%d" i)) .
                         (lambda (arg)
                           (interactive "P")
-                          (my/bm-switch-to-buffer arg))))
+                          (my/bookmark-buffer-or-switch-to-bookmark arg))))
                     '(4 5))
           ([?\s-7]
            . mu4e-headers-search-bookmark)
@@ -1507,22 +1507,24 @@ to-buffer-name then it switches back to the previous buffer."
         (switch-to-prev-buffer)
       (switch-to-buffer to-buffer-name))))
 
-(setq my/bm-key-alist nil)
-(defun my/bm-switch-to-buffer (arg)
+(setq my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist nil)
+(defun my/bookmark-buffer-or-switch-to-bookmark (arg)
   "Switches to the buffer associated to `last-command-event'.
 If there's no mapping configured it sets it. With prefix argument
-remaps `last-command-event' to the current buffer."
+remaps `last-command-event' to the current buffer. The mapping is
+stored in
+`my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist'"
   (interactive "P")
   (when arg
-    (setq my/bm-key-alist
-          (assq-delete-all last-command-event my/bm-key-alist)))
-  (let ((buffer (cdr (assq last-command-event my/bm-key-alist))))
+    (setq my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
+          (assq-delete-all last-command-event my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist)))
+  (let ((buffer (cdr (assq last-command-event my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist))))
     (if buffer
         (if (buffer-live-p buffer)
             (my/switch-to-buffer-if-exists-back-and-forth (buffer-name buffer))
           (ding)
           (message "This buffer has been killed"))
-      (add-to-list 'my/bm-key-alist
+      (add-to-list 'my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
                    (cons last-command-event (current-buffer)))
       (message (format "Added %s as shortcut for buffer <%s>"
                        (key-description (vector last-command-event))
