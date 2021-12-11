@@ -1517,8 +1517,11 @@ stored in
   (interactive "P")
   (when arg
     (setq my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
-          (assq-delete-all last-command-event my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist)))
-  (let ((buffer (cdr (assq last-command-event my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist))))
+          (assq-delete-all last-command-event
+                           my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist)))
+  (let ((buffer (cdr
+                 (assq last-command-event
+                       my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist))))
     (if buffer
         (if (buffer-live-p buffer)
             (my/switch-to-buffer-if-exists-back-and-forth (buffer-name buffer))
