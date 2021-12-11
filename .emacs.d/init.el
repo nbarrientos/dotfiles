@@ -221,6 +221,9 @@
   :custom
   (expand-region-show-usage-message nil))
 
+(use-package crux
+  :bind ("C-o" . crux-smart-open-line-above))
+
 ;;; Spelling and grammar
 (use-package ispell
   :ensure nil
