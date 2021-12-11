@@ -1039,6 +1039,10 @@ It also removes annoying notification counters."
            (lambda ()
              (interactive)
              (my/exwm-toggle-buffer-protection)))
+          ([?\s-u] .
+           (lambda ()
+             (interactive)
+             (start-process "" nil "/usr/bin/urxvt")))
           ([?\s-=]
            . balance-windows)
           ([?\s-+] .
