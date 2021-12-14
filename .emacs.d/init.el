@@ -41,6 +41,7 @@
  make-backup-files nil
  help-window-select t
  use-short-answers t
+ native-comp-async-report-warnings-errors nil
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
