@@ -112,11 +112,7 @@
   (conf-mode . (lambda () (setq show-trailing-whitespace t)))
   :custom
   (whitespace-style '(face trailing tabs empty big-indent))
-  (whitespace-global-modes '(not erc-mode)))
-(add-function :filter-return whitespace-enable-predicate
-   (lambda (ret) (and ret (not (derived-mode-p 'magit-mode)))))
-;; Emacs28 only, see https://debbugs.gnu.org/db/40/40481.html
-;;(setq whitespace-global-modes '(not magit-mode))
+  (whitespace-global-modes '(not erc-mode magit-mode)))
 
 ;;;; Sexp delimiters highlighting
 (use-package paren
@@ -1421,15 +1417,6 @@ otherwise it returns nil."
   (erc-email-userid "nacho")
   (erc-user-full-name "Nacho Barrientos"))
 
-(use-package erc-networks
-  :ensure nil
-  :config
-  ;; This will be part of Emacs28
-  (add-to-list 'erc-networks-alist '(Libera.Chat "libera.chat"))
-  ;; This will be part of Emacs28
-  (add-to-list 'erc-server-alist
-               '("Libera.Chat: Random server" Libera.Chat "irc.libera.chat" 6667)))
-
 (use-package erc-track
   :ensure nil
   :config
@@ -1457,14 +1444,6 @@ otherwise it returns nil."
   :ensure nil
   :config
   (erc-services-mode 1)
-  ;; This will be part of Emacs28
-  (add-to-list 'erc-nickserv-alist
-               '(Libera.Chat
-                 "NickServ!NickServ@services.libera.chat"
-                 "This\\s-nickname\\s-is\\s-registered.\\s-Please\\s-choose"
-                 "NickServ"
-                 "IDENTIFY" nil nil
-                 "You\\s-are\\s-now\\s-identified\\s-for\\s-"))
   :custom
   ;; The password will be consumed from auth-source. For this the
   ;; secret must expose the following attributes:
