@@ -40,6 +40,7 @@
  custom-file null-device
  make-backup-files nil
  help-window-select t
+ use-short-answers t
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
@@ -51,8 +52,6 @@
 (mouse-avoidance-mode 'jump)
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
