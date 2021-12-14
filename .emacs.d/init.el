@@ -311,7 +311,8 @@ The 'circular' list is defined in the variable
   :ensure nil
   :custom
   (dired-listing-switches "-NGalhv --group-directories-first")
-  (dired-auto-revert-buffer t))
+  (dired-auto-revert-buffer t)
+  (dired-kill-when-opening-new-dired-buffer t))
 
 (use-package dired-subtree
   :bind (:map dired-mode-map
