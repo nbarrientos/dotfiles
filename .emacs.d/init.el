@@ -813,6 +813,10 @@ the previously multi-windowed one"
 ;;; Mu4e
 (use-package mu4e
   :ensure nil
+  :hook ((mu4e-compose-mode
+          . (lambda ()
+              (save-excursion
+                (replace-regexp "^-- $" "--")))))
   :custom
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit t)
