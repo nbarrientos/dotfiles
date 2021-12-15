@@ -473,6 +473,7 @@ modify parts of the directory before switching to it."
                ("C" . magit-clone)
                ("g" . rg-project)
                ("f" . my/project-counsel-fzf)
+               ("m" . magit-project-status)
                ("s" . project-eshell)))
   :config
   (global-unset-key (kbd "C-x p"))
