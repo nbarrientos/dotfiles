@@ -4,7 +4,7 @@
 
 ;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
 ;; URL: https://github.com/nbarrientos/dotfiles/tree/master/.emacs.d
-;; Package-Requires: ((emacs "27.1"))
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is not part of GNU Emacs.
 
