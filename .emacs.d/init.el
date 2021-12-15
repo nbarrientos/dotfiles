@@ -911,7 +911,7 @@ the previously multi-windowed one"
 (use-package eww
   :ensure nil
   :config
-  (setq browse-url-browser-function
+  (setq browse-url-handlers
         '(("." . browse-url-firefox)))
   :custom
   (eww-use-external-browser-for-content-type
