@@ -466,6 +466,7 @@ modify parts of the directory before switching to it."
 ;;;; Project management
 (use-package project
   :ensure nil
+  :after (ivy counsel)
   :bind-keymap ("C-p" . project-prefix-map)
   :bind (("C-x C-f" . my/project-counsel-fzf)
          (:map project-prefix-map
@@ -480,6 +481,11 @@ modify parts of the directory before switching to it."
   (setenv
    "FZF_DEFAULT_COMMAND"
    "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
+  (defun counsel-fzf-action (x)
+    (with-ivy-window
+      (let ((default-directory counsel--fzf-dir))
+        (find-file-other-window x)))
+    (other-window -1))
   (defun my/project-counsel-fzf ()
     (interactive)
     (let* ((default-directory (project-root (project-current t))))
