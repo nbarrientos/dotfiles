@@ -274,8 +274,10 @@ The 'circular' list is defined in the variable
   (ispell-dictionary "british"))
 
 ;;; TRAMP
-;; Option (1-2): is a typical prompt for 2FA tokens at CERN
+;; Option (1-2): and Your 2nd factor: are typical prompts for 2FA
+;; tokens at CERN
 (add-to-list 'password-word-equivalents "Option")
+(add-to-list 'password-word-equivalents "Your 2nd factor")
 (use-package tramp
   :ensure nil
   :config
