@@ -618,8 +618,6 @@ modify parts of the directory before switching to it."
   :ensure nil
   :hook
   (eshell-mode . (lambda ()
-                   (define-key eshell-mode-map (kbd "<up>") 'previous-line)
-                   (define-key eshell-mode-map (kbd "<down>") 'next-line)
                    (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-prompt)
                    (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-prompt)
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-ring-save-outputs)
@@ -691,6 +689,12 @@ the current TRAMP root is prepended to DIRECTORY."
   (eshell-history-size 20000)
   (eshell-scroll-to-bottom-on-input 'all)
   (eshell-scroll-to-bottom-on-output 'all))
+
+(use-package em-hist
+  :ensure nil
+  :bind (:map eshell-hist-mode-map
+              ("<up>" . previous-line)
+              ("<down>" . next-line)))
 
 (use-package eshell-prompt-extras
   :after (eshell)
