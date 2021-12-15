@@ -155,11 +155,9 @@
 
 ;;;; Grep
 (use-package rg
-  :bind
-  (("C-x p" . rg)
-   :map rg-mode-map
-   ("C-<down>" . rg-next-file)
-   ("C-<up>" . rg-prev-file))
+  :bind (:map rg-mode-map
+              ("C-<down>" . rg-next-file)
+              ("C-<up>" . rg-prev-file))
   :config
   (add-to-list 'rg-custom-type-aliases '("texi" . "*.texi"))
   :custom
@@ -417,7 +415,6 @@ The 'circular' list is defined in the variable
   :bind (("M-x" . counsel-M-x)
          ("C-b" . ivy-switch-buffer)
          ("M-b" . ivy-switch-buffer-other-window)
-         ("C-x C-f" . my/counsel-fzf-project-root)
          ("C-x f" . my/counsel-find-file-no-tramp)
          ("C-x F" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
@@ -457,26 +454,6 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-esh-dir-history
    '(("e" counsel--esh-dir-history-action-edit "edit")))
-  ;; FZF
-  (defun my/counsel-fzf-project-root ()
-    "Calls counsel-fzf with the current project root as root"
-    (interactive)
-    (let ((proot (doom-modeline-project-root)))
-      (if (or (equal (expand-file-name proot) (expand-file-name "~/")) (null proot))
-          (progn
-            (ding)
-            (message (format "Likely to have to list too many files, not doing this!")))
-        (counsel-fzf nil proot (format "fzf in %s: " proot)))))
-  (setenv
-   "FZF_DEFAULT_COMMAND"
-   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
-  (defun my/counsel-fzf-other-window (x)
-    "Find file X in current fzf directory other window."
-    (let ((default-directory counsel--fzf-dir))
-      (find-file-other-window x)))
-  (ivy-set-actions
-   'counsel-fzf
-   '(("j" my/counsel-fzf-other-window "other window")))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
@@ -485,6 +462,44 @@ modify parts of the directory before switching to it."
 (use-package swiper
   :bind (("C-s" . swiper)
          ("C-M-s" . swiper-thing-at-point)))
+
+;;;; Project management
+(use-package project
+  :ensure nil
+  :bind-keymap ("C-p" . project-prefix-map)
+  :bind (("C-x C-f" . my/project-counsel-fzf)
+         (:map project-prefix-map
+               ("b" . my/project-ivy-switch-buffer)
+               ("C" . magit-clone)
+               ("g" . rg-project)
+               ("f" . my/project-counsel-fzf)
+               ("s" . project-eshell)))
+  :config
+  (global-unset-key (kbd "C-x p"))
+  (setenv
+   "FZF_DEFAULT_COMMAND"
+   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
+  (defun my/project-counsel-fzf ()
+    (interactive)
+    (let* ((default-directory (project-root (project-current t))))
+      (counsel-fzf nil default-directory (format "fzf in %s: " default-directory))))
+  (defun my/project-ivy-switch-buffer ()
+    (interactive)
+    (let* ((pr (project-current t))
+           (buffers (project-buffers pr))
+           (buffer-names (mapcar 'buffer-name buffers)))
+      (ivy-read "Switch to project buffer: " buffer-names
+            :keymap ivy-switch-buffer-map
+            :action #'ivy--switch-buffer-action
+            :matcher #'ivy--switch-buffer-matcher
+            :caller 'ivy-switch-buffer)))
+  :custom
+  (project-switch-commands
+   '((my/project-counsel-fzf "Find file")
+     (rg-project "Ripgrep")
+     (project-find-dir "Find directory")
+     (project-eshell "Eshell")
+     (magit-project-status "Magit"))))
 
 ;;;; Snippets
 (use-package yasnippet
@@ -1077,6 +1092,8 @@ It also removes annoying notification counters."
   (add-to-list 'exwm-input-prefix-keys ?\M-b)
   ;; Engine mode
   (add-to-list 'exwm-input-prefix-keys ?\C-j)
+  ;; Project
+  (add-to-list 'exwm-input-prefix-keys ?\C-p)
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
 
