@@ -473,8 +473,10 @@ modify parts of the directory before switching to it."
                ("b" . my/project-ivy-switch-buffer)
                ("C" . magit-clone)
                ("g" . rg-project)
+               ("H" . my/clone-hostgroup)
                ("f" . my/project-counsel-fzf)
                ("m" . magit-project-status)
+               ("M" . my/clone-module)
                ("s" . project-eshell)))
   :config
   (global-unset-key (kbd "C-x p"))
