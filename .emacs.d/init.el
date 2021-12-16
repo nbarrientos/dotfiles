@@ -967,6 +967,9 @@ the previously multi-windowed one"
   (defengine openstreetmap
     "https://www.openstreetmap.org/search?query=%s"
     :keybinding "m")
+  (defengine wordreference
+    "https://www.wordreference.com/es/translation.asp?tranword=%s"
+    :keybinding "r")
   (defengine wikipedia
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :keybinding "w")
