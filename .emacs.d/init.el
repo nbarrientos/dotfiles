@@ -1396,17 +1396,6 @@ and adapted to use simulations keys to have a common yank keystroke."
       "*LDAP results*"
     (conf-mode)))
 
-(defun my/gimme-url (filename)
-  "Copy FILENAME to the bucket a put the URL in the kill ring"
-  (interactive "fFile Path:")
-  (let* ((hash
-          (with-temp-buffer
-            (insert-file-contents filename)
-            (sha1 (buffer-string))))
-         (new-filename
-          (concat hash (url-file-extension filename))))
-    (copy-file filename (concat "~/afs/www/bucket/" new-filename) t)
-    (kill-new (concat "https://cern.ch/nacho/bucket/" new-filename))))
 
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
