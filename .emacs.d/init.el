@@ -58,6 +58,8 @@
 (global-set-key [end] 'end-of-buffer)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
+(global-set-key (kbd "M-d") 'my/delete-word)
+(global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
 (global-unset-key (kbd "C-x C-c"))
 
 (add-to-list 'yank-excluded-properties 'face)
@@ -1493,6 +1495,18 @@ otherwise it returns nil."
   (erc-prompt-for-nickserv-password nil))
 
 ;;; Misc
+(defun my/delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun my/backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (my/delete-word (- arg)))
+
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
 (defun my/unfill-region ()
   (interactive)
