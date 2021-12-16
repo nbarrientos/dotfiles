@@ -166,6 +166,12 @@
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
 
+;;; Navigation
+;;;; Xref
+(use-package xref
+  :ensure nil
+  :bind (("M-/" . xref-find-references)))
+
 ;;; Auth Source
 (use-package auth-source
   :ensure nil
