@@ -172,6 +172,53 @@
   :ensure nil
   :bind (("M-/" . xref-find-references)))
 
+;;;; Project management
+(use-package project
+  :ensure nil
+  :after (ivy counsel)
+  :bind-keymap ("C-p" . project-prefix-map)
+  :bind (("C-x C-f" . my/project-counsel-fzf)
+         (:map project-prefix-map
+               ("b" . my/project-ivy-switch-buffer)
+               ("C" . magit-clone)
+               ("g" . rg-project)
+               ("H" . my/clone-hostgroup)
+               ("f" . my/project-counsel-fzf)
+               ("m" . magit-project-status)
+               ("M" . my/clone-module)
+               ("s" . project-eshell)))
+  :config
+  (global-unset-key (kbd "C-x p"))
+  (setenv
+   "FZF_DEFAULT_COMMAND"
+   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
+  (defun counsel-fzf-action (x)
+    (with-ivy-window
+      (let ((default-directory counsel--fzf-dir))
+        (find-file-other-window x)))
+    (other-window -1))
+  (defun my/project-counsel-fzf ()
+    (interactive)
+    (let* ((default-directory (project-root (project-current t))))
+      (counsel-fzf nil default-directory (format "fzf in %s: " default-directory))))
+  (defun my/project-ivy-switch-buffer ()
+    (interactive)
+    (let* ((pr (project-current t))
+           (buffers (project-buffers pr))
+           (buffer-names (mapcar 'buffer-name buffers)))
+      (ivy-read "Switch to project buffer: " buffer-names
+            :keymap ivy-switch-buffer-map
+            :action #'ivy--switch-buffer-action
+            :matcher #'ivy--switch-buffer-matcher
+            :caller 'ivy-switch-buffer)))
+  :custom
+  (project-switch-commands
+   '((my/project-counsel-fzf "Find file")
+     (rg-project "Ripgrep")
+     (project-find-dir "Find directory")
+     (project-eshell "Eshell")
+     (magit-project-status "Magit"))))
+
 ;;; Auth Source
 (use-package auth-source
   :ensure nil
@@ -470,53 +517,6 @@ modify parts of the directory before switching to it."
 (use-package swiper
   :bind (("C-s" . swiper)
          ("C-M-s" . swiper-thing-at-point)))
-
-;;;; Project management
-(use-package project
-  :ensure nil
-  :after (ivy counsel)
-  :bind-keymap ("C-p" . project-prefix-map)
-  :bind (("C-x C-f" . my/project-counsel-fzf)
-         (:map project-prefix-map
-               ("b" . my/project-ivy-switch-buffer)
-               ("C" . magit-clone)
-               ("g" . rg-project)
-               ("H" . my/clone-hostgroup)
-               ("f" . my/project-counsel-fzf)
-               ("m" . magit-project-status)
-               ("M" . my/clone-module)
-               ("s" . project-eshell)))
-  :config
-  (global-unset-key (kbd "C-x p"))
-  (setenv
-   "FZF_DEFAULT_COMMAND"
-   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
-  (defun counsel-fzf-action (x)
-    (with-ivy-window
-      (let ((default-directory counsel--fzf-dir))
-        (find-file-other-window x)))
-    (other-window -1))
-  (defun my/project-counsel-fzf ()
-    (interactive)
-    (let* ((default-directory (project-root (project-current t))))
-      (counsel-fzf nil default-directory (format "fzf in %s: " default-directory))))
-  (defun my/project-ivy-switch-buffer ()
-    (interactive)
-    (let* ((pr (project-current t))
-           (buffers (project-buffers pr))
-           (buffer-names (mapcar 'buffer-name buffers)))
-      (ivy-read "Switch to project buffer: " buffer-names
-            :keymap ivy-switch-buffer-map
-            :action #'ivy--switch-buffer-action
-            :matcher #'ivy--switch-buffer-matcher
-            :caller 'ivy-switch-buffer)))
-  :custom
-  (project-switch-commands
-   '((my/project-counsel-fzf "Find file")
-     (rg-project "Ripgrep")
-     (project-find-dir "Find directory")
-     (project-eshell "Eshell")
-     (magit-project-status "Magit"))))
 
 ;;;; Snippets
 (use-package yasnippet
