@@ -9,3 +9,6 @@
 
 [gitlab "gitlab.cern.ch/api/v4"]
 	user = ibarrien
+
+[github]
+	user = nbarrientos
