@@ -637,7 +637,11 @@ modify parts of the directory before switching to it."
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil)))
+  (add-to-list 'auto-mode-alist '("\\.epp\\'" . web-mode))
+  (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil))
+  :custom
+  (web-mode-engines-alist
+   '(("erb" . "\\.epp\\'"))))
 
 (use-package csv-mode)
 (use-package jq-mode)
