@@ -1,5 +1,5 @@
 [Unit]
-Description=mbsync query timer [cern-prio-1]
+Description=mbsync query timer [prio-1]
 ConditionPathExists=%h/.mbsyncrc
 
 [Timer]

@@ -17,6 +17,21 @@ MaildirStore cern-local
 Path ~/mail/cern/
 Inbox ~/mail/cern/INBOX
 
+IMAPAccount criptonita
+Host mail.gandi.net
+User mail@criptonita.com
+PassCmd "/usr/bin/secret-tool lookup host mail.gandi.net account mail@criptonita.com"
+AuthMechs PLAIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore criptonita-remote
+Account criptonita
+
+MaildirStore criptonita-local
+Path ~/mail/criptonita/
+Inbox ~/mail/criptonita/INBOX
+
 Channel cern-inbox
 Master :cern-remote:INBOX
 Slave :cern-local:INBOX
@@ -133,12 +148,20 @@ Channel cern-market
 Master :cern-remote:cern-market
 Slave :cern-local:cern-market
 
-Group cern-prio-0
+Channel criptonita-inbox
+Master :criptonita-remote:INBOX
+Slave :criptonita-local:INBOX
+
+Channel criptonita-gmail
+Master :criptonita-remote:Gmail
+Slave :criptonita-local:Gmail
+
+Group prio-0
 Channel cern-inbox
 Channel cern-drafts
 Channel cern-sent
 
-Group cern-prio-1
+Group prio-1
 Channel cern-ai-admins
 Channel cern-ai-config-team
 Channel cern-ai-jira
@@ -165,3 +188,5 @@ Channel cern-service-desk
 Channel cern-service-desk-crap
 Channel cern-spanish-gang
 Channel cern-spam
+Channel criptonita-inbox
+Channel criptonita-gmail

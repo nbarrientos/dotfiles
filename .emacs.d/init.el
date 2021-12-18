@@ -877,7 +877,7 @@ the previously multi-windowed one"
      ( :subject       .  nil)))
   (mu4e-bookmarks
    '(( :name "Unread messages in INBOX"
-       :query "flag:unread and maildir:\"/cern/INBOX\""
+       :query "flag:unread and maildir:/.*INBOX/"
        :key ?i)
      ( :name  "All unread messages"
        :query "flag:unread and not flag:trashed and not maildir:\"/cern/Spam\""
