@@ -999,11 +999,10 @@ the previously multi-windowed one"
   (defun my/exwm-toggle-buffer-protection ()
     "Protect an EXWM from being mass deleted."
     (interactive)
-    (when (eq major-mode 'exwm-mode)
+    (when (derived-mode-p 'exwm-mode)
       (if my/exwm--do-not-mass-kill
           (kill-local-variable 'my/exwm--do-not-mass-kill)
-        (setq-local my/exwm--do-not-mass-kill t))
-      (message "EXWM buffer protection set to %s" my/exwm--do-not-mass-kill)))
+        (setq-local my/exwm--do-not-mass-kill t))))
   (defun my/exwm-kill-unprotected-by-prefix (prefix)
     "Kill all EXWM buffers with PREFIX that have `my/exwm--do-not-mass-kill' set to nil."
     (interactive "sPrefix: ")
@@ -1564,6 +1563,8 @@ stored in
           (message "This buffer has been killed"))
       (add-to-list 'my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
                    (cons last-command-event (current-buffer)))
+      (with-current-buffer (current-buffer)
+        (my/exwm-toggle-buffer-protection))
       (message (format "Added %s as shortcut for buffer <%s>"
                        (key-description (vector last-command-event))
                        (current-buffer))))))
