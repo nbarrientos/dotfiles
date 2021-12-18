@@ -191,11 +191,6 @@
   (setenv
    "FZF_DEFAULT_COMMAND"
    "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
-  (defun counsel-fzf-action (x)
-    (with-ivy-window
-      (let ((default-directory counsel--fzf-dir))
-        (find-file-other-window x)))
-    (other-window -1))
   (defun my/project-counsel-fzf ()
     (interactive)
     (let* ((default-directory (project-root (project-current t))))
@@ -520,6 +515,11 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-esh-dir-history
    '(("e" counsel--esh-dir-history-action-edit "edit")))
+  (defun counsel-fzf-action (x)
+    (with-ivy-window
+      (let ((default-directory counsel--fzf-dir))
+        (find-file-other-window x)))
+    (other-window -1))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
