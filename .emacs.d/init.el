@@ -389,6 +389,12 @@ The 'circular' list is defined in the variable
 (use-package all-the-icons-ivy
   :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
   :config
+  (add-to-list 'all-the-icons-mode-icon-alist
+               '('puppet-mode all-the-icons-fileicon "api-blueprint"
+                 :face all-the-icons-yellow))
+  (add-to-list 'all-the-icons-extension-icon-alist
+               '("pp" all-the-icons-fileicon "api-blueprint"
+                 :face all-the-icons-yellow))
   ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
   (add-to-list 'all-the-icons-mode-icon-alist
                '(exwm-mode all-the-icons-octicon "browser"
