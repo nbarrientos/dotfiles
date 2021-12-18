@@ -175,7 +175,6 @@
 ;;;; Project management
 (use-package project
   :ensure nil
-  :after (ivy counsel)
   :bind-keymap ("C-p" . project-prefix-map)
   :bind (("C-x C-f" . my/project-counsel-fzf)
          (:map project-prefix-map
