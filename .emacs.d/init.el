@@ -996,13 +996,19 @@ the previously multi-windowed one"
   (exwm-systemtray-enable)
 
   (setq-default my/exwm--do-not-mass-kill nil)
-  (defun my/exwm-toggle-buffer-protection ()
-    "Protect an EXWM from being mass deleted."
-    (interactive)
+  (defun my/exwm-toggle-or-set-buffer-protection (&optional arg value)
+    "Toggle or set EXWM mass-buffer-deletion protection.
+When called interactively, toggle. Otherwise set to VALUE."
+    (interactive "p")
     (when (derived-mode-p 'exwm-mode)
-      (if my/exwm--do-not-mass-kill
-          (kill-local-variable 'my/exwm--do-not-mass-kill)
-        (setq-local my/exwm--do-not-mass-kill t))))
+      (if arg
+          (progn
+            (if my/exwm--do-not-mass-kill
+                (kill-local-variable 'my/exwm--do-not-mass-kill)
+              (setq-local my/exwm--do-not-mass-kill t))
+            (when arg
+              (message "EXWM buffer protection set to %s" my/exwm--do-not-mass-kill)))
+        (setq-local my/exwm--do-not-mass-kill value))))
   (defun my/exwm-kill-unprotected-by-prefix (prefix)
     "Kill all EXWM buffers with PREFIX that have `my/exwm--do-not-mass-kill' set to nil."
     (interactive "sPrefix: ")
@@ -1076,10 +1082,8 @@ It also removes annoying notification counters."
            (lambda ()
              (interactive)
              (start-process "" nil "/usr/bin/firefox")))
-          ([?\s-p] .
-           (lambda ()
-             (interactive)
-             (my/exwm-toggle-buffer-protection)))
+          ([?\s-p]
+           . my/exwm-toggle-or-set-buffer-protection)
           ([?\s-u] .
            (lambda ()
              (interactive)
@@ -1564,7 +1568,7 @@ stored in
       (add-to-list 'my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
                    (cons last-command-event (current-buffer)))
       (with-current-buffer (current-buffer)
-        (my/exwm-toggle-buffer-protection))
+        (my/exwm-toggle-or-set-buffer-protection nil t))
       (message (format "Added %s as shortcut for buffer <%s>"
                        (key-description (vector last-command-event))
                        (current-buffer))))))
