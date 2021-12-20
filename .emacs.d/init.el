@@ -669,9 +669,8 @@ modify parts of the directory before switching to it."
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.epp\\'" . web-mode))
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil))
-  :custom
-  (web-mode-engines-alist
-   '(("erb" . "\\.epp\\'"))))
+  (setq web-mode-engines-alist
+        '(("erb" . "\\.epp\\'"))))
 
 (use-package csv-mode)
 (use-package jq-mode)
