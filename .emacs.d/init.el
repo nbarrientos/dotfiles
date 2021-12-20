@@ -397,8 +397,18 @@ The 'circular' list is defined in the variable
                  :face all-the-icons-orange))
   ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
   (add-to-list 'all-the-icons-mode-icon-alist
-               '(exwm-mode all-the-icons-octicon "browser"
-                           :v-adjust 0.2 :face all-the-icons-purple))
+               '(exwm-mode
+                 all-the-icons-octicon "browser"
+                 :v-adjust 0.2 :face all-the-icons-purple))
+  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/301
+  (add-to-list 'all-the-icons-mode-icon-alist
+               '(elfeed-search-mode
+                 all-the-icons-faicon "rss-square"
+                 :face all-the-icons-orange))
+  (add-to-list 'all-the-icons-mode-icon-alist
+               '(elfeed-show-mode
+                 all-the-icons-faicon "rss"
+                 :face all-the-icons-orange))
   ;; Pending https://github.com/domtronn/all-the-icons.el/pull/300
   (dolist (x '(".?" "apache" "nginx"))
     (setq all-the-icons-regexp-icon-alist
