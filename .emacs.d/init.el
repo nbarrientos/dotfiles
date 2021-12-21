@@ -1065,13 +1065,27 @@ When called interactively, toggle. Otherwise set to VALUE."
              (not my/exwm--do-not-mass-kill))
           (kill-buffer)))))
 
+  (defun my/exwm--format-firefox-window-title (title &optional length)
+    "Removes noise from and trims Firefox window titles.
+Assumes the Add URL to Window Title extension is enabled and
+configured to use @ (at symbol) as separator."
+    (let* ((length (or length 45))
+           (title (replace-regexp-in-string " [-—] Mozilla Firefox$" "" title))
+           (title-and-hostname (split-string title "@" nil " "))
+           (hostname (substring (car (last title-and-hostname)) 0 -1))
+           (page-title (string-join (reverse (nthcdr 1 (reverse title-and-hostname))) " "))
+           (short-title (reverse (string-truncate-left (reverse page-title) length))))
+      (if (length> title-and-hostname 1)
+          (concat short-title " @ " hostname)
+        (reverse (string-truncate-left (reverse title) length)))))
+
   (defun my/exwm-buffer-name ()
-    "Guesses the buffer name using the title and the class of the X client.
-It also removes annoying notification counters."
+    "Guesses (and formats) the buffer name using the class of the X client.
+It also removes annoying notifications counters from all buffers."
     (let ((b-f (string-trim (replace-regexp-in-string "([[:digit:]]+)" "" exwm-title))))
       (pcase (downcase exwm-class-name)
-        ("firefox" (concat "F# " (replace-regexp-in-string " [-—] Mozilla Firefox$" "" b-f)))
-        ("urxvt" (concat "U# " (replace-regexp-in-string ":.*$" "" exwm-title)))
+        ("firefox" (concat "F# " (my/exwm--format-firefox-window-title b-f)))
+        ("urxvt" (concat "U# " (replace-regexp-in-string ":.*$" "" b-f)))
         (_ b-f))))
 
   (setq exwm-input-global-keys
