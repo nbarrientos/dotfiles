@@ -764,29 +764,34 @@ the current TRAMP root is prepended to DIRECTORY."
       (if tramp-root
           (eshell/cd (concat tramp-root (or directory "")))
         (eshell/cd directory))))
-  (defun my/eshell-send-detached-input ()
-    (interactive)
-    (let ((cmd (buffer-substring
-                eshell-last-output-end (point-max)))
-          (hostname (car (split-string
-                          (or
-                           (file-remote-p default-directory 'host)
-                           (system-name))
-                          "\\."))))
-      (setq-local compile-command nil)
-      (setq-local compilation-buffer-name-function
-                  (lambda (major-mode)
-                    (format "D# %s (%s)" cmd hostname)))
-      (with-current-buffer
-          (compile cmd)
-              (setq-local compilation-finish-functions
-                          `((lambda (buffer str)
-                              (notifications-notify
-                               :body (substring (buffer-name buffer) 3 nil)
-                               :timeout 5000
-                               :category "detached_process"
-                               :title "Detached process finished!"
-                               :urgency (if (string-prefix-p "finished" str) 'normal 'critical))))))
+  (defun my/eshell-send-detached-input (&optional arg)
+    "Send the current Eshell input to a compilation buffer.
+With universal prefix argument bury the compilation buffer and
+send a notification when the process has exited."
+    (interactive "p")
+    (let* ((cmd (buffer-substring
+                 eshell-last-output-end (point-max)))
+           (hostname (car (split-string
+                           (or
+                            (file-remote-p default-directory 'host)
+                            (system-name))
+                           "\\.")))
+           (compile-command nil)
+           (compilation-buffer-name-function
+            (lambda (major-mode)
+              (format "D# %s (%s)" cmd hostname)))
+           (compilation-buffer (compile cmd)))
+      (when (equal arg 4)
+        (with-current-buffer compilation-buffer
+          (switch-to-prev-buffer (get-buffer-window (current-buffer)))
+          (setq-local compilation-finish-functions
+                      `((lambda (buffer str)
+                          (notifications-notify
+                           :body (substring (buffer-name buffer) 3 nil)
+                           :timeout 5000
+                           :category "detached_process"
+                           :title "Detached process finished!"
+                           :urgency (if (string-prefix-p "finished" str) 'normal 'critical)))))))
       (eshell-add-input-to-history cmd)
       (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
