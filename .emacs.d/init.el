@@ -707,6 +707,7 @@ modify parts of the directory before switching to it."
                    (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)
                    (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)
                    (define-key eshell-mode-map (kbd "C-c l") 'eshell/clear)
+                   (define-key eshell-mode-map (kbd "C-<return>") 'my/eshell-send-detached-input)
                    ;; When calling dabbrev, hippie-expand uses strings
                    ;; containing words and symbols to:
                    ;;   1) determine the string to expand
@@ -763,18 +764,21 @@ the current TRAMP root is prepended to DIRECTORY."
       (if tramp-root
           (eshell/cd (concat tramp-root (or directory "")))
         (eshell/cd directory))))
-  (defun eshell/detach (&rest args)
-    (let ((args-str (string-join
-                     (eshell-stringify-list (flatten-tree args))
-                     " "))
+  (defun my/eshell-send-detached-input ()
+    (interactive)
+    (let ((cmd (buffer-substring
+                eshell-last-output-end (point-max)))
           (hostname (car (split-string
-                          (file-remote-p default-directory 'host) "\\."))))
+                          (or
+                           (file-remote-p default-directory 'host)
+                           (system-name))
+                          "\\."))))
       (setq-local compile-command nil)
       (setq-local compilation-buffer-name-function
                   (lambda (major-mode)
-                    (format "D# %s (%s)" args-str hostname)))
-      (compile args-str)
-      t))
+                    (format "D# %s (%s)" cmd hostname)))
+      (compile cmd)
+      (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
   (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
   (add-to-list 'directory-abbrev-alist '("/afs/cern.ch/user/i/ibarrien" . "~"))
