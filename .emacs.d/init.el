@@ -787,6 +787,7 @@ the current TRAMP root is prepended to DIRECTORY."
                                :category "detached_process"
                                :title "Detached process finished!"
                                :urgency (if (string-prefix-p "finished" str) 'normal 'critical))))))
+      (eshell-add-input-to-history cmd)
       (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
   (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
