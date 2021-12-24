@@ -777,7 +777,16 @@ the current TRAMP root is prepended to DIRECTORY."
       (setq-local compilation-buffer-name-function
                   (lambda (major-mode)
                     (format "D# %s (%s)" cmd hostname)))
-      (compile cmd)
+      (with-current-buffer
+          (compile cmd)
+              (setq-local compilation-finish-functions
+                          `((lambda (buffer str)
+                              (notifications-notify
+                               :body (format "%s (%s)" ,cmd ,hostname)
+                               :timeout 5000
+                               :category "detached_process"
+                               :title "Detached process finished!"
+                               :urgency (if (string-prefix-p "finished" str) 'normal 'critical))))))
       (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
   (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
