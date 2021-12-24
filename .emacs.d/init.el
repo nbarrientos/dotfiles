@@ -782,7 +782,7 @@ the current TRAMP root is prepended to DIRECTORY."
               (setq-local compilation-finish-functions
                           `((lambda (buffer str)
                               (notifications-notify
-                               :body (format "%s (%s)" ,cmd ,hostname)
+                               :body (substring (buffer-name buffer) 3 nil)
                                :timeout 5000
                                :category "detached_process"
                                :title "Detached process finished!"
