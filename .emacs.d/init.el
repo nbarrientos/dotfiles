@@ -450,6 +450,10 @@ inserting functions."
     "Use ivy to select an URXVT window (buffer)."
     (interactive)
     (my/ivy-switch-buffer-by-prefix "u"))
+  (defun my/ivy-switch-buffer-detached-command ()
+    "Use ivy to select a compilation buffer."
+    (interactive)
+    (my/ivy-switch-buffer-by-prefix "d"))
   (setcdr (assoc t ivy-format-functions-alist) #'ivy-format-function-line)
   (ivy-mode 1)
   :custom
@@ -759,6 +763,18 @@ the current TRAMP root is prepended to DIRECTORY."
       (if tramp-root
           (eshell/cd (concat tramp-root (or directory "")))
         (eshell/cd directory))))
+  (defun eshell/detach (&rest args)
+    (let ((args-str (string-join
+                     (eshell-stringify-list (flatten-tree args))
+                     " "))
+          (hostname (car (split-string
+                          (file-remote-p default-directory 'host) "\\."))))
+      (setq-local compile-command nil)
+      (setq-local compilation-buffer-name-function
+                  (lambda (major-mode)
+                    (format "D# %s (%s)" args-str hostname)))
+      (compile args-str)
+      t))
   (setenv "EDITOR" "emacsclient")
   (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
   (add-to-list 'directory-abbrev-alist '("/afs/cern.ch/user/i/ibarrien" . "~"))
@@ -1134,7 +1150,7 @@ configured to use @ (at symbol) as separator."
           ([?\s-7]
            . mu4e-headers-search-bookmark)
           ([?\s-8]
-           . mu4e)
+           . my/ivy-switch-buffer-detached-command)
           ([?\s-9] .
            (lambda ()
              (interactive)

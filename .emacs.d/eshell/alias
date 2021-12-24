@@ -1,3 +1,4 @@
+alias d eshell/detach $*
 alias spa my/os-same-project-as $1
 alias ssh cd /ssh:$1:/
 alias em find-file $1
