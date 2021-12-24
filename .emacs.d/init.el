@@ -1001,6 +1001,11 @@ the previously multi-windowed one"
 ;;; Elfeed
 (use-package elfeed)
 
+(use-package shr
+  :ensure nil
+  :custom
+  (shr-use-fonts nil))
+
 ;;; Multimedia
 (use-package eradio
   :ensure t
