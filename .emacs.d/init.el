@@ -788,7 +788,7 @@ send a notification when the process has exited."
                       `((lambda (buffer str)
                           (notifications-notify
                            :body (substring (buffer-name buffer) 3 nil)
-                           :timeout 5000
+                           :timeout 8000
                            :category "detached_process"
                            :actions '("default" "Switch to buffer")
                            :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
