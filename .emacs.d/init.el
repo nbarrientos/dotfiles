@@ -1463,7 +1463,6 @@ and adapted to use simulations keys to have a common yank keystroke."
      :title (format "Appointment in %s minutes!" min-to-app)
      :urgency 'critical
      :actions '("org-agenda" "Open org-agenda")
-     ;; Dunst: middle-click to trigger the action
      :on-action (lambda (id key) (org-agenda-list))))
   (appt-activate 1)
   (org-agenda-to-appt)
