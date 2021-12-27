@@ -657,20 +657,26 @@ modify parts of the directory before switching to it."
 
 ;;;; Markup, scripting and conf
 (use-package json-mode)
+
 (use-package yaml-mode)
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
+
 (use-package rpm-spec-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
+
 (use-package archive-rpm)
+
 (use-package sh-script
   :ensure nil
   :custom
   (sh-basic-offset 2))
+
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -680,11 +686,14 @@ modify parts of the directory before switching to it."
         '(("erb" . "\\.epp\\'"))))
 
 (use-package csv-mode)
+
 (use-package jq-mode)
+
 ;;;; Misc
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
+
 (use-package gitignore-templates)
 
 (use-package virtualenvwrapper
