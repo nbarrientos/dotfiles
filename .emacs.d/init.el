@@ -425,8 +425,10 @@ inserting functions."
     (let* ((ext (file-name-extension file))
            (icon (or (all-the-icons-match-to-alist file all-the-icons-regexp-icon-alist)
                      (and ext
-                          (cdr (assoc (downcase ext)
-                                      all-the-icons-extension-icon-alist)))
+                          (cdr
+                           (assoc
+                            (downcase ext)
+                            all-the-icons-extension-icon-alist)))
                      all-the-icons-default-file-icon))
            (args (cdr icon)))
       (when arg-overrides (setq args (append `(,(car args)) arg-overrides (cdr args))))
