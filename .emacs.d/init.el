@@ -778,6 +778,7 @@ send a notification when the process has exited."
                            "\\.")))
            (compile-command nil)
            (compilation-save-buffers-predicate 'ignore)
+           (compilation-scroll-output nil)
            (compilation-buffer-name-function
             (lambda (major-mode)
               (format "D# %s (%s)" cmd hostname)))
