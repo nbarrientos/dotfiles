@@ -56,6 +56,8 @@
 
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
+(global-set-key (kbd "M-<up>") 'backward-sexp)
+(global-set-key (kbd "M-<down>") 'forward-sexp)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
 (global-set-key (kbd "M-d") 'my/delete-word)
@@ -917,8 +919,8 @@ the previously multi-windowed one"
 
 (use-package drag-stuff
   :bind
-  (("M-<up>" . drag-stuff-up)
-   ("M-<down>" . drag-stuff-down))
+  (("C-M-<up>" . drag-stuff-up)
+   ("C-M-<down>" . drag-stuff-down))
   :config
   (drag-stuff-global-mode))
 
