@@ -880,7 +880,8 @@ send a notification when the process has exited."
   (magit-clone-default-directory "~/dev/")
   (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault t)
-  (magit-list-refs-sortby "-creatordate"))
+  (magit-list-refs-sortby "-creatordate")
+  (magit-diff-refine-hunk t))
 
 (use-package forge
   :after magit
