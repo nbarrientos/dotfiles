@@ -630,15 +630,16 @@ modify parts of the directory before switching to it."
   (flycheck-highlighting-mode . nil))
 
 ;;;; Programming languages
-(use-package enh-ruby-mode
-  :hook ((enh-ruby-mode . (lambda ()
-                            (setq
-                             flycheck-ruby-rubocop-executable
-                             "~/.local/bin/rubocop"))))
-  :mode (("\\.rb\\'" . enh-ruby-mode)))
+(use-package ruby-mode
+  :ensure nil
+  :hook ((ruby-mode . (lambda ()
+                        (setq
+                         flycheck-ruby-rubocop-executable
+                         "~/.local/bin/rubocop")))))
 (use-package inf-ruby
   :hook ((ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-minor-mode)))
+
 (use-package puppet-mode
   :hook ((puppet-mode . (lambda ()
                           (setq
