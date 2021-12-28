@@ -869,7 +869,6 @@ send a notification when the process has exited."
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
-  (magit-clone-url-format "https://%h/%n.git")
   (magit-clone-set-remote.pushDefault 'ask)
   (magit-remote-add-set-remote.pushDefault 'ask)
   (magit-list-refs-sortby "-creatordate")
@@ -1520,19 +1519,21 @@ and adapted to use simulations keys to have a common yank keystroke."
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
-  (magit-clone-internal
-   ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
-   (magit-clone--name-to-url (concat "it-puppet-module-" module-name))
-   magit-clone-default-directory
-   nil))
+  (let ((magit-clone-url-format "https://%h/%n.git"))
+    (magit-clone-internal
+     ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
+     (magit-clone--name-to-url (concat "it-puppet-module-" module-name))
+     magit-clone-default-directory
+     nil)))
 
 (defun my/clone-hostgroup (hostgroup-name)
   "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
   (interactive "sTop-level hostgroup name: ")
-  (magit-clone-internal
-   (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
-   magit-clone-default-directory
-   nil))
+  (let ((magit-clone-url-format "https://%h/%n.git"))
+    (magit-clone-internal
+     (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
+     magit-clone-default-directory
+     nil)))
 
 (defun my/os-same-project-as (fqdn)
   "Set the current OpenStack project to the same as FQDN's.
