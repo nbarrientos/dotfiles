@@ -1525,7 +1525,6 @@ and adapted to use simulations keys to have a common yank keystroke."
       "*LDAP results*"
     (conf-mode)))
 
-
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
