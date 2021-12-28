@@ -870,7 +870,8 @@ send a notification when the process has exited."
   (magit-save-repository-buffers 'dontask)
   (magit-clone-default-directory "~/dev/")
   (magit-clone-url-format "https://%h/%n.git")
-  (magit-clone-set-remote.pushDefault t)
+  (magit-clone-set-remote.pushDefault 'ask)
+  (magit-remote-add-set-remote.pushDefault 'ask)
   (magit-list-refs-sortby "-creatordate")
   (magit-diff-refine-hunk t))
 
