@@ -865,6 +865,16 @@ send a notification when the process has exited."
   (transient-append-suffix 'magit-push "-M"
     '(1 "-U" "Unassign MR in Gitlab"
         "--push-option=merge_request.unassign=22"))
+  ;; https://github.com/magit/magit/wiki/Tips-and-Tricks#ask-for-confirmation-before-pushing-to-originmaster
+  (define-advice magit-push-current-to-upstream (:before (args) query-yes-or-no)
+    "Prompt for confirmation before permitting a push to upstream."
+    (when-let ((branch (magit-get-current-branch)))
+      (unless (yes-or-no-p
+               (format "Push %s branch to %s? "
+                       branch
+                       (or (magit-get-upstream-branch branch)
+                           (magit-get "branch" branch "remote"))))
+        (user-error "Push to upstream aborted by user"))))
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
