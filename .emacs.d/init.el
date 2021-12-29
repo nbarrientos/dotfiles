@@ -888,7 +888,10 @@ send a notification when the process has exited."
   :after magit
   :config
   (add-to-list 'forge-alist
-               '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository)))
+               '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository))
+  :custom
+  (forge-owned-accounts '(("nbarrientos" . nil)
+                          ("cernops" . nil))))
 
 (use-package git-link
   :custom
