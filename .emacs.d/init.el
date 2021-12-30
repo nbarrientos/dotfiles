@@ -774,33 +774,36 @@ the current TRAMP root is prepended to DIRECTORY."
 With universal prefix argument bury the compilation buffer and
 send a notification when the process has exited."
     (interactive "p")
-    (let* ((cmd (buffer-substring
-                 eshell-last-output-end (point-max)))
-           (hostname (or
-                      (file-remote-p default-directory 'host)
-                      (system-name)))
-           (compile-command nil)
-           (compilation-save-buffers-predicate 'ignore)
-           (compilation-scroll-output nil)
-           (compilation-buffer-name-function
-            (lambda (major-mode)
-              (format "D#%x %s" (random (expt 2 16)) cmd)))
-           (compilation-buffer (compile cmd)))
-      (when (equal arg 4)
-        (with-current-buffer compilation-buffer
-          (switch-to-prev-buffer (get-buffer-window (current-buffer)))
-          (setq-local compilation-finish-functions
-                      `((lambda (buffer str)
-                          (notifications-notify
-                           :body (format "%s # %s" ,hostname ,cmd)
-                           :timeout 8000
-                           :category "detached_process"
-                           :actions '("default" "Switch to buffer")
-                           :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
-                           :title (format "Process %s!" (string-chop-newline str))
-                           :urgency (if (string-prefix-p "finished" str) 'normal 'critical)))))))
-      (eshell-add-input-to-history cmd)
-      (eshell-reset)))
+    (when-let* ((cmd (buffer-substring
+                      eshell-last-output-end (point-max)))
+                (cmd-present-p (not (string-empty-p cmd))))
+      (let* ((hostname (or
+                        (file-remote-p default-directory 'host)
+                        (system-name)))
+             (compile-command nil)
+             (compilation-save-buffers-predicate 'ignore)
+             (compilation-scroll-output nil)
+             (compilation-buffer
+              (compilation-start
+               cmd
+               nil
+               (lambda (major-mode)
+                 (format "D#%x %s" (random (expt 2 16)) cmd)))))
+        (when (equal arg 4)
+          (with-current-buffer compilation-buffer
+            (switch-to-prev-buffer (get-buffer-window (current-buffer)))
+            (setq-local compilation-finish-functions
+                        `((lambda (buffer str)
+                            (notifications-notify
+                             :body (format "%s # %s" ,hostname ,cmd)
+                             :timeout 8000
+                             :category "detached_process"
+                             :actions '("default" "Switch to buffer")
+                             :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
+                             :title (format "Process %s!" (string-chop-newline str))
+                             :urgency (if (string-prefix-p "finished" str) 'normal 'critical)))))))
+        (eshell-add-input-to-history cmd)
+        (eshell-reset))))
   (setenv "EDITOR" "emacsclient")
   (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
   (add-to-list 'directory-abbrev-alist '("/afs/cern.ch/user/i/ibarrien" . "~"))
