@@ -776,11 +776,9 @@ send a notification when the process has exited."
     (interactive "p")
     (let* ((cmd (buffer-substring
                  eshell-last-output-end (point-max)))
-           (hostname (car (split-string
-                           (or
-                            (file-remote-p default-directory 'host)
-                            (system-name))
-                           "\\.")))
+           (hostname (or
+                      (file-remote-p default-directory 'host)
+                      (system-name)))
            (compile-command nil)
            (compilation-save-buffers-predicate 'ignore)
            (compilation-scroll-output nil)
