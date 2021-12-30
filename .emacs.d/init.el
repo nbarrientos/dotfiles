@@ -794,12 +794,12 @@ send a notification when the process has exited."
           (setq-local compilation-finish-functions
                       `((lambda (buffer str)
                           (notifications-notify
-                           :body ,cmd
+                           :body (format "%s # %s" ,hostname ,cmd)
                            :timeout 8000
                            :category "detached_process"
                            :actions '("default" "Switch to buffer")
                            :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
-                           :title (format "Process running in '%s' finished!" ,hostname)
+                           :title (format "Process %s!" (string-chop-newline str))
                            :urgency (if (string-prefix-p "finished" str) 'normal 'critical)))))))
       (eshell-add-input-to-history cmd)
       (eshell-reset)))
