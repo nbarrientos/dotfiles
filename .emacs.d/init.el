@@ -786,7 +786,7 @@ send a notification when the process has exited."
            (compilation-scroll-output nil)
            (compilation-buffer-name-function
             (lambda (major-mode)
-              (format "D# %s (%s)" cmd hostname)))
+              (format "D#%x %s" (random (expt 2 16)) cmd)))
            (compilation-buffer (compile cmd)))
       (when (equal arg 4)
         (with-current-buffer compilation-buffer
