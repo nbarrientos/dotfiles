@@ -1482,7 +1482,7 @@ and adapted to use simulations keys to have a common yank keystroke."
      :body msg
      :category "appointment"
      :title (format "Appointment in %s minutes!" min-to-app)
-     :urgency 'critical
+     :urgency (if (= 0 min-to-app) 'critical 'normal)
      :actions '("org-agenda" "Open org-agenda")
      :on-action (lambda (id key) (org-agenda-list))))
   (appt-activate 1)
