@@ -953,6 +953,7 @@ the previously multi-windowed one"
               (save-excursion
                 (replace-regexp "^-- $" "--")))))
   :custom
+  (read-mail-command 'mu4e)
   (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit t)
   (mu4e-update-interval (* 5 60))
