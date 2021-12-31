@@ -1306,7 +1306,14 @@ and adapted to use simulations keys to have a common yank keystroke."
   (display-time-default-load-average nil)
   (display-time-format "%d/%b %H:%M")
   (display-time-mail-string (all-the-icons-icon-for-mode 'mu4e-headers-mode))
-  (display-time-mail-directory "~/mail/cern/INBOX/new")
+  (display-time-mail-directory nil)
+  (display-time-mail-function
+   (lambda ()
+     (-some-p #'integerp (mapcar
+                          (lambda (maildir)
+                            (let ((display-time-mail-directory maildir))
+                              (display-time-mail-check-directory)))
+                          (file-expand-wildcards "~/mail/*/INBOX/new")))))
   :config
   (display-time-mode))
 
