@@ -1305,7 +1305,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (display-time-default-load-average nil)
   (display-time-format "%d/%b %H:%M")
-  (display-time-mail-string (all-the-icons-icon-for-mode 'mu4e-headers-mode))
+  (display-time-use-mail-icon t)
   (display-time-mail-directory nil)
   (display-time-mail-function
    (lambda ()
