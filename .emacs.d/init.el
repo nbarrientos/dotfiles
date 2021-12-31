@@ -1250,10 +1250,6 @@ configured to use @ (at symbol) as separator."
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
 
-  (setq display-time-default-load-average nil)
-  (setq display-time-format "%d/%b %H:%M")
-  (display-time-mode)
-
   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
 
   (defun my/exwm-counsel-yank-pop ()
@@ -1302,6 +1298,17 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (eshell))))
 
   (exwm-enable))
+
+(use-package time
+  :ensure nil
+  :after (exwm)
+  :custom
+  (display-time-default-load-average nil)
+  (display-time-format "%d/%b %H:%M")
+  (display-time-mail-string (all-the-icons-icon-for-mode 'mu4e-headers-mode))
+  (display-time-mail-directory "~/mail/cern/INBOX/new")
+  :config
+  (display-time-mode))
 
 (use-package desktop-environment
   :after (exwm)
