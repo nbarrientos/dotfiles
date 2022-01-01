@@ -1412,7 +1412,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (defun my/regenerate-ctags ()
     (interactive)
-    (setq default-directory (doom-modeline-project-root))
+    (setq default-directory (project-root (project-current)))
     (compile "ctags -e -R --exclude=@/home/nacho/.ctags/exclude --exclude=@.gitignore"))
 
 ;;; Org
