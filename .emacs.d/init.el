@@ -187,7 +187,8 @@
                ("f" . my/project-counsel-fzf)
                ("m" . magit-project-status)
                ("M" . my/clone-module)
-               ("s" . project-eshell)))
+               ("s" . project-eshell)
+               ("t" . my/regenerate-ctags)))
   :config
   (global-unset-key (kbd "C-x p"))
   (setenv
