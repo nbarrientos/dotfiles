@@ -182,11 +182,11 @@
          (:map project-prefix-map
                ("b" . my/project-ivy-switch-buffer)
                ("C" . magit-clone)
+               ("f" . my/project-counsel-fzf)
+               ("F" . nil)
                ("g" . rg-project)
                ("G" . nil)
                ("H" . my/clone-hostgroup)
-               ("f" . my/project-counsel-fzf)
-               ("F" . nil)
                ("m" . magit-project-status)
                ("M" . my/clone-module)
                ("s" . project-eshell)
