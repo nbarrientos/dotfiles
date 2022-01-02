@@ -186,7 +186,7 @@
                ("f" . my/project-counsel-fzf)
                ("F" . nil)
                ("g" . rg-project)
-               ("G" . nil)
+               ("G" . rg-dwim-project-dir)
                ("H" . my/clone-hostgroup)
                ("m" . magit-project-status)
                ("M" . my/clone-module)
