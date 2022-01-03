@@ -10,7 +10,7 @@ mkdir -p ~/.local/share/applications
 mkdir -p ~/.ssh/controlmasters
 mkdir -p ~/venvs
 mkdir -p ~/Downloads
-mkdir -p ~/mail/cern
+mkdir -p ~/mail/cern ~/mail/criptonita
 pushd .dotfiles
 stow -v .
 popd
