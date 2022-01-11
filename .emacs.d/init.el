@@ -405,29 +405,7 @@ The 'circular' list is defined in the variable
   (add-to-list 'all-the-icons-mode-icon-alist
                '(exwm-mode
                  all-the-icons-octicon "browser"
-                 :v-adjust 0.2 :face all-the-icons-purple))
-  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/300
-  (dolist (x '(".?" "apache" "nginx"))
-    (setq all-the-icons-regexp-icon-alist
-          (assoc-delete-all x all-the-icons-regexp-icon-alist)))
-  (defvar all-the-icons-default-file-icon
-    '(all-the-icons-faicon "file-o" :v-adjust 0.0 :face all-the-icons-dsilver))
-  (defun all-the-icons-icon-for-file (file &rest arg-overrides)
-    "Get the formatted icon for FILE.
-ARG-OVERRIDES should be a plist containining `:height',
-`:v-adjust' or `:face' properties like in the normal icon
-inserting functions."
-    (let* ((ext (file-name-extension file))
-           (icon (or (all-the-icons-match-to-alist file all-the-icons-regexp-icon-alist)
-                     (and ext
-                          (cdr
-                           (assoc
-                            (downcase ext)
-                            all-the-icons-extension-icon-alist)))
-                     all-the-icons-default-file-icon))
-           (args (cdr icon)))
-      (when arg-overrides (setq args (append `(,(car args)) arg-overrides (cdr args))))
-      (apply (car icon) args))))
+                 :v-adjust 0.2 :face all-the-icons-purple)))
 
 (use-package ivy
   :diminish
