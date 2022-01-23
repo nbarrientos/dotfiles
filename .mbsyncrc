@@ -160,6 +160,8 @@ Group prio-0
 Channel cern-inbox
 Channel cern-drafts
 Channel cern-sent
+Channel criptonita-inbox
+Channel criptonita-gmail
 
 Group prio-1
 Channel cern-ai-admins
@@ -188,5 +190,3 @@ Channel cern-service-desk
 Channel cern-service-desk-crap
 Channel cern-spanish-gang
 Channel cern-spam
-Channel criptonita-inbox
-Channel criptonita-gmail
