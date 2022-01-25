@@ -179,8 +179,7 @@
 (use-package project
   :ensure nil
   :bind-keymap ("C-p" . project-prefix-map)
-  :bind (("C-x C-f" . my/project-counsel-fzf)
-         (:map project-prefix-map
+  :bind ((:map project-prefix-map
                ("b" . my/project-ivy-switch-buffer)
                ("C" . magit-clone)
                ("f" . my/project-counsel-fzf)
