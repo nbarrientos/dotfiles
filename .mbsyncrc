@@ -1,4 +1,4 @@
-Create Slave
+Create Near
 Sync All
 SyncState *
 Expunge Both
@@ -33,128 +33,128 @@ Path ~/mail/criptonita/
 Inbox ~/mail/criptonita/INBOX
 
 Channel cern-inbox
-Master :cern-remote:INBOX
-Slave :cern-local:INBOX
+Far :cern-remote:INBOX
+Near :cern-local:INBOX
 
 Channel cern-drafts
-Master :cern-remote:Drafts
-Slave :cern-local:Drafts
+Far :cern-remote:Drafts
+Near :cern-local:Drafts
 
 Channel cern-spam
-Master :cern-remote:Spam
-Slave :cern-local:Spam
+Far :cern-remote:Spam
+Near :cern-local:Spam
 
 Channel cern-ai-admins
-Master :cern-remote:ai-admins
-Slave :cern-local:ai-admins
+Far :cern-remote:ai-admins
+Near :cern-local:ai-admins
 
 Channel cern-ai-config-team
-Master :cern-remote:ai-config-team
-Slave :cern-local:ai-config-team
+Far :cern-remote:ai-config-team
+Near :cern-local:ai-config-team
 
 Channel cern-ai-jira
-Master :cern-remote:ai-jira
-Slave :cern-local:ai-jira
+Far :cern-remote:ai-jira
+Near :cern-local:ai-jira
 
 Channel cern-ai-jira-crm
-Master :cern-remote:ai-jira-crm
-Slave :cern-local:ai-jira-crm
+Far :cern-remote:ai-jira-crm
+Near :cern-local:ai-jira-crm
 
 Channel cern-building-31
-Master :cern-remote:building-31
-Slave :cern-local:building-31
+Far :cern-remote:building-31
+Near :cern-local:building-31
 
 Channel cern-c5-minutes
-Master :cern-remote:c5-minutes
-Slave :cern-local:c5-minutes
+Far :cern-remote:c5-minutes
+Near :cern-local:c5-minutes
 
 Channel cern-cern-personnel
-Master :cern-remote:cern-personnel
-Slave :cern-local:cern-personnel
+Far :cern-remote:cern-personnel
+Near :cern-local:cern-personnel
 
 Channel cern-foreman-announce
-Master :cern-remote:foreman-announce
-Slave :cern-local:foreman-announce
+Far :cern-remote:foreman-announce
+Near :cern-local:foreman-announce
 
 Channel cern-foreman-users
-Master :cern-remote:foreman-users
-Slave :cern-local:foreman-users
+Far :cern-remote:foreman-users
+Near :cern-local:foreman-users
 
 Channel cern-gitlab
-Master :cern-remote:gitlab
-Slave :cern-local:gitlab
+Far :cern-remote:gitlab
+Near :cern-local:gitlab
 
 Channel cern-guides-en
-Master :cern-remote:guides-en
-Slave :cern-local:guides-en
+Far :cern-remote:guides-en
+Near :cern-local:guides-en
 
 Channel cern-guides-es
-Master :cern-remote:guides-es
-Slave :cern-local:guides-es
+Far :cern-remote:guides-es
+Near :cern-local:guides-es
 
 Channel cern-it-dep
-Master :cern-remote:it-dep
-Slave :cern-local:it-dep
+Far :cern-remote:it-dep
+Near :cern-local:it-dep
 
 Channel cern-it-dep-cm
-Master :cern-remote:it-dep-cm
-Slave :cern-local:it-dep-cm
+Far :cern-remote:it-dep-cm
+Near :cern-local:it-dep-cm
 
 Channel cern-it-dep-cm-lcs
-Master :cern-remote:it-dep-cm-lcs
-Slave :cern-local:it-dep-cm-lcs
+Far :cern-remote:it-dep-cm-lcs
+Near :cern-local:it-dep-cm-lcs
 
 Channel cern-linux-users
-Master :cern-remote:linux-users
-Slave :cern-local:linux-users
+Far :cern-remote:linux-users
+Near :cern-local:linux-users
 
 Channel cern-oss-security
-Master :cern-remote:oss-security
-Slave :cern-local:oss-security
+Far :cern-remote:oss-security
+Near :cern-local:oss-security
 
 Channel cern-puppet-dev
-Master :cern-remote:puppet-dev
-Slave :cern-local:puppet-dev
+Far :cern-remote:puppet-dev
+Near :cern-local:puppet-dev
 
 Channel cern-puppet-users
-Master :cern-remote:puppet-users
-Slave :cern-local:puppet-users
+Far :cern-remote:puppet-users
+Near :cern-local:puppet-users
 
 Channel cern-rh-errata
-Master :cern-remote:rh-errata
-Slave :cern-local:rh-errata
+Far :cern-remote:rh-errata
+Near :cern-local:rh-errata
 
 Channel cern-sent
-Master ":cern-remote:Sent Items"
-Slave ":cern-local:Sent Items"
+Far ":cern-remote:Sent Items"
+Near ":cern-local:Sent Items"
 
 Channel cern-service-desk
-Master :cern-remote:service-desk
-Slave :cern-local:service-desk
+Far :cern-remote:service-desk
+Near :cern-local:service-desk
 
 Channel cern-service-desk-crap
-Master :cern-remote:service-desk-crap
-Slave :cern-local:service-desk-crap
+Far :cern-remote:service-desk-crap
+Near :cern-local:service-desk-crap
 
 Channel cern-spanish-gang
-Master :cern-remote:spanish-gang
-Slave :cern-local:spanish-gang
+Far :cern-remote:spanish-gang
+Near :cern-local:spanish-gang
 
 Channel cern-centos-devel
-Master :cern-remote:centos-devel
-Slave :cern-local:centos-devel
+Far :cern-remote:centos-devel
+Near :cern-local:centos-devel
 
 Channel cern-market
-Master :cern-remote:cern-market
-Slave :cern-local:cern-market
+Far :cern-remote:cern-market
+Near :cern-local:cern-market
 
 Channel criptonita-inbox
-Master :criptonita-remote:INBOX
-Slave :criptonita-local:INBOX
+Far :criptonita-remote:INBOX
+Near :criptonita-local:INBOX
 
 Channel criptonita-gmail
-Master :criptonita-remote:Gmail
-Slave :criptonita-local:Gmail
+Far :criptonita-remote:Gmail
+Near :criptonita-local:Gmail
 
 Group prio-0
 Channel cern-inbox
