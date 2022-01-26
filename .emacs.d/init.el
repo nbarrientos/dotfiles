@@ -894,6 +894,7 @@ send a notification when the process has exited."
 (use-package window
   :ensure nil
   :bind (("<f8>" . other-window)
+         ("C-<f8>" . window-swap-states)
          ("C-x 1" . my/toggle-single-window))
   :init
   (defun my/toggle-single-window ()
@@ -1231,6 +1232,7 @@ configured to use @ (at symbol) as separator."
   (add-to-list 'exwm-input-prefix-keys ?\C-p)
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
+  (define-key exwm-mode-map (kbd "C-<f8>") 'window-swap-states)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
 
