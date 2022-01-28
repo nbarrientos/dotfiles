@@ -144,6 +144,10 @@ Channel cern-centos-devel
 Far :cern-remote:centos-devel
 Near :cern-local:centos-devel
 
+Channel cern-isync-devel
+Far :cern-remote:isync-devel
+Near :cern-local:isync-devel
+
 Channel cern-market
 Far :cern-remote:cern-market
 Near :cern-local:cern-market
@@ -177,6 +181,7 @@ Channel cern-foreman-users
 Channel cern-gitlab
 Channel cern-guides-en
 Channel cern-guides-es
+Channel cern-isync-devel
 Channel cern-it-dep
 Channel cern-it-dep-cm
 Channel cern-it-dep-cm-lcs
