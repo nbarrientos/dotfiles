@@ -174,8 +174,8 @@ Channel cern-ai-jira
 Channel cern-ai-jira-crm
 Channel cern-building-31
 Channel cern-c5-minutes
-Channel cern-cern-personnel
 Channel cern-centos-devel
+Channel cern-cern-personnel
 Channel cern-foreman-announce
 Channel cern-foreman-users
 Channel cern-gitlab
@@ -193,5 +193,5 @@ Channel cern-puppet-users
 Channel cern-rh-errata
 Channel cern-service-desk
 Channel cern-service-desk-crap
-Channel cern-spanish-gang
 Channel cern-spam
+Channel cern-spanish-gang
