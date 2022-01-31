@@ -868,6 +868,8 @@ send a notification when the process has exited."
 
 (use-package forge
   :after magit
+  :bind (:map forge-topic-mode-map
+              ("C-c C-a" . forge-edit-topic-assignees))
   :config
   (add-to-list 'forge-alist
                '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository))
