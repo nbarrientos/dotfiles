@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: puppet agent -t
+# key: pa
+# puppet(1)
+# --
+
+puppet agent -t$0
