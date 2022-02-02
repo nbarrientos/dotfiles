@@ -910,6 +910,9 @@ the previously multi-windowed one"
       (setq my-saved-window-configuration (current-window-configuration))
       (delete-other-windows)))))
 
+(use-package transpose-frame
+  :bind (("M-<f8>" . rotate-frame-clockwise)))
+
 (use-package bookmark
   :ensure nil
   :custom
