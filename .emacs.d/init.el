@@ -1238,6 +1238,7 @@ configured to use @ (at symbol) as separator."
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
   (define-key exwm-mode-map (kbd "C-<f8>") 'window-swap-states)
+  (define-key exwm-mode-map (kbd "M-<f8>") 'rotate-frame-clockwise)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
 
