@@ -1215,11 +1215,7 @@ configured to use @ (at symbol) as separator."
           ([?\s--] .
            (lambda ()
              (interactive)
-             (exwm-layout-shrink-window-horizontally 100)))
-          ([?\s-s] .
-           (lambda ()
-             (interactive)
-             (shell-command "import png:- | xclip -selection c -t image/png &>/dev/null")))))
+             (exwm-layout-shrink-window-horizontally 100)))))
 
   (setq exwm-input-simulation-keys
         '(
@@ -1316,7 +1312,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   (exwm-input-set-key (kbd "s-l") #'desktop-environment-lock-screen)
   (exwm-input-set-key (kbd "<XF86AudioPlay>") #'desktop-environment-toggle-music)
   (exwm-input-set-key (kbd "<XF86AudioNext>") #'desktop-environment-music-next)
-  ;; (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
+  (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
   :custom
   (desktop-environment-volume-get-command "pamixer --get-volume")
   (desktop-environment-volume-set-command "pamixer %s")
@@ -1324,7 +1320,8 @@ and adapted to use simulations keys to have a common yank keystroke."
   (desktop-environment-volume-normal-increment "-i 5 --allow-boost")
   (desktop-environment-volume-normal-decrement "-d 5")
   (desktop-environment-volume-toggle-command "pamixer -t")
-  ;; (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png")
+  (desktop-environment-screenshot-directory "~")
+  (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png -verbose")
   (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
 ;;; Building and compiling
