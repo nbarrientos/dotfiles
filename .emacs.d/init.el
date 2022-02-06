@@ -164,7 +164,8 @@
               ("C-<up>" . rg-prev-file))
   :config
   (add-to-list 'rg-custom-type-aliases '("texi" . "*.texi"))
-  (add-to-list 'rg-custom-type-aliases '("puppet" . "*.pp"))
+  ;; Pending https://github.com/BurntSushi/ripgrep/pull/2141
+  (add-to-list 'rg-custom-type-aliases '("puppetplus" . "*.pp *.epp *.erb"))
   :custom
   (rg-group-result t)
   (rg-buffer-name "ripgrep"))
