@@ -1382,12 +1382,12 @@ and adapted to use simulations keys to have a common yank keystroke."
    `(
      ;; All tests and bundle update for all Puppet and Ruby (SPEC) files.
      ((and
-       (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
+       (or (eq 'ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (my/multi-compile--cern-module-p)) .
        (("all-tests" . ,(my/multi-compile--bundle-rake 'cern "test"))
         ("bundle-update" . ,(my/multi-compile--bundle 'cern "update"))))
      ((and
-       (or (eq 'enh-ruby-mode major-mode) (eq 'puppet-mode major-mode))
+       (or (eq 'ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (not (my/multi-compile--cern-module-p))) .
        (("all-tests" . ,(my/multi-compile--bundle-rake 'upstream "test"))
         ("bundle-update" . ,(my/multi-compile--bundle 'upstream "update"))))
