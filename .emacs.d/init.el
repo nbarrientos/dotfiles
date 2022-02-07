@@ -1312,6 +1312,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   (exwm-input-set-key (kbd "s-m") #'desktop-environment-toggle-mute)
   (exwm-input-set-key (kbd "s-l") #'desktop-environment-lock-screen)
   (exwm-input-set-key (kbd "<XF86AudioPlay>") #'desktop-environment-toggle-music)
+  (exwm-input-set-key (kbd "<XF86AudioPause>") #'desktop-environment-toggle-music)
   (exwm-input-set-key (kbd "<XF86AudioNext>") #'desktop-environment-music-next)
   (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
   :custom
