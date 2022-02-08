@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo pacman -S --noconfirm git
-git clone https://github.com/nbarrientos/dotfiles.git ~/.dotfiles
 sudo pacman -S --needed - < .dotfiles/PKGLIST.native.arch
 mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
 mkdir -p ~/.config/keepassxc ~/.config/dunst

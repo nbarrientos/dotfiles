@@ -22,13 +22,18 @@ interesting.
 
 # How to deploy
 
-Clone the dotfiles, create the necessary directories so some trees are
-unfolded and
+Clone the dotfiles:
+
+```
+sudo pacman -S --noconfirm git
+git clone https://github.com/nbarrientos/dotfiles.git ~/.dotfiles
+```
+
+Now create the necessary directories so some trees are unfolded and
 [Stow](https://www.gnu.org/software/stow/manual/stow.html) it! or,
 
 ``` 1c-enterprise
-$ cd ~
-$ bash init.sh
+$ bash ~/.dotfiles/init.sh
 ```
 
 # Screencasts
