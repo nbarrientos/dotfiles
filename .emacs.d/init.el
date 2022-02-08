@@ -219,6 +219,11 @@
      (project-eshell "Eshell")
      (magit-project-status "Magit"))))
 
+;;;; Imenu
+(use-package imenu
+  :ensure nil
+  :bind (("C-x i" . imenu)))
+
 ;;; Auth Source
 (use-package auth-source
   :ensure nil
