@@ -30,3 +30,9 @@ unfolded and
 $ cd ~
 $ bash init.sh
 ```
+
+# Screencasts
+
+From time to time I record screencasts showcasing some custom or
+interesting Emacs configurations. They can be found in my [YouTube
+channel](https://www.youtube.com/channel/UCCEr9T0kxVIaNnkdLfj5C3g).
