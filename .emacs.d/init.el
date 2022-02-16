@@ -222,7 +222,7 @@
 ;;;; Imenu
 (use-package imenu
   :ensure nil
-  :bind (("C-x i" . imenu)))
+  :bind (("C-x i" . counsel-imenu)))
 
 ;;; Auth Source
 (use-package auth-source
