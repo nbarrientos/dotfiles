@@ -545,6 +545,12 @@ modify parts of the directory before switching to it."
   :bind (("C-s" . swiper)
          ("C-M-s" . swiper-thing-at-point)))
 
+(use-package avy
+  :bind (("C-v" . avy-goto-char-timer))
+  :custom
+  (avy-single-candidate-jump nil)
+  (avy-all-windows nil))
+
 ;;;; Snippets
 (use-package yasnippet
   :config
