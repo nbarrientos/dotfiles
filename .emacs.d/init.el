@@ -548,6 +548,16 @@ modify parts of the directory before switching to it."
 (use-package avy
   :bind (("C-v" . avy-goto-char-timer))
   :custom
+  (avy-keys '(?a ?s ?d ?f ?h ?j ?l))
+  (avy-dispatch-alist
+   '((?k . avy-action-kill-move)
+     (?K . avy-action-kill-stay)
+     (?t . avy-action-teleport)
+     (?m . avy-action-mark)
+     (?w . avy-action-copy)
+     (?y . avy-action-yank)
+     (?Y . avy-action-yank-line)
+     (?z . avy-action-zap-to-char)))
   (avy-single-candidate-jump nil)
   (avy-all-windows nil))
 
