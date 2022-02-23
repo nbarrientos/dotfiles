@@ -62,6 +62,7 @@
 (global-set-key (kbd "C-d") 'mark-word)
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
+(global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
 (global-unset-key (kbd "C-x C-c"))
 
 (add-to-list 'yank-excluded-properties 'face)
