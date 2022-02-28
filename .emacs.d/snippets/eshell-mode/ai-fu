@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ai-foreman updatehost
+# key: ai-fu
+# ai-foreman(1)
+# --
+
+ai-foreman updatehost ${1:-e ${2:environment}} ${3:-c ${4:hostgroup}} $5
