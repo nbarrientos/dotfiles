@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: roger update
+# key: rog-up
+# roger(1)
+# --
+roger update --appstate ${1:$$(yas-choose-value '("quiesce" "production"))} --all_alarms ${2:$$(yas-choose-value '("false" "true"))} ${3:--message ${4:reboot}} $5
