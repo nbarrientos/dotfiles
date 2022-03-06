@@ -558,7 +558,7 @@ modify parts of the directory before switching to it."
      (?y . avy-action-yank)
      (?Y . avy-action-yank-line)
      (?z . avy-action-zap-to-char)))
-  (avy-single-candidate-jump nil)
+  (avy-single-candidate-jump t)
   (avy-all-windows nil))
 
 ;;;; Snippets
