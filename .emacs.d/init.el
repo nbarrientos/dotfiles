@@ -1058,8 +1058,8 @@ the previously multi-windowed one"
                      ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/aacp_96.m3u")
                      ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
                      ;; Spanish
-                     ("RNE" . "https://rtvelivestream.akamaized.net/rne_r1_main.m3u8")
-                     ("RPA" . "https://cdnlive2.shooowit.net/rtpalive/smil:radio.smil/playlist.m3u8")
+                     ("RNE" . "https://hlsliveamdgl0-lh.akamaihd.net/i/rnerne_1@586398/master.m3u8")
+                     ("RPA" . "https://cdnlive.codev8.net/rtpalive/smil:radio.smil/media-uv46611bc_b1000000_30980.aac")
                      ;; English
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
                      ("BBC2" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two")
