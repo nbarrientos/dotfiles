@@ -1373,7 +1373,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   :init
   (defun my/multi-compile--bundle-environment (module-origin)
     (let* ((puppet-version "~>7")
-           (environment (list (format "PUPPET_VERSION=\"%s\"" puppet-version))))
+           (environment (list (format "PUPPET_GEM_VERSION=\"%s\"" puppet-version))))
       (when (eq module-origin 'cern)
         (add-to-list 'environment "BUNDLE_GEMFILE=../ci/Gemfile"))
       (string-join environment " ")))
