@@ -702,6 +702,8 @@ modify parts of the directory before switching to it."
   :custom
   (venv-location "~/venvs"))
 
+(use-package powerthesaurus)
+
 ;;; Eshell
 (use-package eshell-bookmark
   :after eshell
