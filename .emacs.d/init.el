@@ -354,6 +354,15 @@ The 'circular' list is defined in the variable
   :config
   (setq password-cache-expiry 300))
 
+(use-package tramp-cmds
+  :ensure nil
+  :init
+  (add-hook 'tramp-cleanup-connection-hook
+            (lambda (vector)
+              (let ((host (tramp-file-name-host vector))
+                    (default-directory (expand-file-name "~/")))
+                (call-process-shell-command (concat "/usr/bin/ssh -O exit " host) nil nil)))))
+
 (use-package pinentry
   :config
   (pinentry-start))
