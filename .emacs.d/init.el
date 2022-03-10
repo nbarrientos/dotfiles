@@ -687,6 +687,8 @@ modify parts of the directory before switching to it."
   (sh-basic-offset 2))
 
 (use-package web-mode
+  :custom
+  (web-mode-enable-auto-indentation nil)
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.epp\\'" . web-mode))
