@@ -71,6 +71,7 @@ neofetch
 net-tools
 netctl
 netstat-nat
+nfs-utils
 nmap
 nvidia
 nvidia-settings
@@ -129,6 +130,7 @@ texlive-science
 ttf-dejavu
 ttf-hack
 ttf-jetbrains-mono
+ttf-joypixels
 ttf-liberation
 ttf-linux-libertine
 unrar
