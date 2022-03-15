@@ -715,6 +715,8 @@ modify parts of the directory before switching to it."
 
 (use-package powerthesaurus)
 
+(use-package package-lint)
+
 ;;; Eshell
 (use-package eshell-bookmark
   :after eshell
