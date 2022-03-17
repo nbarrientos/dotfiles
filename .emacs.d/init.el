@@ -828,8 +828,6 @@ send a notification when the process has exited."
         (eshell-add-input-to-history cmd)
         (eshell-reset))))
   (setenv "EDITOR" "emacsclient")
-  (add-to-list 'directory-abbrev-alist '("/home/ibarrien" . "~"))
-  (add-to-list 'directory-abbrev-alist '("/afs/cern.ch/user/i/ibarrien" . "~"))
   :custom
   (eshell-banner-message "")
   (eshell-history-size 20000)
