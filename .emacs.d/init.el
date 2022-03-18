@@ -676,11 +676,7 @@ modify parts of the directory before switching to it."
   :config
   (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
 
-(use-package archive-rpm
-  ;; Temporary fork due to upstream code being unusable at the moment
-  ;; https://github.com/legoscia/archive-rpm/pull/2
-  ;; https://github.com/legoscia/archive-rpm/pull/3
-  :load-path "~/.emacs.d/local-packages/archive-rpm/")
+(use-package archive-rpm)
 
 (use-package sh-script
   :ensure nil
