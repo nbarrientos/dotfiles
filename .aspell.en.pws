@@ -1,4 +1,4 @@
-personal_ws-1.1 en 124 
+personal_ws-1.1 en 125 
 APIs
 ARP
 BGP
@@ -87,6 +87,7 @@ lockdown
 logrotated
 loopback
 microservice
+middleperson
 misconfiguration
 modeline
 multicast
