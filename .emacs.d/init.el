@@ -1498,11 +1498,18 @@ and adapted to use simulations keys to have a common yank keystroke."
 (use-package org-capture
   :ensure nil
   :config
+  (defun my/org-capture-region-or-buffer-name ()
+    "Return the active region if active, otherwise the buffer name."
+    (let ((original-buffer (plist-get org-capture-plist :original-buffer)))
+      (with-current-buffer original-buffer
+        (if (region-active-p)
+            (buffer-substring-no-properties (region-beginning) (region-end))
+      (string-trim-left (buffer-name original-buffer) "^F# ")))))
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/org/notes.org" "Tasks")
            "* TODO %?\n  %u\n  %a")
           ("w" "CERN meeting" entry (file+olp "~/org/calendar.org" "CERN" "Meetings")
-           "* %(string-trim-left (buffer-name (plist-get org-capture-plist :original-buffer)) \"^F# \") %?\n  %^{Date and time?}T\n  %a"))))
+           "* %(my/org-capture-region-or-buffer-name) %?\n  %^{Date and time?}T\n  %a"))))
 
 (use-package org-tree-slide
   :custom
