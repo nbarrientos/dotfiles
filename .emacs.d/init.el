@@ -1020,6 +1020,10 @@ the previously multi-windowed one"
        :query "flag:flagged"
        :key ?f
        :hide-unread t)))
+  (mu4e-contact-process-function
+   (lambda (contact)
+     (unless (string-match-p "\.gmai\.com$" contact)
+       contact)))
   :config
   (add-to-list 'mu4e-view-fields :user-agent t)
   (setq user-mail-address "nacho.barrientos@cern.ch")
