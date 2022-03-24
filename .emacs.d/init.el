@@ -253,6 +253,7 @@
 (use-package undo-tree
   :bind (("C-x /" . undo-tree-visualize))
   :config
+  (unbind-key "C-b" undo-tree-visualizer-mode-map)
   (global-undo-tree-mode 1)
   :custom
   (undo-tree-auto-save-history nil)
