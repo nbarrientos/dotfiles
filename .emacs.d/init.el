@@ -251,6 +251,7 @@
               ("M-;" . nil)))
 
 (use-package undo-tree
+  :bind (("C-x /" . undo-tree-visualize))
   :config
   (global-undo-tree-mode 1)
   :custom
