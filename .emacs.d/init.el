@@ -923,6 +923,8 @@ send a notification when the process has exited."
   ;; https://github.com/ch11ng/exwm/issues/353
   (advice-add 'ediff-window-display-p :override #'ignore))
 
+(use-package git-modes)
+
 ;;; Movement and window switching
 (use-package mwim
   :bind
