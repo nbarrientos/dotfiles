@@ -1265,7 +1265,8 @@ configured to use @ (at symbol) as separator."
 
   (setq exwm-input-simulation-keys
         '(
-          ([?\C-y] . [?\C-v])))
+          ([?\C-y] . [?\C-v])
+          ([?\C-w] . [?\C-c])))
 
   (setq exwm-manage-force-tiling t)
 
