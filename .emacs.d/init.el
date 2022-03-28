@@ -1479,7 +1479,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (use-package org-agenda
   :ensure nil
-  :bind (("<f10>" . org-agenda))
+  :bind (("C-c o a" . org-agenda))
   :hook
   (org-agenda-finalize . org-agenda-to-appt)
   :config
