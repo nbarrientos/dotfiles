@@ -1267,7 +1267,7 @@ configured to use @ (at symbol) as separator."
 
   (setq exwm-manage-force-tiling t)
 
-  (define-key exwm-mode-map (kbd "C-c") nil)
+  (add-to-list 'exwm-input-prefix-keys ?\C-c)
   ;; Buffer switching
   (add-to-list 'exwm-input-prefix-keys ?\C-b)
   (add-to-list 'exwm-input-prefix-keys ?\M-b)
