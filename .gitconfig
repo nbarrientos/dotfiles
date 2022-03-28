@@ -1,10 +1,10 @@
 [user]
-        name = Nacho Barrientos
+	name = Nacho Barrientos
 	email = nacho.barrientos@cern.ch
 [init]
 	defaultBranch = master
 [http]
-        emptyAuth = true
+	emptyAuth = true
 
 [merge]
 	conflictStyle = diff3
