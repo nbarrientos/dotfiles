@@ -1,6 +1,8 @@
 [user]
         name = Nacho Barrientos
 	email = nacho.barrientos@cern.ch
+[init]
+	defaultBranch = master
 [http]
         emptyAuth = true
 
