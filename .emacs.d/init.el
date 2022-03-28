@@ -1518,7 +1518,7 @@ and adapted to use simulations keys to have a common yank keystroke."
         '(("t" "Todo" entry (file+headline "~/org/notes.org" "Tasks")
            "* TODO %?\n  %u\n  %a")
           ("w" "CERN meeting" entry (file+olp "~/org/calendar.org" "CERN" "Meetings")
-           "* %(my/org-capture-region-or-buffer-name) %?\n  %^{Date and time?}T\n  %a"))))
+           "* %(my/org-capture-region-or-buffer-name)%?\n  %^{Date and time?}T\n  %a"))))
 
 (use-package org-tree-slide
   :custom
