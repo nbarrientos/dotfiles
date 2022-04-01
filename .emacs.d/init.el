@@ -209,7 +209,7 @@
            (buffer-names (mapcar 'buffer-name buffers)))
       (ivy-read "Switch to project buffer: " buffer-names
             :keymap ivy-switch-buffer-map
-            :action #'ivy--switch-buffer-action
+            :action #'ivy--switch-buffer-other-window-action
             :matcher #'ivy--switch-buffer-matcher
             :caller 'ivy-switch-buffer)))
   :custom
