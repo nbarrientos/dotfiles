@@ -71,6 +71,8 @@
 
 ;;;; Fonts
 (set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
+(set-face-attribute 'mode-line nil :height 100)
+(set-face-attribute 'mode-line-inactive nil :height 100)
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
