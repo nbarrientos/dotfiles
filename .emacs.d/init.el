@@ -701,6 +701,10 @@ modify parts of the directory before switching to it."
 
 (use-package jq-mode)
 
+(use-package sqlformat
+  :custom
+  (sqlformat-command 'pgformatter))
+
 ;;;; Misc
 (use-package editorconfig
   :config
