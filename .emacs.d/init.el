@@ -71,8 +71,6 @@
 
 ;;;; Fonts
 (set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
-(set-face-attribute 'mode-line nil :height 100)
-(set-face-attribute 'mode-line-inactive nil :height 100)
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
@@ -617,6 +615,9 @@ modify parts of the directory before switching to it."
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
+  :config
+  (set-face-attribute 'mode-line nil :height 100)
+  (set-face-attribute 'mode-line-inactive nil :height 100)
   :custom
   (doom-modeline-height 30)
   (doom-modeline-buffer-encoding nil)
