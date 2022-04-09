@@ -493,7 +493,7 @@ The 'circular' list is defined in the variable
   (ivy-rich-modify-columns
    'ivy-switch-buffer
    '((ivy-rich-switch-buffer-project (:width 30))
-     (ivy-rich-switch-buffer-major-mode (:width 20)))))
+     (all-the-icons-ivy-rich-switch-buffer-major-mode (:width 20)))))
 
 (use-package amx
   :after (ivy)
