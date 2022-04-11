@@ -702,6 +702,19 @@ modify parts of the directory before switching to it."
 
 (use-package jq-mode)
 
+(use-package sql
+  :ensure nil
+  :custom
+  (sql-postgres-login-params
+   `(
+     (user :default ,(user-login-name))
+     (database :default ,(user-login-name)
+               :completion ,(completion-table-dynamic
+                             (lambda (_) (sql-postgres-list-databases)))
+               :must-match confirm)
+     server
+     port)))
+
 (use-package sqlformat
   :custom
   (sqlformat-command 'pgformatter))
