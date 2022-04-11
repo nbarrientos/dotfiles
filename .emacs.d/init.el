@@ -892,7 +892,23 @@ send a notification when the process has exited."
   :ensure nil
   :bind (:map comint-mode-map
          ("M-<up>" . comint-previous-prompt)
-         ("M-<down>" . comint-next-prompt)))
+         ("M-<down>" . comint-next-prompt)
+         ("C-c C-o" . my/comint-kill-ring-save-outputs))
+  :config
+  (defun my/comint-kill-ring-save-outputs ()
+    "Add to the kill ring CURRENT-PREFIX-ARG outputs, including prompts.
+If no universal argument is passed, assume only one output"
+    (interactive)
+    (save-excursion
+      (let (times)
+        (if (or (null current-prefix-arg) (< current-prefix-arg 1))
+            (setq times 1)
+          (setq times current-prefix-arg))
+        (comint-previous-prompt times)
+        (forward-line -1)
+        (forward-line)
+        (message (format "Comint output added to the kill ring (%d commands)" times))
+        (kill-ring-save (point) (car comint-last-prompt))))))
 
 ;;; Magit and Git
 (use-package magit
