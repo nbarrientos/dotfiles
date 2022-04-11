@@ -887,6 +887,13 @@ send a notification when the process has exited."
     (setq eshell-highlight-prompt nil
           eshell-prompt-function 'my/epe-theme-prompt)))
 
+;;; Comint
+(use-package comint
+  :ensure nil
+  :bind (:map comint-mode-map
+         ("M-<up>" . comint-previous-prompt)
+         ("M-<down>" . comint-next-prompt)))
+
 ;;; Magit and Git
 (use-package magit
   :bind (("C-x g" . magit-status)
