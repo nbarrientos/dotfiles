@@ -704,16 +704,8 @@ modify parts of the directory before switching to it."
 
 (use-package sql
   :ensure nil
-  :custom
-  (sql-postgres-login-params
-   `(
-     (user :default ,(user-login-name))
-     (database :default ,(user-login-name)
-               :completion ,(completion-table-dynamic
-                             (lambda (_) (sql-postgres-list-databases)))
-               :must-match confirm)
-     server
-     port)))
+  :config
+  (add-to-list 'sql-postgres-login-params 'port t))
 
 (use-package sqlformat
   :custom
