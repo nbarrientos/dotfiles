@@ -28,7 +28,7 @@ dmenu
 dosfstools
 dunst
 efibootmgr
-emacs
+emacs-nativecomp
 fakeroot
 firefox
 firejail
