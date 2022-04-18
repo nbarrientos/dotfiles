@@ -711,6 +711,8 @@ modify parts of the directory before switching to it."
   :custom
   (sqlformat-command 'pgformatter))
 
+(use-package nhexl-mode)
+
 ;;;; Misc
 (use-package editorconfig
   :config
