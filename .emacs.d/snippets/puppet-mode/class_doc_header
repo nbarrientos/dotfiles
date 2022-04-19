@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: class_doc_header
+# key: class_doc_header
+# https://puppet.com/docs/puppet/6/puppet_strings_style.html#classes-and-defined-types
+# --
+
+# @summary Write here a summary of what the class does.
+#
+# @api private (delete this line of the API is public)
+#
+# @example Description of the example
+#   code
+#   of the
+#   example
+#
+# @param param_name
+#   Write here the description of param_name
