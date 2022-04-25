@@ -1401,6 +1401,8 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (desktop-environment-volume-get-command "pamixer --get-volume")
   (desktop-environment-volume-set-command "pamixer %s")
+  ;; https://github.com/DamienCassou/desktop-environment/issues/28
+  (desktop-environment-volume-toggle-regexp (rx ""))
   (desktop-environment-volume-get-regexp "\\([0-9]+\\)")
   (desktop-environment-volume-normal-increment "-i 5 --allow-boost")
   (desktop-environment-volume-normal-decrement "-d 5")
