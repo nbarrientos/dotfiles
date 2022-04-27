@@ -9,6 +9,9 @@
 [merge]
 	conflictStyle = diff3
 
+[core]
+	excludesFile = ~/.gitignore-global
+
 [gitlab "gitlab.cern.ch/api/v4"]
 	user = ibarrien
 
