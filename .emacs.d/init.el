@@ -1139,7 +1139,8 @@ the previously multi-windowed one"
     "https://duckduckgo.com/html?q=%s"
     :keybinding "d")
   (defengine github
-    "https://github.com/search?ref=simplesearch&q=%s")
+    "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "h")
   (defengine cern-gitlab
     "https://gitlab.cern.ch/search?search=%s"
     :keybinding "l")
