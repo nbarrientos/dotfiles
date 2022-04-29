@@ -1631,21 +1631,23 @@ and adapted to use simulations keys to have a common yank keystroke."
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
   (let ((magit-clone-url-format "https://%h/%n.git")
-        (magit-clone-set-remote.pushDefault t))
+        (magit-clone-set-remote.pushDefault t)
+        (repo-name (concat "it-puppet-module-" module-name)))
     (magit-clone-internal
      ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
-     (magit-clone--name-to-url (concat "it-puppet-module-" module-name))
-     magit-clone-default-directory
+     (magit-clone--name-to-url repo-name)
+     (concat magit-clone-default-directory repo-name)
      nil)))
 
 (defun my/clone-hostgroup (hostgroup-name)
   "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
   (interactive "sTop-level hostgroup name: ")
   (let ((magit-clone-url-format "https://%h/%n.git")
-        (magit-clone-set-remote.pushDefault t))
+        (magit-clone-set-remote.pushDefault t)
+        (repo-name (concat "it-puppet-hostgroup-" hostgroup-name)))
     (magit-clone-internal
-     (magit-clone--name-to-url (concat "it-puppet-hostgroup-" hostgroup-name))
-     magit-clone-default-directory
+     (magit-clone--name-to-url repo-name)
+     (concat magit-clone-default-directory repo-name)
      nil)))
 
 (defun my/os-same-project-as (fqdn)
