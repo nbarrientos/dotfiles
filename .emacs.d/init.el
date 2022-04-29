@@ -212,6 +212,11 @@
             :action #'ivy--switch-buffer-other-window-action
             :matcher #'ivy--switch-buffer-matcher
             :caller 'ivy-switch-buffer)))
+  (defun my/magit-maybe-remember-project ()
+    (when-let (project (project-current))
+      (unless (member (list (cdr project)) project--list)
+        (project-remember-project project))))
+  (add-hook 'magit-setup-buffer-hook #'my/magit-maybe-remember-project)
   :custom
   (project-switch-commands
    '((my/project-counsel-fzf "Find file")
