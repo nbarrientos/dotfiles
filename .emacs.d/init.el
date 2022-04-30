@@ -658,7 +658,34 @@ modify parts of the directory before switching to it."
   :hook ((puppet-mode . (lambda ()
                           (setq
                            flycheck-puppet-lint-executable
-                           "~/.local/bin/puppet-lint")))))
+                           "~/.local/bin/puppet-lint"))))
+  :bind (:map puppet-mode-map
+              ("C-c C-t" . my/puppet-rspec-find-spec-file-for))
+  :config
+  (defun my/puppet-rspec-find-spec-file-for (&optional a-file-name)
+    "Find spec for A-FILE-NAME. If nil, use the current buffer's file.
+It just guesses as the filename for the spec is rather arbitrary."
+    (interactive)
+    (unless a-file-name
+      (setq a-file-name (buffer-file-name)))
+    (and-let* ((spec-parent
+                (expand-file-name
+                 (locate-dominating-file a-file-name "spec")))
+               (relative-file-name
+                (string-remove-prefix
+                 spec-parent
+                 a-file-name))
+               (code-path
+                (string-trim-left relative-file-name ".+?/"))
+               (almost-spec-file
+                (format "%s/spec/%%s/%s_spec.rb"
+                        spec-parent
+                        (file-name-sans-extension code-path))))
+      (dolist (test-type '("classes" "defines" "type_aliases" "acceptance"))
+        (let ((spec-file (format almost-spec-file test-type)))
+          (when (file-regular-p spec-file)
+            (find-file (format spec-file test-type))))))))
+
 (use-package rspec-mode)
 
 (use-package go-mode
