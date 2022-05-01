@@ -1683,13 +1683,13 @@ With any prefix argument, make it not recursive."
   (let ((ldap-host-parameters-alist
          (list
           (append
-          (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-          '(base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"))))
+           (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
+           '(base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"))))
         (results nil))
     (dolist (e (car (ldap-search
-                       (format "(&(objectClass=group)(CN=%s))" group)
-                       "ldap://localhost:1389"
-                       '("member"))))
+                     (format "(&(objectClass=group)(CN=%s))" group)
+                     "ldap://localhost:1389"
+                     '("member"))))
       (and-let* ((dn (car (cdr e)))
                  (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" dn))
                  (cn (match-string 1 dn))
