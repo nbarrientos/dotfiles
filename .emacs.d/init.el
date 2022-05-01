@@ -1653,6 +1653,48 @@ and adapted to use simulations keys to have a common yank keystroke."
       "*LDAP results*"
     (conf-mode)))
 
+(defun my/cern-ldap-group (arg group)
+  "Print in buffer *LDAP GROUP* the members of GROUP.
+With any prefix argument, make it not recursive."
+  (interactive "P\nsGroup: ")
+  (let ((buffer-n (format "*LDAP %s*" group)))
+    (with-temp-buffer-window
+        buffer-n
+        #'temp-buffer-show-function
+        nil
+      (dolist (member (my/cern-ldap-group-expand group (not arg)))
+        (princ (format "%s\n" member)))
+      (with-current-buffer
+          buffer-n
+        (sort-lines nil (point-min) (point-max))))))
+
+(defun my/cern-ldap-group-expand (group &optional recurse)
+  "Return (recursively if RECURSE) the members of GROUP."
+  (let ((ldap-host-parameters-alist
+         '(("ldap://localhost:1389"
+            base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"
+            auth simple
+            scope subtree)))
+        (results nil))
+    (dolist (e (car (ldap-search
+                       (format "(&(objectClass=group)(CN=%s))" group)
+                       "ldap://localhost:1389"
+                       '("member"))))
+      (and-let* ((full-member (car (cdr e)))
+                 (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" full-member))
+                 (member (match-string 1 full-member))
+                 (ou-1 (match-string 2 full-member))
+                 (ou-2 (match-string 3 full-member)))
+        (cond ((and
+                recurse
+                (string= "e-groups" (downcase ou-1)))
+               (setq results (append (my/cern-ldap-group-expand member recurse) results)))
+              ((string= "users" (downcase ou-1))
+               (push member results))
+              (t
+               (push (format "%s@%s/%s" member ou-1 ou-2) results)))))
+    (delete-dups results)))
+
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
