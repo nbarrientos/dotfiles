@@ -1636,26 +1636,32 @@ and adapted to use simulations keys to have a common yank keystroke."
       scope subtree))))
 
 ;;; CERN-specific goodies
-(defun my/cern-ldap-user (account)
+(defun my/cern-ldap-user (region-start region-end account)
   "Do an LDAP query returning all attributes for account in a new buffer"
-  (interactive "sAccount: ")
-  (let ((ldap-host-parameters-alist
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end) nil)
+     (list nil nil (read-string "Account: "))))
+  (when (use-region-p)
+    (setq account (buffer-substring-no-properties region-start region-end)))
+  (let ((buffer-n (format "LDAP %s" account))
+        (ldap-host-parameters-alist
          (list
           (append
-          (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-          '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch")))))
+           (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
+           '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch")))))
     (with-temp-buffer-window
-        "*LDAP results*"
+        buffer-n
         #'temp-buffer-show-function
         nil
       (dolist (e (car (ldap-search
                        (concat "sAMAccountName=" account)
                        "ldap://localhost:1389"
                        nil)))
-        (princ (format "%s:%s\n" (nth 0 e) (nth 1 e)))))
-    (with-current-buffer
-        "*LDAP results*"
-      (conf-mode))))
+        (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))
+      (with-current-buffer
+          buffer-n
+        (conf-mode)))))
 
 (defun my/cern-ldap-group (arg group)
   "Print in buffer *LDAP GROUP* the members of GROUP.
