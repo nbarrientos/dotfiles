@@ -1637,7 +1637,8 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 ;;; CERN-specific goodies
 (defun my/cern-ldap-user (region-start region-end account)
-  "Do an LDAP query returning all attributes for account in a new buffer"
+  "Do an LDAP query returning all attributes for ACCOUNT in a new buffer.
+If the region is active use the contents as value for ACCOUNT."
   (interactive
    (if (use-region-p)
        (list (region-beginning) (region-end) nil)
