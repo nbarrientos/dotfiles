@@ -1631,10 +1631,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   :commands (ldap-search)
   :custom
   (ldap-host-parameters-alist
-   '(("xldap.cern.ch"
+   '(("ldap://localhost:1389"
       base "OU=Users,OU=Organic Units,DC=cern,DC=ch"
       auth simple
-      passwd ""
       scope subtree))))
 
 ;;; CERN-specific goodies
@@ -1647,7 +1646,7 @@ and adapted to use simulations keys to have a common yank keystroke."
       nil
     (dolist (e (car (ldap-search
                      (concat "sAMAccountName=" account)
-                     "xldap.cern.ch"
+                     "ldap://localhost:1389"
                      nil)))
       (princ (format "%s:%s\n" (nth 0 e) (nth 1 e)))))
   (with-current-buffer
