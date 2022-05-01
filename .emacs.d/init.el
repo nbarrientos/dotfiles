@@ -1632,7 +1632,6 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (ldap-host-parameters-alist
    '(("ldap://localhost:1389"
-      base "OU=Users,OU=Organic Units,DC=cern,DC=ch"
       auth simple
       scope subtree))))
 
@@ -1640,18 +1639,23 @@ and adapted to use simulations keys to have a common yank keystroke."
 (defun my/cern-ldap-user (account)
   "Do an LDAP query returning all attributes for account in a new buffer"
   (interactive "sAccount: ")
-  (with-temp-buffer-window
-      "*LDAP results*"
-      #'temp-buffer-show-function
-      nil
-    (dolist (e (car (ldap-search
-                     (concat "sAMAccountName=" account)
-                     "ldap://localhost:1389"
-                     nil)))
-      (princ (format "%s:%s\n" (nth 0 e) (nth 1 e)))))
-  (with-current-buffer
-      "*LDAP results*"
-    (conf-mode)))
+  (let ((ldap-host-parameters-alist
+         (list
+          (append
+          (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
+          '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch")))))
+    (with-temp-buffer-window
+        "*LDAP results*"
+        #'temp-buffer-show-function
+        nil
+      (dolist (e (car (ldap-search
+                       (concat "sAMAccountName=" account)
+                       "ldap://localhost:1389"
+                       nil)))
+        (princ (format "%s:%s\n" (nth 0 e) (nth 1 e)))))
+    (with-current-buffer
+        "*LDAP results*"
+      (conf-mode))))
 
 (defun my/cern-ldap-group (arg group)
   "Print in buffer *LDAP GROUP* the members of GROUP.
@@ -1671,28 +1675,27 @@ With any prefix argument, make it not recursive."
 (defun my/cern-ldap-group-expand (group &optional recurse)
   "Return (recursively if RECURSE) the members of GROUP."
   (let ((ldap-host-parameters-alist
-         '(("ldap://localhost:1389"
-            base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"
-            auth simple
-            scope subtree)))
+         (list
+          (append
+          (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
+          '(base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"))))
         (results nil))
     (dolist (e (car (ldap-search
                        (format "(&(objectClass=group)(CN=%s))" group)
                        "ldap://localhost:1389"
                        '("member"))))
-      (and-let* ((full-member (car (cdr e)))
-                 (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" full-member))
-                 (member (match-string 1 full-member))
-                 (ou-1 (match-string 2 full-member))
-                 (ou-2 (match-string 3 full-member)))
+      (and-let* ((dn (car (cdr e)))
+                 (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" dn))
+                 (cn (match-string 1 dn))
+                 (ou-1 (match-string 2 dn)))
         (cond ((and
                 recurse
                 (string= "e-groups" (downcase ou-1)))
-               (setq results (append (my/cern-ldap-group-expand member recurse) results)))
+               (setq results (append (my/cern-ldap-group-expand cn recurse) results)))
               ((string= "users" (downcase ou-1))
-               (push member results))
+               (push cn results))
               (t
-               (push (format "%s@%s/%s" member ou-1 ou-2) results)))))
+               (push dn results)))))
     (delete-dups results)))
 
 (defun my/clone-module (module-name)
