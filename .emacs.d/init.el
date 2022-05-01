@@ -1694,13 +1694,18 @@ With any prefix argument, make it not recursive."
       (and-let* ((dn (car (cdr e)))
                  (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" dn))
                  (cn (match-string 1 dn))
-                 (ou-1 (match-string 2 dn)))
+                 (ou-1 (match-string 2 dn))
+                 (ou-2 (match-string 3 dn)))
         (cond ((and
                 recurse
                 (string= "e-groups" (downcase ou-1)))
                (setq results (append (my/cern-ldap-group-expand cn recurse) results)))
               ((string= "users" (downcase ou-1))
                (push cn results))
+              ((and
+                (length= ou-1 1)
+                (string= "externals" (downcase ou-2)))
+               nil)
               (t
                (push dn results)))))
     (delete-dups results)))
