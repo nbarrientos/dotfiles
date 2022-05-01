@@ -1668,16 +1668,19 @@ If the region is active use the contents as value for ACCOUNT."
   "Print in buffer *LDAP GROUP* the members of GROUP.
 With any prefix argument, make it not recursive."
   (interactive "P\nsGroup: ")
-  (let ((buffer-n (format "*LDAP %s*" group)))
-    (with-temp-buffer-window
-        buffer-n
-        #'temp-buffer-show-function
-        nil
-      (dolist (member (my/cern-ldap-group-expand group (not arg)))
-        (princ (format "%s\n" member)))
-      (with-current-buffer
-          buffer-n
-        (sort-lines nil (point-min) (point-max))))))
+  (let ((buffer-n (format "*LDAP %s*" group))
+        (members (my/cern-ldap-group-expand group (not arg))))
+    (if members
+        (with-temp-buffer-window
+            buffer-n
+            #'temp-buffer-show-function
+            nil
+          (dolist (member members)
+            (princ (format "%s\n" member)))
+          (with-current-buffer
+              buffer-n
+            (sort-lines nil (point-min) (point-max))))
+      (message "%s" (propertize "Empty or unknown group!" 'face 'alert-high-face)))))
 
 (defun my/cern-ldap-group-expand (group &optional recurse)
   "Return (recursively if RECURSE) the members of GROUP."
