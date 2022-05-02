@@ -1649,7 +1649,7 @@ selection."
      (list nil nil (read-string "Account: ") current-prefix-arg)))
   (when (use-region-p)
     (setq account (buffer-substring-no-properties region-start region-end)))
-  (let ((buffer-n (format "LDAP %s" account))
+  (let ((buffer-n (format "*LDAP %s*" account))
         (ldap-host-parameters-alist
          (list
           (append
