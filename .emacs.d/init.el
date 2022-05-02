@@ -1638,17 +1638,21 @@ and adapted to use simulations keys to have a common yank keystroke."
       scope subtree))))
 
 ;;; CERN-specific goodies
-(defun my/cern-ldap-user (region-start region-end account arg)
+(defun my/cern-ldap-user-dwim (arg)
+  "Look-up account in the active region or the word at point.
+With any prefix ARG, return all atributes."
+  (interactive "P")
+  (let ((account (if (use-region-p)
+                     (buffer-substring-no-properties (region-beginning) (region-end))
+                   (word-at-point t))))
+    (when account
+      (my/cern-ldap-user arg account))))
+
+(defun my/cern-ldap-user (arg account)
   "Do an LDAP query returning some attributes for ACCOUNT in a new buffer.
-If the region is active use the contents as value for ACCOUNT. With
-prefix argument, return all attributes, else return only a small
+With prefix argument, return all attributes, else return only a small
 selection."
-  (interactive
-   (if (use-region-p)
-       (list (region-beginning) (region-end) nil current-prefix-arg)
-     (list nil nil (read-string "Account: ") current-prefix-arg)))
-  (when (use-region-p)
-    (setq account (buffer-substring-no-properties region-start region-end)))
+  (interactive "P\nsAccount: ")
   (let ((buffer-n (format "*LDAP %s*" account))
         (ldap-host-parameters-alist
          (list
@@ -1674,6 +1678,18 @@ selection."
         (conf-mode)
         (local-set-key (kbd "q") 'kill-this-buffer)))))
 
+(defun my/cern-ldap-group-dwim (arg)
+  "Expand the group which is in the active region or the word at point.
+With any prefix ARG, don't do it recursively."
+  (interactive "P")
+  (superword-mode 1)
+  (let ((group (if (use-region-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (word-at-point t))))
+    (superword-mode -1)
+    (when group
+      (my/cern-ldap-group arg group))))
+
 (defun my/cern-ldap-group (arg group)
   "Print in buffer *LDAP GROUP* the members of GROUP.
 With any prefix argument, make it not recursive."
@@ -1690,7 +1706,7 @@ With any prefix argument, make it not recursive."
           (with-current-buffer
               buffer-n
             (local-set-key (kbd "q") 'kill-this-buffer)
-            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user)
+            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-dwim)
             (sort-lines nil (point-min) (point-max))))
       (message "%s" (propertize "Empty or unknown group!" 'face 'alert-high-face)))))
 
