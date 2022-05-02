@@ -1636,13 +1636,15 @@ and adapted to use simulations keys to have a common yank keystroke."
       scope subtree))))
 
 ;;; CERN-specific goodies
-(defun my/cern-ldap-user (region-start region-end account)
-  "Do an LDAP query returning all attributes for ACCOUNT in a new buffer.
-If the region is active use the contents as value for ACCOUNT."
+(defun my/cern-ldap-user (region-start region-end account arg)
+  "Do an LDAP query returning some attributes for ACCOUNT in a new buffer.
+If the region is active use the contents as value for ACCOUNT. With
+prefix argument, return all attributes, else return only a small
+selection."
   (interactive
    (if (use-region-p)
-       (list (region-beginning) (region-end) nil)
-     (list nil nil (read-string "Account: "))))
+       (list (region-beginning) (region-end) nil current-prefix-arg)
+     (list nil nil (read-string "Account: ") current-prefix-arg)))
   (when (use-region-p)
     (setq account (buffer-substring-no-properties region-start region-end)))
   (let ((buffer-n (format "LDAP %s" account))
@@ -1662,6 +1664,11 @@ If the region is active use the contents as value for ACCOUNT."
         (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))
       (with-current-buffer
           buffer-n
+        (unless arg
+          (keep-lines
+           "^gecos:\\|cern-status\\|nationality\\|^manager:\\|^department:\\|^name:\\|^cernExternalMail:"
+           (point-min)
+           (point-max)))
         (conf-mode)))))
 
 (defun my/cern-ldap-group (arg group)
