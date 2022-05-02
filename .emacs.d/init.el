@@ -713,6 +713,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 (use-package archive-rpm)
 
+(use-package systemd)
+
 (use-package sh-script
   :ensure nil
   :custom
