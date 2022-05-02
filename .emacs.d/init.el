@@ -1653,7 +1653,7 @@ With any prefix ARG, return all attributes."
 With prefix argument, return all attributes, else return only a small
 selection."
   (interactive "P\nsAccount: ")
-  (let ((buffer-n (format "*LDAP %s*" account))
+  (let ((buffer-n (format "*LDAP user %s*" account))
         (ldap-host-parameters-alist
          (list
           (append
@@ -1694,7 +1694,7 @@ With any prefix ARG, don't do it recursively."
   "Print in buffer *LDAP GROUP* the members of GROUP.
 With any prefix argument, make it not recursive."
   (interactive "P\nsGroup: ")
-  (let ((buffer-n (format "*LDAP %s*" group))
+  (let ((buffer-n (format "*LDAP group %s*" group))
         (members (my/cern-ldap-group-expand group (not arg))))
     (if members
         (with-temp-buffer-window
