@@ -1669,7 +1669,8 @@ selection."
            "^gecos:\\|cern-status\\|nationality\\|^manager:\\|^department:\\|^name:\\|^cernExternalMail:"
            (point-min)
            (point-max)))
-        (conf-mode)))))
+        (conf-mode)
+        (local-set-key (kbd "q") 'kill-this-buffer)))))
 
 (defun my/cern-ldap-group (arg group)
   "Print in buffer *LDAP GROUP* the members of GROUP.
@@ -1686,6 +1687,7 @@ With any prefix argument, make it not recursive."
             (princ (format "%s\n" member)))
           (with-current-buffer
               buffer-n
+            (local-set-key (kbd "q") 'kill-this-buffer)
             (sort-lines nil (point-min) (point-max))))
       (message "%s" (propertize "Empty or unknown group!" 'face 'alert-high-face)))))
 
