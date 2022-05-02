@@ -1690,7 +1690,7 @@ With any prefix argument, make it not recursive."
           (with-current-buffer
               buffer-n
             (local-set-key (kbd "q") 'kill-this-buffer)
-            (local-set-key (kbd "RET") 'my/cern-ldap-user)
+            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user)
             (sort-lines nil (point-min) (point-max))))
       (message "%s" (propertize "Empty or unknown group!" 'face 'alert-high-face)))))
 
