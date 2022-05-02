@@ -1668,7 +1668,7 @@ selection."
           buffer-n
         (unless arg
           (keep-lines
-           "^gecos:\\|cern-status\\|nationality\\|^manager:\\|^department:\\|^name:\\|^cernExternalMail:"
+           "^gecos:\\|cern-status\\|nationality\\|^manager:\\|^department:\\|^name:\\|^cernExternalMail:\\|^seeAlso:"
            (point-min)
            (point-max)))
         (conf-mode)
