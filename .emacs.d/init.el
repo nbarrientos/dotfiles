@@ -1640,7 +1640,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 ;;; CERN-specific goodies
 (defun my/cern-ldap-user-dwim (arg)
   "Look-up account in the active region or the word at point.
-With any prefix ARG, return all atributes."
+With any prefix ARG, return all attributes."
   (interactive "P")
   (let ((account (if (use-region-p)
                      (buffer-substring-no-properties (region-beginning) (region-end))
