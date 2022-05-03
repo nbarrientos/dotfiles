@@ -1657,7 +1657,11 @@ selection."
          (list
           (append
            (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-           '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch")))))
+           '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
+        (attributes (if arg
+                      nil
+                      '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
+                        "displayName" "cernExternalMail" "seeAlso" "cernAccountType"))))
     (with-temp-buffer-window
         buffer-n
         #'temp-buffer-show-function
@@ -1665,15 +1669,22 @@ selection."
       (dolist (e (car (ldap-search
                        (concat "sAMAccountName=" account)
                        "ldap://localhost:1389"
-                       nil)))
+                       attributes)))
         (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))
       (with-current-buffer
           buffer-n
         (unless arg
-          (keep-lines
-           "^gecos:\\|cern-status\\|nationality\\|^manager:\\|^department:\\|^name:\\|^cernExternalMail:\\|^seeAlso:"
-           (point-min)
-           (point-max)))
+          (save-excursion
+            (goto-char (point-min))
+            (when (re-search-forward "^memberOf:.*$" nil t)
+              (beginning-of-line)
+              (let ((first-membership (point)))
+                (while (re-search-forward "^memberOf:.*$" nil t)
+                  nil)
+                (keep-lines
+                 "CN=cern-status\\|CN=nationality"
+                 first-membership
+                 (+ 1 (point)))))))
         (conf-mode)
         (local-set-key (kbd "q") 'kill-this-buffer)))))
 
