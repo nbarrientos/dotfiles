@@ -1630,7 +1630,6 @@ and adapted to use simulations keys to have a common yank keystroke."
 ;;; LDAP
 (use-package ldap
   :ensure nil
-  :commands (ldap-search)
   :custom
   (ldap-host-parameters-alist
    '(("ldap://localhost:1389"
