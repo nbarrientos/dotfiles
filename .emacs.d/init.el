@@ -63,7 +63,6 @@
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
 (global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
-(global-unset-key (kbd "C-x C-c"))
 
 (add-to-list 'yank-excluded-properties 'face)
 
@@ -1793,6 +1792,17 @@ otherwise it returns nil."
     (unless (null project-name)
       (my/setenv-tramp "OS_PROJECT_NAME" project-name)
       project-name)))
+
+(transient-define-prefix my/cern-dispatch ()
+  "Dispatch a CERN-specific command."
+  [["LDAP user"
+    ("U" "Dwim" my/cern-ldap-user-dwim)
+    ("u" "Ask" my/cern-ldap-user)]
+   ["LDAP group"
+    ("G" "Dwim" my/cern-ldap-group-dwim)
+    ("g" "Ask" my/cern-ldap-group)]])
+
+(global-set-key (kbd "C-x C-c") 'my/cern-dispatch)
 
 ;;; IRC
 (use-package erc
