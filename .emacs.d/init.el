@@ -62,6 +62,8 @@
 (global-set-key (kbd "C-d") 'mark-word)
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
+(global-set-key (kbd "C-<prior>") 'my/goto-first-visible-line)
+(global-set-key (kbd "C-<next>") 'my/goto-last-visible-line)
 (global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
 
 (add-to-list 'yank-excluded-properties 'face)
@@ -1879,6 +1881,25 @@ With argument ARG, do this that many times."
 With argument ARG, do this that many times."
   (interactive "p")
   (my/delete-word (- arg)))
+
+(defun my/--goto-line-ding-if-current (target-line)
+  "Move point to the TARGET-LINE. Ding if already there."
+  (let ((current-line (line-number-at-pos (point))))
+    (if (= current-line target-line)
+      (ding)
+      (goto-line target-line))))
+
+(defun my/goto-first-visible-line ()
+  "Move point to the first visible line in the window."
+  (interactive)
+  (my/--goto-line-ding-if-current
+   (line-number-at-pos (window-start))))
+
+(defun my/goto-last-visible-line ()
+  "Move point to the last visible line in the window."
+  (interactive)
+  (my/--goto-line-ding-if-current
+   (- (line-number-at-pos (window-end)) 2)))
 
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
 (defun my/unfill-region ()
