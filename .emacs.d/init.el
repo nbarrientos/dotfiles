@@ -1129,6 +1129,10 @@ the previously multi-windowed one"
 
 (mu4e t)
 
+(use-package mu4e-column-faces
+  :after mu4e
+  :config (mu4e-column-faces-mode))
+
 ;;; Elfeed
 (use-package elfeed)
 
