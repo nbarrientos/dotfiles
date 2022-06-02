@@ -1076,6 +1076,7 @@ the previously multi-windowed one"
   (mu4e-headers-attach-mark '("a" . "📎"))
   (mu4e-headers-replied-mark '("R" . "↳"))
   (mu4e-headers-passed-mark '("P" . "→"))
+  (mu4e-headers-unread-mark '("u" . "☘"))
   ;; These three labels are used in the mode line, prefixing the
   ;; search query. My font does not have the default glyphs being
   ;; displayed and I'd either way prefer not to clutter the mode
