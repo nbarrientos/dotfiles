@@ -1073,6 +1073,18 @@ the previously multi-windowed one"
   (mu4e-get-mail-command "/usr/bin/systemctl --user start mbsync-prio-0")
   (mu4e-completing-read-function 'ivy-completing-read)
   (mu4e-use-fancy-chars t)
+  (mu4e-headers-attach-mark '("a" . "📎"))
+  (mu4e-headers-replied-mark '("R" . "↳"))
+  (mu4e-headers-passed-mark '("P" . "→"))
+  ;; These three labels are used in the mode line, prefixing the
+  ;; search query. My font does not have the default glyphs being
+  ;; displayed and I'd either way prefer not to clutter the mode
+  ;; line. Another option would be to set `mu4e-use-fancy-chars' to
+  ;; nil but this affects also other views where I like seeing fancy
+  ;; chars.
+  (mu4e-headers-threaded-label '("T" . ""))
+  (mu4e-headers-full-label '("F" . ""))
+  (mu4e-headers-related-label '("R" . ""))
   (mu4e-headers-fields
    '(( :human-date    .  12)
      ( :flags         .  10)
@@ -1109,15 +1121,6 @@ the previously multi-windowed one"
   (setq smtpmail-smtp-service 587)
   (setq smtpmail-smtp-user "ibarrien")
   (setq mail-user-agent 'mu4e-user-agent)
-  ;; These three labels are used in the mode line, prefixing the
-  ;; search query. My font does not have the default glyphs being
-  ;; displayed and I'd either way prefer not to clutter the mode
-  ;; line. Another option would be to set `mu4e-use-fancy-chars' to
-  ;; nil but this affects also other views where I like seeing fancy
-  ;; chars.
-  (setq mu4e-headers-threaded-label   '("T" . ""))
-  (setq mu4e-headers-full-label       '("F" . ""))
-  (setq mu4e-headers-related-label    '("R" . ""))
   (with-eval-after-load "mm-decode"
     (add-to-list 'mm-discouraged-alternatives "text/html")
     (add-to-list 'mm-discouraged-alternatives "text/richtext"))
