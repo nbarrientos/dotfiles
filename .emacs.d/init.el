@@ -1116,6 +1116,8 @@ the previously multi-windowed one"
   (set-face-attribute 'mu4e-header-highlight-face nil
                       :weight 'normal
                       :underline nil)
+  (set-face-attribute 'mu4e-unread-face nil
+                      :weight 'normal)
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'smtpmail-send-it)
