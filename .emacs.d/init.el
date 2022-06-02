@@ -1815,11 +1815,11 @@ otherwise it returns nil."
   (transient-define-prefix my/cern-dispatch ()
     "Dispatch a CERN-specific command."
     [["LDAP user"
-      ("u d" "Dwim" my/cern-ldap-user-dwim)
-      ("u l" "Ask" my/cern-ldap-user)]
+      ("U" "Dwim" my/cern-ldap-user-dwim)
+      ("u" "Ask" my/cern-ldap-user)]
      ["LDAP group"
-      ("g d" "Dwim" my/cern-ldap-group-dwim)
-      ("g l" "Ask" my/cern-ldap-group)]]))
+      ("G" "Dwim" my/cern-ldap-group-dwim)
+      ("g" "Ask" my/cern-ldap-group)]]))
 
 ;;; IRC
 (use-package erc
