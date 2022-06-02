@@ -1072,6 +1072,7 @@ the previously multi-windowed one"
   (mu4e-trash-folder  "/cern/Trash")
   (mu4e-get-mail-command "/usr/bin/systemctl --user start mbsync-prio-0")
   (mu4e-completing-read-function 'ivy-completing-read)
+  (mu4e-use-fancy-chars t)
   (mu4e-headers-fields
    '(( :human-date    .  12)
      ( :flags         .  10)
@@ -1125,10 +1126,6 @@ the previously multi-windowed one"
               ("d" . 'mu4e-headers-mark-for-delete)
          :map mu4e-view-mode-map
               ("C-c C-o" . 'mu4e~view-browse-url-from-binding)))
-
-(use-package mu4e-marker-icons
-  :custom
-  (mu4e-marker-icons-mode 1))
 
 (mu4e t)
 
