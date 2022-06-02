@@ -1113,6 +1113,9 @@ the previously multi-windowed one"
        contact)))
   :config
   (add-to-list 'mu4e-view-fields :user-agent t)
+  (set-face-attribute 'mu4e-header-highlight-face nil
+                      :weight 'normal
+                      :underline nil)
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'smtpmail-send-it)
