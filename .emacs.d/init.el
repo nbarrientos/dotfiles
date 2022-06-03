@@ -1063,6 +1063,7 @@ the previously multi-windowed one"
   (mu4e-hide-index-messages t)
   (mu4e-headers-leave-behavior 'apply)
   (mu4e-split-view nil)
+  (mu4e-headers-precise-alignment t)
   (mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
   (mu4e-headers-date-format "%d/%m/%y")
   (mu4e-headers-time-format "%R")
