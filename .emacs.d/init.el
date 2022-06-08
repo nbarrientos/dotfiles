@@ -1161,6 +1161,7 @@ the previously multi-windowed one"
                      ("RNE" . "https://rtvelivestreamv3.akamaized.net/rtvesec/rne_r1_main.m3u8")
                      ("RPA" . "https://cdnlive.codev8.net/rtpalive/smil:radio.smil/media-uv46611bc_b1000000_30980.aac")
                      ;; English
+                     ("WRS" . "https://streamingr.broadcastradio.com:10295/wrs")
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
                      ("BBC2" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two")
                      ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk")
