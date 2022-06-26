@@ -1313,7 +1313,7 @@ configured to use @ (at symbol) as separator."
           ([?\s-7]
            . my/ivy-switch-buffer-detached-command)
           ([?\s-8]
-           . mu4e-headers-search-bookmark)
+           . mu4e-search-bookmark)
           ([?\s-9] .
            (lambda ()
              (interactive)
