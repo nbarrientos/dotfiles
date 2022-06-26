@@ -1115,6 +1115,7 @@ the previously multi-windowed one"
   (setq mu4e-headers-threaded-label '("T" . ""))
   (setq mu4e-headers-full-label '("F" . ""))
   (setq mu4e-headers-related-label '("R" . ""))
+  (setq mu4e-headers-skip-duplicates-label '("U" . ""))
   (set-face-attribute 'mu4e-header-highlight-face nil
                       :weight 'normal
                       :underline nil)
