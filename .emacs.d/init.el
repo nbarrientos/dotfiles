@@ -1100,7 +1100,8 @@ the previously multi-windowed one"
      (unless (string-match-p "\.gmai\.com$" contact)
        contact)))
   :config
-  (add-to-list 'mu4e-view-fields :user-agent t)
+  (setq gnus-visible-headers
+      (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
   (setq mu4e-headers-attach-mark '("a" . "📎"))
   (setq mu4e-headers-replied-mark '("R" . "↳"))
   (setq mu4e-headers-passed-mark '("P" . "→"))
