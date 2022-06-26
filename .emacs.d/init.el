@@ -1106,6 +1106,8 @@ the previously multi-windowed one"
   (setq mu4e-headers-replied-mark '("R" . "↳"))
   (setq mu4e-headers-passed-mark '("P" . "→"))
   (setq mu4e-headers-unread-mark '("u" . "☘"))
+  (setq mu4e-headers-list-mark '("s" . ""))
+  (setq mu4e-headers-personal-mark '("p" . ""))
   ;; These three labels are used in the mode line, prefixing the
   ;; search query. I'd prefer not to clutter the mode line. Another
   ;; option would be to set `mu4e-use-fancy-chars' to nil but this
