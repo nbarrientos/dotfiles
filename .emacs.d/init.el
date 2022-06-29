@@ -710,6 +710,7 @@ It just guesses as the filename for the spec is rather arbitrary."
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :custom
+  (markdown-asymmetric-header t)
   (markdown-command "markdown_py -x fenced_code -x footnotes -x tables")
   (markdown-css-paths '("~/dev/github-markdown-css/github-markdown-dark.css"))
   (markdown-xhtml-body-preamble "<article class=\"markdown-body\">")
