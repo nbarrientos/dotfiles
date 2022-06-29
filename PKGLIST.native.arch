@@ -96,6 +96,7 @@ pv
 python-argcomplete
 python-bcrypt
 python-dateutil
+python-markdown
 python-pip
 python-prettytable
 python-pylint

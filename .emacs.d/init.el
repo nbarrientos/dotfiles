@@ -708,7 +708,19 @@ It just guesses as the filename for the spec is rather arbitrary."
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
+         ("\\.markdown\\'" . markdown-mode))
+  :custom
+  (markdown-command "markdown_py -x fenced_code -x footnotes -x tables")
+  (markdown-css-paths '("~/dev/github-markdown-css/github-markdown-dark.css"))
+  (markdown-xhtml-body-preamble "<article class=\"markdown-body\">")
+  (markdown-xhtml-body-epilogue "</article>")
+  (markdown-xhtml-header-content "<style>
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px; max-width: 980px;
+      margin: 0 auto; padding: 45px;
+    }
+   </style>"))
 
 (use-package rpm-spec-mode
   :config
