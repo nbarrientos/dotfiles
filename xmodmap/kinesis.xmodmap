@@ -1,4 +1,4 @@
-! Swap caps lock and escape
+! Swap caps lock and F8
 remove Lock = Caps_Lock
 keysym F8 = Caps_Lock
 keysym Caps_Lock = F8
