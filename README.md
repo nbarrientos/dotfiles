@@ -20,6 +20,12 @@ learn about new things (mostly Emacs packages). Feel free to explore
 the contents and to make use of any ideas that you might find
 interesting.
 
+# Where to find this repository
+
+  * [Sourcehut](https://git.sr.ht/~nbarrientos/dotfiles) (main)
+  * [GitHub](https://github.com/nbarrientos/dotfiles) (mirror)
+  * [GitLab](https://gitlab.com/nbarrientos/dotfiles) (mirror)
+
 # How to deploy
 
 Clone the dotfiles:
