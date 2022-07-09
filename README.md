@@ -32,7 +32,7 @@ Clone the dotfiles:
 
 ```
 sudo pacman -S --noconfirm git
-git clone https://github.com/nbarrientos/dotfiles.git ~/.dotfiles
+git clone https://git.sr.ht/~nbarrientos/dotfiles ~/.dotfiles
 ```
 
 Now create the necessary directories so some trees are unfolded and
