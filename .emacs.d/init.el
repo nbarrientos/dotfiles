@@ -624,6 +624,8 @@ modify parts of the directory before switching to it."
   :config
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100)
+  (set-face-attribute 'doom-modeline-time nil
+                      :inherit 'doom-modeline-buffer-minor-mode)
   :custom
   (doom-modeline-height 30)
   (doom-modeline-buffer-encoding nil)
