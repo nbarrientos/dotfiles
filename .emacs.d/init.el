@@ -1443,7 +1443,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   :after (exwm)
   :custom
   (display-time-default-load-average nil)
-  (display-time-format "w%Vq%q %d/%b %H:%M")
+  (display-time-format "[w%Vq%q %d/%b %H:%M]")
   (display-time-use-mail-icon t)
   (display-time-mail-directory nil)
   (display-time-mail-function
