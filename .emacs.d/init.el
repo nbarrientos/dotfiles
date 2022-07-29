@@ -626,19 +626,13 @@ modify parts of the directory before switching to it."
   (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
                       :inherit 'doom-modeline-buffer-minor-mode)
-  ;; Pending https://github.com/seagle0128/doom-modeline/issues/556
-  (doom-modeline-def-segment time
-    (when (bound-and-true-p display-time-mode)
-      (concat
-       doom-modeline-spc
-       (propertize display-time-string
-                   'face (doom-modeline-face 'doom-modeline-time)))))
   :custom
   (doom-modeline-height 30)
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-irc-buffers t)
-  (doom-modeline-buffer-file-name-style 'relative-from-project))
+  (doom-modeline-buffer-file-name-style 'relative-from-project)
+  (doom-modeline-time-icon nil))
 
 (use-package frame
   :ensure nil
