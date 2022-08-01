@@ -514,6 +514,7 @@ The 'circular' list is defined in the variable
          ("C-x F" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
          ("C-h f" . counsel-describe-function)
+         ("C-h o" . counsel-describe-symbol)
          ("C-h k" . helpful-key)
          ("C-x r b" . counsel-bookmark)
          ("M-y" . counsel-yank-pop))
