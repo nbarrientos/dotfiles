@@ -756,6 +756,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 (use-package sql
   :ensure nil
+  :bind (:map sql-mode-map
+              ("C-c C-f" . sqlformat))
   :config
   (add-to-list 'sql-postgres-login-params 'port t))
 
