@@ -14,6 +14,7 @@ user_pref("browser.startup.page", 1);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.suggest.openpage", false);
+user_pref("keyword.enabled", false);
 user_pref("network.automatic-ntlm-auth.trusted-uris", "cern.ch");
 user_pref("network.negotiate-auth.trusted-uris", "cern.ch");
 user_pref("permissions.default.desktop-notification", 2);
