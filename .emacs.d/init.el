@@ -1425,6 +1425,7 @@ and adapted to use simulations keys to have a common yank keystroke."
                   exwm-input-simulation-keys
                   '(([?\C-s] . [?\C-f]) ; Swiper!
                     ([?\C-g] . [escape])
+                    ([?\C-m] . [f6]); focus/unfocus address bar
                     ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
 
   (add-hook 'exwm-init-hook
