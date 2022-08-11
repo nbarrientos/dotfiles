@@ -19,3 +19,6 @@
 
 /* Remove tab bar */
 #TabsToolbar { visibility: collapse !important; }
+
+/* Remove back and forward buttons */
+#back-button, #forward-button { display:none !important; }
