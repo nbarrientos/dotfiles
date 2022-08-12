@@ -1728,7 +1728,7 @@ selection."
                      (+ 1 (point)))))))
             (conf-mode)
             (local-set-key (kbd "q") 'kill-this-buffer)))
-    (message "%s" (propertize "Unknown account!" 'face 'warning)))))
+    (user-error "Unknown account!"))))
 
 (defun my/cern-ldap-group-dwim (arg)
   "Expand the group which is in the active region or the word at point.
@@ -1760,7 +1760,7 @@ With any prefix argument, make it not recursive."
             (local-set-key (kbd "q") 'kill-this-buffer)
             (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-dwim)
             (sort-lines nil (point-min) (point-max))))
-      (message "%s" (propertize "Empty or unknown group!" 'face 'warning)))))
+      (user-error "Empty or unknown group!"))))
 
 (defun my/cern-ldap-group-expand (group &optional recurse)
   "Return (recursively if RECURSE) the members of GROUP."
