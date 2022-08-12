@@ -1743,7 +1743,7 @@ See `my/cern-ldap-group' for the meaning of the prefix argument."
       (my/cern-ldap-group arg group))))
 
 (defun my/cern-ldap-group (arg group)
-  "Print in buffer *LDAP GROUP* the members of GROUP.
+  "Print in buffer *LDAP group GROUP* the members of GROUP.
 With any prefix argument, make it not recursive."
   (interactive "P\nsGroup: ")
   (let ((buffer-n (format "*LDAP group %s*" group))
