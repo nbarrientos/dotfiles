@@ -1203,6 +1203,9 @@ the previously multi-windowed one"
 
 (use-package engine-mode
   :config
+  (defengine archwiki
+    "https://wiki.archlinux.org/index.php?search=%s"
+    :keybinding "a")
   (defengine duckduckgo
     "https://duckduckgo.com/html?q=%s"
     :keybinding "d")
