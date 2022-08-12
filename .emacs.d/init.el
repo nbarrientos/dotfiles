@@ -1189,6 +1189,8 @@ the previously multi-windowed one"
                      ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk")
                      ("BBC Scotland" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_scotland_fm"))))
 
+(use-package pipewire)
+
 ;;; Web browsing
 (use-package eww
   :ensure nil
