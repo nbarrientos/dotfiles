@@ -1997,8 +1997,7 @@ stored in
     (if buffer
         (if (buffer-live-p buffer)
             (my/switch-to-buffer-if-exists-back-and-forth (buffer-name buffer))
-          (ding)
-          (message "This buffer has been killed"))
+          (user-error "This buffer has been killed"))
       (add-to-list 'my/bookmark-buffer-or-switch-to-bookmark--bookmarks-alist
                    (cons last-command-event (current-buffer)))
       (with-current-buffer (current-buffer)
