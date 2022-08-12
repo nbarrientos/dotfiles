@@ -17,3 +17,6 @@
 
 [github]
 	user = nbarrientos
+
+[diff "elisp"]
+	xfuncname = ^\\([^[:space:]]*def[^[:space:]]+[[:space:]]+([^()[:space:]]+)
