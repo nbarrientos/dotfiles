@@ -1669,6 +1669,12 @@ and adapted to use simulations keys to have a common yank keystroke."
 (when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
   (load-file (format "~/.emacs.d/%s.el" system-name)))
 
+;;; Networking
+(use-package net-utils
+  :ensure nil
+  :custom
+  (whois-reverse-lookup-server "whois.ripe.net"))
+
 ;;; LDAP
 (use-package ldap
   :ensure nil
