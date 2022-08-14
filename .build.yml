@@ -1,0 +1,13 @@
+image: alpine/edge
+packages:
+  - git
+  - openssh
+secrets:
+  - 73bc8b90-93ef-4320-aa42-5a704c34b34c
+tasks:
+  - deploy_to_github: |
+      cd dotfiles
+      git status
+      ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      git remote add github git@github.com:nbarrientos/dotfiles.git
+      git push --mirror github
