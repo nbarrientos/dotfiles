@@ -11,4 +11,4 @@ tasks:
       git branch -v
       ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
       git remote add github git@github.com:nbarrientos/dotfiles.git
-      git push --all --prune github
+      git push --force --all --prune github
