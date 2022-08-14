@@ -3,7 +3,7 @@
 ;; Copyright (C) 2021-2022 Nacho Barrientos
 
 ;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
-;; URL: https://github.com/nbarrientos/dotfiles/tree/master/.emacs.d
+;; URL: https://git.sr.ht/~nbarrientos/dotfiles/tree/master/.emacs.d
 ;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is not part of GNU Emacs.
