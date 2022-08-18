@@ -1236,6 +1236,9 @@ the previously multi-windowed one"
   (defengine twitter-latest
     "https://twitter.com/search?q=%s&f=live"
     :keybinding "T")
+  (defengine urbandictionary
+    "https://www.urbandictionary.com/define.php?term=%s"
+    :keybinding "u")
   (defengine wikipedia
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :keybinding "w")
