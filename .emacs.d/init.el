@@ -1230,6 +1230,9 @@ the previously multi-windowed one"
   (defengine wordreference
     "https://www.wordreference.com/es/translation.asp?tranword=%s"
     :keybinding "r")
+  (defengine twitter
+    "https://twitter.com/search?q=%s"
+    :keybinding "t")
   (defengine wikipedia
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :keybinding "w")
