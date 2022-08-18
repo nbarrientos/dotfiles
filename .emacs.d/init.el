@@ -1233,6 +1233,9 @@ the previously multi-windowed one"
   (defengine twitter
     "https://twitter.com/search?q=%s"
     :keybinding "t")
+  (defengine twitter-latest
+    "https://twitter.com/search?q=%s&f=live"
+    :keybinding "T")
   (defengine wikipedia
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :keybinding "w")
