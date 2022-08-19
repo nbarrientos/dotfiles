@@ -224,6 +224,7 @@
      (rg-project "Ripgrep")
      (project-find-dir "Find directory")
      (project-eshell "Eshell")
+     (my/project-ivy-switch-buffer "Buffers")
      (magit-project-status "Magit"))))
 
 ;;;; Imenu
