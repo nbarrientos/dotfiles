@@ -643,6 +643,9 @@ modify parts of the directory before switching to it."
   :config
   (window-divider-mode 1))
 
+(use-package info-colors
+  :hook ((Info-selection . info-colors-fontify-node)))
+
 ;;; Modes for coding
 ;;;; Syntax checking
 (use-package flycheck
