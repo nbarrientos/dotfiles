@@ -973,7 +973,11 @@ If no universal argument is passed, assume only one output"
          ("C-<up>" . magit-section-backward-sibling)
          ("C-<down>" . magit-section-forward-sibling))
   :config
-  (add-to-list 'magit-clone-name-alist '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
+  (add-to-list 'magit-clone-name-alist
+               '("\\(it-puppet-.+\\)" ":@gitlab.cern.ch:8443" "ai"))
+  ;; Pending https://github.com/magit/magit/pull/4741
+  (add-to-list 'magit-clone-name-alist
+               '("\\`\\(?:sourcehut:\\|sh:\\)\\([^:]+\\)\\'" "git.sr.ht" "sourcehut.user"))
   (transient-append-suffix 'magit-push "-n"
     '(1 "-M" "Create MR in Gitlab"
         "--push-option=merge_request.create"))
@@ -997,7 +1001,9 @@ If no universal argument is passed, assume only one output"
   (magit-clone-set-remote.pushDefault 'ask)
   (magit-remote-add-set-remote.pushDefault 'ask)
   (magit-list-refs-sortby "-creatordate")
-  (magit-diff-refine-hunk t))
+  (magit-diff-refine-hunk t)
+  ;; Pending https://github.com/magit/magit/pull/4741
+  (magit-clone-url-format '(("git.sr.ht" . "git@%h:~%n") (nil . "git@%h:%n.git"))))
 
 (use-package forge
   :after magit
