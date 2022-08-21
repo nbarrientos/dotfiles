@@ -994,6 +994,8 @@ If no universal argument is passed, assume only one output"
                        (or (magit-get-upstream-branch branch)
                            (magit-get "branch" branch "remote"))))
         (user-error "Push to upstream aborted by user"))))
+  (unbind-key "C-j" magit-diff-section-base-map)
+  (unbind-key "C-j" magit-diff-section-map)
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
