@@ -1,11 +1,11 @@
 # Native packages
 
 ``` shell
-pacman -Qqne > .dotfiles/PKGLIST.native.arch
+pacman -Qqne > PKGLIST.native.arch
 ```
 
 # Foreign packages
 
 ``` shell
-pacman -Qqme > .dotfiles/PKGLIST.foreign.arch
+pacman -Qqme > PKGLIST.foreign.arch
 ```
