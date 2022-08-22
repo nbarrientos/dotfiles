@@ -1,3 +1,4 @@
+Makefile
 PKGLIST.native.arch
 PKGLIST.foreign.arch
 README.md
