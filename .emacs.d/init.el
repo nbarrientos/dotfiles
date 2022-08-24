@@ -1789,11 +1789,12 @@ selection."
   "Expand the group which is in the active region or the word at point.
 See `my/cern-ldap-group' for the meaning of the prefix argument."
   (interactive "P")
-  (superword-mode 1)
-  (let ((group (if (use-region-p)
-                   (buffer-substring-no-properties (region-beginning) (region-end))
-                 (word-at-point t))))
-    (superword-mode -1)
+  (let* ((previous-superword-mode superword-mode)
+         (--dummy (superword-mode 1))
+         (group (if (use-region-p)
+                    (buffer-substring-no-properties (region-beginning) (region-end))
+                  (word-at-point t))))
+    (setq superword-mode previous-superword-mode)
     (when group
       (my/cern-ldap-group arg group))))
 
