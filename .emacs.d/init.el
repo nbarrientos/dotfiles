@@ -974,7 +974,7 @@ If no universal argument is passed, assume only one output"
          ("C-<down>" . magit-section-forward-sibling))
   :config
   (add-to-list 'magit-clone-name-alist
-               '("\\(it-puppet-.+\\)" "gitlab.cern.ch" "ai"))
+               '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
   ;; Pending https://github.com/magit/magit/pull/4741
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:sourcehut:\\|sh:\\)\\([^:]+\\)\\'" "git.sr.ht" "sourcehut.user"))
@@ -1829,21 +1829,23 @@ With any prefix argument, make it not recursive."
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
-  (let ((magit-clone-set-remote.pushDefault t)
-        (repo-name (concat "it-puppet-module-" module-name)))
+  (let* ((magit-clone-set-remote.pushDefault t)
+         (repo-name (concat "it-puppet-module-" module-name))
+         (service-and-repo-name (concat "cgl:" repo-name)))
     (magit-clone-internal
      ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
-     (magit-clone--name-to-url repo-name)
+     (magit-clone--name-to-url service-and-repo-name)
      (concat magit-clone-default-directory repo-name)
      nil)))
 
 (defun my/clone-hostgroup (hostgroup-name)
   "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
   (interactive "sTop-level hostgroup name: ")
-  (let ((magit-clone-set-remote.pushDefault t)
-        (repo-name (concat "it-puppet-hostgroup-" hostgroup-name)))
+  (let* ((magit-clone-set-remote.pushDefault t)
+         (repo-name (concat "it-puppet-hostgroup-" hostgroup-name))
+         (service-and-repo-name (concat "cgl:" repo-name)))
     (magit-clone-internal
-     (magit-clone--name-to-url repo-name)
+     (magit-clone--name-to-url service-and-repo-name)
      (concat magit-clone-default-directory repo-name)
      nil)))
 
