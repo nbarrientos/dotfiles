@@ -1745,19 +1745,19 @@ selection."
   (let* ((buffer-n (format
                     "*LDAP user %s*"
                     (car (last (split-string filter "=")))))
-        (ldap-host-parameters-alist
-         (list
-          (append
-           (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-           '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
-        (attributes (if arg
-                      nil
-                      '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
-                        "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
-        (data (ldap-search
-                       filter
-                       "ldap://localhost:1389"
-                       attributes)))
+         (ldap-host-parameters-alist
+          (list
+           (append
+            (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
+            '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
+         (attributes (if arg
+                         nil
+                       '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
+                         "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
+         (data (ldap-search
+                filter
+                "ldap://localhost:1389"
+                attributes)))
     (if data
         (with-temp-buffer-window
             buffer-n
@@ -1781,7 +1781,7 @@ selection."
                      (+ 1 (point)))))))
             (conf-mode)
             (local-set-key (kbd "q") 'kill-this-buffer)))
-    (user-error "Unknown account!"))))
+      (user-error "Unknown account!"))))
 
 (defun my/cern-ldap-group-dwim (arg)
   "Expand the group which is in the active region or the word at point.
