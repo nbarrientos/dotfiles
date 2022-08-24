@@ -1874,7 +1874,7 @@ cloned."
          (service-and-repo-name (concat "cgl:" repo-name))
          (destination (concat magit-clone-default-directory repo-name)))
     (if (file-directory-p destination)
-        (user-error (concat repo-name " already cloned!"))
+        (user-error "%s already cloned" repo-name)
       (magit-clone-internal
        (magit-clone--name-to-url service-and-repo-name)
        destination
