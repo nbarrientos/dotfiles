@@ -1741,8 +1741,9 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
    (concat "displayName=" display-name)))
 
 (defun my/--cern-ldap-user (arg filter)
-  "Do an LDAP query returning some attributes for FILTER in a new buffer.
-With prefix argument, return all attributes, else return only a small
+  "Lookup a user LDAP returning some attributes in a new buffer.
+The user returned is the one satisfying FILTER. With prefix
+argument, return all attributes, else return only a small
 selection."
   (let* ((buffer-n (format
                     "*LDAP user %s*"
