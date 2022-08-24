@@ -1709,22 +1709,42 @@ and adapted to use simulations keys to have a common yank keystroke."
       scope subtree))))
 
 ;;; CERN-specific goodies
-(defun my/cern-ldap-user-dwim (arg)
-  "Look-up account in the active region or the word at point.
-See `my/cern-ldap-user' for the meaning of the prefix argument."
+(defun my/cern-ldap-user-by-login-dwim (arg)
+  "Look-up account by login in the active region or the word at point.
+See `my/--cern-ldap-user' for the meaning of the prefix argument."
   (interactive "P")
-  (let ((account (if (use-region-p)
-                     (buffer-substring-no-properties (region-beginning) (region-end))
-                   (word-at-point t))))
-    (when account
-      (my/cern-ldap-user arg account))))
+  (and-let* ((login (if (use-region-p)
+                        (buffer-substring-no-properties (region-beginning) (region-end))
+                      (word-at-point t))))
+    (my/cern-ldap-user-by-login arg login)))
 
-(defun my/cern-ldap-user (arg account)
-  "Do an LDAP query returning some attributes for ACCOUNT in a new buffer.
+(defun my/cern-ldap-user-by-display-name-dwim (arg)
+  "Look-up account by full name in the active region.
+See `my/--cern-ldap-user' for the meaning of the prefix argument."
+  (interactive "P")
+  (and-let* ((login (if (use-region-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end)))))
+    (my/cern-ldap-user-by-display-name arg login)))
+
+(defun my/cern-ldap-user-by-login (arg login)
+  (interactive "P\nsLogin: ")
+  (my/--cern-ldap-user
+   arg
+   (concat "sAMAccountName=" login)))
+
+(defun my/cern-ldap-user-by-display-name (arg display-name)
+  (interactive "P\nsFull name: ")
+  (my/--cern-ldap-user
+   arg
+   (concat "displayName=" display-name)))
+
+(defun my/--cern-ldap-user (arg filter)
+  "Do an LDAP query returning some attributes for FILTER in a new buffer.
 With prefix argument, return all attributes, else return only a small
 selection."
-  (interactive "P\nsAccount: ")
-  (let* ((buffer-n (format "*LDAP user %s*" account))
+  (let* ((buffer-n (format
+                    "*LDAP user %s*"
+                    (car (last (split-string filter "=")))))
         (ldap-host-parameters-alist
          (list
           (append
@@ -1735,7 +1755,7 @@ selection."
                       '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
                         "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
         (data (ldap-search
-                       (concat "sAMAccountName=" account)
+                       filter
                        "ldap://localhost:1389"
                        attributes)))
     (if data
@@ -1791,7 +1811,7 @@ With any prefix argument, make it not recursive."
           (with-current-buffer
               buffer-n
             (local-set-key (kbd "q") 'kill-this-buffer)
-            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-dwim)
+            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
             (sort-lines nil (point-min) (point-max))))
       (user-error "Empty or unknown group!"))))
 
@@ -1882,9 +1902,12 @@ otherwise it returns nil."
   :config
   (transient-define-prefix my/cern-dispatch ()
     "Dispatch a CERN-specific command."
-    [["LDAP user"
-      ("U" "Dwim" my/cern-ldap-user-dwim)
-      ("u" "Ask" my/cern-ldap-user)]
+    [["LDAP user (by login)"
+      ("U" "Dwim" my/cern-ldap-user-by-login-dwim)
+      ("u" "Ask" my/cern-ldap-user-by-login)]
+     ["LDAP user (by full name)"
+      ("F" "Dwim" my/cern-ldap-user-by-display-name-dwim)
+      ("f" "Ask" my/cern-ldap-user-by-display-name)]
      ["LDAP group"
       ("G" "Dwim" my/cern-ldap-group-dwim)
       ("g" "Ask" my/cern-ldap-group)]]))
