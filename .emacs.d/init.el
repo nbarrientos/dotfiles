@@ -1714,7 +1714,8 @@ and adapted to use simulations keys to have a common yank keystroke."
 See `my/--cern-ldap-user' for the meaning of the prefix argument."
   (interactive "P")
   (and-let* ((login (if (use-region-p)
-                        (buffer-substring-no-properties (region-beginning) (region-end))
+                        (buffer-substring-no-properties
+                         (region-beginning) (region-end))
                       (word-at-point t))))
     (my/cern-ldap-user-by-login arg login)))
 
@@ -1723,7 +1724,8 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
 See `my/--cern-ldap-user' for the meaning of the prefix argument."
   (interactive "P")
   (and-let* ((login (when (use-region-p)
-                      (buffer-substring-no-properties (region-beginning) (region-end)))))
+                      (buffer-substring-no-properties
+                       (region-beginning) (region-end)))))
     (my/cern-ldap-user-by-display-name arg login)))
 
 (defun my/cern-ldap-user-by-login (arg login)
