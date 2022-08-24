@@ -1829,25 +1829,35 @@ With any prefix argument, make it not recursive."
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
   (interactive "sModule name: ")
-  (let* ((magit-clone-set-remote.pushDefault t)
-         (repo-name (concat "it-puppet-module-" module-name))
-         (service-and-repo-name (concat "cgl:" repo-name)))
-    (magit-clone-internal
-     ;; Using an internal here, see  https://github.com/magit/magit/discussions/4335
-     (magit-clone--name-to-url service-and-repo-name)
-     (concat magit-clone-default-directory repo-name)
-     nil)))
+  (my/--clone-puppet-entity
+   module-name
+   'module))
 
 (defun my/clone-hostgroup (hostgroup-name)
   "Clone a Puppet top-level hostgroup from gitlab.cern.ch/ai"
   (interactive "sTop-level hostgroup name: ")
+  (my/--clone-puppet-entity
+   hostgroup-name
+   'hostgroup))
+
+(defun my/--clone-puppet-entity (entity-name entity-type)
+  "Clone it-puppet-ENTITY-TYPE-ENTITY-NAME from gitlab.cern.ch/ai.
+The repository will be cloned into
+`magit-clone-default-directory' if the repository is not already
+cloned."
   (let* ((magit-clone-set-remote.pushDefault t)
-         (repo-name (concat "it-puppet-hostgroup-" hostgroup-name))
-         (service-and-repo-name (concat "cgl:" repo-name)))
-    (magit-clone-internal
-     (magit-clone--name-to-url service-and-repo-name)
-     (concat magit-clone-default-directory repo-name)
-     nil)))
+         (repo-name (format
+                     "it-puppet-%s-%s"
+                     entity-type
+                     entity-name))
+         (service-and-repo-name (concat "cgl:" repo-name))
+         (destination (concat magit-clone-default-directory repo-name)))
+    (if (file-directory-p destination)
+        (user-error (concat repo-name " already cloned!"))
+      (magit-clone-internal
+       (magit-clone--name-to-url service-and-repo-name)
+       destination
+       nil))))
 
 (defun my/os-same-project-as (fqdn)
   "Set the current OpenStack project to the same as FQDN's.
