@@ -1722,8 +1722,8 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
   "Look-up account by full name in the active region.
 See `my/--cern-ldap-user' for the meaning of the prefix argument."
   (interactive "P")
-  (and-let* ((login (if (use-region-p)
-                   (buffer-substring-no-properties (region-beginning) (region-end)))))
+  (and-let* ((login (when (use-region-p)
+                      (buffer-substring-no-properties (region-beginning) (region-end)))))
     (my/cern-ldap-user-by-display-name arg login)))
 
 (defun my/cern-ldap-user-by-login (arg login)
@@ -1750,8 +1750,7 @@ selection."
            (append
             (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
             '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
-         (attributes (if arg
-                         nil
+         (attributes (unless arg
                        '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
                          "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
          (data (ldap-search
