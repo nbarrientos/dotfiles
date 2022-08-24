@@ -1723,10 +1723,10 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
   "Look-up account by full name in the active region.
 See `my/--cern-ldap-user' for the meaning of the prefix argument."
   (interactive "P")
-  (and-let* ((login (when (use-region-p)
-                      (buffer-substring-no-properties
-                       (region-beginning) (region-end)))))
-    (my/cern-ldap-user-by-display-name arg login)))
+  (and-let* ((full-name (when (use-region-p)
+                          (buffer-substring-no-properties
+                           (region-beginning) (region-end)))))
+    (my/cern-ldap-user-by-display-name arg full-name)))
 
 (defun my/cern-ldap-user-by-login (arg login)
   (interactive "P\nsLogin: ")
