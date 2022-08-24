@@ -1815,7 +1815,7 @@ With any prefix argument, make it not recursive."
             (local-set-key (kbd "q") 'kill-this-buffer)
             (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
             (sort-lines nil (point-min) (point-max))))
-      (user-error "Empty or unknown group!"))))
+      (user-error "%s is an empty or unknown group" group))))
 
 (defun my/cern-ldap-group-expand (group &optional recurse)
   "Return (recursively if RECURSE) the members of GROUP."
