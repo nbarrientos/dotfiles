@@ -1757,10 +1757,14 @@ argument, return all attributes, else return only a small selection."
          (attributes (unless arg
                        '("memberOf" "manager" "department" "physicalDeliveryOfficeName" "name"
                          "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
-         (data (ldap-search
-                filter
-                "ldap://localhost:1389"
-                attributes)))
+         (data (seq-sort-by
+                (lambda (e)
+                  (cadr (assoc "cernAccountType" e)))
+                #'string<
+                (ldap-search
+                 filter
+                 "ldap://localhost:1389"
+                 attributes))))
     (if data
         (with-temp-buffer-window
             buffer-n
