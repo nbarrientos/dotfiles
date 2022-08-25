@@ -1769,23 +1769,18 @@ argument, return all attributes, else return only a small selection."
           (and (< 1 (length data))
                (message "%d results found" (length data)))
           (dolist (result data)
-            (with-temp-buffer
+            (unless arg
+              (setq result
+                    (cl-remove-if
+                     (lambda (e)
+                       (and
+                        (string= "memberOf" (car e))
+                        (not (string-match "CN=cern-status\\|CN=nationality" (cadr e)))))
+                     result)))
+            (with-current-buffer buffer-n
               (dolist (e result)
                 (insert (format "%s:%s\n" (car e) (cadr e))))
-              (unless arg
-                (save-excursion
-                  (goto-char (point-min))
-                  (when (re-search-forward "^memberOf:.*$" nil t)
-                    (beginning-of-line)
-                    (let ((first-membership (point)))
-                      (while (re-search-forward "^memberOf:.*$" nil t)
-                        nil)
-                      (keep-lines
-                       "CN=cern-status\\|CN=nationality"
-                       first-membership
-                       (+ 1 (point)))))))
-              (insert "\n")
-              (append-to-buffer buffer-n (point-min) (point-max))))
+              (insert "\n")))
           (with-current-buffer buffer-n
             (goto-char (point-min))
             (conf-mode)
