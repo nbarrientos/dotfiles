@@ -1771,7 +1771,7 @@ argument, return all attributes, else return only a small selection."
           (dolist (result data)
             (with-temp-buffer
               (dolist (e result)
-                (insert (format "%s:%s\n" (nth 0 e) (nth 1 e))))
+                (insert (format "%s:%s\n" (car e) (cadr e))))
               (unless arg
                 (save-excursion
                   (goto-char (point-min))
