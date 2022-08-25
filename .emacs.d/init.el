@@ -1788,6 +1788,7 @@ argument, return all attributes, else return only a small selection."
           (with-current-buffer buffer-n
             (goto-char (point-min))
             (conf-mode)
+            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
             (local-set-key (kbd "q") 'kill-this-buffer)))
       (user-error "No user accounts found"))))
 
