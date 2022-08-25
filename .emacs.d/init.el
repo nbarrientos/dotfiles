@@ -1729,12 +1729,14 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
     (my/cern-ldap-user-by-display-name arg display-name)))
 
 (defun my/cern-ldap-user-by-login (arg login)
+  "Look-up user account with username LOGIN in LDAP."
   (interactive "P\nsLogin: ")
   (my/--cern-ldap-user
    arg
    (concat "sAMAccountName=" login)))
 
 (defun my/cern-ldap-user-by-display-name (arg display-name)
+  "Look-up user account with full name DISPLAY-NAME in LDAP."
   (interactive "P\nsFull name: ")
   (my/--cern-ldap-user
    arg
