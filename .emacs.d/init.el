@@ -1766,7 +1766,6 @@ argument, return all attributes, else return only a small selection."
             buffer-n
             #'temp-buffer-show-function
             nil
-          (princ "#####################################################\n")
           (and (< 1 (length data))
                (message "%d results found" (length data)))
           (dolist (result data)
@@ -1785,7 +1784,7 @@ argument, return all attributes, else return only a small selection."
                        "CN=cern-status\\|CN=nationality"
                        first-membership
                        (+ 1 (point)))))))
-              (insert "#####################################################\n")
+              (insert "\n")
               (append-to-buffer buffer-n (point-min) (point-max))))
           (with-current-buffer buffer-n
             (goto-char (point-min))
