@@ -518,7 +518,9 @@ The 'circular' list is defined in the variable
          ("C-h o" . counsel-describe-symbol)
          ("C-h k" . helpful-key)
          ("C-x r b" . counsel-bookmark)
-         ("M-y" . counsel-yank-pop))
+         ("M-y" . counsel-yank-pop)
+         :map minibuffer-local-map
+         ("C-s" . counsel-minibuffer-history))
   :config
   (defun my/counsel-find-file-no-tramp (&optional initial-input initial-directory)
     (interactive)
