@@ -1767,7 +1767,8 @@ argument, return all attributes, else return only a small selection."
             #'temp-buffer-show-function
             nil
           (princ "#####################################################\n")
-          (message "%d result(s) found" (length data))
+          (and (< 1 (length data))
+               (message "%d results found" (length data)))
           (dolist (result data)
             (with-temp-buffer
               (dolist (e result)
