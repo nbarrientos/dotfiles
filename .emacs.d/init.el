@@ -1736,17 +1736,16 @@ See `my/--cern-ldap-user' for the meaning of the prefix argument."
    (concat "sAMAccountName=" login)))
 
 (defun my/cern-ldap-user-by-display-name (arg display-name)
-  "Look-up user account with full name DISPLAY-NAME in LDAP."
+  "Look-up user account with full name *DISPLAY-NAME* in LDAP."
   (interactive "P\nsFull name: ")
   (my/--cern-ldap-user
    arg
-   (concat "displayName=" display-name)))
+   (concat "displayName=*" display-name "*")))
 
 (defun my/--cern-ldap-user (arg filter)
-  "Lookup a user LDAP returning some attributes in a new buffer.
-The user returned is the one satisfying FILTER. With prefix
-argument, return all attributes, else return only a small
-selection."
+  "Lookup users in LDAP returning some attributes in a new buffer.
+The users returned are the ones satisfying FILTER. With prefix
+argument, return all attributes, else return only a small selection."
   (let* ((buffer-n (format
                     "*LDAP user %s*"
                     (car (last (split-string filter "=")))))
@@ -1756,7 +1755,7 @@ selection."
             (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
             '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
          (attributes (unless arg
-                       '("memberOf" "manager" "department" "physicalDeliveryOfficeName"
+                       '("memberOf" "manager" "department" "physicalDeliveryOfficeName" "name"
                          "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
          (data (ldap-search
                 filter
@@ -1767,25 +1766,31 @@ selection."
             buffer-n
             #'temp-buffer-show-function
             nil
-          (dolist (e (car data))
-            (princ (format "%s:%s\n" (nth 0 e) (nth 1 e))))
-          (with-current-buffer
-              buffer-n
-            (unless arg
-              (save-excursion
-                (goto-char (point-min))
-                (when (re-search-forward "^memberOf:.*$" nil t)
-                  (beginning-of-line)
-                  (let ((first-membership (point)))
-                    (while (re-search-forward "^memberOf:.*$" nil t)
-                      nil)
-                    (keep-lines
-                     "CN=cern-status\\|CN=nationality"
-                     first-membership
-                     (+ 1 (point)))))))
+          (princ "#####################################################\n")
+          (message "%d result(s) found" (length data))
+          (dolist (result data)
+            (with-temp-buffer
+              (dolist (e result)
+                (insert (format "%s:%s\n" (nth 0 e) (nth 1 e))))
+              (unless arg
+                (save-excursion
+                  (goto-char (point-min))
+                  (when (re-search-forward "^memberOf:.*$" nil t)
+                    (beginning-of-line)
+                    (let ((first-membership (point)))
+                      (while (re-search-forward "^memberOf:.*$" nil t)
+                        nil)
+                      (keep-lines
+                       "CN=cern-status\\|CN=nationality"
+                       first-membership
+                       (+ 1 (point)))))))
+              (insert "#####################################################\n")
+              (append-to-buffer buffer-n (point-min) (point-max))))
+          (with-current-buffer buffer-n
+            (goto-char (point-min))
             (conf-mode)
             (local-set-key (kbd "q") 'kill-this-buffer)))
-      (user-error "Unknown account!"))))
+      (user-error "No user accounts found"))))
 
 (defun my/cern-ldap-group-dwim (arg)
   "Expand the group which is in the active region or the word at point.
