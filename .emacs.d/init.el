@@ -1774,8 +1774,8 @@ argument, return all attributes, else return only a small selection."
             nil
           (and (< 1 (length data))
                (message "%d results found" (length data)))
-          (dolist (result data)
-            (with-current-buffer buffer-n
+          (with-current-buffer buffer-n
+            (dolist (result data)
               (dolist (field
                        (cl-remove-if
                         (lambda (e)
@@ -1785,8 +1785,7 @@ argument, return all attributes, else return only a small selection."
                            (not (string-match "CN=cern-status\\|CN=nationality" (cadr e)))))
                         result))
                 (insert (format "%s:%s\n" (car field) (cadr field))))
-              (insert "\n")))
-          (with-current-buffer buffer-n
+              (insert "\n"))
             (goto-char (point-min))
             (conf-mode)
             (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
