@@ -1,4 +1,4 @@
-personal_ws-1.1 en 126 
+personal_ws-1.1 en 127 
 APIs
 ARP
 BGP
@@ -88,6 +88,7 @@ logrotated
 loopback
 microservice
 middleperson
+minibuffer
 misconfiguration
 mistyped
 modeline
