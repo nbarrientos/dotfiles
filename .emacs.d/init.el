@@ -1701,161 +1701,14 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (whois-reverse-lookup-server "whois.ripe.net"))
 
-;;; LDAP
-(use-package ldap
-  :ensure nil
-  :custom
-  (ldap-host-parameters-alist
-   '(("ldap://localhost:1389"
-      auth simple
-      scope subtree))))
-
 ;;; CERN-specific goodies
-(defun my/cern-ldap-user-by-login-dwim (arg)
-  "Look-up account by login in the active region or the word at point.
-See `my/--cern-ldap-user' for the meaning of the prefix argument."
-  (interactive "P")
-  (and-let* ((login (if (use-region-p)
-                        (buffer-substring-no-properties
-                         (region-beginning) (region-end))
-                      (word-at-point t))))
-    (my/cern-ldap-user-by-login arg login)))
-
-(defun my/cern-ldap-user-by-display-name-dwim (arg)
-  "Look-up account by full name in the active region.
-See `my/--cern-ldap-user' for the meaning of the prefix argument."
-  (interactive "P")
-  (and-let* ((display-name (when (use-region-p)
-                             (buffer-substring-no-properties
-                              (region-beginning) (region-end)))))
-    (my/cern-ldap-user-by-display-name arg display-name)))
-
-(defun my/cern-ldap-user-by-login (arg login)
-  "Look-up user account with username LOGIN in LDAP."
-  (interactive "P\nsLogin: ")
-  (my/--cern-ldap-user
-   arg
-   (concat "sAMAccountName=" login)))
-
-(defun my/cern-ldap-user-by-display-name (arg display-name)
-  "Look-up user account with full name *DISPLAY-NAME* in LDAP."
-  (interactive "P\nsFull name: ")
-  (my/--cern-ldap-user
-   arg
-   (concat "displayName=*" display-name "*")))
-
-(defun my/--cern-ldap-user (arg filter)
-  "Lookup users in LDAP returning some attributes in a new buffer.
-The users returned are the ones satisfying FILTER. With prefix
-argument, return all attributes, else return only a small selection."
-  (let* ((buffer-n (format
-                    "*LDAP user %s*"
-                    (car (last (split-string filter "=")))))
-         (ldap-host-parameters-alist
-          (list
-           (append
-            (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-            '(base "OU=Users,OU=Organic Units,DC=cern,DC=ch"))))
-         (attributes (unless arg
-                       '("memberOf" "manager" "department" "physicalDeliveryOfficeName" "name"
-                         "displayName" "cernExternalMail" "seeAlso" "cernAccountType")))
-         (data (seq-sort-by
-                (lambda (e)
-                  (cadr (assoc "cernAccountType" e)))
-                #'string<
-                (ldap-search
-                 filter
-                 "ldap://localhost:1389"
-                 attributes))))
-    (if data
-        (with-temp-buffer-window
-            buffer-n
-            #'temp-buffer-show-function
-            nil
-          (and (< 1 (length data))
-               (message "%d results found" (length data)))
-          (with-current-buffer buffer-n
-            (dolist (result data)
-              (dolist (field
-                       (cl-remove-if
-                        (lambda (e)
-                          (and
-                           (not arg)
-                           (string= "memberOf" (car e))
-                           (not (string-match "CN=cern-status\\|CN=nationality" (cadr e)))))
-                        result))
-                (insert (format "%s:%s" (car field) (cadr field)))
-                (newline))
-              (newline))
-            (goto-char (point-min))
-            (conf-mode)
-            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
-            (local-set-key (kbd "q") 'kill-this-buffer)))
-      (user-error "No user accounts found"))))
-
-(defun my/cern-ldap-group-dwim (arg)
-  "Expand the group which is in the active region or the word at point.
-See `my/cern-ldap-group' for the meaning of the prefix argument."
-  (interactive "P")
-  (let* ((previous-superword-mode superword-mode)
-         (--dummy (superword-mode 1))
-         (group (if (use-region-p)
-                    (buffer-substring-no-properties (region-beginning) (region-end))
-                  (word-at-point t))))
-    (setq superword-mode previous-superword-mode)
-    (when group
-      (my/cern-ldap-group arg group))))
-
-(defun my/cern-ldap-group (arg group)
-  "Print in buffer *LDAP group GROUP* the members of GROUP.
-With any prefix argument, make it not recursive."
-  (interactive "P\nsGroup: ")
-  (let ((buffer-n (format "*LDAP group %s*" group))
-        (members (my/cern-ldap-group-expand group (not arg))))
-    (if members
-        (with-temp-buffer-window
-            buffer-n
-            #'temp-buffer-show-function
-            nil
-          (dolist (member members)
-            (princ (format "%s\n" member)))
-          (with-current-buffer
-              buffer-n
-            (local-set-key (kbd "q") 'kill-this-buffer)
-            (local-set-key (kbd "C-<return>") 'my/cern-ldap-user-by-login-dwim)
-            (sort-lines nil (point-min) (point-max))))
-      (user-error "%s is an empty or unknown group" group))))
-
-(defun my/cern-ldap-group-expand (group &optional recurse)
-  "Return (recursively if RECURSE) the members of GROUP."
-  (let ((ldap-host-parameters-alist
-         (list
-          (append
-           (assoc "ldap://localhost:1389" ldap-host-parameters-alist)
-           '(base "OU=e-groups,OU=Workgroups,DC=cern,DC=ch"))))
-        (results nil))
-    (dolist (member (car (ldap-search
-                     (format "(&(objectClass=group)(CN=%s))" group)
-                     "ldap://localhost:1389"
-                     '("member"))))
-      (and-let* ((dn (car (cdr member)))
-                 (match (string-match "^CN=\\(.+?\\),OU=\\(.+?\\),OU=\\(.+?\\),DC=cern,DC=ch" dn))
-                 (cn (match-string 1 dn))
-                 (ou-1 (match-string 2 dn))
-                 (ou-2 (match-string 3 dn)))
-        (cond ((and
-                recurse
-                (string= "e-groups" (downcase ou-1)))
-               (setq results (append (my/cern-ldap-group-expand cn recurse) results)))
-              ((string= "users" (downcase ou-1))
-               (push cn results))
-              ((and
-                (length= ou-1 1)
-                (string= "externals" (downcase ou-2)))
-               nil)
-              (t
-               (push dn results)))))
-    (delete-dups results)))
+(use-package cern-ldap
+  :ensure nil
+  :load-path "~/.emacs.d/local-packages/cern-ldap.el"
+  :custom
+  (cern-ldap-server-url "ldap://localhost:1389")
+  (cern-ldap-user-full-name-matching-type 'relaxed)
+  (cern-ldap-user-group-membership-filter "CN=cern-status\\|CN=nationality"))
 
 (defun my/clone-module (module-name)
   "Clone a Puppet module from gitlab.cern.ch/ai"
@@ -1914,14 +1767,14 @@ otherwise it returns nil."
   (transient-define-prefix my/cern-dispatch ()
     "Dispatch a CERN-specific command."
     [["LDAP user (by login)"
-      ("U" "Dwim" my/cern-ldap-user-by-login-dwim)
-      ("u" "Ask" my/cern-ldap-user-by-login)]
+      ("U" "Dwim" cern-ldap-user-by-login-dwim)
+      ("u" "Ask" cern-ldap-user-by-login)]
      ["LDAP user (by full name)"
-      ("F" "Dwim" my/cern-ldap-user-by-display-name-dwim)
-      ("f" "Ask" my/cern-ldap-user-by-display-name)]
+      ("F" "Dwim" cern-ldap-user-by-full-name-dwim)
+      ("f" "Ask" cern-ldap-user-by-full-name)]
      ["LDAP group"
-      ("G" "Dwim" my/cern-ldap-group-dwim)
-      ("g" "Ask" my/cern-ldap-group)]]))
+      ("G" "Dwim" cern-ldap-group-dwim)
+      ("g" "Ask" cern-ldap-group)]]))
 
 ;;; IRC
 (use-package erc
