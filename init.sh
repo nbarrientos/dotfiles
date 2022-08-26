@@ -4,6 +4,7 @@ mkdir -p ~/.config/systemd/user ~/.config/gtk-3.0
 mkdir -p ~/.config/keepassxc ~/.config/dunst
 mkdir -p ~/.config/pipewire ~/.config/git
 mkdir -p ~/.emacs.d ~/.emacs.d/eshell ~/.emacs.d/transient
+mkdir -p ~/.emacs.d/local-packages
 mkdir -p ~/.gnupg
 mkdir -p ~/.local/share/applications
 mkdir -p ~/.ssh/controlmasters
