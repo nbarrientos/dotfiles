@@ -1707,6 +1707,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   :load-path "~/.emacs.d/local-packages/cern-ldap.el"
   :custom
   (cern-ldap-server-url "ldap://localhost:1389")
+  (cern-ldap-buffer-name-format "*LDAP %t %l*")
   (cern-ldap-user-full-name-matching-type 'relaxed)
   (cern-ldap-user-group-membership-filter "CN=cern-status\\|CN=nationality"))
 
