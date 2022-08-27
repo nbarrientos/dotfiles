@@ -656,6 +656,10 @@ modify parts of the directory before switching to it."
   :custom
   (flycheck-highlighting-mode . nil))
 
+(use-package flycheck-package
+  :config
+  (flycheck-package-setup))
+
 ;;;; Programming languages
 (use-package ruby-mode
   :ensure nil
