@@ -1707,8 +1707,6 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 ;;; CERN-specific goodies
 (use-package cern-ldap
-  :ensure nil
-  :load-path "~/.emacs.d/local-packages/cern-ldap.el"
   :custom
   (cern-ldap-server-url "ldap://localhost:1389")
   (cern-ldap-buffer-name-format "*LDAP %t %l*")
