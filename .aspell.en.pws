@@ -1,4 +1,4 @@
-personal_ws-1.1 en 127 
+personal_ws-1.1 en 128 
 APIs
 ARP
 BGP
@@ -83,6 +83,7 @@ hardcoded
 hostgroup
 hostgroups
 iterable
+keymaps
 lockdown
 logrotated
 loopback
