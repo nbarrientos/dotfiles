@@ -1670,6 +1670,8 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (org-tree-slide-slide-in-effect nil))
 
+(use-package ox-gfm)
+
 ;;; Notifications
 (use-package notifications
   :ensure nil)
