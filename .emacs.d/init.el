@@ -1157,6 +1157,10 @@ the previously multi-windowed one"
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'smtpmail-send-it)
+  (setq message-citation-line-function
+        'message-insert-formatted-citation-line)
+  (setq message-citation-line-format
+        "On %d/%m/%y, %N said:\n")
   (setq send-mail-function 'smtpmail-send-it)
   (setq smtpmail-smtp-server "cernmail.cern.ch")
   (setq smtpmail-smtp-service 587)
