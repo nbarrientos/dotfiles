@@ -768,6 +768,7 @@ It just guesses as the filename for the spec is rather arbitrary."
   :ensure nil
   :bind (:map sql-mode-map
               ("C-c C-f" . sqlformat))
+  :hook ((sql-interactive-mode . sql-rename-buffer))
   :config
   (add-to-list 'sql-postgres-login-params 'port t))
 
