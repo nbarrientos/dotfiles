@@ -77,6 +77,7 @@
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-f"))
 
 ;;; Use-package
 
