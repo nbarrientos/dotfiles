@@ -953,6 +953,7 @@ send a notification when the process has exited."
   :bind (:map comint-mode-map
          ("M-<up>" . comint-previous-prompt)
          ("M-<down>" . comint-next-prompt)
+         ("C-c l" . comint-clear-buffer)
          ("C-c C-o" . my/comint-kill-ring-save-outputs))
   :config
   (defun my/comint-kill-ring-save-outputs ()
