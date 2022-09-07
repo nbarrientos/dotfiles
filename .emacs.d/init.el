@@ -1700,9 +1700,6 @@ and adapted to use simulations keys to have a common yank keystroke."
 (when (file-exists-p (format "~/.emacs.d/%s.el" system-name))
   (load-file (format "~/.emacs.d/%s.el" system-name)))
 
-(when (file-exists-p "~/.emacs.d/common.el")
-  (load-file "~/.emacs.d/common.el"))
-
 ;;; Networking
 (use-package net-utils
   :ensure nil
