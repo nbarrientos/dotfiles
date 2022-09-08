@@ -1203,7 +1203,7 @@ the previously multi-windowed one"
                      ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
                      ;; Spanish
                      ("RNE" . "https://rtvelivestreamv3.akamaized.net/rtvesec/rne_r1_main.m3u8")
-                     ("RPA" . "https://cdnlive.codev8.net/rtpalive/smil:radio.smil/media-uv46611bc_b1000000_30980.aac")
+                     ("RPA" . "https://cdnlive.shooowit.net/rtpalive/smil:radio.smil/chunklist_b1000000.m3u8")
                      ;; English
                      ("WRS" . "https://streamingr.broadcastradio.com:10295/wrs")
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
