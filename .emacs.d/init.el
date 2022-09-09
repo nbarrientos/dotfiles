@@ -554,11 +554,15 @@ modify parts of the directory before switching to it."
   (ivy-set-actions
    'counsel-esh-dir-history
    '(("e" counsel--esh-dir-history-action-edit "edit")))
-  (defun counsel-fzf-action (x)
+  (defun my/counsel-fzf-action-other-window (x)
     (with-ivy-window
       (let ((default-directory counsel--fzf-dir))
         (find-file-other-window x)))
     (other-window -1))
+  (ivy-set-actions
+   'counsel-fzf
+   '(("o" my/counsel-fzf-action-other-window "default")
+     ("s" counsel-fzf-action "same window")))
   :custom
   (counsel-yank-pop-separator "\n-------------------\n")
   (counsel-describe-function-function #'helpful-callable)
