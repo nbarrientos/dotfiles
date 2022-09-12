@@ -1521,6 +1521,11 @@ and adapted to use simulations keys to have a common yank keystroke."
 (use-package bluetooth)
 
 ;;; Building and compiling
+(use-package ielm
+  :ensure nil
+  :custom
+  (ielm-prompt "λ> "))
+
 (use-package ansi-color
   :ensure nil)
 
