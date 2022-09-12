@@ -1854,6 +1854,8 @@ otherwise it returns nil."
   (erc-prompt-for-password nil)
   (erc-prompt-for-nickserv-password nil))
 
+(use-package erc-hl-nicks)
+
 ;;; Misc
 (defun my/delete-word (arg)
   "Delete characters forward until encountering the end of a word.
