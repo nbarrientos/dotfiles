@@ -672,6 +672,11 @@ modify parts of the directory before switching to it."
                         (setq
                          flycheck-ruby-rubocop-executable
                          "~/.local/bin/rubocop")))))
+
+(use-package python-pytest
+  :bind (:map python-mode-map
+              ("C-c t" . python-pytest-dispatch)))
+
 (use-package inf-ruby
   :hook ((ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-minor-mode)))
