@@ -1041,7 +1041,9 @@ If no universal argument is passed, assume only one output"
   :ensure nil
   :config
   ;; https://github.com/ch11ng/exwm/issues/353
-  (advice-add 'ediff-window-display-p :override #'ignore))
+  (advice-add 'ediff-window-display-p :override #'ignore)
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package git-modes)
 
