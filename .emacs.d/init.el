@@ -1043,6 +1043,7 @@ If no universal argument is passed, assume only one output"
   ;; https://github.com/ch11ng/exwm/issues/353
   (advice-add 'ediff-window-display-p :override #'ignore)
   :custom
+  (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package git-modes)
