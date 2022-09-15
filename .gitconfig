@@ -19,7 +19,7 @@
 	user = nbarrientos
 
 [sourcehut]
-	user = nbarrientos
+	user = ~nbarrientos
 
 [diff "elisp"]
 	xfuncname = ^\\([^[:space:]]*def[^[:space:]]+[[:space:]]+([^()[:space:]]+)
