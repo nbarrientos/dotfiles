@@ -1817,7 +1817,7 @@ otherwise it returns nil."
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
-  (erc-fill-column (- (/ (frame-width) 2) 3))
+  (erc-fill-column 124) ;(- (/ (frame-width) 2) 3))
   (erc-hide-list '("PART" "QUIT"))
   (erc-auto-query 'bury)
   (erc-join-buffer 'bury)
