@@ -1970,4 +1970,33 @@ stored in
                        (key-description (vector last-command-event))
                        (current-buffer))))))
 
+(defun my/postgres-id-headroom (current-max datatype)
+  "Calculate how much space for an id of type DATATYPE is still available.
+CURRENT-MAX is the value of the id for the row with highest id.
+
+When called interactively, CURRENT-MAX is taken from the region
+and the DATATYPE is prompted for."
+  (interactive
+   (list (string-to-number
+          (buffer-substring-no-properties (region-beginning) (region-end)))
+         (intern
+          (completing-read "Data type: " '("smallint" "integer" "bigint")))))
+  (let* ((datawidth (cond
+                     ((eq datatype 'smallint)
+                      2)
+                     ((eq datatype 'integer)
+                      4)
+                     ((eq datatype 'bigint)
+                      8)))
+         (range-max (expt 2 (- (* datawidth 8) 1)))
+         (current-max (min range-max current-max))
+         (%-available (*
+                       100
+                       (/
+                        (- range-max current-max)
+                        (float range-max)))))
+    (if (interactive-p)
+        (message "%.2f%% is still available" %-available)
+      %-available)))
+
 ;;; init.el ends here
