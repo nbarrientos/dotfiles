@@ -674,6 +674,7 @@ modify parts of the directory before switching to it."
                          "~/.local/bin/rubocop")))))
 
 (use-package python-pytest
+  :after python
   :bind (:map python-mode-map
               ("C-c t" . python-pytest-dispatch)))
 
