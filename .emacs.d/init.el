@@ -89,10 +89,10 @@
 
 (package-initialize)
 (unless package-archive-contents
- (package-refresh-contents))
+  (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
-   (package-install 'use-package))
+  (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -137,9 +137,9 @@
   :config
   :hook
   ((emacs-lisp-mode . outline-minor-mode)
-  (emacs-lisp-mode . hs-minor-mode)
-  (markdown-mode . outline-minor-mode)
-  (markdown-mode . hs-minor-mode)))
+   (emacs-lisp-mode . hs-minor-mode)
+   (markdown-mode . outline-minor-mode)
+   (markdown-mode . hs-minor-mode)))
 
 (use-package outline-minor-faces
   :after outline
@@ -155,10 +155,10 @@
 (require 'url-util)
 (use-package goto-addr
   :hook ((compilation-mode . goto-address-mode)
-          (prog-mode . goto-address-prog-mode)
-          (magit-mode . goto-address-mode)
-          (yaml-mode . goto-address-prog-mode)
-          (mu4e-view-mode . goto-address-mode))
+         (prog-mode . goto-address-prog-mode)
+         (magit-mode . goto-address-mode)
+         (yaml-mode . goto-address-prog-mode)
+         (mu4e-view-mode . goto-address-mode))
   :commands (goto-address-prog-mode
              goto-address-mode))
 
@@ -212,10 +212,10 @@
            (buffers (project-buffers pr))
            (buffer-names (mapcar 'buffer-name buffers)))
       (ivy-read "Switch to project buffer: " buffer-names
-            :keymap ivy-switch-buffer-map
-            :action #'ivy--switch-buffer-other-window-action
-            :matcher #'ivy--switch-buffer-matcher
-            :caller 'ivy-switch-buffer)))
+                :keymap ivy-switch-buffer-map
+                :action #'ivy--switch-buffer-other-window-action
+                :matcher #'ivy--switch-buffer-matcher
+                :caller 'ivy-switch-buffer)))
   (defun my/magit-maybe-remember-project (repository directory args)
     (project-remember-project (cons 'vc (format "%s/" (abbreviate-file-name directory)))))
   (advice-add 'magit-clone-internal :after #'my/magit-maybe-remember-project)
@@ -275,8 +275,8 @@
          ("M-RET" . comment-indent-new-line))
   :hook ((prog-mode . (lambda ()
                         (set (make-local-variable
-                               'comment-auto-fill-only-comments)
-                              t)))))
+                              'comment-auto-fill-only-comments)
+                             t)))))
 
 (use-package simple
   :ensure nil
@@ -1064,15 +1064,14 @@ If no universal argument is passed, assume only one output"
          ("C-x 1" . my/toggle-single-window))
   :init
   (defun my/toggle-single-window ()
-  "Toggles between a single window configuration and
-the previously multi-windowed one"
-  (interactive)
-  (if (one-window-p)
-    (when (boundp 'my-saved-window-configuration)
-      (set-window-configuration my-saved-window-configuration))
-    (progn
-      (setq my-saved-window-configuration (current-window-configuration))
-      (delete-other-windows)))))
+    "Toggle single window configuration and the previously multi-windowed one."
+    (interactive)
+    (if (one-window-p)
+        (when (boundp 'my-saved-window-configuration)
+          (set-window-configuration my-saved-window-configuration))
+      (progn
+        (setq my-saved-window-configuration (current-window-configuration))
+        (delete-other-windows)))))
 
 (use-package transpose-frame
   :bind (("M-<f8>" . rotate-frame-clockwise)))
@@ -1151,7 +1150,7 @@ the previously multi-windowed one"
        contact)))
   :config
   (setq gnus-visible-headers
-      (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
+        (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
   (setq gnus-inhibit-images t)
   (setq mu4e-headers-attach-mark '("a" . "📎"))
   (setq mu4e-headers-replied-mark '("R" . "↳"))
@@ -1452,7 +1451,7 @@ and adapted to use simulations keys to have a common yank keystroke."
       ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
       (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
       (let ((keys (gethash [?\C-y]
-                       exwm-input--simulation-keys)))
+                           exwm-input--simulation-keys)))
         (dolist (key keys)
           (exwm-input--fake-key key)))))
 
@@ -1568,7 +1567,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/multi-compile--bundle (module-origin cmd &optional args)
     (let* ((ruby-version "2.7")
            (cmdline (list (my/multi-compile--bundle-environment module-origin)
-                         (format "bundle-%s %s" ruby-version cmd))))
+                          (format "bundle-%s %s" ruby-version cmd))))
       (when args
         (add-to-list 'cmdline args t))
       (string-join cmdline " ")))
@@ -1584,7 +1583,7 @@ and adapted to use simulations keys to have a common yank keystroke."
     (s-contains-p "it-puppet" (or buffer-file-name "")))
 
   (defun my/multi-compile--find-module-root ()
-      (locate-dominating-file buffer-file-name "metadata.json"))
+    (locate-dominating-file buffer-file-name "metadata.json"))
   :custom
   (multi-compile-completion-system 'ivy)
   (multi-compile-default-directory-function #'my/multi-compile--find-module-root)
@@ -1610,9 +1609,9 @@ and adapted to use simulations keys to have a common yank keystroke."
        (("single-test" . ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")))))))
 
 (defun my/regenerate-ctags ()
-    (interactive)
-    (setq default-directory (project-root (project-current)))
-    (compile "ctags -e -R --exclude=@/home/nacho/.ctags/exclude --exclude=@.gitignore"))
+  (interactive)
+  (setq default-directory (project-root (project-current)))
+  (compile "ctags -e -R --exclude=@/home/nacho/.ctags/exclude --exclude=@.gitignore"))
 
 ;;; Org
 (use-package org
@@ -1680,7 +1679,7 @@ and adapted to use simulations keys to have a common yank keystroke."
       (with-current-buffer original-buffer
         (if (region-active-p)
             (buffer-substring-no-properties (region-beginning) (region-end))
-      (string-trim-left (buffer-name original-buffer) "^F# ")))))
+          (string-trim-left (buffer-name original-buffer) "^F# ")))))
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/org/notes.org" "Tasks")
            "* TODO %?\n  %u\n  %a")
@@ -1889,7 +1888,7 @@ With argument ARG, do this that many times."
   "Move point to the TARGET-LINE. Ding if already there."
   (let ((current-line (line-number-at-pos (point))))
     (if (= current-line target-line)
-      (ding)
+        (ding)
       (goto-line target-line))))
 
 (defun my/goto-first-visible-line ()
@@ -1915,9 +1914,9 @@ With argument ARG, do this that many times."
 If KEYVALUE is not nil then VARIABLE=VALUE is returned, otherwise
 VALUE. When there's no such a VARIABLE set then nil is returned."
   (let ((current-variable-value
-        (seq-find (lambda (x)
-                       (s-starts-with-p (concat variable "=") x))
-                  tramp-remote-process-environment)))
+         (seq-find (lambda (x)
+                     (s-starts-with-p (concat variable "=") x))
+                   tramp-remote-process-environment)))
     (when current-variable-value
       (if keyvalue
           current-variable-value
