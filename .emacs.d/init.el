@@ -1990,7 +1990,7 @@ and the DATATYPE is prompted for."
                       4)
                      ((eq datatype 'bigint)
                       8)))
-         (range-max (expt 2 (- (* datawidth 8) 1)))
+         (range-max (- (expt 2 (- (* datawidth 8) 1)) 1))
          (current-max (min range-max current-max))
          (%-available (*
                        100
