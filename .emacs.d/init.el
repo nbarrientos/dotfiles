@@ -990,7 +990,9 @@ If no universal argument is passed, assume only one output"
          ("x" . magit-reset-hard)
          :map magit-section-mode-map
          ("C-<up>" . magit-section-backward-sibling)
-         ("C-<down>" . magit-section-forward-sibling))
+         ("C-<down>" . magit-section-forward-sibling)
+         :map magit-diff-section-map
+         ("C-<return>" . magit-diff-visit-file-other-window))
   :config
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
