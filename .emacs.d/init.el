@@ -1982,7 +1982,11 @@ and the DATATYPE is prompted for."
    (list (string-to-number
           (buffer-substring-no-properties (region-beginning) (region-end)))
          (intern
-          (completing-read "Data type: " '("smallint" "integer" "bigint")))))
+          (completing-read
+           "Data type: "
+           '("smallint" "integer" "bigint")
+           nil nil nil nil
+           "integer"))))
   (let* ((datawidth (cond
                      ((eq datatype 'smallint)
                       2)
