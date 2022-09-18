@@ -498,10 +498,17 @@ The 'circular' list is defined in the variable
    'counsel-fzf
    '((all-the-icons-ivy-rich-file-icon)
      (all-the-icons-ivy-rich-file-name)))
-  (ivy-rich-modify-columns
-   'ivy-switch-buffer
-   '((ivy-rich-switch-buffer-project (:width 30))
-     (all-the-icons-ivy-rich-switch-buffer-major-mode (:width 20)))))
+  (ivy-rich-set-columns
+   'project-switch-project
+   '((all-the-icons-ivy-rich-file-icon)
+     (all-the-icons-ivy-rich-file-name
+      (:width 0.4))
+     (all-the-icons-ivy-rich-file-modification-time
+      (:face all-the-icons-ivy-rich-time-face))))
+   (ivy-rich-modify-columns
+    'ivy-switch-buffer
+    '((ivy-rich-switch-buffer-project (:width 30))
+      (all-the-icons-ivy-rich-switch-buffer-major-mode (:width 20)))))
 
 (use-package amx
   :after (ivy)
