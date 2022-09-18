@@ -76,7 +76,6 @@
 (set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
 
 ;;;; Remedies for to-be-reeducated muscle memory
-(global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-f"))
 
 ;;; Use-package
@@ -176,6 +175,9 @@
   (rg-buffer-name "ripgrep"))
 
 ;;; Navigation
+(use-package goto-chg
+  :bind (("C-z" . goto-last-change)))
+
 ;;;; Xref
 (use-package xref
   :ensure nil
