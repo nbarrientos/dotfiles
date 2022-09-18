@@ -229,6 +229,7 @@
      (project-find-dir "Find directory")
      (project-eshell "Eshell")
      (my/project-ivy-switch-buffer "Buffers")
+     (project-kill-buffers "Kill buffers")
      (magit-project-status "Magit"))))
 
 ;;;; Imenu
