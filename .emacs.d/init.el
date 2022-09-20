@@ -1062,6 +1062,10 @@ If no universal argument is passed, assume only one output"
   (set-face-attribute 'ediff-current-diff-A
                       nil
                       :background (doom-blend 'selection 'bg 0.6))
+  (defun my/y-or-n-p-ignore (ediff-quit-f &rest args)
+    (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
+      (apply ediff-quit-f args)))
+  (advice-add 'ediff-quit :around #'my/y-or-n-p-ignore)
   :hook
   ((ediff-startup . ediff-next-difference))
   ((ediff-prepare-buffer . outline-show-all))
