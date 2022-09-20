@@ -1058,6 +1058,9 @@ If no universal argument is passed, assume only one output"
   :config
   ;; https://github.com/ch11ng/exwm/issues/353
   (advice-add 'ediff-window-display-p :override #'ignore)
+  (set-face-attribute 'ediff-current-diff-A
+                      nil
+                      :background (doom-blend 'selection 'bg 0.9))
   :hook
   ((ediff-startup . ediff-next-difference))
   :custom
