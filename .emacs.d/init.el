@@ -173,7 +173,8 @@
   (add-to-list 'rg-custom-type-aliases '("puppetplus" . "*.pp *.epp *.erb"))
   :custom
   (rg-group-result t)
-  (rg-buffer-name "ripgrep"))
+  (rg-buffer-name (lambda nil
+                    (format "*ripgrep (%s)*" (cdr (project-current))))))
 
 ;;; Navigation
 (use-package goto-chg
