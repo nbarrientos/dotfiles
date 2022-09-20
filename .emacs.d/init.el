@@ -1060,7 +1060,7 @@ If no universal argument is passed, assume only one output"
   (advice-add 'ediff-window-display-p :override #'ignore)
   (set-face-attribute 'ediff-current-diff-A
                       nil
-                      :background (doom-blend 'selection 'bg 0.9))
+                      :background (doom-blend 'selection 'bg 0.6))
   :hook
   ((ediff-startup . ediff-next-difference))
   :custom
