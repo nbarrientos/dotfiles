@@ -687,8 +687,15 @@ modify parts of the directory before switching to it."
                          flycheck-ruby-rubocop-executable
                          "~/.local/bin/rubocop")))))
 
+(use-package python-mode
+  :custom
+  (py-split-windows-on-execute-function 'split-window-horizontally)
+  (py-split-window-on-execute-threshold 2)
+  (py-keep-windows-configuration t)
+  (py-outline-minor-mode-p nil))
+
 (use-package python-pytest
-  :after python
+  :after python-mode
   :bind (:map python-mode-map
               ("C-c t" . python-pytest-dispatch)))
 
