@@ -1063,6 +1063,7 @@ If no universal argument is passed, assume only one output"
                       :background (doom-blend 'selection 'bg 0.6))
   :hook
   ((ediff-startup . ediff-next-difference))
+  ((ediff-prepare-buffer . outline-show-all))
   :custom
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
