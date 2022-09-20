@@ -664,6 +664,8 @@ modify parts of the directory before switching to it."
 (use-package info-colors
   :hook ((Info-selection . info-colors-fontify-node)))
 
+(use-package rainbow-mode)
+
 ;;; Modes for coding
 ;;;; Syntax checking
 (use-package flycheck
