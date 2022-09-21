@@ -691,7 +691,6 @@ modify parts of the directory before switching to it."
   :custom
   (py-split-windows-on-execute-function 'split-window-horizontally)
   (py-split-window-on-execute-threshold 2)
-  (py-keep-windows-configuration t)
   (py-outline-minor-mode-p nil))
 
 (use-package python-pytest
