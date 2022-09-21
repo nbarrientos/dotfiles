@@ -1045,6 +1045,8 @@ If no universal argument is passed, assume only one output"
   (magit-list-refs-sortby "-creatordate")
   (magit-diff-refine-hunk t))
 
+(use-package orgit)
+
 (use-package forge
   :after magit
   :bind (:map forge-topic-mode-map
