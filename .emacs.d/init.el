@@ -252,6 +252,11 @@
   (auth-sources '("secrets:Passwords")))
 
 ;;; Killing, Yanking, Comments and Undo
+(use-package delsel
+  :ensure nil
+  :custom
+  (delete-selection-mode 1))
+
 (use-package whole-line-or-region
   :init
   (whole-line-or-region-global-mode)
