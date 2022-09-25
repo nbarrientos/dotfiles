@@ -1017,7 +1017,9 @@ If no universal argument is passed, assume only one output"
          ("C-<up>" . magit-section-backward-sibling)
          ("C-<down>" . magit-section-forward-sibling)
          :map magit-diff-section-map
-         ("C-<return>" . magit-diff-visit-file-other-window))
+         ("C-<return>" . magit-diff-visit-file-other-window)
+         :map magit-hunk-section-map
+         ("M-<return>" . magit-diff-visit-worktree-file-other-window))
   :config
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
