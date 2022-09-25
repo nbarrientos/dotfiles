@@ -1015,11 +1015,7 @@ If no universal argument is passed, assume only one output"
          ("x" . magit-reset-hard)
          :map magit-section-mode-map
          ("C-<up>" . magit-section-backward-sibling)
-         ("C-<down>" . magit-section-forward-sibling)
-         :map magit-diff-section-map
-         ("C-<return>" . magit-diff-visit-file-other-window)
-         :map magit-hunk-section-map
-         ("M-<return>" . magit-diff-visit-worktree-file-other-window))
+         ("C-<down>" . magit-section-forward-sibling))
   :config
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
