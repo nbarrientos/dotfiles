@@ -646,15 +646,21 @@ modify parts of the directory before switching to it."
   (doom-themes-enable-italic t))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1)
   :config
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
                       :inherit 'doom-modeline-buffer-minor-mode)
+  (setq doom-modeline-mode-alist nil)
+  (doom-modeline-def-modeline 'my-modeline
+    '(bar matches buffer-info remote-host buffer-position)
+    '(misc-info time irc debug input-method major-mode process checker))
+  (add-hook 'doom-modeline-mode-hook
+            (lambda nil
+              (doom-modeline-set-modeline 'my-modeline 'default)))
+  (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 30)
-  (doom-modeline-buffer-encoding nil)
   (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-irc-buffers t)
   (doom-modeline-buffer-file-name-style 'relative-from-project)
