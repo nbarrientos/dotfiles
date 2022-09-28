@@ -420,6 +420,8 @@ The 'circular' list is defined in the variable
   (add-to-list 'dired-compress-file-suffixes
                '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
 
+(use-package disk-usage)
+
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
 (use-package all-the-icons-ivy
