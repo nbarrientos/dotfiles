@@ -437,11 +437,12 @@ The 'circular' list is defined in the variable
   (add-to-list 'all-the-icons-extension-icon-alist
                '("erb" all-the-icons-fileicon "api-blueprint"
                  :face all-the-icons-orange))
-  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
+  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/335
   (add-to-list 'all-the-icons-mode-icon-alist
                '(Man-mode
                  all-the-icons-fileicon "man-page"
                  :face all-the-icons-blue))
+  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
   (add-to-list 'all-the-icons-mode-icon-alist
                '(exwm-mode
                  all-the-icons-octicon "browser"
