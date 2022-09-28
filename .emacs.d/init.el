@@ -221,7 +221,8 @@
                 :matcher #'ivy--switch-buffer-matcher
                 :caller 'ivy-switch-buffer)))
   (defun my/magit-maybe-remember-project (repository directory args)
-    (project-remember-project (cons 'vc (format "%s/" (abbreviate-file-name directory)))))
+    (when (file-directory-p directory)
+      (project-remember-project (cons 'vc (format "%s/" (abbreviate-file-name directory))))))
   (advice-add 'magit-clone-internal :after #'my/magit-maybe-remember-project)
   :custom
   (project-switch-commands
