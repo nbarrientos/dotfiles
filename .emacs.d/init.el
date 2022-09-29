@@ -421,6 +421,7 @@ The 'circular' list is defined in the variable
                '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
 
 (use-package disk-usage
+  :defer t
   :config
   ;; Pending https://github.com/doomemacs/themes/pull/757
   (set-face-attribute 'disk-usage-percent nil
