@@ -422,6 +422,7 @@ The 'circular' list is defined in the variable
 
 (use-package disk-usage
   :config
+  ;; Pending https://github.com/doomemacs/themes/pull/757
   (set-face-attribute 'disk-usage-percent nil
                       :foreground (doom-color 'violet))
   (set-face-attribute 'disk-usage-size nil
