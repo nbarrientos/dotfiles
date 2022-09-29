@@ -421,18 +421,12 @@ The 'circular' list is defined in the variable
                '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
 
 (use-package disk-usage
-  :defer t
-  :config
+  :custom-face
   ;; Pending https://github.com/doomemacs/themes/pull/757
-  (set-face-attribute 'disk-usage-percent nil
-                      :foreground (doom-color 'violet))
-  (set-face-attribute 'disk-usage-size nil
-                      :foreground (doom-color 'blue))
-  (set-face-attribute 'disk-usage-children nil
-                      :foreground (doom-color 'yellow))
-  (set-face-attribute 'disk-usage-symlink nil
-                      :foreground (doom-color 'cyan)
-                      :weight 'bold))
+  (disk-usage-children ((t (:foreground "#f0c674")))) ; (doom-color 'yellow)
+  (disk-usage-percent ((t (:foreground "#b294bb")))) ; (doom-color 'violet)
+  (disk-usage-size ((t (:foreground "#81a2be")))) ; (doom-color 'blue)
+  (disk-usage-symlink ((t (:foreground "#8abeb7" :weight bold))))) ; (doom-color 'cyan)
 
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
