@@ -425,7 +425,12 @@ The 'circular' list is defined in the variable
   (set-face-attribute 'disk-usage-percent nil
                       :foreground (doom-color 'violet))
   (set-face-attribute 'disk-usage-size nil
-                      :foreground (doom-color 'blue)))
+                      :foreground (doom-color 'blue))
+  (set-face-attribute 'disk-usage-children nil
+                      :foreground (doom-color 'yellow))
+  (set-face-attribute 'disk-usage-symlink nil
+                      :foreground (doom-color 'cyan)
+                      :weight 'bold))
 
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
