@@ -420,7 +420,12 @@ The 'circular' list is defined in the variable
   (add-to-list 'dired-compress-file-suffixes
                '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
 
-(use-package disk-usage)
+(use-package disk-usage
+  :config
+  (set-face-attribute 'disk-usage-percent nil
+                      :foreground (doom-color 'violet))
+  (set-face-attribute 'disk-usage-size nil
+                      :foreground (doom-color 'blue)))
 
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
