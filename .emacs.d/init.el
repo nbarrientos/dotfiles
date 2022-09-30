@@ -190,7 +190,8 @@
   :ensure nil
   :bind-keymap ("C-p" . project-prefix-map)
   :bind ((:map project-prefix-map
-               ("b" . my/project-ivy-switch-buffer)
+               ("<home>" . my/project-ivy-switch-buffer)
+               ("b" . nil)
                ("C" . magit-clone)
                ("f" . my/project-counsel-fzf)
                ("F" . nil)
