@@ -1373,7 +1373,7 @@ When called interactively, toggle. Otherwise set to VALUE."
     "Removes noise from and trims Firefox window titles.
 Assumes the Add URL to Window Title extension is enabled and
 configured to use @ (at symbol) as separator."
-    (let* ((length (or length 45))
+    (let* ((length (or length 55))
            (title (concat "F# " (replace-regexp-in-string " [-—] Mozilla Firefox$" "" title)))
            (title-and-hostname (split-string title "@" nil " "))
            (hostname (substring (car (last title-and-hostname)) 0 -1))
