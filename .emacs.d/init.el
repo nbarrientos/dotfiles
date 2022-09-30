@@ -56,16 +56,14 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(global-set-key [home] 'beginning-of-buffer)
-(global-set-key [end] 'end-of-buffer)
 (global-set-key (kbd "M-<up>") 'backward-sexp)
 (global-set-key (kbd "M-<down>") 'forward-sexp)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
-(global-set-key (kbd "C-<prior>") 'my/goto-first-visible-line)
-(global-set-key (kbd "C-<next>") 'my/goto-last-visible-line)
+(global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
+(global-set-key (kbd "C-<next>") 'end-of-buffer)
 (global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
 
 (add-to-list 'yank-excluded-properties 'face)
@@ -77,6 +75,8 @@
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-x C-f"))
+(global-unset-key (kbd "C-b"))
+(global-unset-key (kbd "M-b"))
 
 ;;; Use-package
 
@@ -541,8 +541,8 @@ The 'circular' list is defined in the variable
 (use-package counsel
   :after (helpful)
   :bind (("M-x" . counsel-M-x)
-         ("C-b" . ivy-switch-buffer)
-         ("M-b" . ivy-switch-buffer-other-window)
+         ([home] . ivy-switch-buffer)
+         ([end] . ivy-switch-buffer-other-window)
          ("C-x f" . my/counsel-find-file-no-tramp)
          ("C-x F" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
@@ -1475,22 +1475,26 @@ configured to use @ (at symbol) as separator."
   (setq exwm-input-simulation-keys
         '(
           ([?\C-y] . [?\C-v])
-          ([?\C-w] . [?\C-c])))
+          ([?\C-w] . [?\C-c])
+          ([C-prior] . [home])
+          ([C-next] . [end])))
 
   (setq exwm-manage-force-tiling t)
 
   (add-to-list 'exwm-input-prefix-keys ?\C-c)
-  ;; Buffer switching
-  (add-to-list 'exwm-input-prefix-keys ?\C-b)
-  (add-to-list 'exwm-input-prefix-keys ?\M-b)
   ;; Engine mode
   (add-to-list 'exwm-input-prefix-keys ?\C-j)
   ;; Project
   (add-to-list 'exwm-input-prefix-keys ?\C-p)
+
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
   (define-key exwm-mode-map (kbd "C-<f8>") 'window-swap-states)
   (define-key exwm-mode-map (kbd "M-<f8>") 'rotate-frame-clockwise)
+
+  ;; Buffer switching
+  (define-key exwm-mode-map (kbd "<home>") 'ivy-switch-buffer)
+  (define-key exwm-mode-map (kbd "<end>") 'ivy-switch-buffer-other-window)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
 
@@ -1938,25 +1942,6 @@ With argument ARG, do this that many times."
 With argument ARG, do this that many times."
   (interactive "p")
   (my/delete-word (- arg)))
-
-(defun my/--goto-line-ding-if-current (target-line)
-  "Move point to the TARGET-LINE. Ding if already there."
-  (let ((current-line (line-number-at-pos (point))))
-    (if (= current-line target-line)
-        (ding)
-      (goto-line target-line))))
-
-(defun my/goto-first-visible-line ()
-  "Move point to the first visible line in the window."
-  (interactive)
-  (my/--goto-line-ding-if-current
-   (line-number-at-pos (window-start))))
-
-(defun my/goto-last-visible-line ()
-  "Move point to the last visible line in the window."
-  (interactive)
-  (my/--goto-line-ding-if-current
-   (- (line-number-at-pos (window-end)) 2)))
 
 ;; Stolen from: https://stackoverflow.com/questions/2471557/how-to-undo-fill-paragraph-in-emacs
 (defun my/unfill-region ()
