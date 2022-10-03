@@ -663,6 +663,7 @@ modify parts of the directory before switching to it."
   (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
                       :inherit 'doom-modeline-buffer-minor-mode)
+  (setq-default mode-line-buffer-identification "%b")
   (setq doom-modeline-mode-alist nil)
   (doom-modeline-def-modeline 'my-modeline
     '(bar matches buffer-info remote-host buffer-position)
