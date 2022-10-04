@@ -524,12 +524,13 @@ The 'circular' list is defined in the variable
       (:width 0.4))
      (all-the-icons-ivy-rich-file-modification-time
       (:face all-the-icons-ivy-rich-time-face))))
-   (ivy-rich-set-columns
-    'ivy-switch-buffer
-    '((all-the-icons-ivy-rich-buffer-icon)
-      (ivy-switch-buffer-transformer (:width 0.5))
-      (all-the-icons-ivy-rich-switch-buffer-major-mode
-       (:width 20 :face all-the-icons-ivy-rich-major-mode-face)))))
+  (dolist (cmd '(ivy-switch-buffer ivy-switch-buffer-other-window))
+    (ivy-rich-set-columns
+     cmd
+     '((all-the-icons-ivy-rich-buffer-icon)
+       (ivy-switch-buffer-transformer (:width 0.5))
+       (all-the-icons-ivy-rich-switch-buffer-major-mode
+        (:width 20 :face all-the-icons-ivy-rich-major-mode-face))))))
 
 (use-package amx
   :after (ivy)
