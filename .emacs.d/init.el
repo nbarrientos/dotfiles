@@ -424,10 +424,10 @@ The 'circular' list is defined in the variable
 (use-package disk-usage
   :custom-face
   ;; Pending https://github.com/doomemacs/themes/pull/757
-  (disk-usage-children ((t (:foreground "#f0c674")))) ; (doom-color 'yellow)
-  (disk-usage-percent ((t (:foreground "#b294bb")))) ; (doom-color 'violet)
-  (disk-usage-size ((t (:foreground "#81a2be")))) ; (doom-color 'blue)
-  (disk-usage-symlink ((t (:foreground "#8abeb7" :weight bold))))) ; (doom-color 'cyan)
+  (disk-usage-children ((t (:foreground "#e0af68")))) ; (doom-color 'yellow)
+  (disk-usage-percent ((t (:foreground "#9aa5ce")))) ; (doom-color 'violet)
+  (disk-usage-size ((t (:foreground "#7aa2f7")))) ; (doom-color 'blue)
+  (disk-usage-symlink ((t (:foreground "#b4f9f8" :weight bold))))) ; (doom-color 'cyan)
 
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
@@ -492,6 +492,7 @@ The 'circular' list is defined in the variable
           (width (round (* .70 (frame-width)))))
       (list :height height :width width :min-height height :min-width width)))
   :custom
+  (ivy-posframe-border-width 0)
   (posframe-mouse-banish-function #'posframe-mouse-banish-simple)
   (ivy-posframe-display-functions-alist
    '((swiper . ivy-display-function-fallback)
@@ -649,7 +650,7 @@ modify parts of the directory before switching to it."
 ;;; Look and feel
 (use-package doom-themes
   :config
-  (load-theme 'doom-tomorrow-night t)
+  (load-theme 'doom-tokyo-night t)
   (doom-themes-visual-bell-config)
   (custom-set-faces
    '(ivy-modified-buffer ((t (:inherit default :foreground unspecified)))))
