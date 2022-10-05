@@ -102,10 +102,12 @@ pv
 python-argcomplete
 python-bcrypt
 python-dateutil
+python-gnupg
 python-markdown
 python-pip
 python-prettytable
 python-pylint
+python-pyxdg
 python-virtualenv
 reflector
 ripgrep
