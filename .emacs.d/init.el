@@ -1208,8 +1208,7 @@ If no universal argument is passed, assume only one output"
   (defun my/get-oauth2-access-token-xoauth2 ()
     (with-temp-buffer
       (let ((exit-status
-             (call-process "/home/nacho/.local/bin/oauth2ms"
-                           nil t nil "--encode-xoauth2")))
+             (call-process "oauth2ms" nil t nil "--encode-xoauth2")))
         (if (eq exit-status 0)
             (buffer-string)
           (user-error "oauth2ms returned non-zero exit status")))))
