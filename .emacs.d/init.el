@@ -1205,6 +1205,11 @@ If no universal argument is passed, assume only one output"
      (unless (string-match-p "\.gmai\.com$" contact)
        contact)))
   :config
+  (defun my/get-oauth2-access-token-xoauth2 ()
+    (with-temp-buffer
+      (call-process "/home/nacho/.local/bin/oauth2ms"
+                    nil t nil "--encode-xoauth2")
+      (buffer-string)))
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
   (setq gnus-inhibit-images t)
