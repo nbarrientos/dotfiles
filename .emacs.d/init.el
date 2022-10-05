@@ -1242,7 +1242,7 @@ If no universal argument is passed, assume only one output"
   (setq message-citation-line-format
         "On %d/%m/%y, %N said:\n")
   (setq send-mail-function 'smtpmail-send-it)
-  (setq smtpmail-smtp-server "cernmail.cern.ch")
+  (setq smtpmail-smtp-server "smtp.cern.ch")
   (setq smtpmail-smtp-service 587)
   (setq smtpmail-smtp-user "ibarrien")
   (setq mail-user-agent 'mu4e-user-agent)
