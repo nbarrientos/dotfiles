@@ -1207,9 +1207,12 @@ If no universal argument is passed, assume only one output"
   :config
   (defun my/get-oauth2-access-token-xoauth2 ()
     (with-temp-buffer
-      (call-process "/home/nacho/.local/bin/oauth2ms"
-                    nil t nil "--encode-xoauth2")
-      (buffer-string)))
+      (let ((exit-status
+             (call-process "/home/nacho/.local/bin/oauth2ms"
+                           nil t nil "--encode-xoauth2")))
+        (if (eq exit-status 0)
+            (buffer-string)
+          (user-error "oauth2ms returned non-zero exit status")))))
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
   (setq gnus-inhibit-images t)
