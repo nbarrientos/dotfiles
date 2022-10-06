@@ -1707,6 +1707,8 @@ and adapted to use simulations keys to have a common yank keystroke."
 
   (org-link-set-parameters "firefox" :store 'my/exwm-org-store-link)
   :custom
+  (org-display-custom-times t)
+  (org-time-stamp-custom-formats '("<%a %B %e %Y>" . "<%a %B %e %Y %H:%M>"))
   (org-default-notes-file (concat org-directory "/notes.org"))
   (org-startup-folded 'content))
 
