@@ -7,10 +7,4 @@ xrdb ~/.Xresources
 
 autorandr $(cat /etc/hostname)
 
-keepassxc &
-
-pasystray &
-
-dunst &
-
 exec emacs

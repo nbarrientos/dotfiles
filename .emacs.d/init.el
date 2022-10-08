@@ -1550,6 +1550,9 @@ and adapted to use simulations keys to have a common yank keystroke."
               (progn
                 (split-window-right)
                 (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
+                (start-process "keepassxc" nil "keepassxc")
+                (start-process "pasystray" nil "pasystray")
+                (start-process "duynst" nil "dunst")
                 (eshell))))
 
   (exwm-enable))
