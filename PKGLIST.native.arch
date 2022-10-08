@@ -68,6 +68,8 @@ mlocate
 mplayer
 mpv
 mpv-mpris
+msmtp
+msmtp-mta
 mtools
 mtr
 ncdu

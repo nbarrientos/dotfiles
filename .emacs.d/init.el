@@ -1239,15 +1239,12 @@ If no universal argument is passed, assume only one output"
                       :weight 'normal)
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
-  (setq message-send-mail-function 'smtpmail-send-it)
+  (setq message-send-mail-function 'sendmail-send-it)
   (setq message-citation-line-function
         'message-insert-formatted-citation-line)
   (setq message-citation-line-format
         "On %d/%m/%y, %N said:\n")
   (setq send-mail-function 'smtpmail-send-it)
-  (setq smtpmail-smtp-server "smtp.cern.ch")
-  (setq smtpmail-smtp-service 587)
-  (setq smtpmail-smtp-user "ibarrien")
   (setq mail-user-agent 'mu4e-user-agent)
   (with-eval-after-load "mm-decode"
     (add-to-list 'mm-discouraged-alternatives "text/html")
