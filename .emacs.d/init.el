@@ -1554,7 +1554,7 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (start-process-shell-command "xmodmap" nil "xmodmap ~/.Xmodmap")
                 (start-process "keepassxc" nil "keepassxc")
                 (start-process "pasystray" nil "pasystray")
-                (start-process "duynst" nil "dunst")
+                (start-process "dunst" nil "dunst")
                 (eshell))))
 
   (exwm-enable))
