@@ -1543,6 +1543,8 @@ and adapted to use simulations keys to have a common yank keystroke."
                   '(([?\C-s] . [?\C-f]) ; Swiper!
                     ([?\C-g] . [escape])
                     ([?\C-m] . [f6]); focus/unfocus address bar
+                    ([?\C-i] . [f3]); next link in quick find
+                    ([?\C-b] . [S-f3]); previous link in quick find
                     ([?\C-t] . nil))))))) ; Prevent accidental tab ; creation
 
   (add-hook 'exwm-init-hook
