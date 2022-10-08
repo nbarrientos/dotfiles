@@ -24,3 +24,5 @@ user_pref("signon.rememberSignons", false);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Do not bring up the menu bar when alt is kept pressed
 user_pref("ui.key.menuAccessKeyFocuses", false);
+user_pref("ui.textSelectAttentionBackground", "#f7768e");
+user_pref("ui.textHighlightBackground", "#b4f9f8");
