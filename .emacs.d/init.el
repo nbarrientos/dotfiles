@@ -34,6 +34,7 @@
 ;;; Basic configuration of built-in features
 (setq-default
  inhibit-startup-message t
+ inhibit-startup-echo-area-message "nacho"
  visible-bell t
  vc-follow-symlinks t
  indent-tabs-mode nil
