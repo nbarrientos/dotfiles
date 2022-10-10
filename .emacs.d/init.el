@@ -495,8 +495,9 @@ The 'circular' list is defined in the variable
   (ivy-posframe-border-width 0)
   (posframe-mouse-banish-function #'posframe-mouse-banish-simple)
   (ivy-posframe-display-functions-alist
-   '((swiper . ivy-display-function-fallback)
-     (t      . ivy-posframe-display)))
+   '((swiper        . ivy-display-function-fallback)
+     (counsel-imenu . ivy-display-function-fallback)
+     (t             . ivy-posframe-display)))
   (ivy-posframe-height-alist '((counsel-yank-pop . 40)
                                (t                . 20)))
   (ivy-posframe-size-function 'my/ivy-posframe-get-size))
