@@ -676,9 +676,6 @@ modify parts of the directory before switching to it."
   (add-hook 'doom-modeline-mode-hook
             (lambda nil
               (doom-modeline-set-modeline 'my-modeline 'default)))
-  ;; Pending https://github.com/seagle0128/doom-modeline/pull/580
-  (add-hook 'Info-selection-hook
-            #'doom-modeline-update-buffer-file-name)
   (doom-modeline-mode 1)
   :custom
   (doom-modeline-height 30)
