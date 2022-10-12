@@ -1856,16 +1856,15 @@ This function is meant to be executed from Eshell in a CWD where
 ai-rc is installed. If `tramp-remote-process-environment' has
 been successfully updated, then it returns the new project name,
 otherwise it returns nil."
-  (let ((project-name
-         (with-temp-buffer
-           (eshell-command (concat "ai-rc --same-project-as " fqdn) t)
-           (keep-lines "^export OS_PROJECT_NAME")
-           (unless (string-empty-p (buffer-string))
-             (replace-string "\"" "")
-             (car (last (split-string (substring (buffer-string) 7 -2) "=")))))))
-    (unless (null project-name)
-      (my/setenv-tramp "OS_PROJECT_NAME" project-name)
-      project-name)))
+  (and-let* ((project-name
+              (with-temp-buffer
+                (eshell-command (concat "ai-rc --same-project-as " fqdn) t)
+                (keep-lines "^export OS_PROJECT_NAME")
+                (unless (string-empty-p (buffer-string))
+                  (replace-string "\"" "")
+                  (car (last (split-string (substring (buffer-string) 7 -2) "=")))))))
+    (my/setenv-tramp "OS_PROJECT_NAME" project-name)
+    project-name))
 
 ;;; Transient
 (use-package transient
