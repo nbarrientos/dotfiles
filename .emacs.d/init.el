@@ -1208,13 +1208,6 @@ If no universal argument is passed, assume only one output"
      (unless (string-match-p "\.gmai\.com$" contact)
        contact)))
   :config
-  (defun my/get-oauth2-access-token-xoauth2 ()
-    (with-temp-buffer
-      (let ((exit-status
-             (call-process "oauth2ms" nil t nil "--encode-xoauth2")))
-        (if (eq exit-status 0)
-            (buffer-string)
-          (user-error "oauth2ms returned non-zero exit status")))))
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
   (setq gnus-inhibit-images t)
