@@ -9,7 +9,6 @@ User nacho.barrientos@cern.ch
 AuthMechs XOAUTH2
 Passcmd "/usr/bin/oauth2ms"
 SSLType IMAPS
-SSLVersions TLSv1
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore cern-remote
