@@ -1181,6 +1181,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-get-mail-command "/usr/bin/systemctl --user start mbsync-prio-0")
   (mu4e-completing-read-function 'ivy-completing-read)
   (mu4e-use-fancy-chars t)
+  (mu4e-sent-messages-behavior 'delete)
   (mu4e-headers-fields
    '(( :human-date    .  12)
      ( :flags         .  10)
