@@ -1242,13 +1242,12 @@ If no universal argument is passed, assume only one output"
   (with-eval-after-load "mm-decode"
     (add-to-list 'mm-discouraged-alternatives "text/html")
     (add-to-list 'mm-discouraged-alternatives "text/richtext"))
+  (mu4e t)
   :bind (:map mu4e-headers-mode-map
               ("r" . 'mu4e-headers-mark-for-read)
               ("d" . 'mu4e-headers-mark-for-delete)
          :map mu4e-view-mode-map
               ("C-c C-o" . 'mu4e~view-browse-url-from-binding)))
-
-(mu4e t)
 
 (use-package mu4e-column-faces
   :after mu4e
