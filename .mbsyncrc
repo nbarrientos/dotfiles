@@ -176,8 +176,6 @@ Channel cern-guides-en
 Channel cern-guides-es
 Channel cern-isync-devel
 Channel cern-it-dep
-Channel cern-it-dep-cm
-Channel cern-it-dep-cm-lcs
 Channel cern-linux-users
 Channel cern-market
 Channel cern-oss-security
