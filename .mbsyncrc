@@ -97,14 +97,6 @@ Channel cern-it-dep
 Far :cern-remote:it-dep
 Near :cern-local:it-dep
 
-Channel cern-it-dep-cm
-Far :cern-remote:it-dep-cm
-Near :cern-local:it-dep-cm
-
-Channel cern-it-dep-cm-lcs
-Far :cern-remote:it-dep-cm-lcs
-Near :cern-local:it-dep-cm-lcs
-
 Channel cern-linux-users
 Far :cern-remote:linux-users
 Near :cern-local:linux-users
