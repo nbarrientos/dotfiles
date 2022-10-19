@@ -1192,13 +1192,13 @@ If no universal argument is passed, assume only one output"
        :query "maildir:/.*INBOX/ and flag:unread"
        :key ?i)
      ( :name  "All unread messages"
-       :query "flag:unread and not flag:trashed and not maildir:\"/cern/Spam\""
+       :query "flag:unread and not flag:trashed and not maildir:\"/cern/Junk E-Mail\""
        :key ?u)
      ( :name "Today's messages"
-       :query "date:today..now and not maildir:\"/cern/Spam\""
+       :query "date:today..now and not maildir:\"/cern/Junk E-Mail\""
        :key ?t)
      ( :name "Last 7 days"
-       :query "date:7d..now and not maildir:\"/cern/Spam\""
+       :query "date:7d..now and not maildir:\"/cern/Junk E-Mail\""
        :key ?w)
      ( :name "Flagged messages"
        :query "flag:flagged"
