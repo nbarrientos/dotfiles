@@ -1878,7 +1878,7 @@ otherwise it returns nil."
   :bind (:map erc-mode-map
               ("C-<up>" . erc-previous-command)
               ("C-<down>" . erc-next-command)
-              ("<home>" . my/project-ivy-switch-buffer))
+              ("<home>" . ivy-switch-buffer))
   :config
   (erc-spelling-mode)
   :custom
