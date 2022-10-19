@@ -1,0 +1,13 @@
+; https://gitlab.freedesktop.org/xdg/xdg-utils/-/issues/7
+[Default Applications]
+x-scheme-handler/tg=telegramdesktop.desktop
+image/gif=firefox.desktop
+image/jpeg=firefox.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-1P03Z0.desktop;
+text/calendar=emacs.desktop;firefox.desktop;
+text/csv=emacs.desktop;emacsclient.desktop;
+video/mp4=firefox.desktop;
+text/x-diff=emacs.desktop;
+application/sql=emacs.desktop;
