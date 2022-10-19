@@ -42,8 +42,8 @@ Far :cern-remote:Drafts
 Near :cern-local:Drafts
 
 Channel cern-spam
-Far :cern-remote:Spam
-Near :cern-local:Spam
+Far ":cern-remote:Junk E-Mail"
+Near ":cern-local:Junk E-Mail"
 
 Channel cern-ai-admins
 Far :cern-remote:ai-admins
