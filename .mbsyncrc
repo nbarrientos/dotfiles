@@ -73,14 +73,6 @@ Channel cern-cern-personnel
 Far :cern-remote:cern-personnel
 Near :cern-local:cern-personnel
 
-Channel cern-foreman-announce
-Far :cern-remote:foreman-announce
-Near :cern-local:foreman-announce
-
-Channel cern-foreman-users
-Far :cern-remote:foreman-users
-Near :cern-local:foreman-users
-
 Channel cern-gitlab
 Far :cern-remote:gitlab
 Near :cern-local:gitlab
@@ -169,8 +161,6 @@ Channel cern-building-31
 Channel cern-c5-minutes
 Channel cern-centos-devel
 Channel cern-cern-personnel
-Channel cern-foreman-announce
-Channel cern-foreman-users
 Channel cern-gitlab
 Channel cern-guides-en
 Channel cern-guides-es
