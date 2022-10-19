@@ -1905,6 +1905,7 @@ otherwise it returns nil."
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
     (add-to-list 'erc-track-exclude-types msg))
   :custom
+  (erc-hide-list '("PART" "QUIT" "JOIN"))
   (erc-format-query-as-channel-p nil)
   (erc-track-priority-faces-only 'all)
   (erc-track-faces-priority-list
