@@ -80,6 +80,7 @@
 (global-unset-key (kbd "C-x C-f"))
 (global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "M-b"))
+(global-unset-key (kbd "C-x k"))
 
 ;;; Use-package
 
@@ -545,7 +546,7 @@ The 'circular' list is defined in the variable
   :after (helpful)
   :bind (("M-x" . counsel-M-x)
          ([home] . ivy-switch-buffer)
-         ([end] . ivy-switch-buffer-other-window)
+         ([end] . kill-this-buffer)
          ("C-x f" . my/counsel-find-file-no-tramp)
          ("C-x F" . counsel-find-file)
          ("C-h v" . counsel-describe-variable)
@@ -1495,7 +1496,7 @@ configured to use @ (at symbol) as separator."
 
   ;; Buffer switching
   (define-key exwm-mode-map (kbd "<home>") 'ivy-switch-buffer)
-  (define-key exwm-mode-map (kbd "<end>") 'ivy-switch-buffer-other-window)
+  (define-key exwm-mode-map (kbd "<end>") 'kill-this-buffer)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
 
