@@ -736,7 +736,10 @@ modify parts of the directory before switching to it."
   :hook ((puppet-mode . (lambda ()
                           (setq
                            flycheck-puppet-lint-executable
-                           "~/.local/bin/puppet-lint"))))
+                           "~/.local/bin/puppet-lint")
+                          (setq
+                           flycheck-puppet-parser-executable
+                           "~/.local/bin/puppet"))))
   :bind (:map puppet-mode-map
               ("C-c C-t" . my/puppet-rspec-find-spec-file-for))
   :config
