@@ -1905,7 +1905,7 @@ otherwise it returns nil."
 (use-package erc-track
   :ensure nil
   :config
-  (dolist (msg '("JOIN" "PART" "QUIT" "MODE"))
+  (dolist (msg '("JOIN" "PART" "QUIT" "MODE" "KICK"))
     (add-to-list 'erc-track-exclude-types msg))
   :custom
   (erc-hide-list '("PART" "QUIT" "JOIN"))
