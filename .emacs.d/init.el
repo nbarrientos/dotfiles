@@ -1875,7 +1875,8 @@ otherwise it returns nil."
       ("G" "Dwim" cern-ldap-group-dwim)
       ("g" "Ask" cern-ldap-group)]]))
 
-;;; IRC
+;;; Social
+;;;; IRC
 (use-package erc
   :ensure nil
   :bind (:map erc-mode-map
@@ -1941,6 +1942,12 @@ otherwise it returns nil."
   (erc-prompt-for-nickserv-password nil))
 
 (use-package erc-hl-nicks)
+
+;;;; Mastodon
+(use-package mastodon
+  :custom
+  (mastodon-instance-url "https://emacs.ch")
+  (mastodon-active-user "nachobarrientos"))
 
 ;;; Misc
 (defun my/delete-word (arg)
