@@ -116,6 +116,7 @@ rsync
 ruby2.7
 rxvt-unicode
 screenfetch
+scrot
 shellcheck
 signal-desktop
 sshfs

@@ -1592,7 +1592,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   (desktop-environment-volume-normal-increment "-i 5 --allow-boost")
   (desktop-environment-volume-normal-decrement "-d 5")
   (desktop-environment-volume-toggle-command "pamixer -t")
-  (desktop-environment-screenshot-directory "~")
+  (desktop-environment-screenshot-directory "/tmp")
+  (desktop-environment-screenshot-command "scrot -s")
+  (desktop-environment-screenshot-delay-argument nil)
   (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png -verbose")
   (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
