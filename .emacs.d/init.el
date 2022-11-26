@@ -78,7 +78,8 @@
   (set-face-attribute 'default nil :font "JetBrainsMono" :height 110))
 
 (when (member "JoyPixels" (font-family-list))
-  (set-fontset-font t 'symbol "JoyPixels"))
+  (set-fontset-font t 'symbol "JoyPixels")
+  (set-fontset-font t 'emoji "JoyPixels"))
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-x C-f"))
