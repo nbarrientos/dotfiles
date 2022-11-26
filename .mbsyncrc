@@ -154,8 +154,6 @@ Channel cern-c5-minutes
 Channel cern-centos-devel
 Channel cern-cern-personnel
 Channel cern-gitlab
-Channel cern-guides-en
-Channel cern-guides-es
 Channel cern-isync-devel
 Channel cern-it-dep
 Channel cern-linux-users
