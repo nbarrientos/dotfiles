@@ -78,8 +78,9 @@
   (set-face-attribute 'default nil :font "JetBrains Mono" :height 110))
 
 (when (member "JoyPixels" (font-family-list))
-  (set-fontset-font t 'symbol "JoyPixels")
-  (set-fontset-font t 'emoji "JoyPixels"))
+  (mapc (lambda (characters)
+          (set-fontset-font t characters "JoyPixels"))
+        '(symbol emoji)))
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-x C-f"))
