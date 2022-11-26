@@ -1951,6 +1951,8 @@ otherwise it returns nil."
 
 ;;;; Mastodon
 (use-package mastodon
+  :bind (:map mastodon-mode-map
+              ("g" . mastodon-tl--update))
   :custom
   (mastodon-instance-url "https://emacs.ch")
   (mastodon-active-user "nachobarrientos"))
