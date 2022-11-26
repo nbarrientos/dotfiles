@@ -74,7 +74,8 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;;;; Fonts
-(set-face-attribute 'default nil :font "JetBrainsMono" :height 110)
+(when (member "JetBrainsMono" (font-family-list))
+  (set-face-attribute 'default nil :font "JetBrainsMono" :height 110))
 
 (when (member "JoyPixels" (font-family-list))
   (set-fontset-font t 'symbol "JoyPixels"))
