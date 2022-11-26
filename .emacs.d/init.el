@@ -1564,7 +1564,8 @@ and adapted to use simulations keys to have a common yank keystroke."
   :custom
   (display-time-default-load-average nil)
   (display-time-format "[w%Vq%q %d/%b %H:%M]")
-  (display-time-use-mail-icon t)
+  (display-time-use-mail-icon nil)
+  (display-time-mail-string "📫")
   (display-time-mail-directory nil)
   (display-time-mail-function
    (lambda ()
