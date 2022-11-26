@@ -77,14 +77,6 @@ Channel cern-gitlab
 Far :cern-remote:gitlab
 Near :cern-local:gitlab
 
-Channel cern-guides-en
-Far :cern-remote:guides-en
-Near :cern-local:guides-en
-
-Channel cern-guides-es
-Far :cern-remote:guides-es
-Near :cern-local:guides-es
-
 Channel cern-it-dep
 Far :cern-remote:it-dep
 Near :cern-local:it-dep
