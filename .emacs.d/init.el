@@ -1955,7 +1955,9 @@ otherwise it returns nil."
 ;;;; Mastodon
 (use-package mastodon
   :bind (:map mastodon-mode-map
-              ("g" . mastodon-tl--update))
+              ("g" . mastodon-tl--update)
+              ("M-<up>" . mastodon-tl--goto-prev-toot)
+              ("M-<down>" . mastodon-tl--goto-next-toot))
   :custom
   (mastodon-instance-url "https://emacs.ch")
   (mastodon-active-user "nachobarrientos"))
