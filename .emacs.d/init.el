@@ -665,7 +665,7 @@ modify parts of the directory before switching to it."
   (doom-themes-visual-bell-config)
   (custom-set-faces
    '(ivy-modified-buffer ((t (:inherit default :foreground unspecified))))
-   '(link ((t (:weight unspecified)))))
+   '(link ((t (:weight unspecified :underline unspecified)))))
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t))
