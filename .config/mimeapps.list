@@ -3,6 +3,7 @@
 x-scheme-handler/tg=telegramdesktop.desktop
 image/gif=firefox.desktop
 image/jpeg=firefox.desktop
+image/png=firefox.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-1P03Z0.desktop;
