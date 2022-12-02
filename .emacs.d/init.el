@@ -723,7 +723,8 @@ modify parts of the directory before switching to it."
               ("C-<left>" . paredit-backward)
               ("C-<up>" . paredit-forward-up)
               ("C-<down>" . paredit-forward-down)
-              ("C-j" . nil)))
+              ("C-j" . nil)
+              ("C-d" . nil)))
 
 (use-package ruby-mode
   :ensure nil
