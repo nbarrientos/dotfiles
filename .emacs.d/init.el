@@ -722,7 +722,7 @@ modify parts of the directory before switching to it."
               ("C-<right>" . paredit-forward)
               ("C-<left>" . paredit-backward)
               ("C-<up>" . paredit-forward-up)
-              ("C-<down>" . paredit-backward-down)
+              ("C-<down>" . paredit-forward-down)
               ("C-j" . nil)))
 
 (use-package ruby-mode
