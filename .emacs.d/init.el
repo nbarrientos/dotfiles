@@ -57,8 +57,6 @@
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(global-set-key (kbd "M-<up>") 'backward-sexp)
-(global-set-key (kbd "M-<down>") 'forward-sexp)
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
 (global-set-key (kbd "M-d") 'my/delete-word)
@@ -717,6 +715,16 @@ modify parts of the directory before switching to it."
   (flycheck-package-setup))
 
 ;;;; Programming languages
+(use-package paredit
+  :hook ((lisp-data-mode . paredit-mode)
+         (ielm-mode . paredit-mode))
+  :bind (:map paredit-mode-map
+              ("C-<right>" . paredit-forward)
+              ("C-<left>" . paredit-backward)
+              ("C-<up>" . paredit-forward-up)
+              ("C-<down>" . paredit-backward-down)
+              ("C-j" . nil)))
+
 (use-package ruby-mode
   :ensure nil
   :hook ((ruby-mode . (lambda ()
@@ -1611,6 +1619,8 @@ and adapted to use simulations keys to have a common yank keystroke."
 ;;; Building and compiling
 (use-package ielm
   :ensure nil
+  :bind (:map ielm-map
+              ("C-<return>" . ielm-return))
   :custom
   (ielm-prompt "λ> "))
 
