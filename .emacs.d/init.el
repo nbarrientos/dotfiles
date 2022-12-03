@@ -1962,7 +1962,10 @@ otherwise it returns nil."
   (erc-prompt-for-password nil)
   (erc-prompt-for-nickserv-password nil))
 
-(use-package erc-hl-nicks)
+(use-package erc-hl-nicks
+  :config
+  (dolist (msg '("erc-current-nick-face"))
+    (add-to-list 'erc-hl-nicks-skip-faces msg)))
 
 ;;;; Mastodon
 (use-package mastodon
