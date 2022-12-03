@@ -1929,6 +1929,8 @@ otherwise it returns nil."
   :config
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE" "KICK"))
     (add-to-list 'erc-track-exclude-types msg))
+  ;; Workaround Emacs/ERC bug#59805
+  (advice-add 'erc-faces-in :filter-return #'flatten-list)
   :custom
   (erc-hide-list '("PART" "QUIT" "JOIN"))
   (erc-format-query-as-channel-p nil)
@@ -1962,10 +1964,7 @@ otherwise it returns nil."
   (erc-prompt-for-password nil)
   (erc-prompt-for-nickserv-password nil))
 
-(use-package erc-hl-nicks
-  :config
-  (dolist (msg '("erc-current-nick-face"))
-    (add-to-list 'erc-hl-nicks-skip-faces msg)))
+(use-package erc-hl-nicks)
 
 ;;;; Mastodon
 (use-package mastodon
