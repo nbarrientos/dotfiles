@@ -1910,7 +1910,7 @@ otherwise it returns nil."
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
   (erc-fill-column 124) ;(- (/ (frame-width) 2) 3))
-  (erc-hide-list '("PART" "QUIT"))
+  (erc-hide-list '("PART" "QUIT" "JOIN"))
   (erc-auto-query 'bury)
   (erc-join-buffer 'bury)
   (erc-kill-server-buffer-on-quit t)
@@ -1932,7 +1932,6 @@ otherwise it returns nil."
   ;; Workaround Emacs/ERC https://debbugs.gnu.org/cgi/bugreport.cgi?bug=59805
   (advice-add 'erc-faces-in :filter-return #'flatten-list)
   :custom
-  (erc-hide-list '("PART" "QUIT" "JOIN"))
   (erc-format-query-as-channel-p nil)
   (erc-track-priority-faces-only 'all)
   (erc-track-faces-priority-list
