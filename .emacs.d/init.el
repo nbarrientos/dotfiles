@@ -1929,7 +1929,7 @@ otherwise it returns nil."
   :config
   (dolist (msg '("JOIN" "PART" "QUIT" "MODE" "KICK"))
     (add-to-list 'erc-track-exclude-types msg))
-  ;; Workaround Emacs/ERC bug#59805
+  ;; Workaround Emacs/ERC https://debbugs.gnu.org/cgi/bugreport.cgi?bug=59805
   (advice-add 'erc-faces-in :filter-return #'flatten-list)
   :custom
   (erc-hide-list '("PART" "QUIT" "JOIN"))
