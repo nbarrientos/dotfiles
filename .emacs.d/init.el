@@ -716,8 +716,7 @@ modify parts of the directory before switching to it."
 
 ;;;; Programming languages
 (use-package paredit
-  :hook ((lisp-data-mode . paredit-mode)
-         (ielm-mode . paredit-mode))
+  :hook ((lisp-data-mode . paredit-mode))
   :bind (:map paredit-mode-map
               ("C-<right>" . paredit-forward)
               ("C-<left>" . paredit-backward)
