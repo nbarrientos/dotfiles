@@ -1745,6 +1745,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (use-package org-protocol
   :ensure nil
+  :after org
   :config
   (defun my/org-protocol-eww-handler (props)
     (eww (plist-get props :url))
@@ -1762,6 +1763,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (use-package org-capture
   :ensure nil
+  :after org
   :config
   (defun my/org-capture-region-or-buffer-name ()
     "Return the active region if active, otherwise the buffer name."
@@ -1777,10 +1779,12 @@ and adapted to use simulations keys to have a common yank keystroke."
            "* %(my/org-capture-region-or-buffer-name)%?\n  %^{Date and time?}T\n  %a"))))
 
 (use-package org-tree-slide
+  :after org
   :custom
   (org-tree-slide-slide-in-effect nil))
 
-(use-package ox-gfm)
+(use-package ox-gfm
+  :after org)
 
 ;;; Notifications
 (use-package notifications
@@ -1788,6 +1792,7 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (use-package appt
   :ensure nil
+  :after org
   :config
   (defun my/appt-display (min-to-app new-time msg)
     (notifications-notify
