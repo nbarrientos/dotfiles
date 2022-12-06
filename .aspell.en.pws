@@ -1,4 +1,4 @@
-personal_ws-1.1 en 128 
+personal_ws-1.1 en 130 
 APIs
 ARP
 BGP
@@ -79,6 +79,7 @@ encodings
 entrypoint
 formatter
 geocast
+hardcode
 hardcoded
 hostgroup
 hostgroups
@@ -93,6 +94,7 @@ minibuffer
 misconfiguration
 mistyped
 modeline
+monkeypatch
 multicast
 namespace
 namespacing
