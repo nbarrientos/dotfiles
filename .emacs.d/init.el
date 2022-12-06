@@ -1335,6 +1335,9 @@ If no universal argument is passed, assume only one output"
   (defengine google-maps
     "https://www.google.com/maps/search/%s/"
     :keybinding "M")
+  (defengine larousse
+    "https://www.larousse.fr/dictionnaires/francais/%s"
+    :keybinding "F")
   (defengine openstreetmap
     "https://www.openstreetmap.org/search?query=%s"
     :keybinding "m")
