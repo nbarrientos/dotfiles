@@ -463,6 +463,8 @@ The 'circular' list is defined in the variable
   :diminish
   :bind (:map ivy-minibuffer-map
               ("TAB" . ivy-alt-done)
+              ("M-<up>" . ivy-previous-history-element)
+              ("M-<down>" . ivy-next-history-element)
               ([C-return] . ivy-restrict-to-matches))
   :config
   (defun my/ivy-switch-buffer-by-prefix (prefix)
