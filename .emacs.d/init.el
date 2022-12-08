@@ -1927,6 +1927,7 @@ otherwise it returns nil."
   (erc-disable-ctcp-replies t)
   (erc-prompt (lambda nil (format "%s>" (buffer-name))))
   (erc-part-reason (lambda (&optional s) ""))
+  (erc-timestamp-only-if-changed-flag nil)
   (erc-user-mode "+iRw")
   (erc-nick "nacho")
   (erc-server "irc.libera.chat")
