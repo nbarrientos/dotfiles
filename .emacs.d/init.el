@@ -428,13 +428,7 @@ The 'circular' list is defined in the variable
   (add-to-list 'dired-compress-file-suffixes
                '("\\.txz\\'" "" "xz -dc %i | tar -xf -")))
 
-(use-package disk-usage
-  :custom-face
-  ;; Pending https://github.com/doomemacs/themes/pull/757
-  (disk-usage-children ((t (:foreground "#e0af68")))) ; (doom-color 'yellow)
-  (disk-usage-percent ((t (:foreground "#9aa5ce")))) ; (doom-color 'violet)
-  (disk-usage-size ((t (:foreground "#7aa2f7")))) ; (doom-color 'blue)
-  (disk-usage-symlink ((t (:foreground "#b4f9f8" :weight bold))))) ; (doom-color 'cyan)
+(use-package disk-usage)
 
 ;;; Auto completion
 ;;;; Ivy-Counsel-Swiper
