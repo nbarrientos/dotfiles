@@ -1921,7 +1921,11 @@ otherwise it returns nil."
   (erc-kill-server-buffer-on-quit t)
   (erc-kill-queries-on-quit t)
   (erc-disable-ctcp-replies t)
-  (erc-prompt (lambda nil (format "%s>" (buffer-name))))
+  (erc-prompt (lambda nil
+                (concat
+                 (make-string (+ 7 (- erc-fill-static-center (+ 2 (length (buffer-name))))) ? )
+                 (buffer-name)
+                 ">")))
   (erc-part-reason (lambda (&optional s) ""))
   (erc-insert-timestamp-function #'erc-insert-timestamp-left)
   (erc-timestamp-only-if-changed-flag nil)
