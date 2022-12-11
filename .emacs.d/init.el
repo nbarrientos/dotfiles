@@ -1568,6 +1568,7 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (start-process "dunst" nil "dunst")
                 (eshell))))
 
+  (my/monkeys--exwm-pr-900)
   (exwm-enable))
 
 (use-package time
