@@ -63,7 +63,9 @@
                (setq fake-last-command t)
                (setq mode xcb:Allow:ReplayPointer)))
         (when fake-last-command
-          (with-current-buffer buffer
+          (if buffer
+              (with-current-buffer buffer
+                (exwm-input--fake-last-command))
             (exwm-input--fake-last-command))))
       (xcb:+request exwm--connection
           (make-instance 'xcb:AllowEvents :mode mode :time xcb:Time:CurrentTime))
