@@ -1911,6 +1911,7 @@ otherwise it returns nil."
               ("<home>" . ivy-switch-buffer))
   :config
   (erc-spelling-mode)
+  ;; Needs `my/monkeys--exwm-pr-900' (exwm-input.el) applied.
   (erc-scrolltobottom-mode)
   :custom
   (erc-fill-function 'erc-fill-static)
