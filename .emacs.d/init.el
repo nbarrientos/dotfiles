@@ -1911,6 +1911,7 @@ otherwise it returns nil."
               ("<home>" . ivy-switch-buffer))
   :config
   (erc-spelling-mode)
+  (erc-scrolltobottom-mode)
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 19)
