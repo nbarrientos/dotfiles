@@ -1291,7 +1291,7 @@ If no universal argument is passed, assume only one output"
                      ("RNE" . "https://rtvelivestreamv3.akamaized.net/rtvesec/rne_r1_main.m3u8")
                      ("RPA" . "https://cdnlive.shooowit.net/rtpalive/smil:radio.smil/chunklist_b1000000.m3u8")
                      ;; English
-                     ("WRS" . "https://streamingr.broadcastradio.com:10295/wrs")
+                     ("WRS" . "https://uksouth.streaming.broadcast.radio:10290/wrs")
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
                      ("BBC2" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two")
                      ("BBC5" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk")
