@@ -22,4 +22,4 @@
 	user = ~nbarrientos
 
 [diff "elisp"]
-	xfuncname = ^\\([^[:space:]]*def[^[:space:]]+[[:space:]]+([^()[:space:]]+)
+	xfuncname = ^\\([^[:space:]]*((def[^[:space:]]+|use-package)[[:space:]]+[^()[:space:]]+)
