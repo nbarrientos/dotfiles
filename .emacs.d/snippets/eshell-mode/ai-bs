@@ -4,4 +4,4 @@
 # ai-bs(1)
 # --
 
-ai-bs --${1:$$(yas-choose-value '("cc7" "cs8" "c9"))} -g ${2:playground/ibarrien} --nova-availabilityzone ${3:$$(yas-choose-value '("cern-geneva-a" "cern-geneva-b" "cern-geneva-c"))} --nova-flavor ${4:$$(yas-choose-value '("m2.medium" "m2.large" "m2.small"))} ${5:--prefix "${6:node-}"} ${7:--landb-responsible "${8:ai-config-team}"} ${9:--landb-mainuser "$8"} --foreman-environment ${11:qa} $0
+ai-bs --${1:$$(yas-choose-value '("cc7" "cs8" "rhel8" "alma8" "c9" "rhel9" "alma9"))} -g ${2:playground/ibarrien} --nova-availabilityzone ${3:$$(yas-choose-value '("cern-geneva-a" "cern-geneva-b" "cern-geneva-c"))} --nova-flavor ${4:$$(yas-choose-value '("m2.medium" "m2.large" "m2.small"))} ${5:--prefix "${6:node-}"} ${7:--landb-responsible "${8:ai-config-team}"} ${9:--landb-mainuser "$8"} --foreman-environment ${11:qa} $0
