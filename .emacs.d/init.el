@@ -232,7 +232,7 @@
                 :caller 'ivy-switch-buffer)))
   (defun my/magit-maybe-remember-project (repository directory args)
     (when (file-directory-p directory)
-      (project-remember-project (cons 'vc (format "%s/" (abbreviate-file-name directory))))))
+      (project-remember-project (cons 'vc directory))))
   (advice-add 'magit-clone-internal :after #'my/magit-maybe-remember-project)
   :custom
   (project-switch-commands
