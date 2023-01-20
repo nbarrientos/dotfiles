@@ -198,6 +198,7 @@
   :bind-keymap ("C-p" . project-prefix-map)
   :bind ((:map project-prefix-map
                ("<home>" . my/project-ivy-switch-buffer)
+               ("<end>" . project-kill-buffers)
                ("b" . nil)
                ("C" . magit-clone)
                ("f" . my/project-counsel-fzf)
@@ -205,6 +206,7 @@
                ("g" . rg-project)
                ("G" . rg-dwim-project-dir)
                ("H" . my/clone-hostgroup)
+               ("k" . nil)
                ("m" . magit-project-status)
                ("M" . my/clone-module)
                ("s" . project-eshell)
