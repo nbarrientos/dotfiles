@@ -966,7 +966,13 @@ send a notification when the process has exited."
                cmd
                nil
                (lambda (major-mode)
-                 (format "D#%x %s" (random (expt 2 16)) cmd)))))
+                 (let ((similar-buffers
+                        (length
+                         (seq-filter
+                          (lambda (buffer-name)
+                            (string-match (format "^D#[0-9]+ %s" cmd) buffer-name))
+                          (mapcar #'buffer-name (buffer-list))))))
+                   (format "D#%d %s" similar-buffers cmd))))))
         (when (equal arg 4)
           (with-current-buffer compilation-buffer
             (switch-to-prev-buffer (get-buffer-window (current-buffer)))
@@ -979,9 +985,9 @@ send a notification when the process has exited."
                              :actions '("default" "Switch to buffer")
                              :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
                              :title (format "Process %s!" (string-chop-newline str))
-                             :urgency (if (string-prefix-p "finished" str) 'normal 'critical)))))))
-        (eshell-add-input-to-history cmd)
-        (eshell-reset))))
+                             :urgency (if (string-prefix-p "finished" str) 'normal 'critical))))))))
+      (eshell-add-input-to-history cmd)
+      (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
   :custom
   (eshell-banner-message "")
