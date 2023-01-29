@@ -1111,14 +1111,7 @@ If no universal argument is passed, assume only one output"
 
 (use-package git-link
   :custom
-  (git-link-use-commit t)
-  :config
-  (defun my/git-link-branch ()
-    "Create a URL representing the current buffer's location always
-using the branch name."
-    (interactive)
-    (let ((git-link-use-commit nil))
-      (call-interactively #'git-link))))
+  (git-link-use-commit t))
 
 (use-package ediff-init
   :ensure nil
