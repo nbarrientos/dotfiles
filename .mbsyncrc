@@ -129,6 +129,18 @@ Channel cern-market
 Far :cern-remote:cern-market
 Near :cern-local:cern-market
 
+Channel cern-alma-ann
+Far :cern-remote:alma-ann
+Near :cern-local:alma-ann
+
+Channel cern-alma-devel
+Far :cern-remote:alma-devel
+Near :cern-local:alma-devel
+
+Channel cern-alma-sec
+Far :cern-remote:alma-sec
+Near :cern-local:alma-sec
+
 Channel criptonita-inbox
 Far :criptonita-remote:INBOX
 Near :criptonita-local:INBOX
@@ -149,6 +161,9 @@ Channel cern-ai-admins
 Channel cern-ai-config-team
 Channel cern-ai-jira
 Channel cern-ai-jira-crm
+Channel cern-alma-devel
+Channel cern-alma-ann
+Channel cern-alma-sec
 Channel cern-building-31
 Channel cern-c5-minutes
 Channel cern-centos-devel
