@@ -1968,7 +1968,7 @@ otherwise it returns nil."
   (erc-autojoin-timing 'ident)
   (erc-autojoin-channels-alist
    '(("libera.chat"
-      "#emacs" "#erc" "#archlinux" "#theforeman" "#sr.ht"))))
+      "#emacs" "#erc" "#archlinux" "#theforeman" "#sr.ht" "#almalinux"))))
 
 (use-package erc-services
   :ensure nil
