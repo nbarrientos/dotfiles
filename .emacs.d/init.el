@@ -1297,7 +1297,7 @@ If no universal argument is passed, assume only one output"
                      ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
                      ;; Spanish
                      ("RNE" . "https://rtvelivestream.akamaized.net/rtvesec/rne/rne_r1_main.m3u8")
-                     ("RPA" . "https://cdnlive.shooowit.net/rtpalive/smil:radio.smil/chunklist_b1000000.m3u8")
+                     ("RPA" . "https://cdnlive2.shooowit.net/rtpalive/smil:radio.smil/playlist.m3u8")
                      ;; English
                      ("WRS" . "https://uksouth.streaming.broadcast.radio:10290/wrs")
                      ("BBC1" . "http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one")
