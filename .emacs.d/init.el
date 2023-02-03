@@ -372,6 +372,7 @@ The 'circular' list is defined in the variable
   :ensure nil
   :config
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  (add-to-list 'tramp-remote-path "/opt/puppetlabs/bin" t)
   :custom
   (tramp-verbose 2)
   (tramp-default-method "ssh"))
