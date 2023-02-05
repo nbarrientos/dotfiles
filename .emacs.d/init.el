@@ -315,7 +315,8 @@
   :bind (("C-c s b" . substitute-target-in-buffer)
          ("C-c s d" . substitute-target-in-defun)
          ("C-c s a" . substitute-target-above-point)
-         ("C-c s l" . substitute-target-below-point)))
+         ("C-c s l" . substitute-target-below-point))
+  :hook ((substitute-post-replace . substitute-report-operation)))
 
 ;;; Spelling and grammar
 (use-package ispell
