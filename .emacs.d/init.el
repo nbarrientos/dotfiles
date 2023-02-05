@@ -311,6 +311,12 @@
 (use-package crux
   :bind ("C-o" . crux-smart-open-line-above))
 
+(use-package substitute
+  :bind (("C-c s b" . substitute-target-in-buffer)
+         ("C-c s d" . substitute-target-in-defun)
+         ("C-c s a" . substitute-target-above-point)
+         ("C-c s l" . substitute-target-below-point)))
+
 ;;; Spelling and grammar
 (use-package ispell
   :ensure nil
