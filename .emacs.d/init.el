@@ -82,6 +82,7 @@
 
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-x C-f"))
+(global-unset-key (kbd "C-x s"))
 (global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "M-b"))
 (global-unset-key (kbd "C-x k"))
@@ -312,10 +313,10 @@
   :bind ("C-o" . crux-smart-open-line-above))
 
 (use-package substitute
-  :bind (("C-c s b" . substitute-target-in-buffer)
-         ("C-c s d" . substitute-target-in-defun)
-         ("C-c s a" . substitute-target-above-point)
-         ("C-c s l" . substitute-target-below-point))
+  :bind (("C-x s b" . substitute-target-in-buffer)
+         ("C-x s d" . substitute-target-in-defun)
+         ("C-x s a" . substitute-target-above-point)
+         ("C-x s l" . substitute-target-below-point))
   :hook ((substitute-post-replace . substitute-report-operation)))
 
 ;;; Spelling and grammar
