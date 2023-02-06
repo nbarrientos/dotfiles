@@ -1076,7 +1076,8 @@ If no universal argument is passed, assume only one output"
   :hook
   ((magit-post-clone
     . (lambda ()
-        (project-remember-project (cons 'vc default-directory)))))
+        (project-remember-project
+         (cons 'vc (abbreviate-file-name default-directory))))))
   :config
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
