@@ -313,11 +313,15 @@
   :bind ("C-o" . crux-smart-open-line-above))
 
 (use-package substitute
-  :bind (("C-x s b" . substitute-target-in-buffer)
-         ("C-x s d" . substitute-target-in-defun)
-         ("C-x s a" . substitute-target-above-point)
-         ("C-x s l" . substitute-target-below-point))
-  :hook ((substitute-post-replace . substitute-report-operation)))
+  :bind-keymap ("C-x s" . substitute-prefix-map)
+  :bind ((:map substitute-prefix-map
+               ("b" . substitute-target-in-buffer)
+               ("d" . substitute-target-in-defun)
+               ("a" . substitute-target-above-point)
+               ("l" . substitute-target-below-point)))
+  :hook ((substitute-post-replace . substitute-report-operation))
+  :config
+  (setq substitute-prefix-map (make-sparse-keymap)))
 
 ;;; Spelling and grammar
 (use-package ispell
