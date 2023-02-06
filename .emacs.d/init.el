@@ -723,15 +723,8 @@ modify parts of the directory before switching to it."
   (flycheck-package-setup))
 
 ;;;; Programming languages
-(use-package paredit
-  :hook ((lisp-data-mode . paredit-mode))
-  :bind (:map paredit-mode-map
-              ("C-<right>" . paredit-forward)
-              ("C-<left>" . paredit-backward)
-              ("C-<up>" . paredit-forward-up)
-              ("C-<down>" . paredit-forward-down)
-              ("C-j" . nil)
-              ("C-d" . nil)))
+(use-package lispy
+  :hook ((lisp-data-mode . lispy-mode)))
 
 (use-package ruby-mode
   :ensure nil
