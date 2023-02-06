@@ -231,10 +231,6 @@
                 :action #'ivy--switch-buffer-other-window-action
                 :matcher #'ivy--switch-buffer-matcher
                 :caller 'ivy-switch-buffer)))
-  (defun my/magit-maybe-remember-project (repository directory args)
-    (when (file-directory-p directory)
-      (project-remember-project (cons 'vc directory))))
-  (advice-add 'magit-clone-internal :after #'my/magit-maybe-remember-project)
   :custom
   (project-switch-commands
    '((my/project-counsel-fzf "Find file")
@@ -1077,6 +1073,10 @@ If no universal argument is passed, assume only one output"
          :map magit-section-mode-map
          ("C-<up>" . magit-section-backward-sibling)
          ("C-<down>" . magit-section-forward-sibling))
+  :hook
+  ((magit-post-clone
+    . (lambda ()
+        (project-remember-project (cons 'vc default-directory)))))
   :config
   (add-to-list 'magit-clone-name-alist
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
