@@ -724,7 +724,7 @@ modify parts of the directory before switching to it."
 
 ;;;; Programming languages
 (use-package lispy
-  :hook ((lisp-data-mode . lispy-mode)))
+  :hook ((emacs-lisp-mode . lispy-mode))
 
 (use-package ruby-mode
   :ensure nil
