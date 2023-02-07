@@ -726,7 +726,9 @@ modify parts of the directory before switching to it."
 (use-package lispy
   :hook ((emacs-lisp-mode . lispy-mode))
   :bind (:map lispy-mode-map-lispy
-              ("C-j" . nil)))
+         ("C-j" . nil)
+         :map lispy-mode-map-special
+         ("v" . special-lispy-ace-paren)))
 
 (use-package ruby-mode
   :ensure nil
