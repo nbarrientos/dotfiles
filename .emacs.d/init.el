@@ -725,7 +725,6 @@ modify parts of the directory before switching to it."
 ;;;; Programming languages
 (use-package lispy
   :hook ((emacs-lisp-mode . lispy-mode))
-  :config
   :bind (:map lispy-mode-map-lispy
               ("C-j" . nil)))
 
