@@ -1242,6 +1242,14 @@ If no universal argument is passed, assume only one output"
    (lambda (contact)
      (unless (string-match-p "\.gmai\.com$" contact)
        contact)))
+  (defun my/mu4e-compose-mail-to-from-region ()
+    (interactive)
+    (if (use-region-p)
+        (let ((to (buffer-substring-no-properties
+                   (region-beginning)
+                   (region-end))))
+          (mu4e~compose-mail to))
+      (user-error "No active region")))
   :config
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
