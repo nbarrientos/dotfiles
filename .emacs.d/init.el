@@ -83,7 +83,6 @@
 ;;;; Remedies for to-be-reeducated muscle memory
 (global-unset-key (kbd "C-x C-f"))
 (global-unset-key (kbd "C-x s"))
-(global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "M-b"))
 (global-unset-key (kbd "C-x k"))
 
@@ -159,17 +158,6 @@
   :bind (:map outline-minor-mode-map
               ([C-tab] . bicycle-cycle)))
 
-;;;; URLs
-(require 'url-util)
-(use-package goto-addr
-  :hook ((compilation-mode . goto-address-mode)
-         (prog-mode . goto-address-prog-mode)
-         (magit-mode . goto-address-mode)
-         (yaml-mode . goto-address-prog-mode)
-         (mu4e-view-mode . goto-address-mode))
-  :commands (goto-address-prog-mode
-             goto-address-mode))
-
 ;;;; Grep
 (use-package rg
   :bind (:map rg-mode-map
@@ -198,11 +186,11 @@
   :ensure nil
   :bind-keymap ("C-p" . project-prefix-map)
   :bind ((:map project-prefix-map
-               ("<home>" . my/project-ivy-switch-buffer)
+               ("<home>" . consult-project-buffer)
                ("<end>" . project-kill-buffers)
                ("b" . nil)
                ("C" . magit-clone)
-               ("f" . my/project-counsel-fzf)
+               ("f" . consult-find)
                ("F" . nil)
                ("g" . rg-project)
                ("G" . rg-dwim-project-dir)
@@ -214,37 +202,18 @@
                ("t" . my/regenerate-ctags)))
   :config
   (global-unset-key (kbd "C-x p"))
-  (setenv
-   "FZF_DEFAULT_COMMAND"
-   "find -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*' -printf '%P\n'")
-  (defun my/project-counsel-fzf ()
-    (interactive)
-    (let* ((default-directory (project-root (project-current t))))
-      (counsel-fzf nil default-directory (format "fzf in %s: " default-directory))))
-  (defun my/project-ivy-switch-buffer ()
-    (interactive)
-    (let* ((pr (project-current t))
-           (buffers (project-buffers pr))
-           (buffer-names (mapcar 'buffer-name buffers)))
-      (ivy-read "Switch to project buffer: " buffer-names
-                :keymap ivy-switch-buffer-map
-                :action #'ivy--switch-buffer-other-window-action
-                :matcher #'ivy--switch-buffer-matcher
-                :caller 'ivy-switch-buffer)))
   :custom
   (project-switch-commands
-   '((my/project-counsel-fzf "Find file")
+   '((consult-find "Find file")
      (rg-project "Ripgrep")
      (project-find-dir "Find directory")
      (project-eshell "Eshell")
-     (my/project-ivy-switch-buffer "Buffers")
+     (consult-project-buffer "Buffers")
      (project-kill-buffers "Kill buffers")
      (magit-project-status "Magit"))))
 
 ;;;; Imenu
-(use-package imenu
-  :ensure nil
-  :bind (("C-x i" . counsel-imenu)))
+(use-package imenu)
 
 ;;; Auth Source
 (use-package auth-source
@@ -442,9 +411,138 @@ The 'circular' list is defined in the variable
 (use-package disk-usage)
 
 ;;; Auto completion
-;;;; Ivy-Counsel-Swiper
-(use-package all-the-icons-ivy
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+
+(use-package emacs
+  :bind
+  (("C-x f" . my/find-file-no-tramp))
+  :config
+  (defun my/find-file-no-tramp (&optional initial-input initial-directory)
+    (interactive)
+    (if (string-prefix-p "/ssh:" default-directory)
+        (let ((default-directory "~/"))
+          (call-interactively #'find-file))
+      (call-interactively #'find-file))))
+
+(use-package vertico
+  :init
+  (vertico-mode)
+  :custom
+  (vertico-count 20)
+  (vertico-resize nil))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic)))
+
+(use-package marginalia
+  :custom
+  (marginalia-align 'right)
+  :config
+  (marginalia-mode)
+  (add-to-list 'marginalia-annotator-registry
+               '(file none))
+  (add-to-list 'marginalia-annotator-registry
+               '(project-file none)))
+
+(use-package recentf
+  :ensure nil
+  :init
+  (recentf-mode))
+
+(use-package consult
+  :bind
+  (([home] . consult-buffer)
+   ("M-<home>" . consult-buffer-other-window)
+   ([end] . kill-this-buffer)
+   ("C-s" . consult-line)
+   ("M-y" . consult-yank-pop)
+   ("C-x i" . consult-imenu)
+   :map minibuffer-local-map
+   ("C-s" . consult-history)
+   ("<next>" . nil)
+   ("<prior>" . nil))
+  :custom
+  (consult-find-args "find . -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*'")
+  (consult-async-input-throttle 0.1)
+  (consult-async-refresh-delay 0.1)
+  (consult-buffer-sources
+   '(consult--source-hidden-buffer
+     consult--source-modified-buffer
+     consult--source-buffer
+     consult--source-recent-file))
+  :config
+  (consult-customize
+   my/consult-buffer-firefox my/consult-buffer-urxvt
+   :preview-key nil)
+  (consult-customize
+   consult-buffer consult-buffer-other-window consult-project-buffer
+   :preview-key nil)
+  :init
+  (defun consult-esh-dir-history ()
+    (interactive)
+    (eshell/cd (consult--read
+                (ring-elements eshell-last-dir-ring)
+                :prompt "Directory to change to: ")))
+  (defun my/consult-xstarter ()
+    (interactive)
+    (let* ((candidates (split-string
+                        (shell-command-to-string "xstarter -P")
+                        "\n"
+                        t))
+           (application-path (consult--read
+                              candidates
+                              :prompt "Application to launch: ")))
+      (start-process "" nil application-path)))
+  (defun my/consult-buffer-by-prefix (prefix)
+    "Use consult to select a buffer prefixed by PREFIX#."
+    (interactive)
+    (let* ((my/consult--source-buffer-prefixed
+            `(:name ,(format "Buffers (%s)" prefix)
+                    :category buffer
+                    :face consult-buffer
+                    :history buffer-name-history
+                    :state ,#'consult--buffer-state
+                    :default t
+                    :items
+                    ,(lambda ()
+                       (consult--buffer-query
+                        :sort 'visibility
+                        :include (concat "^" prefix "# ")
+                        :as #'buffer-name))))
+           (consult-buffer-sources (list my/consult--source-buffer-prefixed)))
+      (consult-buffer)))
+  (defun my/consult-buffer-firefox ()
+    "Use consult to select a Firefox buffer."
+    (interactive)
+    (my/consult-buffer-by-prefix "f"))
+  (defun my/consult-buffer-urxvt ()
+    "Use consult to select an URXVT buffer."
+    (interactive)
+    (my/consult-buffer-by-prefix "u"))
+  (defun my/consult-buffer-detached-command ()
+    "Use consult to select a compilation buffer."
+    (interactive)
+    (my/consult-buffer-by-prefix "d")))
+
+(use-package embark
+  :bind
+  (("C-b" . embark-act)
+   :map embark-symbol-map
+   ("h" . helpful-symbol))
+  :custom
+  (embark-indicators '(embark-minimal-indicator))
+  :config
+  (assoc-delete-all 'kill-buffer embark-pre-action-hooks))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package all-the-icons
   :config
   (add-to-list 'all-the-icons-mode-icon-alist
                '('puppet-mode all-the-icons-fileicon "api-blueprint"
@@ -464,159 +562,12 @@ The 'circular' list is defined in the variable
                  all-the-icons-octicon "browser"
                  :v-adjust 0.2 :face all-the-icons-purple)))
 
-(use-package ivy
-  :diminish
-  :bind (:map ivy-minibuffer-map
-              ("TAB" . ivy-alt-done)
-              ("M-<up>" . ivy-previous-history-element)
-              ("M-<down>" . ivy-next-history-element)
-              ([C-return] . ivy-restrict-to-matches))
-  :config
-  (defun my/ivy-switch-buffer-by-prefix (prefix)
-    "Use ivy to select a buffer prefixed by PREFIX#."
-    (minibuffer-with-setup-hook
-        (lambda ()
-          (insert (concat "^" prefix "# ")))
-      (ivy-switch-buffer)))
-  (defun my/ivy-switch-buffer-firefox ()
-    "Use ivy to select a Firefox window (buffer)."
-    (interactive)
-    (my/ivy-switch-buffer-by-prefix "f"))
-  (defun my/ivy-switch-buffer-urxvt ()
-    "Use ivy to select an URXVT window (buffer)."
-    (interactive)
-    (my/ivy-switch-buffer-by-prefix "u"))
-  (defun my/ivy-switch-buffer-detached-command ()
-    "Use ivy to select a compilation buffer."
-    (interactive)
-    (my/ivy-switch-buffer-by-prefix "d"))
-  (setcdr (assoc t ivy-format-functions-alist) #'ivy-format-function-line)
-  (ivy-mode 1)
-  :custom
-  (ivy-use-virtual-buffers 'recentf)
-  (ivy-virtual-abbreviate 'abbreviate)
-  (ivy-use-selectable-prompt t)
-  (ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
-
-(use-package ivy-posframe
-  :config
-  (ivy-posframe-mode 1)
-  (defun my/ivy-posframe-get-size ()
-    (let ((height (or ivy-posframe-height ivy-height))
-          (width (round (* .70 (frame-width)))))
-      (list :height height :width width :min-height height :min-width width)))
-  :custom
-  (ivy-posframe-border-width 0)
-  (posframe-mouse-banish-function #'posframe-mouse-banish-simple)
-  (ivy-posframe-display-functions-alist
-   '((swiper        . ivy-display-function-fallback)
-     (counsel-imenu . ivy-display-function-fallback)
-     (t             . ivy-posframe-display)))
-  (ivy-posframe-height-alist '((counsel-yank-pop . 40)
-                               (t                . 20)))
-  (ivy-posframe-size-function 'my/ivy-posframe-get-size))
-
-(use-package all-the-icons-ivy-rich
-  :init (all-the-icons-ivy-rich-mode 1))
-
-(use-package ivy-rich
-  :after (ivy counsel)
-  :config
-  (ivy-rich-mode 1)
-  (ivy-rich-project-root-cache-mode)
-  (ivy-rich-set-columns
-   'counsel-find-file
-   '((all-the-icons-ivy-rich-file-icon)
-     (ivy-read-file-transformer)))
-  (ivy-rich-set-columns
-   'counsel-fzf
-   '((all-the-icons-ivy-rich-file-icon)
-     (all-the-icons-ivy-rich-file-name)))
-  (ivy-rich-set-columns
-   'project-switch-project
-   '((all-the-icons-ivy-rich-file-icon)
-     (all-the-icons-ivy-rich-file-name
-      (:width 0.4))
-     (all-the-icons-ivy-rich-file-modification-time
-      (:face all-the-icons-ivy-rich-time-face))))
-  (dolist (cmd '(ivy-switch-buffer ivy-switch-buffer-other-window))
-    (ivy-rich-set-columns
-     cmd
-     '((all-the-icons-ivy-rich-buffer-icon)
-       (ivy-switch-buffer-transformer (:width 0.5))
-       (all-the-icons-ivy-rich-switch-buffer-major-mode
-        (:width 20 :face all-the-icons-ivy-rich-major-mode-face))))))
-
-(use-package amx
-  :after (ivy)
-  :custom
-  (amx-backend 'ivy)
-  (amx-history-length 50))
-
-(use-package counsel
-  :after (helpful)
-  :bind (("M-x" . counsel-M-x)
-         ([home] . ivy-switch-buffer)
-         ([end] . kill-this-buffer)
-         ("C-x f" . my/counsel-find-file-no-tramp)
-         ("C-x F" . counsel-find-file)
-         ("C-h v" . counsel-describe-variable)
-         ("C-h f" . counsel-describe-function)
-         ("C-h o" . counsel-describe-symbol)
-         ("C-h k" . helpful-key)
-         ("C-x r b" . counsel-bookmark)
-         ("M-y" . counsel-yank-pop)
-         :map minibuffer-local-map
-         ("C-s" . counsel-minibuffer-history))
-  :config
-  (defun my/counsel-find-file-no-tramp (&optional initial-input initial-directory)
-    (interactive)
-    (if (string-prefix-p "/ssh:" default-directory)
-        (counsel-find-file "" "~/")
-      (counsel-find-file initial-input initial-directory)))
-  ;; Pending https://github.com/abo-abo/swiper/pull/2844/
-  (defun counsel--esh-dir-history-action-cd (pair)
-    "Change the current working directory to the selection.
-This function is the default action for `counsel-esh-dir-history'
-and changes the working directory in Eshell to the selected
-candidate which must be provided as the `car' of PAIR."
-    (eshell/cd (car pair)))
-  (defun counsel--esh-dir-history-action-edit (pair)
-    "Insert the selection to the Eshell buffer prefixed by \"cd \".
-This function is an action for `counsel-esh-dir-history' to
-insert the selected directory (provided as the `car' of PAIR) to
-the Eshell buffer prefixed by \"cd \", allowing the caller to
-modify parts of the directory before switching to it."
-    (insert (format "cd %s" (car pair))))
-  (defun counsel-esh-dir-history ()
-    "Use Ivy to browse Eshell's directory stack."
-    (interactive)
-    (require 'em-dirs)
-    (defvar eshell-last-dir-ring)
-    (ivy-read "Directory to change to: " (ivy-history-contents eshell-last-dir-ring)
-              :keymap ivy-reverse-i-search-map
-              :action #'counsel--esh-dir-history-action-cd
-              :caller #'counsel-esh-dir-history))
-  (ivy-set-actions
-   'counsel-esh-dir-history
-   '(("e" counsel--esh-dir-history-action-edit "edit")))
-  (defun my/counsel-fzf-action-other-window (x)
-    (with-ivy-window
-      (let ((default-directory counsel--fzf-dir))
-        (find-file-other-window x)))
-    (other-window -1))
-  (ivy-set-actions
-   'counsel-fzf
-   '(("o" my/counsel-fzf-action-other-window "default")
-     ("s" counsel-fzf-action "same window")))
-  :custom
-  (counsel-yank-pop-separator "\n-------------------\n")
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable))
-
-(use-package swiper
-  :bind (("C-s" . swiper)
-         ("C-M-s" . swiper-thing-at-point)))
+(use-package all-the-icons-completion
+  :after (all-the-icons)
+  :init
+  (all-the-icons-completion-mode)
+  :hook
+  ((marginalia-mode . #'all-the-icons-completion-marginalia-setup)))
 
 (use-package avy
   :bind (("C-v" . avy-goto-char-timer))
@@ -669,7 +620,6 @@ modify parts of the directory before switching to it."
   (load-theme 'doom-tokyo-night t)
   (doom-themes-visual-bell-config)
   (custom-set-faces
-   '(ivy-modified-buffer ((t (:inherit default :foreground unspecified))))
    '(link ((t (:weight unspecified :underline unspecified))))
    '(erc-timestamp-face ((t (:weight unspecified :underline unspecified)))))
   :custom
@@ -893,8 +843,8 @@ It just guesses as the filename for the spec is rather arbitrary."
                    (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-prompt)
                    (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-ring-save-outputs)
                    (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-last-output)
-                   (define-key eshell-mode-map (kbd "C-c r") 'counsel-esh-history)
-                   (define-key eshell-mode-map (kbd "C-c d") 'counsel-esh-dir-history)
+                   (define-key eshell-mode-map (kbd "C-c r") 'consult-history)
+                   (define-key eshell-mode-map (kbd "C-c d") 'consult-esh-dir-history)
                    (define-key eshell-mode-map (kbd "C-c l") 'eshell/clear)
                    (define-key eshell-mode-map (kbd "C-<return>") 'my/eshell-send-detached-input)
                    ;; When calling dabbrev, hippie-expand uses strings
@@ -1186,7 +1136,12 @@ If no universal argument is passed, assume only one output"
   (drag-stuff-global-mode))
 
 ;;; Help
-(use-package helpful)
+(use-package helpful
+  :bind
+  (("C-h o" . helpful-symbol)
+   ("C-h v" . helpful-variable)
+   ("C-h f" . helpful-function)
+   ("C-h k" . helpful-key)))
 
 ;;; Mu4e
 (use-package mu4e
@@ -1213,7 +1168,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-sent-folder   "/cern/Sent Items")
   (mu4e-trash-folder  "/cern/Trash")
   (mu4e-get-mail-command "/usr/bin/systemctl --user start mbsync-prio-0")
-  (mu4e-completing-read-function 'ivy-completing-read)
+  (mu4e-completing-read-function 'completing-read)
   (mu4e-use-fancy-chars t)
   (mu4e-sent-messages-behavior 'delete)
   (mu4e-headers-fields
@@ -1242,14 +1197,6 @@ If no universal argument is passed, assume only one output"
    (lambda (contact)
      (unless (string-match-p "\.gmai\.com$" contact)
        contact)))
-  (defun my/mu4e-compose-mail-to-from-region ()
-    (interactive)
-    (if (use-region-p)
-        (let ((to (buffer-substring-no-properties
-                   (region-beginning)
-                   (region-end))))
-          (mu4e~compose-mail to))
-      (user-error "No active region")))
   :config
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
@@ -1288,9 +1235,7 @@ If no universal argument is passed, assume only one output"
   (mu4e t)
   :bind (:map mu4e-headers-mode-map
               ("r" . 'mu4e-headers-mark-for-read)
-              ("d" . 'mu4e-headers-mark-for-delete)
-         :map mu4e-view-mode-map
-              ("C-c C-o" . 'mu4e~view-browse-url-from-binding)))
+              ("d" . 'mu4e-headers-mark-for-delete)))
 
 (use-package mu4e-column-faces
   :after mu4e
@@ -1465,11 +1410,9 @@ configured to use @ (at symbol) as separator."
           ([?\s-d] .
            (lambda ()
              (interactive)
-             (counsel-linux-app)))
+             (my/consult-xstarter)))
           ([?\s-1] .
-           (lambda ()
-             (interactive)
-             (my/ivy-switch-buffer-firefox)))
+           my/consult-buffer-firefox)
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" (car i))) .
                         (lambda ()
@@ -1483,13 +1426,11 @@ configured to use @ (at symbol) as separator."
                           (my/bookmark-buffer-or-switch-to-bookmark arg))))
                     '(4 5))
           ([?\s-7]
-           . my/ivy-switch-buffer-detached-command)
+           . my/consult-buffer-detached-command)
           ([?\s-8]
            . mu4e-search-bookmark)
-          ([?\s-9] .
-           (lambda ()
-             (interactive)
-             (my/ivy-switch-buffer-urxvt)))
+          ([?\s-9]
+           . my/consult-buffer-urxvt)
           ([?\s-0]
            . erc-track-switch-buffer)
           ([?\s-r] .
@@ -1538,19 +1479,19 @@ configured to use @ (at symbol) as separator."
   (define-key exwm-mode-map (kbd "M-<f8>") 'rotate-frame-clockwise)
 
   ;; Buffer switching
-  (define-key exwm-mode-map (kbd "<home>") 'ivy-switch-buffer)
+  (define-key exwm-mode-map (kbd "<home>") 'consult-buffer)
   (define-key exwm-mode-map (kbd "<end>") 'kill-this-buffer)
 
-  (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
+  (exwm-input-set-key (kbd "M-y") #'my/exwm-consult-yank-pop)
 
-  (defun my/exwm-counsel-yank-pop ()
-    "Same as `counsel-yank-pop' and paste into exwm buffer.
+  (defun my/exwm-consult-yank-pop ()
+    "Same as `consult-yank-pop' and paste into exwm buffer.
 Stolen from https://github.com/DamienCassou/gpastel#for-exwmcounsel-users
 and adapted to use simulations keys to have a common yank keystroke."
     (interactive)
     (let ((inhibit-read-only t)
           (yank-pop-change-selection t))
-      (call-interactively #'counsel-yank-pop))
+      (call-interactively #'consult-yank-pop))
     (when (derived-mode-p 'exwm-mode)
       ;; https://github.com/ch11ng/exwm/issues/413#issuecomment-386858496
       (exwm-input--set-focus (exwm--buffer->id (window-buffer (selected-window))))
@@ -1700,7 +1641,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/multi-compile--find-module-root ()
     (locate-dominating-file buffer-file-name "metadata.json"))
   :custom
-  (multi-compile-completion-system 'ivy)
+  (multi-compile-completion-system 'auto)
   (multi-compile-default-directory-function #'my/multi-compile--find-module-root)
   (multi-compile-alist
    `(
@@ -1936,7 +1877,7 @@ otherwise it returns nil."
   :bind (:map erc-mode-map
               ("C-<up>" . erc-previous-command)
               ("C-<down>" . erc-next-command)
-              ("<home>" . ivy-switch-buffer))
+              ("<home>" . consult-buffer))
   :config
   (erc-spelling-mode)
   ;; Needs `my/monkeys--exwm-pr-900' (exwm-input.el) applied.
