@@ -510,7 +510,7 @@ The 'circular' list is defined in the variable
                     ,(lambda ()
                        (consult--buffer-query
                         :sort 'visibility
-                        :include (concat "^" prefix "# ")
+                        :include (concat "^" prefix "#")
                         :as #'buffer-name))))
            (consult-buffer-sources (list my/consult--source-buffer-prefixed)))
       (consult-buffer)))
