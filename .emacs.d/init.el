@@ -427,6 +427,7 @@ The 'circular' list is defined in the variable
   :init
   (vertico-mode)
   :custom
+  (vertico-scroll-margin 0)
   (vertico-count 20)
   (vertico-resize nil))
 
