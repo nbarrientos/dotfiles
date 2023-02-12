@@ -478,8 +478,6 @@ The 'circular' list is defined in the variable
   :config
   (consult-customize
    my/consult-buffer-firefox my/consult-buffer-urxvt
-   :preview-key nil)
-  (consult-customize
    consult-buffer consult-buffer-other-window consult-project-buffer
    :preview-key nil)
   :init
