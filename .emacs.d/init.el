@@ -385,6 +385,8 @@ The 'circular' list is defined in the variable
            ""
            (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket 2>/dev/null"))))
 
+(use-package sudo-edit)
+
 ;;; Dired
 (use-package dired
   :ensure nil
@@ -531,7 +533,9 @@ The 'circular' list is defined in the variable
   :bind
   (("C-b" . embark-act)
    :map embark-symbol-map
-   ("h" . helpful-symbol))
+   ("h" . helpful-symbol)
+   :map embark-file-map
+   ("s" . sudo-edit-find-file))
   :custom
   (embark-indicators '(embark-minimal-indicator))
   :config
