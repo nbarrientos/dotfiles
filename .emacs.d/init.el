@@ -476,7 +476,8 @@ The 'circular' list is defined in the variable
    '(consult--source-hidden-buffer
      consult--source-modified-buffer
      consult--source-buffer
-     consult--source-recent-file))
+     consult--source-recent-file
+     consult--source-project-buffer))
   :config
   (consult-customize
    my/consult-buffer-firefox my/consult-buffer-urxvt
