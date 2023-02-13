@@ -536,6 +536,8 @@ The 'circular' list is defined in the variable
     (interactive)
     (my/consult-buffer-by-prefix "d")))
 
+(use-package consult-dir)
+
 (use-package embark
   :bind
   (("C-b" . embark-act)
