@@ -479,6 +479,12 @@ The 'circular' list is defined in the variable
      consult--source-recent-file
      consult--source-project-buffer))
   :config
+  (setq completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
   (consult-customize
    my/consult-buffer-firefox my/consult-buffer-urxvt
    consult-buffer consult-buffer-other-window consult-project-buffer
