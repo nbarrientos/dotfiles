@@ -466,6 +466,8 @@ The 'circular' list is defined in the variable
    ("C-x i" . consult-imenu)
    :map minibuffer-local-map
    ("C-s" . consult-history)
+   ("C-<up>" . previous-history-element)
+   ("C-<down>" . next-history-element)
    ("<next>" . nil)
    ("<prior>" . nil))
   :custom
