@@ -538,6 +538,8 @@ The 'circular' list is defined in the variable
 
 (use-package consult-dir)
 
+(use-package consult-flycheck)
+
 (use-package embark
   :bind
   (("C-b" . embark-act)
