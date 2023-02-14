@@ -190,8 +190,8 @@
                ("<end>" . project-kill-buffers)
                ("b" . nil)
                ("C" . magit-clone)
-               ("f" . consult-find)
-               ("F" . nil)
+               ("f" . consult-project-extra-find)
+               ("F" . consult-project-extra-find-other-window)
                ("g" . rg-project)
                ("G" . rg-dwim-project-dir)
                ("H" . my/clone-hostgroup)
@@ -204,7 +204,7 @@
   (global-unset-key (kbd "C-x p"))
   :custom
   (project-switch-commands
-   '((consult-find "Find file")
+   '((consult-project-extra-find "Find file")
      (rg-project "Ripgrep")
      (project-find-dir "Find directory")
      (project-eshell "Eshell")
@@ -469,7 +469,6 @@ The 'circular' list is defined in the variable
    ("<next>" . nil)
    ("<prior>" . nil))
   :custom
-  (consult-find-args "find . -type f -not -path '*/\.git/*' -not -path '*/spec/fixtures/*'")
   (consult-async-input-throttle 0.1)
   (consult-async-refresh-delay 0.1)
   (consult-buffer-sources
@@ -539,6 +538,11 @@ The 'circular' list is defined in the variable
 (use-package consult-dir)
 
 (use-package consult-flycheck)
+
+(use-package consult-project-extra
+  :custom
+  (consult-project-extra-sources
+   '(consult-project-extra--source-file)))
 
 (use-package embark
   :bind
