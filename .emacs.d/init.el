@@ -563,6 +563,7 @@ The 'circular' list is defined in the variable
 
 (use-package all-the-icons
   :config
+  (assoc-delete-all "^\\." all-the-icons-regexp-icon-alist)
   (add-to-list 'all-the-icons-mode-icon-alist
                '('puppet-mode all-the-icons-fileicon "api-blueprint"
                  :face all-the-icons-yellow))
