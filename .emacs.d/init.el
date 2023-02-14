@@ -544,7 +544,8 @@ The 'circular' list is defined in the variable
    :map embark-symbol-map
    ("h" . helpful-symbol)
    :map embark-file-map
-   ("s" . sudo-edit-find-file))
+   ("s" . sudo-edit-find-file)
+   ("b" . browse-url))
   :custom
   (embark-indicators '(embark-minimal-indicator))
   :config
