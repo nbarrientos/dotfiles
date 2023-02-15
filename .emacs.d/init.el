@@ -1388,7 +1388,14 @@ When called interactively, toggle. Otherwise set to VALUE."
 Assumes the Add URL to Window Title extension is enabled and
 configured to use @ (at symbol) as separator."
     (let* ((length (or length 65))
-           (title (concat "F# " (replace-regexp-in-string " [-—] Mozilla Firefox$" "" title)))
+           (title (concat "F# "
+                          (replace-regexp-in-string
+                           "FPS :[[:digit:]]+"
+                           ""
+                           (replace-regexp-in-string
+                            " [-—] Mozilla Firefox$"
+                            ""
+                            title))))
            (title-and-hostname (split-string title "@" nil " "))
            (hostname (substring (car (last title-and-hostname)) 0 -1))
            (page-title (string-join (reverse (nthcdr 1 (reverse title-and-hostname))) " "))
