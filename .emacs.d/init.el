@@ -1391,7 +1391,7 @@ configured to use @ (at symbol) as separator."
            (title (concat "F# "
                           (replace-regexp-in-string
                            "FPS :[[:digit:]]+"
-                           ""
+                           "iKVM"
                            (replace-regexp-in-string
                             " [-—] Mozilla Firefox$"
                             ""
