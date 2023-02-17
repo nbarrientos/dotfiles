@@ -428,6 +428,8 @@ The 'circular' list is defined in the variable
 (use-package vertico
   :init
   (vertico-mode)
+  :bind (:map vertico-map
+         ("DEL" . vertico-directory-delete-char))
   :custom
   (vertico-scroll-margin 0)
   (vertico-count 20)
