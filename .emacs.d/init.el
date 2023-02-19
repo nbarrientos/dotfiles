@@ -557,6 +557,8 @@ The 'circular' list is defined in the variable
    :map embark-file-map
    ("s" . sudo-edit-find-file)
    ("b" . browse-url))
+  :custom-face
+  (embark-target ((t (:inherit region))))
   :custom
   (embark-indicators '(embark-minimal-indicator))
   :config
