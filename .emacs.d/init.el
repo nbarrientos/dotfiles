@@ -490,7 +490,9 @@ The 'circular' list is defined in the variable
                    #'completion--in-region)
                  args)))
   (consult-customize
-   my/consult-buffer-firefox my/consult-buffer-urxvt
+   my/consult-buffer-firefox
+   my/consult-buffer-urxvt
+   my/consult-buffer-detached-command
    consult-buffer consult-buffer-other-window consult-project-buffer
    :preview-key nil)
   :init
@@ -509,10 +511,15 @@ The 'circular' list is defined in the variable
                               candidates
                               :prompt "Application to launch: ")))
       (start-process "" nil application-path)))
-  (defun my/consult-buffer-by-prefix (prefix)
-    "Use consult to select a buffer prefixed by PREFIX#."
-    (interactive)
-    (let* ((my/consult--source-buffer-prefixed
+  (defun my/consult-buffer-by-prefix (prefix caller show-preview)
+    "Use consult to select a buffer prefixed by PREFIX#.
+
+Show buffer previews if SHOW-PREVIEW is not nil."
+    (let* ((consult--customize-alist
+            (if show-preview
+                (remove (list caller :preview-key nil) consult--customize-alist)
+              consult--customize-alist))
+           (my/consult--source-buffer-prefixed
             `(:name ,(format "Buffers (%s)" prefix)
                     :category buffer
                     :face consult-buffer
@@ -527,18 +534,18 @@ The 'circular' list is defined in the variable
                         :as #'buffer-name))))
            (consult-buffer-sources (list my/consult--source-buffer-prefixed)))
       (consult-buffer)))
-  (defun my/consult-buffer-firefox ()
+  (defun my/consult-buffer-firefox (arg)
     "Use consult to select a Firefox buffer."
-    (interactive)
-    (my/consult-buffer-by-prefix "f"))
-  (defun my/consult-buffer-urxvt ()
+    (interactive "P")
+    (my/consult-buffer-by-prefix "f" this-command arg))
+  (defun my/consult-buffer-urxvt (arg)
     "Use consult to select an URXVT buffer."
-    (interactive)
-    (my/consult-buffer-by-prefix "u"))
-  (defun my/consult-buffer-detached-command ()
+    (interactive "P")
+    (my/consult-buffer-by-prefix "u" this-command arg))
+  (defun my/consult-buffer-detached-command (arg)
     "Use consult to select a compilation buffer."
-    (interactive)
-    (my/consult-buffer-by-prefix "d")))
+    (interactive "P")
+    (my/consult-buffer-by-prefix "d" this-command arg)))
 
 (use-package consult-dir)
 
