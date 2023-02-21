@@ -564,9 +564,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
    :map embark-file-map
    ("s" . sudo-edit-find-file)
    ("b" . browse-url))
-  ;; Pending https://github.com/doomemacs/themes/pull/775
-  :custom-face
-  (embark-target ((t (:inherit region))))
   :custom
   (embark-indicators '(embark-minimal-indicator))
   :config
