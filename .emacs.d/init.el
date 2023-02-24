@@ -607,7 +607,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     "Return the icon for the candidate CAND of completion category radiostation."
     (concat (all-the-icons-octicon
              "broadcast"
-             :face 'all-the-icons-completion-dir-face
+             :face 'all-the-icons-blue
              :v-adjust 0.1
              :height 0.9)
             " ")))
