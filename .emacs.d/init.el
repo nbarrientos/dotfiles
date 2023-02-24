@@ -452,7 +452,9 @@ The 'circular' list is defined in the variable
   (add-to-list 'marginalia-annotator-registry
                '(file none))
   (add-to-list 'marginalia-annotator-registry
-               '(project-file none)))
+               '(project-file none))
+  (add-to-list 'marginalia-command-categories
+               '(eradio-play . radiostation)))
 
 (use-package recentf
   :ensure nil
@@ -599,7 +601,16 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :init
   (all-the-icons-completion-mode)
   :hook
-  ((marginalia-mode . #'all-the-icons-completion-marginalia-setup)))
+  ((marginalia-mode . #'all-the-icons-completion-marginalia-setup))
+  :config
+  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql radiostation)))
+    "Return the icon for the candidate CAND of completion category radiostation."
+    (concat (all-the-icons-octicon
+             "broadcast"
+             :face 'all-the-icons-completion-dir-face
+             :v-adjust 0.1
+             :height 0.9)
+            " ")))
 
 (use-package avy
   :bind (("C-v" . avy-goto-char-timer))
