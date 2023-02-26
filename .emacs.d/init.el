@@ -431,10 +431,14 @@ The 'circular' list is defined in the variable
   :bind (:map vertico-map
          ("DEL" . vertico-directory-delete-char))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :config
+  (vertico-multiform-mode)
   :custom
   (vertico-scroll-margin 0)
   (vertico-count 20)
-  (vertico-resize nil))
+  (vertico-resize nil)
+  (vertico-multiform-commands
+   '((Info-menu (vertico-sort-function . nil)))))
 
 (use-package savehist
   :init
