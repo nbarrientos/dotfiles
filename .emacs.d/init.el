@@ -454,7 +454,9 @@ The 'circular' list is defined in the variable
   (add-to-list 'marginalia-annotator-registry
                '(project-file none))
   (add-to-list 'marginalia-command-categories
-               '(eradio-play . radiostation)))
+               '(eradio-play . radiostation))
+  (add-to-list 'marginalia-command-categories
+               '(mu4e~headers-jump-to-maildir . maildir)))
 
 (use-package recentf
   :ensure nil
@@ -608,6 +610,13 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     (concat (all-the-icons-octicon
              "broadcast"
              :face 'all-the-icons-blue
+             :v-adjust 0.1
+             :height 0.9)
+            " "))
+  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql maildir)))
+    "Return the icon for the candidate CAND of completion category maildir."
+    (concat (all-the-icons-octicon
+             "inbox"
              :v-adjust 0.1
              :height 0.9)
             " ")))
