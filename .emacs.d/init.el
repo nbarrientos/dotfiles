@@ -574,6 +574,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
    ("b" . browse-url))
   :custom
   (embark-indicators '(embark-minimal-indicator))
+  (embark-quit-after-action '((kill-buffer . nil) (t . t)))
   :config
   (assoc-delete-all 'kill-buffer embark-pre-action-hooks))
 
