@@ -32,9 +32,10 @@
 SELECT
     application_name,
     client_addr,
-    client_hostname,
-    backend_start,
-    state_change
+    replace(client_hostname, '.cern.ch', ''),
+    to_char(backend_start, 'DD-MM HH24:MI:SS'),
+    to_char(state_change, 'DD-MM HH24:MI:SS'),
+    state
 FROM
     pg_stat_activity
 WHERE
