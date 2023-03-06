@@ -2,6 +2,7 @@
 # name: pgconnections
 # key: pgconnections
 # expand-env: ((yas-indent-line 'fixed))
+# https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-ACTIVITY-VIEW
 # --
 
 SELECT
