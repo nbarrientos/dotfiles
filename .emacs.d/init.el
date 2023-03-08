@@ -1086,12 +1086,6 @@ If no universal argument is passed, assume only one output"
                '("\\`\\(?:cgl:\\)\\([^:]+\\)\\'" "gitlab.cern.ch" "ai"))
   (add-to-list 'magit-clone-url-format
                '("gitlab.cern.ch" . "https://:@%h:8443/%n.git"))
-  (transient-append-suffix 'magit-push "-n"
-    '(1 "-M" "Create MR in Gitlab"
-        "--push-option=merge_request.create"))
-  (transient-append-suffix 'magit-push "-M"
-    '(1 "-U" "Unassign MR in Gitlab"
-        "--push-option=merge_request.unassign=22"))
   ;; https://github.com/magit/magit/wiki/Tips-and-Tricks#ask-for-confirmation-before-pushing-to-originmaster
   (define-advice magit-push-current-to-upstream (:before (args) query-yes-or-no)
     "Prompt for confirmation before permitting a push to upstream."
