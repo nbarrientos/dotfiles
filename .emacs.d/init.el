@@ -36,6 +36,7 @@
  visible-bell t
  ring-bell-function 'ignore
  vc-follow-symlinks t
+ custom-unlispify-tag-names nil
  indent-tabs-mode nil
  custom-file null-device
  make-backup-files nil
