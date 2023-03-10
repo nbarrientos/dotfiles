@@ -8,6 +8,7 @@ init.sh
 .gitignore
 .build.yml
 xmodmap
+.config/mattermost
 # Can't be linked because it has to be added to a given profile
 # .mozilla/firefox/aabb33.default-release/chrome/userChrome.css ->
 .mozilla
