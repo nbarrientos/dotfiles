@@ -1027,28 +1027,29 @@ send a notification when the process has exited."
 (use-package eshell-prompt-extras
   :after (eshell)
   :config
+  (setq eshell-prompt-regexp "^λ ")
   (defun my/epe-theme-prompt ()
-    (setq eshell-prompt-regexp "^λ ")
-    (concat
-     (let ((prompt-path (epe-fish-path (tramp-file-local-name (eshell/pwd)))))
+    (let ((prompt-path (epe-fish-path (tramp-file-local-name (eshell/pwd))))
+          (machine-face (if (epe-remote-p)
+                            'epe-remote-face
+                          'epe-symbol-face)))
+      (concat
        (format
-        (epe-colorize-with-face "[%s]" 'epe-remote-face)
+        (epe-colorize-with-face "[%s]" machine-face)
         (epe-colorize-with-face
          (if (string-empty-p prompt-path)
              "/"
            prompt-path)
-         'epe-dir-face)))
-     (if (epe-remote-p)
-         (epe-colorize-with-face
-          (concat "@" (epe-remote-host))
-          'epe-remote-face)
+         'epe-dir-face))
        (epe-colorize-with-face
-        (concat "@" (system-name))
-        'epe-git-face))
-     (if (eshell-exit-success-p)
-         (epe-colorize-with-face "\nλ" 'success)
-       (epe-colorize-with-face "\nλ" 'error))
-     " "))
+        (concat "@" (if (epe-remote-p)
+                        (epe-remote-host)
+                      (system-name)))
+        machine-face)
+       (if (eshell-exit-success-p)
+           (epe-colorize-with-face "\nλ" 'success)
+         (epe-colorize-with-face "\nλ" 'error))
+       " ")))
   (with-eval-after-load "esh-opt"
     (setq eshell-highlight-prompt nil
           eshell-prompt-function 'my/epe-theme-prompt)))
