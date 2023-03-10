@@ -4,6 +4,10 @@
 // * uBlock Origin
 // * SwitchyOmega
 
+// Theme: Complete Black Theme for Firefox
+//        https://addons.mozilla.org/en-US/firefox/addon/complete-black-theme-for-firef/?src=turnoffthelights.com
+
+user_pref("browser.display.background_color.dark", "#000000");
 user_pref("browser.download.lastDir", "/home/nacho/Downloads");
 // Never open links in tabs
 user_pref("browser.link.open_newwindow", 2);
@@ -24,5 +28,5 @@ user_pref("signon.rememberSignons", false);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Do not bring up the menu bar when alt is kept pressed
 user_pref("ui.key.menuAccessKeyFocuses", false);
-user_pref("ui.textSelectAttentionBackground", "#f7768e");
-user_pref("ui.textHighlightBackground", "#b4f9f8");
+user_pref("ui.textSelectAttentionBackground", "#d0bc00");
+user_pref("ui.textHighlightBackground", "#79a8ff");

@@ -8,34 +8,32 @@ urxvt.iso14755: false
 urxvt.iso14755_52: false
 urxvt.letterSpace: -1
 
-! Tokyo Night Linux
-
-*.foreground:    #A9B1D6
-*.background:    #1A1B26
-*.cursorColor:   #A9B1D6
-*.highlightColor:#3A3F4B
+*.foreground:    #989898
+*.background:    #000000
+*.cursorColor:   #989898
+*.highlightColor:#2266ae
 
 ! Black colours
 *.color0:        #1A1B26
 *.color8:        #4E5173
 ! Red colours
-*.color1:        #F7768E
-*.color9:        #E06C75
+*.color1:        #ff9580
+*.color9:        #ff5f59
 ! Yellow colours
-*.color2:        #E0AF68
-*.color10:       #D19A66
+*.color2:        #d2b580
+*.color10:       #d0bc00
 ! Green colours
-*.color3:        #9ECE6A
-*.color11:       #98C379
+*.color3:        #88ca9f
+*.color11:       #44bc44
 ! Blue colours
-*.color4:        #7AA2F7
-*.color12:       #61AFEF
+*.color4:        #82b0ec
+*.color12:       #2fafff
 ! Magenta (pink, !green) colours
-*.color5:        #9A7ECC
-*.color13:       #C678DD
+*.color5:        #caa6df
+*.color13:       #feacd0
 ! Cyan (blue + green)
-*.color6:        #4ABAAF
-*.color14:       #56B6C2
+*.color6:        #9ac8e0
+*.color14:       #00d3d0
 ! White colours
 *.color7:        #ACB0D0
 *.color15:       #ABB2BF

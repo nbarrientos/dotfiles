@@ -1,5 +1,3 @@
-;;; init.el --- Nacho Barrientos' Emacs configuration  -*- lexical-binding: t; -*-
-
 ;; Copyright (C) 2021-2023 Nacho Barrientos
 
 ;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
@@ -36,6 +34,7 @@
  inhibit-startup-message t
  inhibit-startup-echo-area-message "nacho"
  visible-bell t
+ ring-bell-function 'ignore
  vc-follow-symlinks t
  indent-tabs-mode nil
  custom-file null-device
@@ -672,23 +671,27 @@ Show buffer previews if SHOW-PREVIEW is not nil."
      try-complete-lisp-symbol)))
 
 ;;; Look and feel
-(use-package doom-themes
+(use-package modus-themes
   :config
-  (load-theme 'doom-tokyo-night t)
-  (doom-themes-visual-bell-config)
-  (custom-set-faces
-   '(link ((t (:weight unspecified :underline unspecified))))
-   '(erc-timestamp-face ((t (:weight unspecified :underline unspecified)))))
-  :custom
-  (doom-themes-enable-bold t)
-  (doom-themes-enable-italic t))
+  (setq modus-themes-italic-constructs t)
+  (setq modus-themes-bold-constructs t)
+  (setq modus-themes-common-palette-overrides
+        `((fringe unspecified)
+          (underline-link unspecified)
+          (underline-link-visited unspecified)
+          (underline-link-symbolic unspecified)
+          (bg-mode-line-active bg-blue-nuanced)
+          (border-mode-line-active bg-mode-line-active)
+          (border-mode-line-inactive bg-mode-line-inactive)
+          ,@modus-themes-preset-overrides-intense))
+  (load-theme 'modus-vivendi t))
 
 (use-package doom-modeline
   :config
   (set-face-attribute 'mode-line nil :height 100)
   (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
-                      :inherit 'doom-modeline-buffer-minor-mode)
+                      :foreground (modus-themes-get-color-value 'fg-dim))
   (setq-default mode-line-buffer-identification "%b")
   (setq doom-modeline-mode-alist nil)
   (doom-modeline-def-modeline 'my-modeline
