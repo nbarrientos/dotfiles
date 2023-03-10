@@ -17,6 +17,10 @@
   background: var(--toolbar-bgcolor) !important;
 }
 
+browser {
+    background-color: #000000 !important;
+}
+
 /* Remove tab bar */
 #TabsToolbar { visibility: collapse !important; }
 

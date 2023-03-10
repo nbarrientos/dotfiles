@@ -7,6 +7,7 @@
 // Theme: Complete Black Theme for Firefox
 //        https://addons.mozilla.org/en-US/firefox/addon/complete-black-theme-for-firef/?src=turnoffthelights.com
 
+user_pref("browser.display.background_color", "#000000");
 user_pref("browser.display.background_color.dark", "#000000");
 user_pref("browser.download.lastDir", "/home/nacho/Downloads");
 // Never open links in tabs
