@@ -707,6 +707,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :custom
   (doom-modeline-height 30)
   (doom-modeline-buffer-modification-icon nil)
+  (doom-modeline-highlight-modified-buffer-name nil)
   (doom-modeline-irc-buffers t)
   (doom-modeline-buffer-file-name-style 'relative-from-project)
   (doom-modeline-time-icon nil))
