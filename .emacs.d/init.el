@@ -718,7 +718,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 (use-package frame
   :ensure nil
   :custom
-  (window-divider-default-right-width 10)
+  (window-divider-default-right-width 7)
   :config
   (window-divider-mode 1))
 
