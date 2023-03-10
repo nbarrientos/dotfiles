@@ -682,6 +682,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
           (underline-link-visited unspecified)
           (underline-link-symbolic unspecified)
           (bg-mode-line-active bg-blue-nuanced)
+          (bg-mode-line-inactive bg-dim)
           (border-mode-line-active bg-mode-line-active)
           (border-mode-line-inactive bg-mode-line-inactive)
           ,@modus-themes-preset-overrides-intense))
