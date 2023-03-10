@@ -692,6 +692,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
                       :foreground (modus-themes-get-color-value 'fg-dim))
+  (set-face-attribute 'doom-modeline-buffer-file nil
+                      :foreground (modus-themes-get-color-value 'blue-faint))
   (setq-default mode-line-buffer-identification "%b")
   (setq doom-modeline-mode-alist nil)
   (doom-modeline-def-modeline 'my-modeline
