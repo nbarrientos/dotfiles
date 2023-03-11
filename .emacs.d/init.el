@@ -687,12 +687,18 @@ Show buffer previews if SHOW-PREVIEW is not nil."
           (border-mode-line-active bg-mode-line-active)
           (border-mode-line-inactive bg-mode-line-inactive)
           ,@modus-themes-preset-overrides-intense))
-  (load-theme 'modus-vivendi t))
+  ;; https://christiantietze.de/posts/2023/01/modus-themes-v4-changes/
+  (defun my/modus-themes-customize-mode-line ()
+    (modus-themes-with-colors
+      (custom-set-faces
+       `(mode-line ((,c :height 100)))
+       `(mode-line-inactive ((,c :height 100))))))
+  (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-mode-line)
+  (modus-themes-load-theme 'modus-vivendi))
 
 (use-package doom-modeline
+  :after modus-themes
   :config
-  (set-face-attribute 'mode-line nil :height 100)
-  (set-face-attribute 'mode-line-inactive nil :height 100)
   (set-face-attribute 'doom-modeline-time nil
                       :foreground (modus-themes-get-color-value 'fg-dim))
   (set-face-attribute 'doom-modeline-buffer-file nil
