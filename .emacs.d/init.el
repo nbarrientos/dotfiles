@@ -673,6 +673,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 
 ;;; Look and feel
 (use-package modus-themes
+  :after (mu4e doom-modeline)
   :config
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
@@ -688,23 +689,21 @@ Show buffer previews if SHOW-PREVIEW is not nil."
           (border-mode-line-inactive bg-mode-line-inactive)
           ,@modus-themes-preset-overrides-intense))
   ;; https://christiantietze.de/posts/2023/01/modus-themes-v4-changes/
-  (defun my/modus-themes-customize-mode-line ()
+  (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
       (custom-set-faces
+       `(doom-modeline-time ((,c :foreground ,fg-dim)))
+       `(doom-modeline-buffer-file ((,c :foreground ,blue-faint)))
+       `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
        `(mode-line ((,c :height 100)))
-       `(mode-line-inactive ((,c :height 100))))))
-  (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-mode-line)
+       `(mode-line-inactive ((,c :height 100)))
+       `(mu4e-header-highlight-face ((,c :weight normal :underline nil)))
+       `(mu4e-unread-face ((,c :weight normal))))))
+  (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
   (modus-themes-load-theme 'modus-vivendi))
 
 (use-package doom-modeline
-  :after modus-themes
   :config
-  (set-face-attribute 'doom-modeline-time nil
-                      :foreground (modus-themes-get-color-value 'fg-dim))
-  (set-face-attribute 'doom-modeline-buffer-file nil
-                      :foreground (modus-themes-get-color-value 'blue-faint))
-  (set-face-attribute 'doom-modeline-buffer-major-mode nil
-                      :foreground (modus-themes-get-color-value 'blue-warmer))
   (setq-default mode-line-buffer-identification "%b")
   (setq doom-modeline-mode-alist nil)
   (doom-modeline-def-modeline 'my-modeline
@@ -1147,9 +1146,6 @@ If no universal argument is passed, assume only one output"
   :config
   ;; https://github.com/ch11ng/exwm/issues/353
   (advice-add 'ediff-window-display-p :override #'ignore)
-  (set-face-attribute 'ediff-current-diff-A
-                      nil
-                      :background (doom-blend 'selection 'bg 0.6))
   (defun my/y-or-n-p-ignore (ediff-quit-f &rest args)
     (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
       (apply ediff-quit-f args)))
@@ -1284,11 +1280,6 @@ If no universal argument is passed, assume only one output"
   (setq mu4e-headers-full-label '("F" . ""))
   (setq mu4e-headers-related-label '("R" . ""))
   (setq mu4e-headers-skip-duplicates-label '("U" . ""))
-  (set-face-attribute 'mu4e-header-highlight-face nil
-                      :weight 'normal
-                      :underline nil)
-  (set-face-attribute 'mu4e-unread-face nil
-                      :weight 'normal)
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'sendmail-send-it)
