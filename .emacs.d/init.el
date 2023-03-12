@@ -913,10 +913,18 @@ It just guesses as the filename for the spec is rather arbitrary."
         (term-char-mode)
       (term-line-mode)))
   (defun my/remote-or-local-term (fqdn)
-    "Invokes an ansi-term on FQDN."
-    (interactive "sFully-qualified domain name (none for localhost): ")
-    (let* ((local-p (string-empty-p fqdn))
-           (fqdn (if local-p "localhost" fqdn))
+    "Invokes an ansi-term on FQDN.
+
+If the region is active the contents are the FQDN. If no FQDN is
+specified then localhost is used."
+    (interactive
+     (let ((default-value (if (use-region-p)
+                              (buffer-substring-no-properties (region-beginning) (region-end))
+                            "localhost")))
+       (list
+        (read-string (format "Fully-qualified domain name (default: %s): " default-value)
+                     nil nil default-value))))
+    (let* ((local-p (string= "localhost" fqdn))
            (term-ansi-buffer-name (concat "U# " fqdn))
            (term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
            (program (if local-p "bash" "ssh"))
