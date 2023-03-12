@@ -499,7 +499,7 @@ The 'circular' list is defined in the variable
                  args)))
   (consult-customize
    my/consult-buffer-firefox
-   my/consult-buffer-urxvt
+   my/consult-buffer-ansi-term
    my/consult-buffer-detached-command
    consult-buffer consult-buffer-other-window consult-project-buffer
    :preview-key nil)
@@ -546,8 +546,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     "Use consult to select a Firefox buffer."
     (interactive "P")
     (my/consult-buffer-by-prefix "f" this-command arg))
-  (defun my/consult-buffer-urxvt (arg)
-    "Use consult to select an URXVT buffer."
+  (defun my/consult-buffer-ansi-term (arg)
+    "Use consult to select an ansi-term buffer."
     (interactive "P")
     (my/consult-buffer-by-prefix "u" this-command arg))
   (defun my/consult-buffer-detached-command (arg)
@@ -901,6 +901,30 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package powerthesaurus)
 
 (use-package package-lint)
+
+;;; Term
+(use-package term
+  :ensure nil
+  :config
+  (defun my/term-toggle-line-and-char-mode ()
+    "Toggles term between line char and line mode."
+    (interactive)
+    (if (term-in-line-mode)
+        (term-char-mode)
+      (term-line-mode)))
+  (defun my/remote-term (fqdn)
+    "Invokes an ansi-term on FQDN."
+    (interactive "sFully-qualified domain name: ")
+    (let* ((term-ansi-buffer-name (concat "U# " fqdn))
+           (term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
+           (term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name "ssh" nil (list fqdn))))
+      (set-buffer term-ansi-buffer-name)
+      (term-mode)
+      (term-line-mode)
+      (with-current-buffer term-ansi-buffer-name
+        (setq-local kill-buffer-query-functions nil)
+        (rename-buffer (substring (buffer-name) 1 -1)))
+      (switch-to-buffer term-ansi-buffer-name))))
 
 ;;; Eshell
 (use-package eshell-bookmark
@@ -1435,10 +1459,6 @@ configured to use @ (at symbol) as separator."
           (concat short-title " @ " hostname)
         (reverse (string-truncate-left (reverse title) length)))))
 
-  (defun my/exwm--format-window-title-urxvt (title)
-    "Removes noise from URxvt window titles."
-    (concat "U# " (replace-regexp-in-string ":.*$" "" title)))
-
   (defun my/exwm--format-window-title-* (title)
     "Removes annoying notifications and FPS counters."
     (dolist (regexp '("([[:digit:]]+)" "FPS :[[:digit:]]+"))
@@ -1460,7 +1480,11 @@ configured to use @ (at symbol) as separator."
           ([?\s-r]
            . exwm-reset)
           ([?\s-c]
-           . exwm-input-toggle-keyboard)
+           . (lambda ()
+               (interactive)
+               (cond ((derived-mode-p 'exwm-mode) (exwm-input-toggle-keyboard))
+                     ((derived-mode-p 'term-mode) (my/term-toggle-line-and-char-mode))
+                     (t (user-error "Switching line/char mode not possible here")))))
           ([?\s-f]
            . my/toggle-single-window)
           ([?\s-h]
@@ -1492,7 +1516,7 @@ configured to use @ (at symbol) as separator."
           ([?\s-8]
            . mu4e-search-bookmark)
           ([?\s-9]
-           . my/consult-buffer-urxvt)
+           . my/consult-buffer-ansi-term)
           ([?\s-0]
            . erc-track-switch-buffer)
           ([?\s-r] .
@@ -1505,10 +1529,8 @@ configured to use @ (at symbol) as separator."
              (start-process "" nil "/usr/bin/firefox")))
           ([?\s-p]
            . my/exwm-toggle-or-set-buffer-protection)
-          ([?\s-u] .
-           (lambda ()
-             (interactive)
-             (start-process "" nil "/usr/bin/urxvt")))
+          ([?\s-u]
+           . my/remote-term)
           ([?\s-=]
            . balance-windows)
           ([?\s-+] .
@@ -1569,12 +1591,6 @@ and adapted to use simulations keys to have a common yank keystroke."
   (add-hook 'exwm-manage-finish-hook
             (lambda ()
               (setq-local default-directory (expand-file-name "~/"))
-              (when (and exwm-class-name
-                         (string= (downcase exwm-class-name) "urxvt"))
-                (exwm-input-set-local-simulation-keys
-                 (append
-                  exwm-input-simulation-keys
-                  '(([?\C-y] . [?\C-\S-v])))))
               (when (and exwm-class-name
                          (string= (downcase exwm-class-name) "firefox"))
                 (exwm-input-set-local-simulation-keys
