@@ -912,12 +912,16 @@ It just guesses as the filename for the spec is rather arbitrary."
     (if (term-in-line-mode)
         (term-char-mode)
       (term-line-mode)))
-  (defun my/remote-term (fqdn)
+  (defun my/remote-or-local-term (fqdn)
     "Invokes an ansi-term on FQDN."
-    (interactive "sFully-qualified domain name: ")
-    (let* ((term-ansi-buffer-name (concat "U# " fqdn))
+    (interactive "sFully-qualified domain name (none for localhost): ")
+    (let* ((local-p (string-empty-p fqdn))
+           (fqdn (if local-p "localhost" fqdn))
+           (term-ansi-buffer-name (concat "U# " fqdn))
            (term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
-           (term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name "ssh" nil (list fqdn))))
+           (program (if local-p "bash" "ssh"))
+           (switches (unless (string= "localhost" fqdn) (list fqdn)))
+           (term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name program nil switches)))
       (set-buffer term-ansi-buffer-name)
       (term-mode)
       (term-line-mode)
@@ -1530,7 +1534,7 @@ configured to use @ (at symbol) as separator."
           ([?\s-p]
            . my/exwm-toggle-or-set-buffer-protection)
           ([?\s-u]
-           . my/remote-term)
+           . my/remote-or-local-term)
           ([?\s-=]
            . balance-windows)
           ([?\s-+] .
