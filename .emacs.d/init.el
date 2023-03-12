@@ -72,8 +72,8 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;;;; Fonts
-(when (member "JetBrains Mono" (font-family-list))
-  (set-face-attribute 'default nil :font "JetBrains Mono" :height 110))
+(when (member "Iosevka" (font-family-list))
+  (set-face-attribute 'default nil :font "Iosevka" :height 120))
 
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
@@ -601,7 +601,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (add-to-list 'all-the-icons-mode-icon-alist
                '(exwm-mode
                  all-the-icons-octicon "browser"
-                 :v-adjust 0.2 :face all-the-icons-purple)))
+                 :v-adjust 0.1 :face all-the-icons-purple)))
 
 (use-package all-the-icons-completion
   :after (all-the-icons)
@@ -695,8 +695,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
        `(doom-modeline-buffer-file ((,c :foreground ,blue-faint)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
-       `(mode-line ((,c :height 100)))
-       `(mode-line-inactive ((,c :height 100)))
+       `(mode-line ((,c :height 110)))
+       `(mode-line-inactive ((,c :height 110)))
        `(mu4e-header-highlight-face ((,c :weight normal :underline nil)))
        `(mu4e-unread-face ((,c :weight normal))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
