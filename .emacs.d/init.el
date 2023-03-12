@@ -924,7 +924,8 @@ specified then localhost is used."
        (list
         (read-string (format "Fully-qualified domain name (default: %s): " default-value)
                      nil nil default-value))))
-    (let* ((local-p (string= "localhost" fqdn))
+    (let* ((default-directory "~/")
+           (local-p (string= "localhost" fqdn))
            (term-ansi-buffer-name (concat "U# " fqdn))
            (term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
            (program (if local-p "bash" "ssh"))
