@@ -74,7 +74,7 @@
 
 ;;;; Fonts
 (when (member "Iosevka" (font-family-list))
-  (set-face-attribute 'default nil :font "Iosevka" :height 120))
+  (set-face-attribute 'default nil :font "Iosevka" :height 130))
 
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
