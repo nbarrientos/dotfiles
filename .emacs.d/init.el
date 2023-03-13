@@ -74,7 +74,7 @@
 
 ;;;; Fonts
 (when (member "Iosevka" (font-family-list))
-  (set-face-attribute 'default nil :font "Iosevka" :height 130))
+  (set-face-attribute 'default nil :font "Iosevka" :height 120))
 
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
@@ -1217,7 +1217,10 @@ If no universal argument is passed, assume only one output"
           (set-window-configuration my-saved-window-configuration))
       (progn
         (setq my-saved-window-configuration (current-window-configuration))
-        (delete-other-windows)))))
+        (delete-other-windows))))
+  :custom
+  (split-width-threshold nil)
+  (split-height-threshold nil))
 
 (use-package transpose-frame
   :bind (("M-<f8>" . rotate-frame-clockwise)))
