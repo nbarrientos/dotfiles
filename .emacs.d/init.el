@@ -948,16 +948,24 @@ specified then localhost is used."
 
 (use-package eshell
   :ensure nil
+  :init
+  (require 'esh-mode) ;; eshell-mode-map
+  (require 'em-hist) ;; eshell-hist-mode-map
+  :bind
+  (:map eshell-mode-map
+        ("M-<up>" . eshell-previous-prompt)
+        ("M-<down>" . eshell-next-prompt)
+        ("C-c C-o" . my/eshell-kill-ring-save-outputs)
+        ("C-c o" . my/eshell-export-last-output)
+        ("C-c r" . consult-history)
+        ("C-c d" . consult-esh-dir-history)
+        ("C-c l" . eshell/clear)
+        ("C-<return>" . my/eshell-send-detached-input)
+   :map eshell-hist-mode-map
+        ("<up>" . previous-line)
+        ("<down>" . next-line))
   :hook
   (eshell-mode . (lambda ()
-                   (define-key eshell-mode-map (kbd "M-<up>") 'eshell-previous-prompt)
-                   (define-key eshell-mode-map (kbd "M-<down>") 'eshell-next-prompt)
-                   (define-key eshell-mode-map (kbd "C-c C-o") 'my/eshell-kill-ring-save-outputs)
-                   (define-key eshell-mode-map (kbd "C-c o") 'my/eshell-export-last-output)
-                   (define-key eshell-mode-map (kbd "C-c r") 'consult-history)
-                   (define-key eshell-mode-map (kbd "C-c d") 'consult-esh-dir-history)
-                   (define-key eshell-mode-map (kbd "C-c l") 'eshell/clear)
-                   (define-key eshell-mode-map (kbd "C-<return>") 'my/eshell-send-detached-input)
                    ;; When calling dabbrev, hippie-expand uses strings
                    ;; containing words and symbols to:
                    ;;   1) determine the string to expand
@@ -1061,12 +1069,6 @@ send a notification when the process has exited."
   (eshell-history-size 20000)
   (eshell-scroll-to-bottom-on-input 'all)
   (eshell-scroll-to-bottom-on-output 'all))
-
-(use-package em-hist
-  :ensure nil
-  :bind (:map eshell-hist-mode-map
-              ("<up>" . previous-line)
-              ("<down>" . next-line)))
 
 (use-package eshell-prompt-extras
   :after (eshell)
