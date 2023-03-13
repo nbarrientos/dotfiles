@@ -675,6 +675,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 ;;; Look and feel
 (use-package modus-themes
   :after (mu4e doom-modeline)
+  :bind
+  (("<f1>" . modus-themes-toggle))
   :config
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
