@@ -686,11 +686,12 @@ Show buffer previews if SHOW-PREVIEW is not nil."
           (underline-link unspecified)
           (underline-link-visited unspecified)
           (underline-link-symbolic unspecified)
-          (bg-mode-line-active bg-blue-nuanced)
-          (bg-mode-line-inactive bg-dim)
           (border-mode-line-active bg-mode-line-active)
           (border-mode-line-inactive bg-mode-line-inactive)
           ,@modus-themes-preset-overrides-intense))
+  (setq modus-vivendi-palette-overrides
+        `((bg-mode-line-active bg-blue-nuanced)
+          (bg-mode-line-inactive bg-dim)))
   ;; https://christiantietze.de/posts/2023/01/modus-themes-v4-changes/
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
