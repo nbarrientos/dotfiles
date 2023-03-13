@@ -1493,12 +1493,10 @@ configured to use @ (at symbol) as separator."
         `(
           ([?\s-r]
            . exwm-reset)
+          ([?\s-C]
+           . exwm-input-toggle-keyboard)
           ([?\s-c]
-           . (lambda ()
-               (interactive)
-               (cond ((derived-mode-p 'exwm-mode) (exwm-input-toggle-keyboard))
-                     ((derived-mode-p 'term-mode) (my/term-toggle-line-and-char-mode))
-                     (t (user-error "Switching line/char mode not possible here")))))
+           . my/term-toggle-line-and-char-mode)
           ([?\s-f]
            . my/toggle-single-window)
           ([?\s-h]
