@@ -701,7 +701,9 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(mu4e-header-highlight-face ((,c :weight normal :underline nil)))
        `(mu4e-unread-face ((,c :weight normal))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
-  (modus-themes-load-theme 'modus-vivendi))
+  (modus-themes-load-theme 'modus-vivendi)
+  :custom
+  (modus-themes-to-toggle '(modus-vivendi modus-vivendi-tinted)))
 
 (use-package doom-modeline
   :config
