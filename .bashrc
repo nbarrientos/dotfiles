@@ -7,7 +7,7 @@
 
 alias ls='ls --color=auto'
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export TERM=rxvt-unicode
+export TERM=emacs
 
 # Wrap ssh to set the window title to the hostname being SSH'ed into
 # so we don't rely on having to set PROMPT_COMMAND/PS1 on the other
