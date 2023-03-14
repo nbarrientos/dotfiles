@@ -1283,7 +1283,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-headers-fields
    '(( :human-date    .  12)
      ( :flags         .  6)
-     ( :from          .  22)
+     ( :from          .  30)
      ( :subject       .  nil)))
   (mu4e-bookmarks
    '(( :name "Unread messages in INBOX"
