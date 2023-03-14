@@ -5,6 +5,6 @@ xscreensaver -nosplash &
 
 xrdb ~/.Xresources
 
-autorandr $(cat /etc/hostname)
+autorandr -l $(cat /etc/hostname) --force
 
 exec emacs
