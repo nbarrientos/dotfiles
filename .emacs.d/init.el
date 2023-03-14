@@ -678,7 +678,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :config
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
-  (setq modus-themes-mixed-fonts t)
+  (setq modus-themes-mixed-fonts nil)
   (setq modus-themes-common-palette-overrides
         `((fringe unspecified)
           (underline-link unspecified)
