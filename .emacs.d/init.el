@@ -675,8 +675,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 ;;; Look and feel
 (use-package modus-themes
   :after (mu4e doom-modeline)
-  :bind
-  (("<f1>" . modus-themes-toggle))
   :config
   (setq modus-themes-italic-constructs t)
   (setq modus-themes-bold-constructs t)
@@ -692,6 +690,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (setq modus-vivendi-palette-overrides
         `((bg-mode-line-active bg-blue-nuanced)
           (bg-mode-line-inactive bg-dim)))
+  (setq modus-themes-to-toggle '(modus-vivendi modus-vivendi-tinted))
   ;; https://christiantietze.de/posts/2023/01/modus-themes-v4-changes/
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
@@ -705,8 +704,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(mu4e-unread-face ((,c :weight normal))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
   (modus-themes-load-theme 'modus-vivendi)
-  :custom
-  (modus-themes-to-toggle '(modus-vivendi modus-vivendi-tinted)))
+  (define-key global-map (kbd "<f1>") #'modus-themes-toggle))
 
 (use-package doom-modeline
   :config
