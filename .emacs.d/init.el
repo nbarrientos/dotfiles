@@ -78,6 +78,8 @@
                       :family "Iosevka"
                       :height 120))
 
+(set-face-attribute 'fixed-pitch nil
+                    :family (face-attribute 'default :family))
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
           (set-fontset-font t characters "JoyPixels"))
