@@ -1497,8 +1497,6 @@ configured to use @ (at symbol) as separator."
 
   (setq exwm-input-global-keys
         `(
-          ([?\s-r]
-           . exwm-reset)
           ([?\s-C]
            . exwm-input-toggle-keyboard)
           ([?\s-c]
