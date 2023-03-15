@@ -46,6 +46,7 @@
  next-screen-context-lines 0
  native-comp-async-report-warnings-errors nil
  truncate-string-ellipsis "·"
+ cursor-type 'hbar
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
