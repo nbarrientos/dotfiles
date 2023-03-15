@@ -80,6 +80,13 @@
 
 (set-face-attribute 'fixed-pitch nil
                     :family (face-attribute 'default :family))
+
+(when (member "FreeSans" (font-family-list))
+  (set-face-attribute 'variable-pitch nil
+                      :family "FreeSans"
+                      :weight 'regular
+                      :height 1.1))
+
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
           (set-fontset-font t characters "JoyPixels"))
