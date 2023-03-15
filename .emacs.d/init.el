@@ -1055,14 +1055,8 @@ send a notification when the process has exited."
               (compilation-start
                cmd
                nil
-               (lambda (major-mode)
-                 (let ((similar-buffers
-                        (length
-                         (seq-filter
-                          (lambda (buffer-name)
-                            (string-match (format "^D#[0-9]+ %s" cmd) buffer-name))
-                          (mapcar #'buffer-name (buffer-list))))))
-                   (format "D#%d %s" similar-buffers cmd))))))
+               (lambda (name-of-mode)
+                 (generate-new-buffer-name (concat "D# " cmd))))))
         (when (equal arg 4)
           (with-current-buffer compilation-buffer
             (switch-to-prev-buffer (get-buffer-window (current-buffer)))
