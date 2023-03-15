@@ -1982,7 +1982,7 @@ otherwise it returns nil."
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 19)
-  (erc-fill-column 155) ;(- (/ (frame-width) 2) 3))
+  (erc-fill-column 138) ;(- (/ (frame-width) 2) 3))
   (erc-hide-list '("PART" "QUIT" "JOIN"))
   (erc-auto-query 'bury)
   (erc-join-buffer 'bury)
