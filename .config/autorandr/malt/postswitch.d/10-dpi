@@ -15,4 +15,4 @@
 #               (/ x-res-pixels phy-x-inches)
 #               (/ y-res-pixels phy-y-inches))))
 #   (ceiling (/ (seq-reduce #'+ dpis 0) 2)))
-xrandr --dpi 108
+xrandr --dpi 109
