@@ -15,4 +15,4 @@ crtc 0
 mode 2560x1440
 pos 0x0
 primary
-rate 59.95
+rate 120
