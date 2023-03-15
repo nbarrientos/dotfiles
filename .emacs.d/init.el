@@ -1362,6 +1362,7 @@ If no universal argument is passed, assume only one output"
                      ("Option Musique" . "http://stream.srg-ssr.ch/m/option-musique/aacp_96.m3u")
                      ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/aacp_96.m3u")
                      ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
+                     ("Radio Lac" . "https://radiolac.ice.infomaniak.ch/radiolac-high.mp3")
                      ;; Spanish
                      ("RNE" . "https://rtvelivestream.akamaized.net/rtvesec/rne/rne_r1_main.m3u8")
                      ("RPA" . "https://cdnlive2.shooowit.net/rtpalive/smil:radio.smil/playlist.m3u8")
