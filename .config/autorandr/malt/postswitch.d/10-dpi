@@ -2,7 +2,7 @@
 # (let ((x-res-pixels 2560)
 #       (y-res-pixels 1440)
 #       (diagonal-inches 27))
-#   (floor (/ (sqrt (+ (expt x-res-pixels 2) (expt y-res-pixels 2)))
+#   (ceiling (/ (sqrt (+ (expt x-res-pixels 2) (expt y-res-pixels 2)))
 #       diagonal-inches)))
 #
 # ;; 16:9 screen
@@ -14,5 +14,5 @@
 #        (dpis (list
 #               (/ x-res-pixels phy-x-inches)
 #               (/ y-res-pixels phy-y-inches))))
-#   (floor (/ (seq-reduce #'+ dpis 0) 2)))
+#   (ceiling (/ (seq-reduce #'+ dpis 0) 2)))
 xrandr --dpi 108
