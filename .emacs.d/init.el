@@ -1535,10 +1535,10 @@ configured to use @ (at symbol) as separator."
            . my/consult-buffer-ansi-term)
           ([?\s-0]
            . erc-track-switch-buffer)
-          ([?\s-r] .
-           (lambda ()
-             (interactive)
-             (eradio-toggle)))
+          ([?\s-r]
+           . eradio-toggle)
+          ([?\s-R]
+           . eradio-play)
           ([?\s-t] .
            (lambda ()
              (interactive)
