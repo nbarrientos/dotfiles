@@ -74,7 +74,7 @@
 
 ;;;; Fonts
 (when (member "Iosevka" (font-family-list))
-  (set-face-attribute 'default nil :font "Iosevka" :height 110))
+  (set-face-attribute 'default nil :font "Iosevka" :height 120))
 
 (when (member "JoyPixels" (font-family-list))
   (mapc (lambda (characters)
@@ -698,6 +698,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
        `(doom-modeline-buffer-file ((,c :foreground ,blue-faint)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
+       `(mode-line ((,c :height 110)))
+       `(mode-line-inactive ((,c :height 110)))
        `(mu4e-header-highlight-face ((,c :weight normal :underline nil)))
        `(mu4e-unread-face ((,c :weight normal))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
