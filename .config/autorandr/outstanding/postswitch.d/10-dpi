@@ -1,1 +1,2 @@
-xrandr --dpi 108
+#!/bin/sh
+xrandr --dpi 109
