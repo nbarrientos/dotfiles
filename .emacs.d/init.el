@@ -708,7 +708,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     (modus-themes-with-colors
       (custom-set-faces
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
-       `(doom-modeline-buffer-file ((,c :foreground ,blue-faint)))
+       `(doom-modeline-buffer-file ((,c :foreground ,blue-faint :inherit nil)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
        `(mode-line ((,c :height 110)))
        `(mode-line-inactive ((,c :height 110)))
