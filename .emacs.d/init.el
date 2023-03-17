@@ -707,6 +707,12 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
       (custom-set-faces
+       ;; Pending https://lists.sr.ht/~protesilaos/modus-themes/%3C87ttyjxwf9.fsf%40cern.ch%3E
+       `(disk-usage-inaccessible ((,c :inherit error)))
+       `(disk-usage-percent ((,c :foreground ,accent-0)))
+       `(disk-usage-size ((,c :foreground ,accent-1)))
+       `(disk-usage-symlink ((,c :inherit dired-symlink)))
+       `(disk-usage-symlink-directory ((,c :inherit dired-symlink)))
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
        `(doom-modeline-buffer-file ((,c :foreground ,blue-faint :inherit nil)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
