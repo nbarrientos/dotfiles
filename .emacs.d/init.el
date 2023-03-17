@@ -1290,7 +1290,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-sent-messages-behavior 'delete)
   (mu4e-headers-fields
    '(( :human-date    .  12)
-     ( :flags         .  6)
+     ( :flags         .  8)
      ( :from          .  30)
      ( :subject       .  nil)))
   (mu4e-bookmarks
