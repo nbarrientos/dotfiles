@@ -9,6 +9,9 @@
 [merge]
 	conflictStyle = diff3
 
+[sendemail]
+        smtpserver = /usr/bin/msmtp
+
 [core]
 	excludesFile = ~/.gitignore-global
 
