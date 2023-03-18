@@ -1170,6 +1170,13 @@ If no universal argument is passed, assume only one output"
         (user-error "Push to upstream aborted by user"))))
   (unbind-key "C-j" magit-diff-section-base-map)
   (unbind-key "C-j" magit-diff-section-map)
+  (defun my/magit-am-apply-from-mu4e-article ()
+    "Call `magit-am-apply-maildir' using the email in buffer *Article* as input."
+    (interactive)
+    (if-let* ((path (with-current-buffer "*Article*"
+                      (mu4e-message-field-at-point :path))))
+        (magit-am-apply-maildir path)
+      (user-error "No *Article* buffer found")))
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
