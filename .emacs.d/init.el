@@ -1177,6 +1177,8 @@ If no universal argument is passed, assume only one output"
                       (mu4e-message-field-at-point :path))))
         (magit-am-apply-maildir path)
       (user-error "No *Article* buffer found")))
+  (transient-append-suffix 'magit-am "a"
+       '("r" "article" my/magit-am-apply-from-mu4e-article))
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
