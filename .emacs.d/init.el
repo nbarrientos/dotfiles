@@ -1170,15 +1170,20 @@ If no universal argument is passed, assume only one output"
         (user-error "Push to upstream aborted by user"))))
   (unbind-key "C-j" magit-diff-section-base-map)
   (unbind-key "C-j" magit-diff-section-map)
-  (defun my/magit-am-apply-from-mu4e-article (&optional args)
-    "Call `magit-am-apply-maildir' using the email in buffer *Article* as input."
-    (interactive (list (magit-am-arguments)))
-    (if-let* ((path (with-current-buffer "*Article*"
-                      (mu4e-message-field-at-point :path))))
-        (magit-am-apply-maildir path args)
-      (user-error "No *Article* buffer found")))
-  (transient-append-suffix 'magit-am "a"
-       '("r" "article" my/magit-am-apply-from-mu4e-article))
+  (defun my/magit-am-apply-maildir-buffer (buffer &optional args)
+    "Apply the patch in BUFFER as maildir/mbox."
+    (interactive (list (read-buffer "Apply contents of buffer: " "*Article*")
+                       (magit-am-arguments)))
+    (let ((patch
+           (with-current-buffer buffer
+             (buffer-substring-no-properties (point-min) (point-max)))))
+      (with-temp-buffer
+        (insert patch)
+        (magit-run-git-with-input
+         "am" args "-"))
+      (magit-refresh)))
+  (transient-append-suffix 'magit-am "m"
+       '("b" "maildir from buffer" my/magit-am-apply-maildir-buffer))
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)
