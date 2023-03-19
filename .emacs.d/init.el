@@ -568,8 +568,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     (interactive "P")
     (my/consult-buffer-by-prefix "d" this-command arg)))
 
-(use-package consult-dir)
-
 (use-package consult-flycheck)
 
 (use-package consult-project-extra
