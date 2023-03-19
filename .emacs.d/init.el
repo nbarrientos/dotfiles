@@ -516,6 +516,11 @@ The 'circular' list is defined in the variable
    my/consult-buffer-detached-command
    consult-buffer consult-buffer-other-window consult-project-buffer
    :preview-key nil)
+  (consult-customize
+   consult-line
+   :initial (when (use-region-p)
+              (buffer-substring-no-properties
+               (region-beginning) (region-end))))
   :init
   (defun consult-esh-dir-history ()
     (interactive)
