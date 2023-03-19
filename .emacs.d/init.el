@@ -705,7 +705,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
       (custom-set-faces
-       ;; Pending https://lists.sr.ht/~protesilaos/modus-themes/%3C87ttyjxwf9.fsf%40cern.ch%3E
+       ;; Pending https://lists.sr.ht/~protesilaos/modus-themes/patches/39822
        `(disk-usage-inaccessible ((,c :inherit error)))
        `(disk-usage-percent ((,c :foreground ,accent-0)))
        `(disk-usage-size ((,c :foreground ,accent-1)))
