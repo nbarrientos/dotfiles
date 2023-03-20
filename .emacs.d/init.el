@@ -710,6 +710,15 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
       (custom-set-faces
+       `(rpm-spec-tag-face ((,c :foreground ,blue)))
+       `(rpm-spec-obsolete-tag-face ((,c :inherit modus-themes-intense-red)))
+       `(rpm-spec-macro-face ((,c :foreground ,yellow)))
+       `(rpm-spec-var-face ((,c :foreground ,maroon)))
+       `(rpm-spec-doc-face ((,c :foreground ,magenta)))
+       `(rpm-spec-dir-face ((,c :foreground ,green)))
+       `(rpm-spec-package-face ((,c :foreground ,red)))
+       `(rpm-spec-ghost-face ((,c :foreground ,red)))
+       `(rpm-spec-section-face ((,c :foreground ,yellow)))
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
        `(doom-modeline-buffer-file ((,c :foreground ,blue-faint :inherit nil)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
