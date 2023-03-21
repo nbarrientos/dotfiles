@@ -926,7 +926,7 @@ It just guesses as the filename for the spec is rather arbitrary."
   :custom
   (venv-location "~/venvs"))
 
-(use-package powerthesaurus)
+;; (use-package powerthesaurus)
 
 (use-package package-lint)
 
