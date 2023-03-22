@@ -1,4 +1,4 @@
-personal_ws-1.1 en 134 
+personal_ws-1.1 en 135 
 APIs
 ARP
 BGP
@@ -75,6 +75,7 @@ deallocation
 decrypting
 dereferencing
 destructor
+destructuring
 eGroup
 encodings
 entrypoint
