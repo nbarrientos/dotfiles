@@ -480,6 +480,8 @@ The 'circular' list is defined in the variable
   (add-to-list 'marginalia-command-categories
                '(eradio-play . radiostation))
   (add-to-list 'marginalia-command-categories
+               '(project-switch-project . project))
+  (add-to-list 'marginalia-command-categories
                '(mu4e~headers-jump-to-maildir . maildir)))
 
 (use-package recentf
@@ -637,6 +639,14 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     "Return the icon for the candidate CAND of completion category radiostation."
     (concat (all-the-icons-octicon
              "broadcast"
+             :face 'all-the-icons-blue
+             :v-adjust 0.1
+             :height 0.9)
+            " "))
+  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql project)))
+    "Return the icon for the candidate CAND of completion category project."
+    (concat (all-the-icons-octicon
+             "git-branch"
              :face 'all-the-icons-blue
              :v-adjust 0.1
              :height 0.9)
