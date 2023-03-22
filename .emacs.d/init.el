@@ -215,6 +215,13 @@
                ("t" . my/regenerate-ctags)))
   :config
   (global-unset-key (kbd "C-x p"))
+  (advice-add 'project-remember-project
+              :filter-args
+              (lambda (args)
+                (when (consp (car args))
+                  (let ((pj (car args)))
+                    (setcar args (cons (car pj) (abbreviate-file-name (cdr pj))))))
+                args))
   :custom
   (project-switch-commands
    '((consult-project-extra-find "Find file")
