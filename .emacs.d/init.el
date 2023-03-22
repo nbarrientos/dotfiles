@@ -218,9 +218,10 @@
   (advice-add 'project-remember-project
               :filter-args
               (lambda (args)
+                "Abbreviates project paths."
                 (when (consp (car args))
-                  (let ((pj (car args)))
-                    (setcar args (cons (car pj) (abbreviate-file-name (cdr pj))))))
+                  (pcase-let ((`(,type . ,path) (car args)))
+                    (setcar args (cons type (abbreviate-file-name path)))))
                 args))
   :custom
   (project-switch-commands
