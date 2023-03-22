@@ -1274,6 +1274,7 @@ If no universal argument is passed, assume only one output"
         (setq my-saved-window-configuration (current-window-configuration))
         (delete-other-windows))))
   :custom
+  (switch-to-buffer-preserve-window-point nil)
   (split-width-threshold nil)
   (split-height-threshold nil))
 
