@@ -47,6 +47,7 @@
  native-comp-async-report-warnings-errors nil
  truncate-string-ellipsis "·"
  cursor-type 'hbar
+ enable-recursive-minibuffers t
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
 
 (server-start)
@@ -56,6 +57,7 @@
 (set-fringe-mode 10)
 (menu-bar-mode -1)
 (mouse-avoidance-mode 'jump)
+(minibuffer-depth-indicate-mode)
 
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
