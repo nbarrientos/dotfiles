@@ -31,24 +31,24 @@
 
 ;;; Basic configuration of built-in features
 (setq-default
- inhibit-startup-message t
- inhibit-startup-echo-area-message "nacho"
- visible-bell t
- ring-bell-function 'ignore
- vc-follow-symlinks t
- custom-unlispify-tag-names nil
- indent-tabs-mode nil
- custom-file null-device
- make-backup-files nil
- help-window-select t
- use-short-answers t
- scroll-conservatively 1
- next-screen-context-lines 0
- native-comp-async-report-warnings-errors nil
- truncate-string-ellipsis "·"
+ auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t))
  cursor-type 'hbar
+ custom-file null-device
+ custom-unlispify-tag-names nil
  enable-recursive-minibuffers t
- auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t)))
+ help-window-select t
+ indent-tabs-mode nil
+ inhibit-startup-echo-area-message "nacho"
+ inhibit-startup-message t
+ make-backup-files nil
+ native-comp-async-report-warnings-errors nil
+ next-screen-context-lines 0
+ ring-bell-function 'ignore
+ scroll-conservatively 1
+ truncate-string-ellipsis "·"
+ use-short-answers t
+ vc-follow-symlinks t
+ visible-bell t)
 
 (server-start)
 (scroll-bar-mode -1)
