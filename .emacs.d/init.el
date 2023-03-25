@@ -1228,6 +1228,35 @@ If no universal argument is passed, assume only one output"
   :config
   (add-to-list 'forge-alist
                '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository))
+  (defun my/forge-browse-ediff-line nil
+    "Open in a browser the active chunk in ediff."
+    (interactive)
+    (let* ((line-a
+            (ediff-with-current-buffer ediff-buffer-A
+              (if (= 0 (buffer-size))
+                  0
+                (line-number-at-pos))))
+           (line-b
+            (ediff-with-current-buffer ediff-buffer-B
+              (if (= 0 (buffer-size))
+                  0
+                (line-number-at-pos))))
+           (filepath
+            (car (split-string
+                  (buffer-name ediff-buffer-A)
+                  ".~")))
+           (pr-url
+            (forge-get-url (forge--pullreq-from-rev (magit-get-current-branch))))
+           (diff-line-url
+            (pcase (eieio-object-class (forge-get-repository nil))
+              ('forge-github-repository
+               (format "%s/files#diff-%sR%d" pr-url (secure-hash 'sha256 filepath) line-b))
+              ('forge-gitlab-repository
+               (format "%s/diffs#%s_%d_%d" pr-url (secure-hash 'sha1 filepath) line-a line-b))
+              (_
+               (user-error "Unsupported forge type")))))
+      (ediff-quit nil)
+      (browse-url diff-line-url)))
   :custom
   (forge-owned-accounts '(("nbarrientos" . nil)
                           ("cernops" . nil))))
