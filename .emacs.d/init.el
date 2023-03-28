@@ -1217,6 +1217,7 @@ If no universal argument is passed, assume only one output"
   (magit-clone-set-remote.pushDefault 'ask)
   (magit-remote-add-set-remote.pushDefault 'ask)
   (magit-list-refs-sortby "-creatordate")
+  (magit-diff-extra-stat-arguments #'magit-diff-use-window-width-as-stat-width)
   (magit-diff-refine-hunk t))
 
 (use-package orgit)
