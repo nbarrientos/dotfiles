@@ -58,6 +58,7 @@ iperf3
 isync
 iw
 jq
+jwt-cli
 keepassxc
 libreoffice-still
 linux
