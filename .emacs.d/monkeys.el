@@ -1,3 +1,31 @@
+;; https://github.com/magit/magit/discussions/4907
+(defun my/monkeys--magit-dis-4907 nil
+  (defun magit-log-format-author-margin (author date &optional previous-line)
+    (pcase-let ((`(,_ ,style ,width ,details ,details-width)
+                 (or magit-buffer-margin
+                     (symbol-value (magit-margin-option)))))
+      (magit-make-margin-overlay
+       (concat (and details
+                    (concat (magit--propertize-face
+                             (truncate-string-to-width
+                              (or author "")
+                              details-width
+                              nil ?\s t)
+                             'magit-log-author)
+                            " "))
+               (magit--propertize-face
+                (if (stringp style)
+                    (format-time-string
+                     style
+                     (seconds-to-time (string-to-number date)))
+                  (pcase-let* ((abbr (eq style 'age-abbreviated))
+                               (`(,cnt ,unit) (magit--age date abbr)))
+                    (format (format (if abbr "%%2i%%-%ic" "%%2i %%-%is")
+                                    (- width (if details (1+ details-width) 0)))
+                            cnt unit)))
+                'magit-log-date))
+       previous-line))))
+
 ;; https://github.com/ch11ng/exwm/pull/900
 (defun my/monkeys--exwm-pr-900 nil
   (defun exwm-input--on-ButtonPress (data _synthetic)
