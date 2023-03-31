@@ -933,6 +933,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 (use-package nhexl-mode)
 
+(use-package dockerfile-mode)
+
 ;;;; Misc
 (use-package editorconfig
   :config
