@@ -1393,14 +1393,6 @@ If no universal argument is passed, assume only one output"
   (setq mu4e-headers-unread-mark '("u" . "☘"))
   (setq mu4e-headers-list-mark '("s" . ""))
   (setq mu4e-headers-personal-mark '("p" . ""))
-  ;; These three labels are used in the mode line, prefixing the
-  ;; search query. I'd prefer not to clutter the mode line. Another
-  ;; option would be to set `mu4e-use-fancy-chars' to nil but this
-  ;; affects also other views where I like seeing fancy chars.
-  (setq mu4e-headers-threaded-label '("T" . ""))
-  (setq mu4e-headers-full-label '("F" . ""))
-  (setq mu4e-headers-related-label '("R" . ""))
-  (setq mu4e-headers-skip-duplicates-label '("U" . ""))
   (setq user-mail-address "nacho.barrientos@cern.ch")
   (setq user-full-name "Nacho Barrientos")
   (setq message-send-mail-function 'sendmail-send-it)
