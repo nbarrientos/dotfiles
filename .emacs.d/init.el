@@ -1369,6 +1369,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-bookmarks
    '(( :name "Unread messages in INBOX"
        :query "maildir:/.*INBOX/ and flag:unread"
+       :favorite t
        :key ?i)
      ( :name  "All unread messages"
        :query "flag:unread and not flag:trashed and not maildir:\"/cern/Junk E-Mail\""
