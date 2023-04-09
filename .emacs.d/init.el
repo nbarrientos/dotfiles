@@ -1819,11 +1819,13 @@ and adapted to use simulations keys to have a common yank keystroke."
        (or (eq 'ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (my/multi-compile--cern-module-p)) .
        (("all-tests" . ,(my/multi-compile--bundle-rake 'cern "test"))
+        ("generate-reference" . ,(my/multi-compile--bundle-rake 'cern "strings:generate:reference"))
         ("bundle-update" . ,(my/multi-compile--bundle 'cern "update"))))
      ((and
        (or (eq 'ruby-mode major-mode) (eq 'puppet-mode major-mode))
        (not (my/multi-compile--cern-module-p))) .
        (("all-tests" . ,(my/multi-compile--bundle-rake 'upstream "test"))
+        ("generate-reference" . ,(my/multi-compile--bundle-rake 'upstream "strings:generate:reference"))
         ("bundle-update" . ,(my/multi-compile--bundle 'upstream "update"))))
      ;; Single test runs when it's a SPEC file
      ((string-match ".+it-puppet.+_spec\\.rb$" (or buffer-file-name "")) .
