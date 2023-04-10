@@ -1296,10 +1296,6 @@ If no universal argument is passed, assume only one output"
       (progn
         (setq my-saved-window-configuration (current-window-configuration))
         (delete-other-windows))))
-  :config
-  (add-to-list 'display-buffer-alist
-               '("\\*mu4e-article\\*" .
-                 (display-buffer-use-some-window . (inhibit-same-window t))))
   :custom
   (switch-to-buffer-preserve-window-point nil)
   (split-width-threshold nil)
