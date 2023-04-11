@@ -1338,7 +1338,7 @@ If no universal argument is passed, assume only one output"
   :custom
   (read-mail-command 'mu4e)
   (mu4e-change-filenames-when-moving t)
-  (mu4e-modeline-support nil)
+  (mu4e-modeline-show-global nil)
   (mu4e-confirm-quit t)
   (mu4e-update-interval (* 5 60))
   ;; (mu4e-html2text-command "lynx -dump -stdin")
