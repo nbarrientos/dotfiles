@@ -715,7 +715,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (setq modus-themes-bold-constructs t)
   (setq modus-themes-mixed-fonts nil)
   (setq modus-themes-common-palette-overrides
-        `((fringe unspecified)
+        `((cursor blue-intense)
+          (fringe unspecified)
           (underline-link unspecified)
           (underline-link-visited unspecified)
           (underline-link-symbolic unspecified)
