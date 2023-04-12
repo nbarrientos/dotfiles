@@ -693,6 +693,23 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (("C-n" . hippie-expand))
   :config
   (global-unset-key (kbd "M-/"))
+  (defun my/try-expand-by-dict (old)
+    (when (derived-mode-p 'text-mode)
+      (let ((ispell-complete-word-dict
+             (concat "/usr/share/dict/" ispell-current-dictionary)))
+        (unless old
+          (he-init-string (he-lisp-symbol-beg) (point))
+          (if (not (he-string-member he-search-string he-tried-table))
+              (setq he-tried-table (cons he-search-string he-tried-table)))
+          (setq he-expand-list
+                (and (not (equal he-search-string ""))
+                     (ispell-lookup-words
+                      (buffer-substring-no-properties (he-lisp-symbol-beg) (point))))))
+        (if (null he-expand-list)
+            (if old (he-reset-string))
+          (he-substitute-string (car he-expand-list))
+          (setq he-expand-list (cdr he-expand-list))
+          t))))
   :custom
   (hippie-expand-try-functions-list
    '(yas-hippie-try-expand
@@ -705,7 +722,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
      try-expand-list
      try-expand-line
      try-complete-lisp-symbol-partially
-     try-complete-lisp-symbol)))
+     try-complete-lisp-symbol
+     my/try-expand-by-dict)))
 
 ;;; Look and feel
 (use-package modus-themes
