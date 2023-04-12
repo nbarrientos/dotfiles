@@ -716,6 +716,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (setq modus-themes-mixed-fonts nil)
   (setq modus-themes-common-palette-overrides
         `((cursor blue-intense)
+          (bg-paren-match bg-magenta-subtle)
           (fringe unspecified)
           (fg-region unspecified)
           (bg-region bg-lavender)
