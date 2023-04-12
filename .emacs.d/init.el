@@ -718,6 +718,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
         `((cursor blue-intense)
           (fringe unspecified)
           (fg-region unspecified)
+          (bg-region bg-lavender)
           (underline-link unspecified)
           (underline-link-visited unspecified)
           (underline-link-symbolic unspecified)
