@@ -750,6 +750,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/modus-themes-customize-faces ()
     (modus-themes-with-colors
       (custom-set-faces
+       `(consult-file ((,c :weight normal)))
        `(doom-modeline-buffer-file ((,c :foreground ,blue-faint :inherit nil)))
        `(doom-modeline-buffer-major-mode ((,c :foreground ,blue-warmer)))
        `(doom-modeline-time ((,c :foreground ,fg-dim)))
