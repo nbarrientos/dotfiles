@@ -480,8 +480,8 @@ The 'circular' list is defined in the variable
                '(file none))
   (add-to-list 'marginalia-annotator-registry
                '(project-file none))
-  (add-to-list 'marginalia-command-categories
-               '(eradio-play . radiostation))
+  (add-to-list 'marginalia-prompt-categories
+               '("\\<channel\\>" . radiostation))
   (add-to-list 'marginalia-command-categories
                '(mu4e~headers-jump-to-maildir . maildir)))
 
