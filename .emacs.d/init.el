@@ -783,6 +783,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
               (doom-modeline-set-modeline 'my-modeline 'default)))
   (doom-modeline-mode 1)
   :custom
+  (doom-modeline-icon nil)
   (doom-modeline-height 30)
   (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-highlight-modified-buffer-name nil)
