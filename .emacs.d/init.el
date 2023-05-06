@@ -608,56 +608,43 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package all-the-icons
+(use-package nerd-icons
   :config
-  (assoc-delete-all "^\\." all-the-icons-regexp-icon-alist)
-  (add-to-list 'all-the-icons-mode-icon-alist
-               '('puppet-mode all-the-icons-fileicon "api-blueprint"
-                 :face all-the-icons-yellow))
-  (add-to-list 'all-the-icons-extension-icon-alist
-               '("pp" all-the-icons-fileicon "api-blueprint"
-                 :face all-the-icons-yellow))
-  (add-to-list 'all-the-icons-extension-icon-alist
-               '("epp" all-the-icons-fileicon "api-blueprint"
-                 :face all-the-icons-blue))
-  (add-to-list 'all-the-icons-extension-icon-alist
-               '("erb" all-the-icons-fileicon "api-blueprint"
-                 :face all-the-icons-orange))
-  ;; Pending https://github.com/domtronn/all-the-icons.el/pull/267
-  (add-to-list 'all-the-icons-mode-icon-alist
+  (assoc-delete-all "^\\." nerd-icons-regexp-icon-alist)
+  (add-to-list 'nerd-icons-extension-icon-alist
+               '("epp" nerd-icons-sucicon "nf-custom-puppet"
+                 :face nerd-icons-blue))
+  (add-to-list 'nerd-icons-extension-icon-alist
+               '("erb" nerd-icons-sucicon "nf-custom-puppet"
+                 :face nerd-icons-orange))
+  (add-to-list 'nerd-icons-mode-icon-alist
                '(exwm-mode
-                 all-the-icons-octicon "browser"
-                 :v-adjust 0.1 :face all-the-icons-purple)))
+                 nerd-icons-codicon "nf-cod-browser"
+                 :face nerd-icons-purple)))
 
-(use-package all-the-icons-completion
-  :after (all-the-icons)
+(use-package nerd-icons-completion
+  :after (nerd-icons)
   :init
-  (all-the-icons-completion-mode)
+  (nerd-icons-completion-mode)
   :hook
-  ((marginalia-mode . #'all-the-icons-completion-marginalia-setup))
+  ((marginalia-mode . #'nerd-icons-completion-marginalia-setup))
   :config
-  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql radiostation)))
+  (cl-defmethod nerd-icons-completion-get-icon (cand (_cat (eql radiostation)))
     "Return the icon for the candidate CAND of completion category radiostation."
-    (concat (all-the-icons-octicon
-             "broadcast"
-             :face 'all-the-icons-blue
-             :v-adjust 0.1
-             :height 0.9)
+    (concat (nerd-icons-octicon
+             "nf-oct-broadcast"
+             :face 'nerd-icons-blue)
             " "))
-  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql project-file)))
+  (cl-defmethod nerd-icons-completion-get-icon (cand (_cat (eql project-file)))
     "Return the icon for the candidate CAND of completion category project."
-    (concat (all-the-icons-octicon
-             "git-branch"
-             :face 'all-the-icons-blue
-             :v-adjust 0.1
-             :height 0.9)
+    (concat (nerd-icons-octicon
+             "nf-oct-git_branch"
+             :face 'nerd-icons-blue)
             " "))
-  (cl-defmethod all-the-icons-completion-get-icon (cand (_cat (eql maildir)))
+  (cl-defmethod nerd-icons-completion-get-icon (cand (_cat (eql maildir)))
     "Return the icon for the candidate CAND of completion category maildir."
-    (concat (all-the-icons-octicon
-             "inbox"
-             :v-adjust 0.1
-             :height 0.9)
+    (concat (nerd-icons-octicon
+             "nf-oct-inbox")
             " ")))
 
 (use-package avy
@@ -783,7 +770,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
               (doom-modeline-set-modeline 'my-modeline 'default)))
   (doom-modeline-mode 1)
   :custom
-  (doom-modeline-icon nil)
   (doom-modeline-height 30)
   (doom-modeline-buffer-modification-icon nil)
   (doom-modeline-highlight-modified-buffer-name nil)
