@@ -1723,7 +1723,8 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (eshell))))
 
   (my/monkeys--exwm-pr-900)
-  (exwm-enable))
+  (exwm-enable)
+  (exwm-init))
 
 (use-package time
   :ensure nil
