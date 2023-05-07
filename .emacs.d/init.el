@@ -483,7 +483,7 @@ The 'circular' list is defined in the variable
   (add-to-list 'marginalia-prompt-categories
                '("\\<channel\\>" . radiostation))
   (add-to-list 'marginalia-command-categories
-               '(mu4e~headers-jump-to-maildir . maildir)))
+               '(mu4e-search-maildir . maildir)))
 
 (use-package recentf
   :ensure nil
