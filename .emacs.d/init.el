@@ -1709,8 +1709,8 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (eshell))))
 
   (my/monkeys--exwm-pr-900)
-  (exwm-enable)
-  (exwm-init))
+  (setq xcb:connection-timeout 10)
+  (exwm-enable))
 
 (use-package time
   :ensure nil
