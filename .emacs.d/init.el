@@ -1100,7 +1100,9 @@ send a notification when the process has exited."
                cmd
                nil
                (lambda (name-of-mode)
-                 (generate-new-buffer-name (concat "D# " cmd))))))
+                 (if (eq major-mode 'compilation-mode)
+                     (buffer-name)
+                     (generate-new-buffer-name (concat "D# " cmd)))))))
         (when (equal arg 4)
           (with-current-buffer compilation-buffer
             (switch-to-prev-buffer (get-buffer-window (current-buffer)))
