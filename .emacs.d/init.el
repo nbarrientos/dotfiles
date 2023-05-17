@@ -620,9 +620,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (add-to-list 'nerd-icons-mode-icon-alist
                '(exwm-mode
                  nerd-icons-codicon "nf-cod-browser"
-                 :face nerd-icons-purple))
-  ;; Pending https://github.com/rainstormstudio/nerd-icons.el/issues/18
-  (assoc-delete-all 'web-mode nerd-icons-mode-icon-alist))
+                 :face nerd-icons-purple)))
 
 (use-package nerd-icons-completion
   :after (nerd-icons)
