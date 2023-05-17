@@ -573,15 +573,15 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/consult-buffer-firefox (arg)
     "Use consult to select a Firefox buffer."
     (interactive "P")
-    (my/consult-buffer-by-prefix "f" this-command arg))
+    (my/consult-buffer-by-prefix "F" this-command arg))
   (defun my/consult-buffer-ansi-term (arg)
     "Use consult to select an ansi-term buffer."
     (interactive "P")
-    (my/consult-buffer-by-prefix "u" this-command arg))
+    (my/consult-buffer-by-prefix "U" this-command arg))
   (defun my/consult-buffer-detached-command (arg)
     "Use consult to select a compilation buffer."
     (interactive "P")
-    (my/consult-buffer-by-prefix "d" this-command arg)))
+    (my/consult-buffer-by-prefix "D" this-command arg)))
 
 (use-package consult-flycheck)
 
