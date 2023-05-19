@@ -809,6 +809,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
          :map lispy-mode-map-special
          ("v" . special-lispy-ace-paren)))
 
+(use-package clojure-mode)
+
 (use-package ruby-mode
   :ensure nil
   :hook ((ruby-mode . (lambda ()
