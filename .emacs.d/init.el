@@ -993,7 +993,7 @@ specified then localhost is used."
            (term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name program nil switches)))
       (set-buffer term-ansi-buffer-name)
       (term-mode)
-      (term-line-mode)
+      (term-char-mode)
       (with-current-buffer term-ansi-buffer-name
         (setq-local kill-buffer-query-functions nil)
         (rename-buffer (substring (buffer-name) 1 -1)))
