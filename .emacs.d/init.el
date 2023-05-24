@@ -416,6 +416,7 @@ The 'circular' list is defined in the variable
   :custom
   (dired-listing-switches "-NGalhv --group-directories-first")
   (dired-auto-revert-buffer t)
+  (dired-dwim-target t)
   (dired-kill-when-opening-new-dired-buffer t))
 
 (use-package dired-subtree
