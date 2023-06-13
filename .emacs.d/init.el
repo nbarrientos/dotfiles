@@ -1106,8 +1106,9 @@ send a notification when the process has exited."
                  (if (eq major-mode 'compilation-mode)
                      (buffer-name)
                      (generate-new-buffer-name (concat "D# " cmd)))))))
-        (when (equal arg 4)
-          (with-current-buffer compilation-buffer
+        (with-current-buffer compilation-buffer
+          (setq list-buffers-directory default-directory)
+          (when (equal arg 4)
             (switch-to-prev-buffer (get-buffer-window (current-buffer)))
             (setq-local compilation-finish-functions
                         `((lambda (buffer str)
