@@ -970,9 +970,11 @@ It just guesses as the filename for the spec is rather arbitrary."
   (defun my/term-toggle-line-and-char-mode ()
     "Toggles term between line char and line mode."
     (interactive)
-    (if (term-in-line-mode)
-        (term-char-mode)
-      (term-line-mode)))
+    (if (derived-mode-p 'term-mode)
+        (if (term-in-line-mode)
+            (term-char-mode)
+          (term-line-mode))
+      (user-error "This is not a term, maybe s-C?")))
   (defun my/remote-or-local-term (fqdn)
     "Invokes an ansi-term on FQDN.
 
