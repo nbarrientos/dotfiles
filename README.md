@@ -24,7 +24,7 @@ interesting.
 
   * [Sourcehut](https://git.sr.ht/~nbarrientos/dotfiles) (main)
   * [GitHub](https://github.com/nbarrientos/dotfiles) (mirror)
-  * [GitLab](https://gitlab.com/nbarrientos/dotfiles) (mirror)
+  * [CERN's GitLab](https://gitlab.cern.ch/ibarrien/dotfiles) (mirror)
 
 # How to deploy
 
