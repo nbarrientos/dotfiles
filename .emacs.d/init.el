@@ -966,6 +966,18 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 (use-package package-lint)
 
+(use-package spdx
+  :config
+  ;; Pending https://github.com/condy0919/spdx.el/issues/14
+  (defun spdx-copyright-format ()
+  "Prompt for SPDX Copyright line, with a guess for the default line."
+  (let ((prefix "SPDX-FileCopyrightText: "))
+    (concat prefix
+            (read-from-minibuffer
+             prefix
+             (or (spdx-get-existing-copyright)
+                 (spdx-make-default-copyright)))))))
+
 ;;; Term
 (use-package term
   :ensure nil
