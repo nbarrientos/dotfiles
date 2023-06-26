@@ -978,6 +978,11 @@ It just guesses as the filename for the spec is rather arbitrary."
              (or (spdx-get-existing-copyright)
                  (spdx-make-default-copyright)))))))
 
+(use-package license-snippets
+  :after yasnippet
+  :init
+  (license-snippets-init))
+
 ;;; Term
 (use-package term
   :ensure nil
