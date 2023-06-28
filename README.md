@@ -31,7 +31,7 @@ interesting.
 Clone the dotfiles:
 
 ```
-sudo pacman -S --noconfirm git
+sudo pacman -S --noconfirm git stow
 git clone https://git.sr.ht/~nbarrientos/dotfiles ~/.dotfiles
 ```
 
