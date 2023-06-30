@@ -967,11 +967,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package package-lint)
 
 (use-package spdx
-  :config
-  ;; Pending https://github.com/condy0919/spdx.el/issues/14
-  (advice-add 'spdx-copyright-format :filter-return
-              (lambda (copyright)
-                (replace-regexp-in-string "^Copyright" "SPDX-FileCopyrightText:" copyright))))
+  :custom
+  (spdx-copyright-name "SPDX-FileCopyrightText: "))
 
 (use-package license-snippets
   :after yasnippet
