@@ -1486,12 +1486,17 @@ If no universal argument is passed, assume only one output"
 
 (use-package engine-mode
   :config
+  (defun my/engine-mode-exact-phrase-transform (search-term)
+    (if current-prefix-arg
+        (concat "\"" search-term "\"")
+      search-term))
   (defengine archwiki
     "https://wiki.archlinux.org/index.php?search=%s"
     :keybinding "a")
   (defengine duckduckgo
     "https://duckduckgo.com/html?q=%s"
-    :keybinding "d")
+    :keybinding "d"
+    :term-transformation-hook my/engine-mode-exact-phrase-transform)
   (defengine github
     "https://github.com/search?ref=simplesearch&q=%s"
     :keybinding "h")
@@ -1500,7 +1505,8 @@ If no universal argument is passed, assume only one output"
     :keybinding "l")
   (defengine google
     "http://www.google.com/search?hl=en&ie=utf-8&oe=utf-8&q=%s"
-    :keybinding "g")
+    :keybinding "g"
+    :term-transformation-hook my/engine-mode-exact-phrase-transform)
   (defengine duckduckgo-first
     "https://duckduckgo.com/html?q=\\%s"
     :keybinding "f")
