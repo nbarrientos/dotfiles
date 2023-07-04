@@ -938,10 +938,11 @@ It just guesses as the filename for the spec is rather arbitrary."
   :bind (:map sql-mode-map
               ("C-c C-f" . sqlformat))
   :hook ((sql-interactive-mode . sql-rename-buffer))
+  :custom
+  (sql-mysql-options '("--prompt=mysql> "))
   :config
   (add-to-list 'sql-postgres-login-params 'port t)
-  (add-to-list 'sql-mysql-login-params 'port t)
-  (sql-set-product-feature 'mysql :prompt-regexp "^\\(MariaDB\\|MySQL\\) \\[[_a-zA-Z]*\\]> "))
+  (add-to-list 'sql-mysql-login-params 'port t))
 
 (use-package sqlformat
   :custom
