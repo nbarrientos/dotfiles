@@ -939,7 +939,9 @@ It just guesses as the filename for the spec is rather arbitrary."
               ("C-c C-f" . sqlformat))
   :hook ((sql-interactive-mode . sql-rename-buffer))
   :config
-  (add-to-list 'sql-postgres-login-params 'port t))
+  (add-to-list 'sql-postgres-login-params 'port t)
+  (add-to-list 'sql-mysql-login-params 'port t)
+  (sql-set-product-feature 'mysql :prompt-regexp "^\\(MariaDB\\|MySQL\\) \\[[_a-zA-Z]*\\]> "))
 
 (use-package sqlformat
   :custom
