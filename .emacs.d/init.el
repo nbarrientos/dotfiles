@@ -968,7 +968,7 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 (use-package spdx
   :custom
-  (spdx-copyright-name "SPDX-FileCopyrightText: "))
+  (spdx-copyright-prefix "SPDX-FileCopyrightText: "))
 
 (use-package license-snippets
   :after yasnippet
