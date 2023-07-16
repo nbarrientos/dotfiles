@@ -1366,6 +1366,13 @@ If no universal argument is passed, assume only one output"
           . (lambda ()
               (save-excursion
                 (replace-regexp "^-- $" "--")))))
+  :hook (mu4e-compose-mode
+         . (lambda ()
+             (when (eq mu4e-compose-type 'edit)
+               (save-excursion
+                 (message-position-on-field "Date" "Subject")
+                 (delete-line)
+                 (insert (mu4e~draft-header "Date" (message-make-date)))))))
   :custom
   (read-mail-command 'mu4e)
   (mu4e-change-filenames-when-moving t)
