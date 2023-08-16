@@ -221,9 +221,9 @@
               :filter-args
               (lambda (args)
                 "Abbreviates project paths."
-                (when (consp (car args))
-                  (pcase-let ((`(,type . ,path) (car args)))
-                    (setcar args (cons type (abbreviate-file-name path)))))
+                (when (listp (car args))
+                  (pcase-let ((`(,type ,backend ,path) (car args)))
+                    (setcar args (list type backend (abbreviate-file-name path)))))
                 args))
   :custom
   (project-switch-commands
