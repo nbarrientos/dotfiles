@@ -1807,9 +1807,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   :ensure nil
   :config
   (defun my/colorize-compilation-buffer ()
-    (toggle-read-only)
+    (read-only-mode 'toggle)
     (ansi-color-apply-on-region compilation-filter-start (point))
-    (toggle-read-only))
+    (read-only-mode 'toggle))
   (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
   :custom
   (compilation-ask-about-save nil)
