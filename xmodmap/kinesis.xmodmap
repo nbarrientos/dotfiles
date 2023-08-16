@@ -8,7 +8,7 @@ add Lock = Caps_Lock
 keycode 119 = Super_L
 
 ! Swap Alt_R and Control_R
-clear Control
-clear mod1
-add Control = Control_L Alt_R
-add mod1 = Alt_L Control_R
+!clear Control
+!clear mod1
+!add Control = Control_L Alt_R
+!add mod1 = Alt_L Control_R
