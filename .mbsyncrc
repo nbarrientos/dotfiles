@@ -19,9 +19,9 @@ Path ~/mail/cern/
 Inbox ~/mail/cern/INBOX
 
 IMAPAccount criptonita
-Host mail.gandi.net
+Host mail.infomaniak.com
 User mail@criptonita.com
-PassCmd "/usr/bin/secret-tool lookup host mail.gandi.net account mail@criptonita.com"
+PassCmd "/usr/bin/secret-tool lookup host mail.infomaniak.com account mail@criptonita.com"
 AuthMechs PLAIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
