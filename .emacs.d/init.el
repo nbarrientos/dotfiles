@@ -1736,7 +1736,6 @@ and adapted to use simulations keys to have a common yank keystroke."
             (lambda ()
               (progn
                 (split-window-right)
-                (start-process-shell-command "xkbcomp" nil "xkbcomp -I/home/nacho/.xkb -w 0 /home/nacho/.xkb/keymap/kinesis $DISPLAY")
                 (start-process "keepassxc" nil "keepassxc")
                 (start-process "pasystray" nil "pasystray")
                 (start-process "dunst" nil "dunst")
