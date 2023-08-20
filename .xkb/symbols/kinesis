@@ -1,0 +1,10 @@
+partial alphanumeric_keys
+xkb_symbols "swap_super_delete" {
+  key <DELE> { [ Super_L ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "swap_f8_caps" {
+  key <CAPS> { [ F8 ] };
+  key <FK08> { [ Caps_Lock ] };
+};
