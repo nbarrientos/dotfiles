@@ -1741,7 +1741,6 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (start-process "dunst" nil "dunst")
                 (eshell))))
 
-  (my/monkeys--exwm-pr-900)
   (setq xcb:connection-timeout 10)
   (exwm-enable))
 
