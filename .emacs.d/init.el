@@ -870,7 +870,7 @@ It just guesses as the filename for the spec is rather arbitrary."
       (dolist (test-type '("classes" "defines" "type_aliases" "acceptance"))
         (let ((spec-file (format almost-spec-file test-type)))
           (when (file-regular-p spec-file)
-            (find-file (format spec-file test-type))))))))
+            (find-file-other-window (format spec-file test-type))))))))
 
 (use-package rspec-mode)
 
