@@ -1515,7 +1515,7 @@ If no universal argument is passed, assume only one output"
     :keybinding "g"
     :term-transformation-hook my/engine-mode-exact-phrase-transform)
   (defengine duckduckgo-first
-    "https://duckduckgo.com/html?q=\\%s"
+    "https://duckduckgo.com/html?q=!%s"
     :keybinding "f")
   (defengine google-maps
     "https://www.google.com/maps/search/%s/"
