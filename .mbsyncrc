@@ -121,10 +121,6 @@ Channel cern-centos-devel
 Far :cern-remote:centos-devel
 Near :cern-local:centos-devel
 
-Channel cern-etf
-Far :cern-remote:etf
-Near :cern-local:etf
-
 Channel cern-isync-devel
 Far :cern-remote:isync-devel
 Near :cern-local:isync-devel
@@ -176,7 +172,6 @@ Channel cern-building-31
 Channel cern-c5-minutes
 Channel cern-centos-devel
 Channel cern-cern-personnel
-Channel cern-etf
 Channel cern-gitlab
 Channel cern-isync-devel
 Channel cern-it-dep
