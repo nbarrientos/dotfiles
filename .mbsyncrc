@@ -145,6 +145,10 @@ Channel cern-alma-sec
 Far :cern-remote:alma-sec
 Near :cern-local:alma-sec
 
+Channel cern-mig
+Far :cern-remote:mig
+Near :cern-local:mig
+
 Channel criptonita-inbox
 Far :criptonita-remote:INBOX
 Near :criptonita-local:INBOX
@@ -178,6 +182,7 @@ Channel cern-isync-devel
 Channel cern-it-dep
 Channel cern-linux-users
 Channel cern-market
+Channel cern-mig
 Channel cern-oss-security
 Channel cern-puppet-dev
 Channel cern-puppet-users
