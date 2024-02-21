@@ -14,6 +14,7 @@ binutils
 bison
 bluez-utils
 byzanz
+cameractrls
 ccid
 chrony
 cpio
@@ -45,6 +46,7 @@ git
 gnu-free-fonts
 go
 grub
+helm
 hexedit
 hplip
 htop
@@ -60,6 +62,7 @@ iw
 jq
 jwt-cli
 keepassxc
+kubectl
 libreoffice-still
 linux
 linux-firmware
@@ -67,6 +70,7 @@ lsof
 lynx
 m4
 make
+mariadb-clients
 mediainfo
 mlocate
 mplayer
@@ -77,6 +81,7 @@ msmtp-mta
 mtools
 mtr
 ncdu
+ncftp
 neofetch
 net-tools
 netctl
@@ -90,6 +95,7 @@ openbsd-netcat
 openldap
 openssh
 os-prober
+p7zip
 pacman-contrib
 pamixer
 parted
@@ -120,6 +126,7 @@ rpm-tools
 rsync
 ruby2.7
 rxvt-unicode
+schemacrawler
 screenfetch
 scrot
 shellcheck
@@ -133,18 +140,18 @@ tcpdump
 telegram-desktop
 terminus-font
 texinfo
+texlive-basic
 texlive-bibtexextra
-texlive-core
 texlive-fontsextra
 texlive-formatsextra
 texlive-games
 texlive-humanities
 texlive-latexextra
+texlive-mathscience
 texlive-music
 texlive-pictures
 texlive-pstricks
 texlive-publishers
-texlive-science
 ttc-iosevka
 ttf-dejavu
 ttf-hack
@@ -160,6 +167,7 @@ vlc
 wget
 which
 whois
+wireless_tools
 words
 wpa_supplicant
 xclip
