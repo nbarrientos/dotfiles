@@ -1259,7 +1259,7 @@ If no universal argument is passed, assume only one output"
 (use-package forge
   :after magit
   :bind (:map forge-topic-mode-map
-              ("C-c C-a" . forge-edit-topic-assignees))
+              ("C-c C-a" . forge-topic-set-assignees))
   :config
   (add-to-list 'forge-alist
                '("gitlab.cern.ch" "gitlab.cern.ch/api/v4" "gitlab.cern.ch" forge-gitlab-repository))
