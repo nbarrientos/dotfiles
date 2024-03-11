@@ -976,7 +976,8 @@ It just guesses as the filename for the spec is rather arbitrary."
   :init
   (license-snippets-init))
 
-(use-package kubel)
+(use-package kubel
+  :defer t)
 
 ;;; Term
 (use-package term
