@@ -1969,6 +1969,10 @@ and adapted to use simulations keys to have a common yank keystroke."
 (use-package ox-gfm
   :after org)
 
+(use-package ob-eshell
+  :after org
+  :ensure nil)
+
 ;;; Notifications
 (use-package notifications
   :ensure nil)
