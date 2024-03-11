@@ -883,7 +883,11 @@ It just guesses as the filename for the spec is rather arbitrary."
 ;;;; Markup, scripting and conf
 (use-package json-mode)
 
-(use-package yaml-mode)
+(use-package yaml-pro)
+
+(use-package yaml-mode
+  :config
+  (add-hook 'yaml-mode-hook 'yaml-pro-ts-mode 100))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
