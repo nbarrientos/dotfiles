@@ -766,7 +766,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (setq doom-modeline-mode-alist nil)
   (doom-modeline-def-modeline 'my-modeline
     '(bar matches buffer-info remote-host buffer-position)
-    '(misc-info time irc debug input-method major-mode process checker))
+    '(misc-info time irc debug input-method major-mode process check))
   (add-hook 'doom-modeline-mode-hook
             (lambda nil
               (doom-modeline-set-modeline 'my-modeline 'default)))
