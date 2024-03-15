@@ -69,6 +69,7 @@
 (global-set-key (kbd "C-<next>") 'end-of-buffer)
 (global-set-key (kbd "C-x o") 'delete-blank-lines)
 (global-set-key (kbd "C-x C-o") 'delete-indentation)
+(global-set-key (kbd "C-x C-d") 'duplicate-dwim)
 (global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
 
 (add-to-list 'yank-excluded-properties 'face)
