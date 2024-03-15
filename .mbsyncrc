@@ -45,6 +45,10 @@ Channel cern-spam
 Far ":cern-remote:Junk E-Mail"
 Near ":cern-local:Junk E-Mail"
 
+Channel cern-activemq-dev
+Far :cern-remote:activemq-dev
+Near :cern-local:activemq-dev
+
 Channel cern-ai-admins
 Far :cern-remote:ai-admins
 Near :cern-local:ai-admins
@@ -161,6 +165,7 @@ Channel criptonita-inbox
 Channel criptonita-gmail
 
 Group prio-1
+Channel cern-activemq-dev
 Channel cern-ai-admins
 Channel cern-ai-config-team
 Channel cern-ai-jira
