@@ -884,7 +884,9 @@ It just guesses as the filename for the spec is rather arbitrary."
 ;;;; Markup, scripting and conf
 (use-package json-mode)
 
-(use-package yaml-pro)
+(use-package yaml-pro
+  :custom
+  (yaml-pro-ts-path-element-separator ?·))
 
 (use-package yaml-mode
   :config
