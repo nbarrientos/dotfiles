@@ -1986,7 +1986,8 @@ and adapted to use simulations keys to have a common yank keystroke."
                              :secret))))
   :bind
   (("s-(" . #'my/desk-lamp-brightness-down)
-   ("s-)" . #'my/desk-lamp-brightness-up))
+   ("s-)" . #'my/desk-lamp-brightness-up)
+   ("s-*" . #'my/desk-lamp-off))
   :config
   (defun my/desk-lamp-brightness-up ()
     (interactive)
@@ -1994,6 +1995,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/desk-lamp-brightness-down ()
     (interactive)
     (my/desk-lamp-brightness-step-pct -5))
+  (defun my/desk-lamp-off ()
+    (interactive)
+    (my/desk-lamp-brightness-step-pct -100))
   (defun my/desk-lamp-brightness-step-pct (level &optional zone)
     (let ((zone (or zone "mezzanine")))
       (hass-call-service-with-payload
