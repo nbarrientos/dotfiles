@@ -1994,11 +1994,12 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/desk-lamp-brightness-down ()
     (interactive)
     (my/desk-lamp-brightness-step-pct -5))
-  (defun my/desk-lamp-brightness-step-pct (level)
-    (hass-call-service-with-payload
-     "light.turn_on"
-     (format "{\"area_id\": \"mezzanine\", \"brightness_step_pct\": %d}" level))
-    (message "Brightness level adjusted by %+d%%" level)))
+  (defun my/desk-lamp-brightness-step-pct (level &optional zone)
+    (let ((zone (or zone "mezzanine")))
+      (hass-call-service-with-payload
+       "light.turn_on"
+       (format "{\"area_id\": \"%s\", \"brightness_step_pct\": %d}" zone level))
+      (message "Brightness level in '%s' adjusted by %+d%%" zone level))))
 
 ;;; Notifications
 (use-package notifications
