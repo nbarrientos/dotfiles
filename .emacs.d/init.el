@@ -1976,6 +1976,30 @@ and adapted to use simulations keys to have a common yank keystroke."
   :after org
   :ensure nil)
 
+;;; Home Assistant
+(use-package hass
+  :custom
+  (hass-insecure t)
+  (hass-apikey (lambda ()
+                 (funcall
+                  (plist-get (car (auth-source-search :type 'secrets :host hass-host))
+                             :secret))))
+  :bind
+  (("s-(" . #'my/desk-lamp-brightness-down)
+   ("s-)" . #'my/desk-lamp-brightness-up))
+  :config
+  (defun my/desk-lamp-brightness-up ()
+    (interactive)
+    (my/desk-lamp-brightness-step-pct 5))
+  (defun my/desk-lamp-brightness-down ()
+    (interactive)
+    (my/desk-lamp-brightness-step-pct -5))
+  (defun my/desk-lamp-brightness-step-pct (level)
+    (hass-call-service-with-payload
+     "light.turn_on"
+     (format "{\"area_id\": \"mezzanine\", \"brightness_step_pct\": %d}" level))
+    (message "Brightness level adjusted by %+d%%" level)))
+
 ;;; Notifications
 (use-package notifications
   :ensure nil)
