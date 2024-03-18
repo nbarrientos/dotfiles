@@ -1984,10 +1984,6 @@ and adapted to use simulations keys to have a common yank keystroke."
                  (funcall
                   (plist-get (car (auth-source-search :type 'secrets :host hass-host))
                              :secret))))
-  :bind
-  (("s-(" . #'my/desk-lamp-brightness-down)
-   ("s-)" . #'my/desk-lamp-brightness-up)
-   ("s-*" . #'my/desk-lamp-off))
   :config
   (defun my/desk-lamp-brightness-up ()
     (interactive)
@@ -2003,7 +1999,10 @@ and adapted to use simulations keys to have a common yank keystroke."
       (hass-call-service-with-payload
        "light.turn_on"
        (format "{\"area_id\": \"%s\", \"brightness_step_pct\": %d}" zone level))
-      (message "Brightness level in '%s' adjusted by %+d%%" zone level))))
+      (message "Brightness level in '%s' adjusted by %+d%%" zone level)))
+  (exwm-input-set-key (kbd "s-(") #'my/desk-lamp-brightness-down)
+  (exwm-input-set-key (kbd "s-)") #'my/desk-lamp-brightness-up)
+  (exwm-input-set-key (kbd "s-*") #'my/desk-lamp-off))
 
 ;;; Notifications
 (use-package notifications
