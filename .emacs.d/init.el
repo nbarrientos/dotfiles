@@ -1386,7 +1386,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-confirm-quit t)
   (mu4e-update-interval (* 5 60))
   ;; (mu4e-html2text-command "lynx -dump -stdin")
-  (mu4e-compose-signature " bye\n Nacho\n http://cern.ch/nacho")
+  (message-signature " bye\n Nacho\n http://cern.ch/nacho")
   (mu4e-compose-dont-reply-to-self t)
   (mu4e-maildir-initial-input "")
   (mu4e-hide-index-messages t)
