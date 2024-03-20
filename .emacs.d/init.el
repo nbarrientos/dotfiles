@@ -289,7 +289,8 @@
 
 (use-package simple
   :ensure nil
-  :hook ((prog-mode . auto-fill-mode)))
+  :hook ((prog-mode . auto-fill-mode)
+         (org-mode . auto-fill-mode)))
 
 (use-package expand-region
   :bind ("C-f" . er/expand-region)
