@@ -1431,7 +1431,7 @@ If no universal argument is passed, assume only one output"
        contact)))
   :config
   (setq gnus-visible-headers
-        (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:"))
+        (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:\\|^Message-ID:"))
   (setq gnus-inhibit-images t)
   (setq mu4e-headers-attach-mark '("a" . "📎"))
   (setq mu4e-headers-replied-mark '("R" . "↳"))
