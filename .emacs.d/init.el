@@ -1854,7 +1854,10 @@ and adapted to use simulations keys to have a common yank keystroke."
     (s-contains-p "it-puppet" (or buffer-file-name "")))
 
   (defun my/multi-compile--find-module-root ()
-    (locate-dominating-file buffer-file-name "metadata.json"))
+    (if buffer-file-name
+        (or (buffer-file-name locate-dominating-file "metadata.json")
+            (project-root (current-project)))
+      (project-root (current-project))))
   :custom
   (multi-compile-completion-system 'auto)
   (multi-compile-default-directory-function #'my/multi-compile--find-module-root)
