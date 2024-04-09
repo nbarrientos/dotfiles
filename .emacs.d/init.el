@@ -1855,9 +1855,9 @@ and adapted to use simulations keys to have a common yank keystroke."
 
   (defun my/multi-compile--find-module-root ()
     (if buffer-file-name
-        (or (buffer-file-name locate-dominating-file "metadata.json")
-            (project-root (current-project)))
-      (project-root (current-project))))
+        (or (locate-dominating-file buffer-file-name "metadata.json")
+            (project-root (project-current)))
+      (project-root (project-current))))
   :custom
   (multi-compile-completion-system 'auto)
   (multi-compile-default-directory-function #'my/multi-compile--find-module-root)
