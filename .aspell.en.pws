@@ -1,4 +1,4 @@
-personal_ws-1.1 en 164 
+personal_ws-1.1 en 166 
 AMQP
 APIs
 ARP
@@ -94,6 +94,7 @@ deallocate
 deallocated
 deallocates
 deallocation
+declaratively
 decrypting
 dereferencing
 destructor
@@ -104,6 +105,7 @@ entrypoint
 entrypoints
 formatter
 geocast
+globbing
 hardcode
 hardcoded
 hostgroup
