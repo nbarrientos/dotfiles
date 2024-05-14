@@ -886,8 +886,14 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package json-mode)
 
 (use-package yaml-pro
+  :bind (:map yaml-pro-ts-mode-map
+              ("C-c C-y" . my/yaml-pro-kill-yaml-path))
   :custom
-  (yaml-pro-ts-path-element-separator ?·))
+  (yaml-pro-ts-path-element-separator ?·)
+  :config
+  (defun my/yaml-pro-kill-yaml-path ()
+    (interactive)
+    (kill-new (substring-no-properties (yaml-pro-ts-eldoc)))))
 
 (use-package yaml-mode
   :config
