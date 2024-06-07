@@ -410,6 +410,11 @@ The 'circular' list is defined in the variable
 
 (use-package sudo-edit)
 
+(use-package sops
+  :bind (("C-c C-s" . sops-edit-file))
+  :init
+  (global-sops-mode 1))
+
 ;;; Dired
 (use-package dired
   :ensure nil
