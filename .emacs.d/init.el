@@ -411,7 +411,13 @@ The 'circular' list is defined in the variable
 (use-package sudo-edit)
 
 (use-package sops
-  :bind (("C-c C-s" . sops-edit-file))
+  :bind-keymap ("C-c p" . sops-prefix-map)
+  :bind (:map sops-prefix-map
+         ("e" . sops-edit-file)
+         ("s" . sops-save-file)
+         ("k" . sops-cancel))
+  :config
+  (setq sops-prefix-map (make-sparse-keymap))
   :init
   (global-sops-mode 1))
 
