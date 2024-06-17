@@ -1951,7 +1951,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   :config
   (setq calendar-week-start-day 1)
   :custom
-  (org-agenda-files '("~/org")))
+  (org-agenda-files '("~/org/calendar.org")))
 
 (use-package org-protocol
   :ensure nil
