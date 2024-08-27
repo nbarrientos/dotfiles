@@ -8,7 +8,7 @@ Host outlook.office365.com
 User nacho.barrientos@cern.ch
 AuthMechs XOAUTH2
 Passcmd "/usr/bin/oauth2ms"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore cern-remote
@@ -23,7 +23,7 @@ Host mail.infomaniak.com
 User mail@criptonita.com
 PassCmd "/usr/bin/secret-tool lookup host mail.infomaniak.com account mail@criptonita.com"
 AuthMechs PLAIN
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore criptonita-remote
