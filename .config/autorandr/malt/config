@@ -12,10 +12,10 @@ output VIRTUAL1
 off
 output DP1
 crtc 0
-mode 2560x1440
+mode 3440x1440
 pos 0x0
 primary
-rate 59.95
+rate 59.97
 x-prop-audio auto
 x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
