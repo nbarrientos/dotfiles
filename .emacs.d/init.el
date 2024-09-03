@@ -1345,7 +1345,6 @@ If no universal argument is passed, assume only one output"
   :ensure nil
   :bind (("<f8>" . other-window)
          ("C-<f8>" . window-swap-states)
-         ("M-<f8>" . my/other-window-backwards)
          ("C-x 1" . my/toggle-single-window))
   :init
   (defun my/toggle-single-window ()
@@ -1357,9 +1356,6 @@ If no universal argument is passed, assume only one output"
       (progn
         (setq my-saved-window-configuration (current-window-configuration))
         (delete-other-windows))))
-  (defun my/other-window-backwards ()
-    (interactive)
-    (other-window -1))
   :custom
   (switch-to-buffer-preserve-window-point nil)
   (split-width-threshold nil)
