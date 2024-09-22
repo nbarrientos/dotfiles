@@ -1876,6 +1876,7 @@ and adapted to use simulations keys to have a common yank keystroke."
   (defun my/multi-compile--find-module-root ()
     (if buffer-file-name
         (or (locate-dominating-file buffer-file-name "metadata.json")
+            (locate-dominating-file buffer-file-name "Chart.yaml")
             (project-root (project-current)))
       (project-root (project-current))))
   :custom
@@ -1904,7 +1905,11 @@ and adapted to use simulations keys to have a common yank keystroke."
      ((and
        (string-match "_spec\\.rb$" (or buffer-file-name ""))
        (not (my/multi-compile--cern-module-p))) .
-       (("single-test" . ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path")))))))
+       (("single-test" . ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path"))))
+     ((eq 'yaml-mode major-mode) .
+      (("helm-render-this" . "helm template . -s templates/%file-name")
+       ("helm-render-all" . "helm template .")))
+     )))
 
 (defun my/regenerate-ctags ()
   (interactive)
