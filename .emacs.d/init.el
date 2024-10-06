@@ -1335,6 +1335,8 @@ If no universal argument is passed, assume only one output"
 
 (use-package git-modes)
 
+(use-package gitlab-pipeline)
+
 ;;; Movement and window switching
 (use-package mwim
   :bind
