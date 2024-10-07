@@ -1335,7 +1335,10 @@ If no universal argument is passed, assume only one output"
 
 (use-package git-modes)
 
-(use-package gitlab-pipeline)
+(use-package gitlab-pipeline
+  :after forge
+  :config
+  (transient-insert-suffix 'forge-dispatch "v i" '("v P" "pipeline" gitlab-pipeline-show-sha)))
 
 ;;; Movement and window switching
 (use-package mwim
