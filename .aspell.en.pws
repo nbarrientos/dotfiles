@@ -1,4 +1,4 @@
-personal_ws-1.1 en 166 
+personal_ws-1.1 en 168 
 AMQP
 APIs
 ARP
@@ -86,6 +86,7 @@ backticks
 balancer
 balancers
 bundler
+cardinality
 codec
 codecs
 cronjob
@@ -113,6 +114,7 @@ hostgroups
 hostname
 infobox
 iterable
+kafka
 keymaps
 lockdown
 logrotated
