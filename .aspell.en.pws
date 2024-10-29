@@ -1,4 +1,6 @@
-personal_ws-1.1 en 168 
+personal_ws-1.1 en 175 
+ACL
+ACLs
 AMQP
 APIs
 ARP
@@ -23,6 +25,7 @@ FreeSync
 Freenode
 GPUs
 GitLab
+GitOps
 Grafana
 HTTPS
 Hiera
@@ -60,6 +63,7 @@ SMB
 SMTP
 SNMP
 SSL
+SSO
 SVG
 ServiceNow
 SoC
@@ -101,6 +105,7 @@ dereferencing
 destructor
 destructuring
 eGroup
+egroup
 encodings
 entrypoint
 entrypoints
@@ -116,6 +121,7 @@ infobox
 iterable
 kafka
 keymaps
+keypair
 lockdown
 logrotated
 loopback
@@ -148,6 +154,7 @@ ruleset
 scalable
 screencast
 screencasts
+subcharts
 subexpression
 subhostgroup
 subhostgroups
