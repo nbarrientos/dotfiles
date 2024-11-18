@@ -1,0 +1,10 @@
+encryption:
+    tag: KEYRING
+
+services:
+    microsoft:
+        client_id: 08162f7c-0fd2-4200-a84a-f25a4db0b584
+        client_secret: TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82
+        auth_scope: https://outlook.office.com/IMAP.AccessAsUser.All
+          https://outlook.office.com/SMTP.Send
+        tenant: c80d3499-4a40-4a8c-986e-abce017d6b19

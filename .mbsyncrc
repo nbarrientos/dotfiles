@@ -7,7 +7,7 @@ IMAPAccount CERN
 Host outlook.office365.com
 User nacho.barrientos@cern.ch
 AuthMechs XOAUTH2
-Passcmd "/usr/bin/oauth2ms"
+Passcmd "/usr/bin/oama access nacho.barrientos@cern.ch"
 TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
