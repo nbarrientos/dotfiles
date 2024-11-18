@@ -7,4 +7,5 @@ services:
         client_secret: TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82
         auth_scope: https://outlook.office.com/IMAP.AccessAsUser.All
           https://outlook.office.com/SMTP.Send
+          offline_access
         tenant: c80d3499-4a40-4a8c-986e-abce017d6b19
