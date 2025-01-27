@@ -1587,7 +1587,7 @@ If no universal argument is passed, assume only one output"
 (use-package exwm
   :config
   (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
+  (exwm-systemtray-mode 1)
 
   (setq-default my/exwm--do-not-mass-kill nil)
   (defun my/exwm-toggle-or-set-buffer-protection (&optional value)
