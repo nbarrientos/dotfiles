@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: openstack coe cluster create
+# key: os-coe-create
+# --
+
+openstack coe cluster create $0 --cluster-template ${1:$$(yas-choose-value '("kubernetes-1.31.1-2"))} --keypair cern --node-count $2 --merge-labels --labels ingress_controller=nginx --master-flavor ${3:$$(yas-choose-value '("m2.large" "m2.medium"))} --flavor ${4:$$(yas-choose-value '("m2.large" "m2.medium"))}
