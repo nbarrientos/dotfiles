@@ -1824,7 +1824,9 @@ and adapted to use simulations keys to have a common yank keystroke."
   (desktop-environment-screenshot-partial-command "import png:- | xclip -selection c -t image/png -verbose")
   (desktop-environment-screenlock-command "xscreensaver-command -lock"))
 
-(use-package bluetooth)
+(use-package bluetooth
+  :custom
+  (bluetooth-battery-warning-level 15))
 
 ;;; Building and compiling
 (use-package ielm
