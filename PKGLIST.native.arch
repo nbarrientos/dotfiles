@@ -95,7 +95,6 @@ netctl
 netstat-nat
 nfs-utils
 nmap
-nodejs
 npm
 nvidia
 nvidia-settings
@@ -231,6 +230,7 @@ xorg-xwininfo
 xorg-xwud
 xpdf
 xscreensaver
+yaml-language-server
 yamllint
 yq
 zip
