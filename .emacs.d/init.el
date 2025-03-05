@@ -687,6 +687,11 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :after (yasnippet))
 
 ;;;; Expand
+(use-package minibuffer
+  :ensure nil
+  :bind
+  (("C-M-n" . completion-at-point)))
+
 (use-package hippie-expand
   :ensure nil
   :bind
