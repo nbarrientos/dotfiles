@@ -2,7 +2,7 @@
 
 ;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
 ;; URL: https://git.sr.ht/~nbarrientos/dotfiles/tree/master/.emacs.d
-;; Package-Requires: ((emacs "29.1"))
+;; Package-Requires: ((emacs "30.1"))
 
 ;; This file is not part of GNU Emacs.
 
