@@ -509,7 +509,7 @@ The 'circular' list is defined in the variable
   :bind
   (([home] . consult-buffer)
    ("M-<home>" . consult-buffer-other-window)
-   ([end] . kill-this-buffer)
+   ([end] . kill-current-buffer)
    ("C-s" . consult-line)
    ("M-y" . consult-yank-pop)
    ("C-x i" . consult-imenu)
@@ -1729,7 +1729,7 @@ configured to use @ (at symbol) as separator."
 
   ;; Buffer switching
   (define-key exwm-mode-map (kbd "<home>") 'consult-buffer)
-  (define-key exwm-mode-map (kbd "<end>") 'kill-this-buffer)
+  (define-key exwm-mode-map (kbd "<end>") 'kill-current-buffer)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-consult-yank-pop)
 
