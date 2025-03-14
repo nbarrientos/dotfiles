@@ -1175,6 +1175,7 @@ send a notification when the process has exited."
   :custom
   (eshell-banner-message "")
   (eshell-history-size 20000)
+  (eshell-history-append t)
   (eshell-scroll-to-bottom-on-input 'all)
   (eshell-scroll-to-bottom-on-output 'all))
 
