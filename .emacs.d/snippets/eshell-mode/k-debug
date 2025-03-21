@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: kubectl debug
+# key: k-debug
+# --
+kubectl -n $0 run -i --tty --rm debug --image=registry.cern.ch/kubernetes/ops:0.6.0 -- sh
