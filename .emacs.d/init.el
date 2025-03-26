@@ -1923,7 +1923,8 @@ and adapted to use simulations keys to have a common yank keystroke."
        (("single-test" . ,(my/multi-compile--bundle-rake 'upstream "spec SPEC=%path"))))
      ((eq 'yaml-mode major-mode) .
       (("helm-render-this" . "helm template . -s templates/%file-name")
-       ("helm-render-all" . "helm template .")))
+       ("helm-render-all" . "helm template .")
+       ("helm-unit-test-all" . ,"helm unittest -f 'tests/**/*.yaml' .")))
      )))
 
 (defun my/regenerate-ctags ()
