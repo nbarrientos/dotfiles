@@ -1924,7 +1924,8 @@ and adapted to use simulations keys to have a common yank keystroke."
      ((eq 'yaml-mode major-mode) .
       (("helm-render-this" . "helm template . -s templates/%file-name")
        ("helm-render-all" . "helm template .")
-       ("helm-unit-test-all" . ,"helm unittest -f 'tests/**/*.yaml' .")))
+       ("helm-unit-test-all" . "helm unittest -f 'tests/**/*.yaml' .")
+       ("helm-docs" . "helm-docs")))
      )))
 
 (defun my/regenerate-ctags ()
