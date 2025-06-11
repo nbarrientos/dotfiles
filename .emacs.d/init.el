@@ -1507,9 +1507,9 @@ If no universal argument is passed, assume only one output"
   :custom
   (eradio-player '("mpv" "--no-video" "--no-terminal"))
   (eradio-channels '(;; French
-                     ("Option Musique" . "http://stream.srg-ssr.ch/m/option-musique/aacp_96.m3u")
-                     ("Couleur3" . "http://stream.srg-ssr.ch/m/couleur3/aacp_96.m3u")
-                     ("La 1ere" . "http://stream.srg-ssr.ch/m/la-1ere/aacp_96.m3u")
+                     ("Option Musique" . "http://stream.srg-ssr.ch/srgssr/option-musique/mp3/128")
+                     ("Couleur3" . "http://stream.srg-ssr.ch/srgssr/couleur3/mp3/128")
+                     ("La 1ere" . "http://stream.srg-ssr.ch/srgssr/la-1ere/mp3/128")
                      ("Radio Lac" . "https://radiolac.ice.infomaniak.ch/radiolac-high.mp3")
                      ;; Spanish
                      ("RNE" . "https://rtvelivestream.akamaized.net/rtvesec/rne/rne_r1_main.m3u8")
