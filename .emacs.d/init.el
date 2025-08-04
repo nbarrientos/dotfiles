@@ -1675,13 +1675,13 @@ configured to use @ (at symbol) as separator."
                         (lambda ()
                           (interactive)
                           (my/switch-to-buffer-if-exists-back-and-forth ,(cdr i)))))
-                    '((2 . "Telegram") (3 . "Signal") (6 . "*eshell*")))
+                    '((2 . "Telegram") (6 . "*eshell*")))
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
                         (lambda (arg)
                           (interactive "P")
                           (my/bookmark-buffer-or-switch-to-bookmark arg))))
-                    '(4 5))
+                    '(3 4 5))
           ([?\s-7]
            . my/consult-buffer-detached-command)
           ([?\s-8]
