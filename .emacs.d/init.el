@@ -1704,6 +1704,16 @@ configured to use @ (at symbol) as separator."
            . my/remote-or-local-term)
           ([?\s-=]
            . balance-windows)
+          (,(kbd "s-<up>")
+           . desktop-environment-volume-increment)
+          (,(kbd "s-<down>")
+           . desktop-environment-volume-decrement)
+          (,(kbd "s-m")
+           . desktop-environment-toggle-mute)
+          (,(kbd "s-l")
+           . desktop-environment-lock-screen)
+          (,(kbd "s-s")
+           . desktop-environment-screenshot-part)
           ([?\s-+] .
            (lambda ()
              (interactive)
@@ -1807,15 +1817,6 @@ and adapted to use simulations keys to have a common yank keystroke."
 
 (use-package desktop-environment
   :after (exwm)
-  :config
-  (exwm-input-set-key (kbd "s-<up>") #'desktop-environment-volume-increment)
-  (exwm-input-set-key (kbd "s-<down>") #'desktop-environment-volume-decrement)
-  (exwm-input-set-key (kbd "s-m") #'desktop-environment-toggle-mute)
-  (exwm-input-set-key (kbd "s-l") #'desktop-environment-lock-screen)
-  (exwm-input-set-key (kbd "<XF86AudioPlay>") #'desktop-environment-toggle-music)
-  (exwm-input-set-key (kbd "<XF86AudioPause>") #'desktop-environment-toggle-music)
-  (exwm-input-set-key (kbd "<XF86AudioNext>") #'desktop-environment-music-next)
-  (exwm-input-set-key (kbd "s-s") #'desktop-environment-screenshot-part)
   :custom
   (desktop-environment-volume-get-command "pamixer --get-volume")
   (desktop-environment-volume-set-command "pamixer %s")
