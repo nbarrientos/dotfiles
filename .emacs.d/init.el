@@ -1746,6 +1746,7 @@ configured to use @ (at symbol) as separator."
   ;; Buffer switching
   (define-key exwm-mode-map (kbd "<home>") 'consult-buffer)
   (define-key exwm-mode-map (kbd "<end>") 'kill-current-buffer)
+  (define-key exwm-mode-map (kbd "C-c C-c") 'exwm-input-send-next-key)
 
   (exwm-input-set-key (kbd "M-y") #'my/exwm-consult-yank-pop)
 
