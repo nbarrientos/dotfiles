@@ -4,8 +4,6 @@ cask
 cyrus-sasl-xoauth2-git
 d-feet
 dragon-drop
-dropbox
-dropbox-cli
 helm-docs
 kaitai-struct-compiler
 kstart
