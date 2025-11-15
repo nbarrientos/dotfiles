@@ -488,9 +488,9 @@ The 'circular' list is defined in the variable
   (marginalia-align 'right)
   :config
   (marginalia-mode)
-  (add-to-list 'marginalia-annotator-registry
+  (add-to-list 'marginalia-annotators
                '(file none))
-  (add-to-list 'marginalia-annotator-registry
+  (add-to-list 'marginalia-annotators
                '(project-file none))
   (add-to-list 'marginalia-prompt-categories
                '("\\<channel\\>" . radiostation))
