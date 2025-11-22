@@ -1,3 +1,4 @@
+# oama authorize microsoft your.address@cern.ch --device
 encryption:
     tag: KEYRING
 
