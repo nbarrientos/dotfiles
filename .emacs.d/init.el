@@ -902,7 +902,9 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package go-dlv)
 
 ;;;; Markup, scripting and conf
-(use-package json-mode)
+(use-package json-mode
+  :custom
+  (js-indent-level 2))
 
 (use-package yaml-pro
   :bind (:map yaml-pro-ts-mode-map
