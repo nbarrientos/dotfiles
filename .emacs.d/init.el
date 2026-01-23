@@ -523,11 +523,11 @@ The 'circular' list is defined in the variable
   (consult-async-input-throttle 0.1)
   (consult-async-refresh-delay 0.1)
   (consult-buffer-sources
-   '(consult--source-hidden-buffer
-     consult--source-modified-buffer
-     consult--source-buffer
-     consult--source-recent-file
-     consult--source-project-buffer))
+   '(consult-source-hidden-buffer
+     consult-source-modified-buffer
+     consult-source-buffer
+     consult-source-recent-file
+     consult-source-project-buffer))
   :config
   (setq completion-in-region-function
         (lambda (&rest args)
