@@ -1,9 +1,9 @@
 arduino
-byzanz
 cask
 cyrus-sasl-xoauth2-git
 d-feet
 dragon-drop
+dumpvdl2-git
 helm-docs
 kaitai-struct-compiler
 kstart
@@ -11,5 +11,6 @@ mu
 oama-bin
 python-msal
 ruby2.7
+ttf-joypixels
 xstarter
 yay
