@@ -2249,16 +2249,6 @@ otherwise it returns nil."
   :custom
   (erc-hl-nicks-skip-nicks '("nacho")))
 
-;;;; Mastodon
-(use-package mastodon
-  :bind (:map mastodon-mode-map
-              ("g" . mastodon-tl--update)
-              ("M-<up>" . mastodon-tl--goto-prev-toot)
-              ("M-<down>" . mastodon-tl--goto-next-toot))
-  :custom
-  (mastodon-instance-url "https://emacs.ch")
-  (mastodon-active-user "nachobarrientos"))
-
 ;;; Misc
 (defun my/delete-word (arg)
   "Delete characters forward until encountering the end of a word.
