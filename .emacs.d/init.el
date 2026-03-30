@@ -1573,12 +1573,6 @@ If no universal argument is passed, assume only one output"
   (defengine wordreference
     "https://www.wordreference.com/es/translation.asp?tranword=%s"
     :keybinding "r")
-  (defengine twitter
-    "https://twitter.com/search?q=%s"
-    :keybinding "t")
-  (defengine twitter-latest
-    "https://twitter.com/search?q=%s&f=live"
-    :keybinding "T")
   (defengine urbandictionary
     "https://www.urbandictionary.com/define.php?term=%s"
     :keybinding "u")
