@@ -1791,7 +1791,7 @@ and adapted to use simulations keys to have a common yank keystroke."
                 (eshell))))
 
   (setq xcb:connection-timeout 10)
-  (exwm-enable))
+  (exwm-wm-mode))
 
 (use-package time
   :ensure nil
