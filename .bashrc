@@ -7,4 +7,4 @@
 
 alias ls='ls --color=auto'
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export TERM=emacs
+unset PROMPT_COMMAND

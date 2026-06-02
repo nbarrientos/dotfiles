@@ -1014,45 +1014,6 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package kubel
   :defer t)
 
-;;; Term
-(use-package term
-  :ensure nil
-  :config
-  (defun my/term-toggle-line-and-char-mode ()
-    "Toggles term between line char and line mode."
-    (interactive)
-    (if (derived-mode-p 'term-mode)
-        (if (term-in-line-mode)
-            (term-char-mode)
-          (term-line-mode))
-      (user-error "This is not a term, maybe s-C?")))
-  (defun my/remote-or-local-term (fqdn)
-    "Invokes an ansi-term on FQDN.
-
-If the region is active the contents are the FQDN. If no FQDN is
-specified then localhost is used."
-    (interactive
-     (let ((default-value (if (use-region-p)
-                              (buffer-substring-no-properties (region-beginning) (region-end))
-                            "localhost")))
-       (list
-        (read-string (format "Fully-qualified domain name (default: %s): " default-value)
-                     nil nil default-value))))
-    (let* ((default-directory "~/")
-           (local-p (string= "localhost" fqdn))
-           (term-ansi-buffer-name (concat "U# " fqdn))
-           (term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
-           (program (if local-p "bash" "ssh"))
-           (switches (unless (string= "localhost" fqdn) (list fqdn)))
-           (term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name program nil switches)))
-      (set-buffer term-ansi-buffer-name)
-      (term-mode)
-      (term-char-mode)
-      (with-current-buffer term-ansi-buffer-name
-        (setq-local kill-buffer-query-functions nil)
-        (rename-buffer (substring (buffer-name) 1 -1)))
-      (switch-to-buffer term-ansi-buffer-name))))
-
 ;;; Eshell
 (use-package eshell-bookmark
   :after eshell
@@ -1630,6 +1591,10 @@ configured to use @ (at symbol) as separator."
           (concat short-title " @ " hostname)
         (reverse (string-truncate-left (reverse title) length)))))
 
+  (defun my/exwm--format-window-title-urxvt (title &optional length)
+    "Prefixes urxvt window titles."
+    (concat "U# " title))
+
   (defun my/exwm--format-window-title-* (title)
     "Removes annoying notifications and FPS counters."
     (dolist (regexp '("([[:digit:]]+)" "FPS :[[:digit:]]+"))
@@ -1697,7 +1662,9 @@ configured to use @ (at symbol) as separator."
           ([?\s-p]
            . my/exwm-toggle-or-set-buffer-protection)
           ([?\s-u]
-           . my/remote-or-local-term)
+           (lambda ()
+             (interactive)
+             (start-process "" nil "/usr/bin/urxvt")))
           ([?\s-=]
            . balance-windows)
           (,(kbd "s-<up>")
@@ -2355,5 +2322,22 @@ and the DATATYPE is prompted for."
     (if (interactive-p)
         (message "%.2f%% is still available" %-available)
       %-available)))
+
+(defun my/remote-or-local-term (fqdn)
+  "Invokes an URXVT terminal on FQDN.
+
+If the region is active the contents are the FQDN. If no FQDN is
+specified interactively either, then localhost is used."
+  (interactive
+   (let ((default-value (if (use-region-p)
+                            (buffer-substring-no-properties (region-beginning) (region-end))
+                          "localhost")))
+     (list
+      (read-string (format "Fully-qualified domain name (default: %s): " default-value)
+                   nil nil default-value))))
+  (let* ((local-p (string= "localhost" fqdn))
+         (program (if local-p "bash" "ssh"))
+         (args (if local-p "-i" fqdn)))
+    (start-process "" nil "/usr/bin/urxvt" "-T" fqdn "-e" program args)))
 
 ;;; init.el ends here
