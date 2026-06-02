@@ -1,14 +1,13 @@
 urxvt.saveLines: 20000
 urxvt.scrollBar: false
-urxvt.font: xft:JetBrainsMono:size=11:autohint=true:antialias=true
+urxvt.font: xft:Iosevka:size=12:autohint=true:antialias=true
 urxvt.perl-ext-common: default,matcher,selection-to-clipboard
 urxvt.url-launcher: firefox
 urxvt.keysym.Shift-Control-V: eval:paste_clipboard
 urxvt.iso14755: false
 urxvt.iso14755_52: false
-urxvt.letterSpace: -1
 
-*.foreground:    #989898
+*.foreground:    #ffffff
 *.background:    #000000
 *.cursorColor:   #989898
 *.highlightColor:#2266ae
