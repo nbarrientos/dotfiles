@@ -1014,6 +1014,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package kubel
   :defer t)
 
+(use-package journalctl-mode)
+
 ;;; Eshell
 (use-package eshell-bookmark
   :after eshell
