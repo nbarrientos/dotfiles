@@ -1662,9 +1662,7 @@ configured to use @ (at symbol) as separator."
           ([?\s-p]
            . my/exwm-toggle-or-set-buffer-protection)
           ([?\s-u]
-           (lambda ()
-             (interactive)
-             (start-process "" nil "/usr/bin/urxvt")))
+           . my/remote-or-local-term)
           ([?\s-=]
            . balance-windows)
           (,(kbd "s-<up>")
