@@ -33,7 +33,7 @@
 (setq-default
  auto-save-file-name-transforms '((".*" "~/.cache/emacs/auto-saves/" t))
  cursor-type 'hbar
- custom-file null-device
+ custom-file "/tmp/custom_emacs"
  custom-unlispify-tag-names nil
  enable-recursive-minibuffers t
  help-window-select t
