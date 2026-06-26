@@ -2315,8 +2315,13 @@ specified interactively either, then localhost is used."
                             (buffer-substring-no-properties (region-beginning) (region-end))
                           "localhost")))
      (list
-      (read-string (format "Fully-qualified domain name (default: %s): " default-value)
-                   nil nil default-value))))
+      (completing-read (format "Fully-qualified domain name (default: %s): " default-value)
+                       (lambda (string pred action)
+                         (if (eq action 'metadata)
+                             '(metadata (category . bookmark))
+                             (complete-with-action
+                              action bookmark-alist string pred)))
+                       nil nil nil 'bookmark-history default-value))))
   (let* ((local-p (string= "localhost" fqdn))
          (program (if local-p "bash" "ssh"))
          (args (if local-p "-i" fqdn)))
