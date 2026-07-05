@@ -1233,6 +1233,7 @@ If no universal argument is passed, assume only one output"
   (transient-append-suffix 'magit-am "m"
        '("b" "maildir from buffer" my/magit-am-apply-maildir-buffer))
   (add-to-list 'magit-ellipsis `(margin (nil . ,truncate-string-ellipsis)))
+  (my/monkeys--magit-dis-5602)
   :custom
   (magit-blame-time-format "%d/%m/%y %R")
   (magit-save-repository-buffers 'dontask)

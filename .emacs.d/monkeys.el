@@ -1,3 +1,24 @@
+;; https://github.com/magit/magit/discussions/5602
+(defun my/monkeys--magit-dis-5602 nil
+  (transient-define-argument magit-commit:--reedit-message ()
+  :description "Reedit commit message"
+  :class 'transient-option
+  :shortarg "-c"
+  :argument "--reedit-message="
+  :reader #'magit-read-reuse-message
+  :history-key 'magit-revision-history)
+
+  (transient-append-suffix 'magit-commit "-C"
+    '(magit-commit:--reedit-message))
+
+  (defun magit-read-reuse-message (prompt &optional default history)
+    (magit-completing-read prompt (magit-list-refnames)
+                           nil nil nil history
+                           (or default
+                               (magit-commit-at-point)
+                               (and (magit-rev-verify "ORIG_HEAD")
+                                    "ORIG_HEAD")))))
+
 ;; https://github.com/ch11ng/exwm/pull/900
 (defun my/monkeys--exwm-pr-900 nil
   (defun exwm-input--on-ButtonPress (data _synthetic)
