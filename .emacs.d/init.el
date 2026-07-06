@@ -511,6 +511,7 @@ The 'circular' list is defined in the variable
   :custom
   (consult-async-input-throttle 0.1)
   (consult-async-refresh-delay 0.1)
+  (consult-line-start-from-top t)
   (consult-buffer-sources
    '(consult-source-hidden-buffer
      consult-source-modified-buffer
