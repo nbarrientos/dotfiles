@@ -1,10 +1,11 @@
-personal_ws-1.1 en 175 
+personal_ws-1.1 en 185 
 ACL
 ACLs
 AMQP
 APIs
 ARP
 ActiveMQ
+AlmaLinux
 BGP
 CAPTCHA
 CDN
@@ -15,6 +16,7 @@ CLI
 CLIs
 CRM
 Ceph
+Colima
 DHCP
 DHCPv
 DNS
@@ -37,6 +39,7 @@ IPv
 IoT
 JMS
 JSON
+Kafbat
 Kapacitor
 Kubernetes
 LaTeX
@@ -46,11 +49,13 @@ Mattermost
 Mcollective
 Middleware
 NFS
+NILE's
 OAuth
 OSPF
 OpenStack
 OpenWire
 PDFs
+Podman
 Postgres
 PuppetDB
 README
@@ -58,6 +63,7 @@ RSS
 RabbitMQ
 Rsyslog
 Rundeck
+SDK
 SFTP
 SMB
 SMTP
@@ -71,8 +77,11 @@ SoCs
 TCP
 TFTP
 UDP
+UI
 UTF
 VESA
+VM
+VMs
 WSGI
 WebSocket
 WebSockets
@@ -141,6 +150,7 @@ namespacing
 nftables
 parameterisation
 passthrough
+podman
 polymorphism
 postcondition
 prepended
