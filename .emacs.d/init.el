@@ -971,7 +971,8 @@ It just guesses as the filename for the spec is rather arbitrary."
   (advice-add 'sql-comint :before
               (lambda (&rest args)
                 (if (and (eq sql-product 'postgres) sql-password)
-                    (setenv "PGPASSWORD" sql-password)))))
+                    (setenv "PGPASSWORD" sql-password))))
+  (my/monkeys--emacs-sql-bug-XXXX))
 
 (use-package sqlformat
   :custom
