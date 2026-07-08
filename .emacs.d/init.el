@@ -963,9 +963,15 @@ It just guesses as the filename for the spec is rather arbitrary."
   :hook ((sql-interactive-mode . sql-rename-buffer))
   :custom
   (sql-mysql-options '("--prompt=mysql> "))
+  (sql-password-wallet auth-sources)
   :config
   (add-to-list 'sql-postgres-login-params 'port t)
-  (add-to-list 'sql-mysql-login-params 'port t))
+  (add-to-list 'sql-postgres-login-params 'password t)
+  (add-to-list 'sql-mysql-login-params 'port t)
+  (advice-add 'sql-comint :before
+              (lambda (&rest args)
+                (if (and (eq sql-product 'postgres) sql-password)
+                    (setenv "PGPASSWORD" sql-password)))))
 
 (use-package sqlformat
   :custom
