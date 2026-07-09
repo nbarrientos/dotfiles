@@ -93,10 +93,8 @@
       (xcb:flush exwm--connection))
     (run-hooks 'exwm-input--event-hook)))
 
-;; https://tbd
-;; The call to auth-source-search does not pass any :host and, at
-;; least when using only the Secrets API, this returns nil.
-(defun my/monkeys--emacs-sql-bug-XXXX nil
+;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=81379
+(defun my/monkeys--emacs-sql-bug-81379 nil
   (defun sql-auth-source-search-wallet (wallet product user server database port)
     "Read auth source WALLET to locate the USER secret.
 Sets `auth-sources' to WALLET and uses `auth-source-search' to locate the entry.

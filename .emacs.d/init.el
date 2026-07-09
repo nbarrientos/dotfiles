@@ -972,7 +972,7 @@ It just guesses as the filename for the spec is rather arbitrary."
               (lambda (&rest args)
                 (if (and (eq sql-product 'postgres) sql-password)
                     (setenv "PGPASSWORD" sql-password))))
-  (my/monkeys--emacs-sql-bug-XXXX))
+  (my/monkeys--emacs-sql-bug-81379))
 
 (use-package sqlformat
   :custom
