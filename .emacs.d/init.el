@@ -248,7 +248,8 @@
   ;; expose attributes (advanced tab) like 'host', 'port' and/or
   ;; 'user' so they can be found by auth-source. Ex:
   ;; (auth-source-search :type 'secrets :host "irc.libera.chat")
-  (auth-sources '("secrets:Passwords")))
+  (auth-sources '("secrets:Passwords"))
+  (auth-source-do-cache nil))
 
 ;;; Killing, Yanking, Comments and Undo
 (use-package delsel
