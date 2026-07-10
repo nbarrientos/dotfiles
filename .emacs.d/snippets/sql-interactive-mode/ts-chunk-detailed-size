@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: TimescaleDB: show chunk sizes
 # key: ts
+# condition: (progn (eq 'postgres sql-product))
 # --
 SELECT * FROM chunks_detailed_size('${1:schema.table}') ORDER BY chunk_name, node_name;
