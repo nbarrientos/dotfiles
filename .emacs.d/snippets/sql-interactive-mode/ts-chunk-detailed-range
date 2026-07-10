@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: TimescaleDB: show chunk ranges
-# key: ts-chunks-detailed-range
+# key: ts
 # --
 SELECT * FROM timescaledb_information.chunks WHERE hypertable_schema = '${1:schema}' AND hypertable_name = '${2:table}';

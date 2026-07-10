@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: TimescaleDB: retention jobs
-# key: ts-retention
+# key: ts
 # --
 SELECT j.hypertable_name, j.hypertable_schema,
        j.job_id,
