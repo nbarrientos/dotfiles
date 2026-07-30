@@ -144,7 +144,7 @@
   (conf-mode . (lambda () (setq show-trailing-whitespace t)))
   :custom
   (whitespace-style '(face trailing tabs empty big-indent))
-  (whitespace-global-modes '(not erc-mode magit-mode)))
+  (whitespace-global-modes '(not erc-mode magit-mode agent-shell-mode)))
 
 ;;;; Sexp delimiters highlighting
 (use-package paren
@@ -891,6 +891,17 @@ It just guesses as the filename for the spec is rather arbitrary."
                 (setq whitespace-style
                       (remove 'tabs whitespace-style))))))
 (use-package go-dlv)
+
+
+;;;; Agents
+(use-package agent-shell
+  :ensure t
+  :custom
+  (agent-shell-anthropic-authentication
+      (agent-shell-anthropic-make-authentication :login t))
+  (agent-shell-google-authentication
+      (agent-shell-google-make-authentication
+       :api-key (lambda () (funcall (plist-get (car (auth-source-search :max 1 :host "gemini.google.com")) :secret))))))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode
