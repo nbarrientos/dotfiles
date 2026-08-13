@@ -1,4 +1,5 @@
 # oama authorize microsoft your.address@cern.ch --device
+# https://cern.service-now.com/service-portal?id=kb_article&n=KB0010811
 encryption:
     tag: KEYRING
 
