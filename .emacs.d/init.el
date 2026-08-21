@@ -897,6 +897,7 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package agent-shell
   :ensure t
   :custom
+  (agent-shell-transcript-file-path-function nil)
   (agent-shell-anthropic-authentication
       (agent-shell-anthropic-make-authentication :login t))
   (agent-shell-google-authentication
