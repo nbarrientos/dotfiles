@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Copyright (C) 2021-2023 Nacho Barrientos
 
 ;; Author: Nacho Barrientos <nacho.barrientos@cern.ch>
