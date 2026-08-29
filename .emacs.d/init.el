@@ -72,6 +72,7 @@
 (global-set-key (kbd "C-x o") 'delete-blank-lines)
 (global-set-key (kbd "C-x C-o") 'delete-indentation)
 (global-set-key (kbd "C-x C-d") 'duplicate-dwim)
+(global-set-key (kbd "M-<f8>") 'window-layout-rotate-clockwise)
 (global-set-key [remap eval-last-sexp] 'pp-eval-last-sexp)
 
 (add-to-list 'yank-excluded-properties 'face)
@@ -1344,9 +1345,6 @@ If no universal argument is passed, assume only one output"
   (switch-to-buffer-preserve-window-point nil)
   (split-width-threshold nil)
   (split-height-threshold nil))
-
-(use-package transpose-frame
-  :bind (("M-<f8>" . rotate-frame-clockwise)))
 
 (use-package bookmark
   :ensure nil
