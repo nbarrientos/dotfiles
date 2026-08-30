@@ -912,19 +912,20 @@ It just guesses as the filename for the spec is rather arbitrary."
   :custom
   (js-indent-level 2))
 
-(use-package yaml-pro
-  :bind (:map yaml-pro-ts-mode-map
-              ("C-c C-y" . my/yaml-pro-kill-yaml-path))
-  :custom
-  (yaml-pro-ts-path-element-separator ?·)
-  :config
-  (defun my/yaml-pro-kill-yaml-path ()
-    (interactive)
-    (kill-new (substring-no-properties (yaml-pro-ts-eldoc)))))
+;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=81729
+;; (use-package yaml-pro
+;;   :bind (:map yaml-pro-ts-mode-map
+;;               ("C-c C-y" . my/yaml-pro-kill-yaml-path))
+;;   :custom
+;;   (yaml-pro-ts-path-element-separator ?·)
+;;   :config
+;;   (defun my/yaml-pro-kill-yaml-path ()
+;;     (interactive)
+;;     (kill-new (substring-no-properties (yaml-pro-ts-eldoc)))))
 
-(use-package yaml-mode
-  :config
-  (add-hook 'yaml-mode-hook 'yaml-pro-ts-mode 100))
+;; (use-package yaml-mode
+;;   :config
+;;   (add-hook 'yaml-mode-hook 'yaml-pro-ts-mode 100))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
