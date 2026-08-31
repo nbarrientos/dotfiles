@@ -216,6 +216,7 @@
                ("m" . magit-project-status)
                ("M" . my/clone-module)
                ("s" . project-eshell)
+               ("o" . project-find-matching-buffer)
                ("t" . my/regenerate-ctags)))
   :config
   (global-unset-key (kbd "C-x p"))
