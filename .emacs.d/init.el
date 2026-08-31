@@ -819,13 +819,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (flycheck-package-setup))
 
 ;;;; Programming languages
-(use-package lispy
-  :hook ((emacs-lisp-mode . lispy-mode))
-  :bind (:map lispy-mode-map-lispy
-         ("C-j" . nil)
-         :map lispy-mode-map-special
-         ("v" . special-lispy-ace-paren)))
-
 (use-package clojure-mode)
 
 (use-package ruby-mode
