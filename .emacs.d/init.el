@@ -1269,7 +1269,8 @@ If no universal argument is passed, assume only one output"
   (magit-diff-extra-stat-arguments #'magit-diff-use-window-width-as-stat-width)
   (magit-diff-refine-hunk t))
 
-(use-package orgit)
+(use-package orgit
+  :after magit)
 
 (use-package forge
   :after magit
@@ -1300,6 +1301,7 @@ If no universal argument is passed, assume only one output"
                           ("cernops" . nil))))
 
 (use-package git-link
+  :defer t
   :custom
   (git-link-use-commit t))
 
