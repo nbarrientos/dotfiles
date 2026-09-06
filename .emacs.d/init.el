@@ -587,9 +587,11 @@ Show buffer previews if SHOW-PREVIEW is not nil."
     (interactive "P")
     (my/consult-buffer-by-prefix "D" this-command arg)))
 
-(use-package consult-flycheck)
+(use-package consult-flycheck
+  :defer t)
 
 (use-package consult-project-extra
+  :defer t
   :custom
   (consult-project-extra-sources
    '(consult-project-extra--source-file)))
