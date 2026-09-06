@@ -2217,6 +2217,7 @@ otherwise it returns nil."
   (erc-prompt-for-nickserv-password nil))
 
 (use-package erc-hl-nicks
+  :defer t
   :custom
   (erc-hl-nicks-skip-nicks '("nacho")))
 
