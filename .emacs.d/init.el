@@ -53,15 +53,10 @@
  visible-bell t)
 
 (server-start)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
 (tooltip-mode -1)
 (set-fringe-mode 10)
-(menu-bar-mode -1)
 (mouse-avoidance-mode 'jump)
 (minibuffer-depth-indicate-mode)
-
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
