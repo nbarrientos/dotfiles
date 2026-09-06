@@ -54,7 +54,6 @@
 
 (server-start)
 (tooltip-mode -1)
-(set-fringe-mode 10)
 (mouse-avoidance-mode 'jump)
 (minibuffer-depth-indicate-mode)
 

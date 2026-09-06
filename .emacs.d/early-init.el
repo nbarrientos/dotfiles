@@ -12,6 +12,8 @@
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(vertical-scroll-bars) default-frame-alist)
+(push '(left-fringe . 10) default-frame-alist)
+(push '(right-fringe . 10) default-frame-alist)
 (push '(fullscreen . maximized) default-frame-alist)
 
 ;; The frame's final size is set above; don't let Emacs resize it
