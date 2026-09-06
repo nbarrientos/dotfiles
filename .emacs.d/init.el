@@ -815,7 +815,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (flycheck-package-setup))
 
 ;;;; Programming languages
-(use-package clojure-mode)
+(use-package clojure-mode
+  :defer t)
 
 (use-package ruby-mode
   :ensure nil
@@ -825,6 +826,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
                          "~/.local/bin/rubocop")))))
 
 (use-package python-mode
+  :defer t
   :custom
   (py-split-windows-on-execute-function 'split-window-horizontally)
   (py-split-window-on-execute-threshold 2)
@@ -874,7 +876,8 @@ It just guesses as the filename for the spec is rather arbitrary."
           (when (file-regular-p spec-file)
             (find-file-other-window (format spec-file test-type))))))))
 
-(use-package rspec-mode)
+(use-package rspec-mode
+  :defer t)
 
 (use-package go-mode
   :hook
@@ -882,7 +885,8 @@ It just guesses as the filename for the spec is rather arbitrary."
                 (make-local-variable 'whitespace-style)
                 (setq whitespace-style
                       (remove 'tabs whitespace-style))))))
-(use-package go-dlv)
+(use-package go-dlv
+  :defer t)
 
 
 ;;;; Agents
@@ -898,6 +902,7 @@ It just guesses as the filename for the spec is rather arbitrary."
 
 ;;;; Markup, scripting and conf
 (use-package json-mode
+  :defer t
   :custom
   (js-indent-level 2))
 
@@ -936,31 +941,34 @@ It just guesses as the filename for the spec is rather arbitrary."
    </style>"))
 
 (use-package rpm-spec-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.spec" . rpm-spec-mode)))
+  :mode "\\.spec")
 
-(use-package archive-rpm)
+(use-package archive-rpm
+  :defer t)
 
-(use-package systemd)
+(use-package systemd
+  :defer t)
 
 (use-package sh-script
   :ensure nil
+  :defer t
   :custom
   (sh-basic-offset 2))
 
 (use-package web-mode
+  :mode ("\\.erb\\'" "\\.epp\\'")
   :custom
   (web-mode-enable-auto-indentation nil)
   :config
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.epp\\'" . web-mode))
   (add-to-list 'safe-local-variable-values '(web-mode-enable-auto-indentation . nil))
   (setq web-mode-engines-alist
         '(("erb" . "\\.epp\\'"))))
 
-(use-package csv-mode)
+(use-package csv-mode
+  :defer t)
 
-(use-package jq-mode)
+(use-package jq-mode
+  :defer t)
 
 (use-package sql
   :ensure nil
@@ -981,12 +989,15 @@ It just guesses as the filename for the spec is rather arbitrary."
   (my/monkeys--emacs-sql-bug-81379))
 
 (use-package sqlformat
+  :defer t
   :custom
   (sqlformat-command 'pgformatter))
 
-(use-package nhexl-mode)
+(use-package nhexl-mode
+  :defer t)
 
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :defer t)
 
 ;;;; Misc
 (use-package editorconfig
@@ -1017,7 +1028,8 @@ It just guesses as the filename for the spec is rather arbitrary."
 (use-package kubel
   :defer t)
 
-(use-package journalctl-mode)
+(use-package journalctl-mode
+  :defer t)
 
 ;;; Eshell
 (use-package eshell-bookmark
@@ -1308,7 +1320,8 @@ If no universal argument is passed, assume only one output"
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
-(use-package git-modes)
+(use-package git-modes
+  :defer t)
 
 ;;; Movement and window switching
 (use-package mwim
