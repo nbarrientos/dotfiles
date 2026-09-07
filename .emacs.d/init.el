@@ -591,7 +591,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :defer t)
 
 (use-package consult-project-extra
-  :defer t
   :custom
   (consult-project-extra-sources
    '(consult-project-extra--source-file)))
