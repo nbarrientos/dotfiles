@@ -201,8 +201,7 @@
                ("<end>" . project-kill-buffers)
                ("b" . nil)
                ("C" . magit-clone)
-               ("f" . consult-project-extra-find)
-               ("F" . consult-project-extra-find-other-window)
+               ("f" . project-find-file)
                ("g" . rg-project)
                ("G" . rg-dwim-project-dir)
                ("H" . my/clone-hostgroup)
@@ -224,7 +223,7 @@
                 args))
   :custom
   (project-switch-commands
-   '((consult-project-extra-find "Find file")
+   '((project-find-file "Find file")
      (rg-project "Ripgrep")
      (project-find-dir "Find directory")
      (project-eshell "Eshell")
@@ -589,11 +588,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 
 (use-package consult-flycheck
   :defer t)
-
-(use-package consult-project-extra
-  :custom
-  (consult-project-extra-sources
-   '(consult-project-extra--source-file)))
 
 (use-package embark
   :bind
