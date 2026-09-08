@@ -2148,6 +2148,8 @@ otherwise it returns nil."
   (erc-spelling-mode)
   ;; Needs `my/monkeys--exwm-pr-900' (exwm-input.el) applied.
   (erc-scrolltobottom-mode)
+  (add-to-list 'erc-modules 'sasl)
+  (erc-update-modules)
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 19)
@@ -2170,7 +2172,9 @@ otherwise it returns nil."
   (erc-nick "nacho")
   (erc-server "irc.libera.chat")
   (erc-email-userid "nacho")
-  (erc-user-full-name "Nacho Barrientos"))
+  (erc-user-full-name "Nacho Barrientos")
+  (erc-sasl-auth-source-function #'erc-sasl-auth-source-password-as-host)
+  (erc-sasl-mechanism 'plain))
 
 (use-package erc-track
   :ensure nil
@@ -2196,18 +2200,6 @@ otherwise it returns nil."
   (erc-autojoin-channels-alist
    '(("libera.chat"
       "#emacs" "#erc" "#archlinux" "#sr.ht" "#almalinux"))))
-
-(use-package erc-services
-  :ensure nil
-  :config
-  (erc-services-mode 1)
-  :custom
-  ;; The password will be consumed from auth-source. For this the
-  ;; secret must expose the following attributes:
-  ;;   'host' -> 'irc.libera.chat'
-  ;;   'user' -> 'nacho'
-  (erc-prompt-for-password nil)
-  (erc-prompt-for-nickserv-password nil))
 
 (use-package erc-hl-nicks
   :defer t
