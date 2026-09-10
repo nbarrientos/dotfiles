@@ -1354,12 +1354,10 @@ If no universal argument is passed, assume only one output"
   :config
   (beginend-global-mode))
 
-(use-package drag-stuff
+(use-package move-text
   :bind
-  (("C-M-<up>" . drag-stuff-up)
-   ("C-M-<down>" . drag-stuff-down))
-  :config
-  (drag-stuff-global-mode))
+  (("C-M-<up>" . move-text-up)
+   ("C-M-<down>" . move-text-down)))
 
 ;;; Help
 (use-package helpful
