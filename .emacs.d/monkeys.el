@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=81379
 (defun my/monkeys--emacs-sql-bug-81379 nil
   (defun sql-auth-source-search-wallet (wallet product user server database port)
