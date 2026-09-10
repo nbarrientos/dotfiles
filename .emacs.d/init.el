@@ -199,6 +199,7 @@
                ("b" . nil)
                ("C" . magit-clone)
                ("f" . project-find-file)
+               ("F" . my/project-find-file-other-window)
                ("g" . rg-project)
                ("G" . rg-dwim-project-dir)
                ("H" . my/clone-hostgroup)
@@ -2335,5 +2336,11 @@ specified interactively either, then localhost is used."
          (program (if local-p "bash" "ssh"))
          (args (if local-p "-i" fqdn)))
     (start-process "" nil "/usr/bin/urxvt" "-T" fqdn "-e" program args)))
+
+(defun my/project-find-file-other-window()
+  "Like `project-find-file' but opens the file in another window"
+  (interactive)
+  (cl-letf (((symbol-function 'find-file) 'find-file-other-window))
+    (project-find-file)))
 
 ;;; init.el ends here
