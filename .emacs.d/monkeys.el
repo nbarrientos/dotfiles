@@ -1,5 +1,14 @@
 ;; -*- lexical-binding: t; -*-
 
+;; https://github.com/abrochard/kubel/pull/163
+(defun my/monkeys--kubel-pr-163 nil
+  (defun kubel-kill-all-buffers ()
+    "Kill all kubel-related buffers."
+    (interactive)
+    (dolist (buf (buffer-list))
+      (when (string-match-p "^\\*kubel\\(-resource\\)?:" (buffer-name buf))
+        (kill-buffer buf)))))
+
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=81379
 (defun my/monkeys--emacs-sql-bug-81379 nil
   (defun sql-auth-source-search-wallet (wallet product user server database port)
