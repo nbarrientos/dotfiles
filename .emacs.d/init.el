@@ -524,7 +524,6 @@ The 'circular' list is defined in the variable
   (consult-customize
    my/consult-buffer-firefox
    my/consult-buffer-ansi-term
-   my/consult-buffer-detached-command
    consult-buffer consult-buffer-other-window consult-project-buffer
    :preview-key nil)
   (consult-customize
@@ -578,11 +577,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (defun my/consult-buffer-ansi-term (arg)
     "Use consult to select an ansi-term buffer."
     (interactive "P")
-    (my/consult-buffer-by-prefix "U" this-command arg))
-  (defun my/consult-buffer-detached-command (arg)
-    "Use consult to select a compilation buffer."
-    (interactive "P")
-    (my/consult-buffer-by-prefix "D" this-command arg)))
+    (my/consult-buffer-by-prefix "U" this-command arg)))
 
 (use-package consult-flycheck
   :defer t)
@@ -1045,7 +1040,6 @@ It just guesses as the filename for the spec is rather arbitrary."
         ("C-c r" . consult-history)
         ("C-c d" . consult-esh-dir-history)
         ("C-c l" . eshell/clear)
-        ("C-<return>" . my/eshell-send-detached-input)
    :map eshell-hist-mode-map
         ("<up>" . previous-line)
         ("<down>" . next-line))
@@ -1107,44 +1101,6 @@ the current TRAMP root is prepended to DIRECTORY."
       (if tramp-root
           (eshell/cd (concat tramp-root (or directory "")))
         (eshell/cd directory))))
-  (defun my/eshell-send-detached-input (&optional arg)
-    "Send the current Eshell input to a compilation buffer.
-With universal prefix argument bury the compilation buffer and
-send a notification when the process has exited."
-    (interactive "p")
-    (when-let* ((cmd (buffer-substring
-                      eshell-last-output-end (point-max)))
-                (cmd-present-p (not (string-empty-p cmd))))
-      (let* ((hostname (or
-                        (file-remote-p default-directory 'host)
-                        (system-name)))
-             (compile-command nil)
-             (compilation-save-buffers-predicate 'ignore)
-             (compilation-scroll-output nil)
-             (compilation-buffer
-              (compilation-start
-               cmd
-               nil
-               (lambda (name-of-mode)
-                 (if (eq major-mode 'compilation-mode)
-                     (buffer-name)
-                     (generate-new-buffer-name (concat "D# " cmd)))))))
-        (with-current-buffer compilation-buffer
-          (setq list-buffers-directory default-directory)
-          (when (equal arg 4)
-            (switch-to-prev-buffer (get-buffer-window (current-buffer)))
-            (setq-local compilation-finish-functions
-                        `((lambda (buffer str)
-                            (notifications-notify
-                             :body (format "%s # %s" ,hostname ,cmd)
-                             :timeout 8000
-                             :category "detached_process"
-                             :actions '("default" "Switch to buffer")
-                             :on-action (lambda (id key) (switch-to-buffer-other-window ,(buffer-name compilation-buffer)))
-                             :title (format "Process %s!" (string-chop-newline str))
-                             :urgency (if (string-prefix-p "finished" str) 'normal 'critical))))))))
-      (eshell-add-input-to-history cmd)
-      (eshell-reset)))
   (setenv "EDITOR" "emacsclient")
   :custom
   (eshell-banner-message "")
@@ -1646,8 +1602,6 @@ configured to use @ (at symbol) as separator."
                           (interactive "P")
                           (my/bookmark-buffer-or-switch-to-bookmark arg))))
                     '(3 4 5))
-          ([?\s-7]
-           . my/consult-buffer-detached-command)
           ([?\s-8]
            . mu4e-search-bookmark)
           ([?\s-9]
