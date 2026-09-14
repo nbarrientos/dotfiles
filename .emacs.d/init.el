@@ -2299,4 +2299,11 @@ specified interactively either, then localhost is used."
   (cl-letf (((symbol-function 'find-file) 'find-file-other-window))
     (project-find-file)))
 
+(defun my/from-buffer-pipe ()
+  (let ((selected (consult--multi consult-buffer-sources
+                                  :prompt "Read input from: "
+                                  :history 'consult--buffer-history
+                                  :sort nil)))
+    (with-current-buffer (car selected) (buffer-string))))
+
 ;;; init.el ends here
