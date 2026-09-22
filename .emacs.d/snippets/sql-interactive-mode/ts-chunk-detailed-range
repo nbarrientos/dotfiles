@@ -4,3 +4,14 @@
 # condition: (progn (eq 'postgres sql-product))
 # --
 SELECT * FROM timescaledb_information.chunks WHERE hypertable_schema = '${1:schema}' AND hypertable_name = '${2:table}';
+SELECT c.chunk_name,
+       c.range_start,
+       c.range_end,
+       pg_size_pretty(d.total_bytes) AS chunk_size,
+       c.is_compressed
+FROM timescaledb_information.chunks c
+JOIN chunks_detailed_size('${1:table}') d
+  ON c.chunk_schema = d.chunk_schema
+ AND c.chunk_name   = d.chunk_name
+WHERE c.hypertable_name = '$1'
+ORDER BY c.range_start;
