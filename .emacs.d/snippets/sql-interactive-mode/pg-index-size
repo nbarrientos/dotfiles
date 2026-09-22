@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: PostgreSQL: show size of indices in a table
+# key: pg
+# condition: (progn (eq 'postgres sql-product))
+# --
+SELECT
+    i.relname AS index_name,
+    pg_size_pretty(pg_relation_size(i.oid)) AS index_size
+FROM pg_class t
+JOIN pg_index x ON t.oid = x.indrelid
+JOIN pg_class i ON i.oid = x.indexrelid
+WHERE t.relname = '${1:table}'
+ORDER BY pg_relation_size(i.oid) DESC;
