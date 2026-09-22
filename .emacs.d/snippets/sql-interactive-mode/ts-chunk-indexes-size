@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: TimescaleDB: show the size of each index of each chunk
+# key: ts
+# condition: (progn (eq 'postgres sql-product))
+# --
+SELECT
+    c.chunk_schema,
+    c.chunk_name,
+    i.indexname,
+    pg_size_pretty(pg_relation_size(quote_ident(c.chunk_schema) || '.' || quote_ident(i.indexname))) AS index_size,
+    pg_relation_size(quote_ident(c.chunk_schema) || '.' || quote_ident(i.indexname)) AS size_in_bytes
+FROM timescaledb_information.chunks c
+JOIN pg_indexes i
+  ON i.schemaname = c.chunk_schema
+ AND i.tablename = c.chunk_name
+WHERE c.hypertable_name = '${1:table}'
+ORDER BY c.chunk_name, i.indexname;
