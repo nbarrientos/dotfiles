@@ -1346,6 +1346,7 @@ If no universal argument is passed, assume only one output"
   (mu4e-hide-index-messages t)
   (mu4e-headers-leave-behavior 'apply)
   (mu4e-split-view nil)
+  (mu4e-headers-advance-after-mark nil)
   (mu4e-headers-precise-alignment t)
   (mu4e-headers-date-format "%d/%m/%y")
   (mu4e-headers-time-format "%R")
