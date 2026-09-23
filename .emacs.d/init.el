@@ -42,6 +42,7 @@
  indent-tabs-mode nil
  inhibit-startup-echo-area-message "nacho"
  inhibit-startup-message t
+ inhibit-compacting-font-caches t
  make-backup-files nil
  native-comp-async-report-warnings-errors nil
  next-screen-context-lines 0
