@@ -476,6 +476,8 @@ The 'circular' list is defined in the variable
                '(file none))
   (add-to-list 'marginalia-annotators
                '(project-file none))
+  (add-to-list 'marginalia-annotators
+               '(buffer none))
   (add-to-list 'marginalia-prompt-categories
                '("\\<channel\\>" . radiostation))
   (add-to-list 'marginalia-command-categories
