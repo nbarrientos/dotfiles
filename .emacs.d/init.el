@@ -627,12 +627,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
              "nf-oct-broadcast"
              :face 'nerd-icons-blue)
             " "))
-  (cl-defmethod nerd-icons-completion-get-icon (cand (_cat (eql project-file)))
-    "Return the icon for the candidate CAND of completion category project."
-    (concat (nerd-icons-octicon
-             "nf-oct-git_branch"
-             :face 'nerd-icons-blue)
-            " "))
   (cl-defmethod nerd-icons-completion-get-icon (cand (_cat (eql maildir)))
     "Return the icon for the candidate CAND of completion category maildir."
     (concat (nerd-icons-octicon
