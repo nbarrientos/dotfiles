@@ -511,8 +511,7 @@ The 'circular' list is defined in the variable
    '(consult-source-hidden-buffer
      consult-source-modified-buffer
      consult-source-buffer
-     consult-source-recent-file
-     consult-source-project-buffer))
+     consult-source-recent-file))
   :config
   (setq completion-in-region-function
         (lambda (&rest args)
