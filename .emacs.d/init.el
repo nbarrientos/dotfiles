@@ -1383,7 +1383,7 @@ If no universal argument is passed, assume only one output"
   (setq gnus-visible-headers
         (concat gnus-visible-headers "\\|^User-Agent:\\|^X-Mailer:\\|^Message-ID:"))
   (setq gnus-inhibit-images t)
-  (setq mu4e-headers-open-after-move nil)
+  (setq-default mu4e-headers-open-after-move nil)
   (setq mu4e-headers-attach-mark '("a" . "📎"))
   (setq mu4e-headers-replied-mark '("R" . "↳"))
   (setq mu4e-headers-passed-mark '("P" . "→"))
