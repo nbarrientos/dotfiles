@@ -14,6 +14,7 @@
 
 [core]
 	excludesFile = ~/.gitignore-global
+	abbrev = 8
 
 [gitlab "gitlab.cern.ch"]
 	user = ibarrien
