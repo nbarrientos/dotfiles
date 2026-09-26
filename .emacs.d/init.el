@@ -1008,9 +1008,7 @@ It just guesses as the filename for the spec is rather arbitrary."
   (license-snippets-init))
 
 (use-package kubel
-  :defer t
-  :config
-  (my/monkeys--kubel-pr-163))
+  :defer t)
 
 (use-package journalctl-mode
   :defer t)
