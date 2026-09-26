@@ -1270,6 +1270,12 @@ If no universal argument is passed, assume only one output"
 (use-package git-modes
   :defer t)
 
+(use-package magit-standup
+  :defer t
+  :custom
+  (magit-standup-repos '("~/dev/nile" "~/dev/mig"))
+  (magit-standup-repos-max-depth 3))
+
 ;;; Movement and window switching
 (use-package mwim
   :bind
