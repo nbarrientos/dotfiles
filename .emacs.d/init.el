@@ -1240,6 +1240,8 @@ If no universal argument is passed, assume only one output"
                (user-error "Unsupported forge type")))))
       (with-selected-window (get-buffer-window ediff-buffer-A)
         (browse-url diff-line-url))))
+  (transient-append-suffix 'forge-dispatch "b P"
+       '("b c" "commit" forge-browse-commit))
   :custom
   (forge-owned-accounts '(("nbarrientos" . nil)
                           ("cernops" . nil))))
