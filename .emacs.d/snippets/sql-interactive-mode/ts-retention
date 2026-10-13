@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: TimescaleDB: retention jobs
+# name: TimescaleDB: all jobs
 # key: ts
 # condition: (progn (eq 'postgres sql-product))
 # --
@@ -16,5 +16,4 @@ SELECT j.hypertable_name, j.hypertable_schema,
        total_failures
   FROM timescaledb_information.jobs j
   JOIN timescaledb_information.job_stats js
-    ON j.job_id = js.job_id
-  WHERE j.proc_name = 'policy_retention';
+    ON j.job_id = js.job_id;
