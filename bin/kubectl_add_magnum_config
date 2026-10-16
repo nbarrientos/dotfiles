@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+# Merge a Magnum-issued kubeconfig into a global kubeconfig.
+#
+#   usage: kubectl_add_magnum_config.py NEW_CONFIG GLOBAL_CONFIG
+#
+# The cluster name is taken from clusters[0].name. The single context is
+# renamed to that cluster name, every user is postfixed with -CLUSTER, and
+# the context is pointed at the renamed user. current-context is dropped.
+# Entries already present in GLOBAL_CONFIG under the same name are replaced.
+import os
+import sys
+import tempfile
+
+import yaml
+
+SECTIONS = ('clusters', 'contexts', 'users')
+
+
+def die(message):
+    print(message, file=sys.stderr)
+    raise SystemExit(1)
+
+
+def load(path):
+    with open(path, encoding='utf-8') as handle:
+        data = yaml.safe_load(handle)
+    if data is None:
+        return {}
+    if not isinstance(data, dict):
+        die('not a kubeconfig mapping: ' + path)
+    return data
+
+
+def only(config, section, path):
+    entries = config.get(section) or []
+    if len(entries) != 1:
+        die('expected exactly one entry under %s in %s, found %d'
+            % (section, path, len(entries)))
+    entry = entries[0]
+    if not isinstance(entry, dict) or not entry.get('name'):
+        die('unnamed entry under %s in %s' % (section, path))
+    return entry
+
+
+def rewrite(new, path):
+    cluster = only(new, 'clusters', path)
+    context = only(new, 'contexts', path)
+    name = cluster['name']
+
+    renamed = {}
+    for user in new.get('users') or []:
+        if not isinstance(user, dict) or not user.get('name'):
+            die('unnamed entry under users in ' + path)
+        renamed[user['name']] = user['name'] + '-' + name
+        user['name'] = renamed[user['name']]
+
+    context['name'] = name
+    body = context.get('context') or {}
+    if body.get('user') in renamed:
+        body['user'] = renamed[body['user']]
+    new.pop('current-context', None)
+    return name
+
+
+def splice(target, new):
+    replaced = []
+    for section in SECTIONS:
+        incoming = new.get(section) or []
+        if not incoming:
+            continue
+        entries = target.setdefault(section, [])
+        for entry in incoming:
+            for index, existing in enumerate(entries):
+                if isinstance(existing, dict) and existing.get('name') == entry['name']:
+                    entries[index] = entry
+                    replaced.append('%s/%s' % (section, entry['name']))
+                    break
+            else:
+                entries.append(entry)
+    return replaced
+
+
+def write(path, config):
+    body = yaml.safe_dump(config, default_flow_style=False, sort_keys=True,
+                          allow_unicode=True)
+    mode = os.stat(path).st_mode & 0o7777 if os.path.exists(path) else 0o600
+    directory = os.path.dirname(os.path.abspath(path)) or '.'
+    os.makedirs(directory, exist_ok=True)
+    handle, temporary = tempfile.mkstemp(dir=directory, prefix='.kubeconfig-')
+    try:
+        with os.fdopen(handle, 'w', encoding='utf-8') as stream:
+            stream.write(body)
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    except BaseException:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+        raise
+
+
+def main(argv):
+    if len(argv) != 3:
+        die('usage: %s NEW_CONFIG GLOBAL_CONFIG' % os.path.basename(argv[0]))
+    new_path, global_path = argv[1], argv[2]
+    if not os.path.isfile(new_path):
+        die('no such file: ' + new_path)
+
+    new = load(new_path)
+    cluster = rewrite(new, new_path)
+    target = load(global_path) if os.path.exists(global_path) else {}
+    for key, fallback in (('apiVersion', 'v1'), ('kind', 'Config')):
+        target.setdefault(key, new.get(key, fallback))
+    target.setdefault('preferences', new.get('preferences') or {})
+
+    replaced = splice(target, new)
+    write(global_path, target)
+
+    note = ', replaced ' + ', '.join(replaced) if replaced else ''
+    print('added context %s to %s%s' % (cluster, global_path, note))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main(sys.argv))

@@ -1008,7 +1008,43 @@ It just guesses as the filename for the spec is rather arbitrary."
   (license-snippets-init))
 
 (use-package kubel
-  :defer t)
+  :defer t
+  :custom
+  (kubel-default-namespace "kube-system"))
+
+(defun my/kubectl-add-magnum-config (new-config &optional global-config)
+  "Merge NEW-CONFIG, a Magnum cluster kubeconfig, into GLOBAL-CONFIG.
+
+NEW-CONFIG must hold exactly one cluster and one
+context. GLOBAL-CONFIG defaults to ~/.kube/config
+
+NEW-CONFIG is optionally deleted.  The actual work is done by
+kubectl_add_magnum_config.py in ~/bin."
+  (interactive
+   (list (read-file-name "New Magnum kubeconfig: " "/tmp/" "/tmp/config"
+                         t "config")
+         (read-file-name "Global kubeconfig: " "~/.kube/" "~/.kube/config"
+                         nil "config")))
+  (let ((script (expand-file-name "kubectl_add_magnum_config" "~/bin"))
+        (new (expand-file-name new-config))
+        (global (expand-file-name (or global-config "~/.kube/config"))))
+    (unless (file-regular-p new)
+      (user-error "Not a kubeconfig file: %s" new))
+    (unless (file-regular-p script)
+      (user-error "Merge script not found: %s" script))
+    (with-temp-buffer
+      (let* ((status (call-process "python3" nil t nil script new global))
+             (output (string-trim (buffer-string))))
+        (unless (eq status 0)
+          (user-error "Merging %s failed: %s"
+                      (file-name-nondirectory new)
+                      (if (string-empty-p output) status output)))
+        (let ((buffer (find-buffer-visiting global)))
+          (when (and buffer (not (buffer-modified-p buffer)))
+            (with-current-buffer buffer (revert-buffer t t t))))
+        (when (y-or-n-p (format "Merged, delete %s? " new))
+          (delete-file new t))
+        (message "%s" output)))))
 
 (use-package journalctl-mode
   :defer t)
