@@ -2,4 +2,4 @@
 # name: kubectl debug
 # key: k-debug
 # --
-kubectl -n $0 run debug --image=registry.cern.ch/docker.io/nicolaka/netshoot:latest -- /bin/sleep 8h
+kubectl -n $0 run netshoot --image=registry.cern.ch/docker.io/nicolaka/netshoot:latest -- /bin/sleep 8h
