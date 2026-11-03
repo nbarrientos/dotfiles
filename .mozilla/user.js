@@ -7,7 +7,7 @@
 // Theme: Complete Black Theme for Firefox
 //        https://addons.mozilla.org/en-US/firefox/addon/complete-black-theme-for-firef/?src=turnoffthelights.com
 
-user_pref("browser.display.background_color", "#000000");
+user_pref("browser.display.background_color", "#FFF5EA");
 user_pref("browser.display.background_color.dark", "#000000");
 user_pref("browser.download.lastDir", "/home/nacho/Downloads");
 // Never open links in tabs
@@ -20,6 +20,7 @@ user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.suggest.openpage", false);
 user_pref("keyword.enabled", false);
+user_pref("layout.css.devPixelsPerPx", "0.9");
 user_pref("network.automatic-ntlm-auth.trusted-uris", "cern.ch");
 user_pref("network.negotiate-auth.trusted-uris", "cern.ch");
 user_pref("permissions.default.desktop-notification", 2);
