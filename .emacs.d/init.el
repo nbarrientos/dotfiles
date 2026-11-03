@@ -760,6 +760,12 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :after (modus-themes)
   :init
   (ef-themes-take-over-modus-themes-mode 1))
+
+(use-package auto-dark
+  :init (auto-dark-mode)
+  :custom
+  (auto-dark-themes '((modus-vivendi) (ef-arbutus))))
+
 (use-package doom-modeline
   :config
   (setq-default mode-line-buffer-identification "%b")
