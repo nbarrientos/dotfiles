@@ -752,7 +752,6 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(rpm-spec-tag-face ((,c :inherit font-lock-keyword-face)))
        `(rpm-spec-var-face ((,c :inherit font-lock-variable-name-face))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
-  (modus-themes-load-theme 'modus-vivendi)
   (define-key global-map (kbd "<f1>") #'my/gtk-color-scheme-switcher))
 
 (use-package ef-themes
@@ -764,7 +763,9 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 (use-package auto-dark
   :init (auto-dark-mode)
   :custom
-  (auto-dark-themes '((ef-bio) (ef-melissa-light))))
+  (auto-dark-themes '((ef-bio) (ef-melissa-light)))
+  :config
+  (modus-themes-load-theme 'ef-bio))
 
 (use-package gsettings)
 
