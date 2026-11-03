@@ -1597,8 +1597,8 @@ configured to use @ (at symbol) as separator."
           (concat short-title " @ " hostname)
         (reverse (string-truncate-left (reverse title) length)))))
 
-  (defun my/exwm--format-window-title-urxvt (title &optional length)
-    "Prefixes urxvt window titles."
+  (defun my/exwm--format-window-title-kitty (title &optional length)
+    "Prefixes kitty window titles."
     (concat "U# " title))
 
   (defun my/exwm--format-window-title-* (title)
@@ -2319,7 +2319,7 @@ and the DATATYPE is prompted for."
       %-available)))
 
 (defun my/remote-or-local-term (fqdn)
-  "Invokes an URXVT terminal on FQDN.
+  "Invokes an KITTY terminal on FQDN.
 
 If the region is active the contents are the FQDN. If no FQDN is
 specified interactively either, then localhost is used."
@@ -2338,7 +2338,7 @@ specified interactively either, then localhost is used."
   (let* ((local-p (string= "localhost" fqdn))
          (program (if local-p "bash" "ssh"))
          (args (if local-p "-i" fqdn)))
-    (start-process "" nil "/usr/bin/urxvt" "-T" fqdn "-e" program args)))
+    (start-process "" nil "/usr/bin/kitty" "-T" fqdn "-e" program args)))
 
 (defun my/project-find-file-other-window()
   "Like `project-find-file' but opens the file in another window"
@@ -2365,7 +2365,7 @@ specified interactively either, then localhost is used."
     (gsettings-set-from-gvariant-string schema key new)
     (pcase new
       ("prefer-dark" (modus-themes-load-theme 'modus-vivendi))
-      ("prefer-light" (modus-themes-load-theme 'ef-melissa-light)))
+      ("prefer-light" (modus-themes-load-theme 'ef-day)))
     (message "GTK color scheme: %s -> %s" current new)))
 
 ;;; init.el ends here
