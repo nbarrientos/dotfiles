@@ -753,7 +753,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(rpm-spec-var-face ((,c :inherit font-lock-variable-name-face))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
   (modus-themes-load-theme 'modus-vivendi)
-  (define-key global-map (kbd "<f1>") #'modus-themes-toggle))
+  (define-key global-map (kbd "<f1>") #'my/gtk-color-scheme-switcher))
 
 (use-package ef-themes
   :ensure t
