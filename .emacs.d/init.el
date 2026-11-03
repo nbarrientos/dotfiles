@@ -755,6 +755,11 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   (modus-themes-load-theme 'modus-vivendi)
   (define-key global-map (kbd "<f1>") #'modus-themes-toggle))
 
+(use-package ef-themes
+  :ensure t
+  :after (modus-themes)
+  :init
+  (ef-themes-take-over-modus-themes-mode 1))
 (use-package doom-modeline
   :config
   (setq-default mode-line-buffer-identification "%b")
