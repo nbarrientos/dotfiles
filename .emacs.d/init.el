@@ -752,20 +752,14 @@ Show buffer previews if SHOW-PREVIEW is not nil."
        `(rpm-spec-tag-face ((,c :inherit font-lock-keyword-face)))
        `(rpm-spec-var-face ((,c :inherit font-lock-variable-name-face))))))
   (add-hook 'modus-themes-after-load-theme-hook #'my/modus-themes-customize-faces)
-  (define-key global-map (kbd "<f1>") #'my/gtk-color-scheme-switcher))
+  (modus-themes-load-theme 'modus-vivendi)
+  (define-key global-map (kbd "<f1>") #'my/gtk-color-scheme-and-theme-switcher))
 
 (use-package ef-themes
   :ensure t
-  :after (modus-themes)
+  :after (mu4e modus-themes doom-modeline)
   :init
   (ef-themes-take-over-modus-themes-mode 1))
-
-(use-package auto-dark
-  :init (auto-dark-mode)
-  :custom
-  (auto-dark-themes '((ef-bio) (ef-melissa-light)))
-  :config
-  (modus-themes-load-theme 'ef-bio))
 
 (use-package gsettings)
 
@@ -2359,7 +2353,7 @@ specified interactively either, then localhost is used."
                                   :sort nil)))
     (with-current-buffer (car selected) (buffer-string))))
 
-(defun my/gtk-color-scheme-switcher ()
+(defun my/gtk-color-scheme-and-theme-switcher ()
   "Toggle GTK's color scheme between `prefer-dark' and `prefer-light'."
   (interactive)
   (let* ((schema "org.gnome.desktop.interface")
@@ -2369,6 +2363,9 @@ specified interactively either, then localhost is used."
                   "prefer-light"
                 "prefer-dark")))
     (gsettings-set-from-gvariant-string schema key new)
+    (pcase new
+      ("prefer-dark" (modus-themes-load-theme 'modus-vivendi))
+      ("prefer-light" (modus-themes-load-theme 'ef-melissa-light)))
     (message "GTK color scheme: %s -> %s" current new)))
 
 ;;; init.el ends here
