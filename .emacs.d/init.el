@@ -764,7 +764,8 @@ Show buffer previews if SHOW-PREVIEW is not nil."
 (use-package auto-dark
   :init (auto-dark-mode)
   :custom
-  (auto-dark-themes '((modus-vivendi) (ef-arbutus))))
+  (auto-dark-themes '((ef-bio) (ef-melissa-light))))
+
 (use-package gsettings)
 
 (use-package doom-modeline
