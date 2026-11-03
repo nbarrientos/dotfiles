@@ -765,6 +765,7 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :init (auto-dark-mode)
   :custom
   (auto-dark-themes '((modus-vivendi) (ef-arbutus))))
+(use-package gsettings)
 
 (use-package doom-modeline
   :config
@@ -2355,5 +2356,17 @@ specified interactively either, then localhost is used."
                                   :history 'consult--buffer-history
                                   :sort nil)))
     (with-current-buffer (car selected) (buffer-string))))
+
+(defun my/gtk-color-scheme-switcher ()
+  "Toggle GTK's color scheme between `prefer-dark' and `prefer-light'."
+  (interactive)
+  (let* ((schema "org.gnome.desktop.interface")
+         (key "color-scheme")
+         (current (gsettings-get schema key))
+         (new (if (equal current "prefer-dark")
+                  "prefer-light"
+                "prefer-dark")))
+    (gsettings-set-from-gvariant-string schema key new)
+    (message "GTK color scheme: %s -> %s" current new)))
 
 ;;; init.el ends here
