@@ -60,6 +60,8 @@
 
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
+(global-set-key (kbd "C-i") 'undo)
+(global-set-key (kbd "M-i") 'undo-redo)
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
 (global-set-key (kbd "C-<prior>") 'beginning-of-buffer)
