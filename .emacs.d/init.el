@@ -2366,7 +2366,7 @@ specified interactively either, then localhost is used."
     (gsettings-set-from-gvariant-string schema key new)
     (pcase new
       ("prefer-dark" (modus-themes-load-theme 'modus-vivendi))
-      ("prefer-light" (modus-themes-load-theme 'ef-day)))
+      ("prefer-light" (modus-themes-load-theme 'ef-arbutus)))
     (message "GTK color scheme: %s -> %s" current new)))
 
 ;;; init.el ends here
