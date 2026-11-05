@@ -60,7 +60,8 @@
 
 (global-set-key (kbd "M-SPC") 'cycle-spacing)
 (global-set-key (kbd "C-d") 'mark-word)
-(global-set-key (kbd "C-i") 'undo)
+(define-key input-decode-map [?\C-i] [C-i])
+(global-set-key (kbd "<C-i>") 'undo)
 (global-set-key (kbd "M-i") 'undo-redo)
 (global-set-key (kbd "M-d") 'my/delete-word)
 (global-set-key (kbd "M-<backspace>") 'my/backward-delete-word)
