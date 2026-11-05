@@ -2338,9 +2338,9 @@ specified interactively either, then localhost is used."
                               action bookmark-alist string pred)))
                        nil nil nil 'bookmark-history default-value))))
   (let* ((local-p (string= "localhost" fqdn))
-         (program (if local-p "bash" "ssh"))
-         (args (if local-p "-i" fqdn)))
-    (start-process "" nil "/usr/bin/kitty" "-T" fqdn "-e" program args)))
+         (program (if local-p "bash" "kitten"))
+         (args (if local-p '("-i") (list "ssh" fqdn))))
+    (apply #'start-process "" nil "/usr/bin/kitty" "-T" fqdn "-e" program args)))
 
 (defun my/project-find-file-other-window()
   "Like `project-find-file' but opens the file in another window"
