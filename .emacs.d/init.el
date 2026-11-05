@@ -1705,6 +1705,9 @@ configured to use @ (at symbol) as separator."
   ;; Project
   (add-to-list 'exwm-input-prefix-keys ?\C-p)
 
+  ;; Theme switching
+  (define-key exwm-mode-map (kbd "<f1>") #'my/gtk-color-scheme-and-theme-switcher)
+
   ;; Window switching
   (define-key exwm-mode-map (kbd "<f8>") 'other-window)
   (define-key exwm-mode-map (kbd "C-<f8>") 'window-swap-states)
