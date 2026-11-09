@@ -762,6 +762,10 @@ Show buffer previews if SHOW-PREVIEW is not nil."
   :init
   (ef-themes-take-over-modus-themes-mode 1))
 
+(use-package modus-vague
+  :ensure t
+  :after (modus-themes))
+
 (use-package gsettings)
 
 (use-package doom-modeline
@@ -2369,7 +2373,7 @@ specified interactively either, then localhost is used."
                 "prefer-dark")))
     (gsettings-set-from-gvariant-string schema key new)
     (pcase new
-      ("prefer-dark" (modus-themes-load-theme 'modus-vivendi))
+      ("prefer-dark" (modus-themes-load-theme 'modus-vague))
       ("prefer-light" (modus-themes-load-theme 'ef-arbutus)))
     (message "GTK color scheme: %s -> %s" current new)))
 
