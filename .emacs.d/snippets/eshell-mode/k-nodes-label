@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Kubectl: show label value for all nodes
+# key: k-nodes-label
+# --
+kubectl --context=$1 get nodes -L $0
