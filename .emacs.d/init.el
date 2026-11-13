@@ -906,7 +906,9 @@ It just guesses as the filename for the spec is rather arbitrary."
     "EMACS_AI_GW_TOKEN"
     (funcall (plist-get (car (auth-source-search :max 1 :host "aigw.cern.ch")) :secret))
     "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA"
-    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch")) :secret)))))
+    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch" :account "sa/kafka/self")) :secret))
+    "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_MIG"
+    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch" :account "sa/mig/self")) :secret)))))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode

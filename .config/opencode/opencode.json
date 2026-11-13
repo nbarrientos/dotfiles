@@ -41,6 +41,15 @@
           "X-Grafana-URL": "https://monit-grafana.cern.ch",
           "X-Grafana-Service-Account-Token": "{env:EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA}"
         }
+      },
+      "monit-grafana-mig": {
+        "type": "remote",
+        "url": "http://127.0.0.1:5555/mcp",
+        "oauth": false,
+        "headers": {
+          "X-Grafana-URL": "https://monit-grafana.cern.ch",
+          "X-Grafana-Service-Account-Token": "{env:EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_MIG}"
+        }
       }
     }
   },
