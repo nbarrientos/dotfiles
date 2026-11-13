@@ -896,7 +896,7 @@ It just guesses as the filename for the spec is rather arbitrary."
       (agent-shell-anthropic-make-authentication :login t))
   (agent-shell-google-authentication
       (agent-shell-google-make-authentication
-       :api-key (lambda () (funcall (plist-get (car (auth-source-search :max 1 :host "gemini.google.com")) :secret)))))
+       :api-key (lambda () (auth-source-pick-first-password :host "gemini.google.com"))))
   (agent-shell-preferred-agent-config '(preselect . opencode))
   (agent-shell-viewport-dismiss-on-send t)
   (agent-shell-opencode-environment
@@ -906,9 +906,9 @@ It just guesses as the filename for the spec is rather arbitrary."
     "EMACS_AI_GW_TOKEN"
     (funcall (plist-get (car (auth-source-search :max 1 :host "aigw.cern.ch")) :secret))
     "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA"
-    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch" :account "sa/kafka/self")) :secret))
+    (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/kafka/self")
     "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_MIG"
-    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch" :account "sa/mig/self")) :secret)))))
+    (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/mig/self"))))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode
