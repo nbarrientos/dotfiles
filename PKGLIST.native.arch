@@ -45,7 +45,6 @@ freerdp
 fzf
 gcc
 gdb
-gemini-cli
 ghostscript
 gimp
 git
@@ -57,7 +56,6 @@ hexedit
 hplip
 htop
 hunspell-es_es
-hunspell-fr
 hwinfo
 ifplugd
 inetutils
@@ -69,6 +67,7 @@ jdk21-openjdk
 jq
 jwt-cli
 keepassxc
+kitty
 kubeconform
 kubectl
 lftp
@@ -141,14 +140,12 @@ reuse
 ripgrep
 rpm-tools
 rsync
-rxvt-unicode
 s3cmd
 sbt
 schemacrawler
 screenfetch
 scrot
 shellcheck
-signal-desktop
 smartmontools
 socat
 sops
@@ -173,7 +170,6 @@ texlive-pictures
 texlive-pstricks
 texlive-publishers
 traceroute
-transmission-cli
 ttc-iosevka
 ttf-dejavu
 ttf-hack
