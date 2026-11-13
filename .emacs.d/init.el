@@ -897,7 +897,8 @@ It just guesses as the filename for the spec is rather arbitrary."
   (agent-shell-google-authentication
       (agent-shell-google-make-authentication
        :api-key (lambda () (funcall (plist-get (car (auth-source-search :max 1 :host "gemini.google.com")) :secret)))))
-  (agent-shell-preferred-agent-config '(preselect . opencode)))
+  (agent-shell-preferred-agent-config '(preselect . opencode))
+  (agent-shell-viewport-dismiss-on-send t))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode
