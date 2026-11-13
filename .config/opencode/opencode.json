@@ -1,0 +1,54 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "cern-aigw/glm-5.3-flash-int4",
+  "provider": {
+    "cern-aigw": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "CERN AI Gateway",
+      "options": {
+        "baseURL": "https://aigw.cern.ch/v1",
+        "apiKey": "{env:EMACS_AI_GW_TOKEN}"
+      },
+      "models": {
+        "qwen3.8-27b-fp16": { "name": "Qwen 3.8 27B (fp16)" },
+        "hf-qwen3-32b-awq": { "name": "Qwen3 32B (AWQ)" },
+        "gpt-oss-20b": { "name": "GPT-OSS 20B" },
+        "glm-5.3-flash-int4": { "name": "GLM 5.3 Flash (int4)" },
+        "gemma-4-12b-it-qat-w4a16-ct": { "name": "Gemma 4 12B IT (QAT w4a16)" }
+      }
+    }
+  },
+  "formatter": true,
+  "tool_output": {
+    "max_lines": 2000,
+    "max_bytes": 51200
+  },
+  "watcher": {
+    "ignore": ["dist/**", "node_modules/**", "coverage/**"]
+  },
+  "compaction": {
+    "auto": true,
+    "keep": { "tokens": 15000 },
+    "buffer": 20000
+  },
+  "mcp": {
+    "servers": {
+      "monit-grafana-kafka": {
+        "type": "remote",
+        "url": "http://127.0.0.1:5555/mcp",
+        "oauth": false,
+        "headers": {
+          "X-Grafana-URL": "https://monit-grafana.cern.ch",
+          "X-Grafana-Service-Account-Token": "{env:EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA}"
+        }
+      }
+    }
+  },
+  "permissions": [
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "rm -rf *", "effect": "ask" },
+    { "action": "shell", "resource": "sudo *", "effect": "ask" }
+  ],
+  "update": "disable"
+}

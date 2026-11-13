@@ -898,7 +898,15 @@ It just guesses as the filename for the spec is rather arbitrary."
       (agent-shell-google-make-authentication
        :api-key (lambda () (funcall (plist-get (car (auth-source-search :max 1 :host "gemini.google.com")) :secret)))))
   (agent-shell-preferred-agent-config '(preselect . opencode))
-  (agent-shell-viewport-dismiss-on-send t))
+  (agent-shell-viewport-dismiss-on-send t)
+  (agent-shell-opencode-environment
+   (agent-shell-make-environment-variables
+    "OPENCODE_DISABLE_FREE_MODELS"
+    1
+    "EMACS_AI_GW_TOKEN"
+    (funcall (plist-get (car (auth-source-search :max 1 :host "aigw.cern.ch")) :secret))
+    "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA"
+    (funcall (plist-get (car (auth-source-search :max 1 :host "monit-grafana.cern.ch")) :secret)))))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode

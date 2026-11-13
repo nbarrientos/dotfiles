@@ -57,3 +57,5 @@ flycheck_*.el
 
 # End of https://www.toptal.com/developers/gitignore/api/emacs
 /.emacs.d/snippets/mu4e-compose-mode/
+
+.config/opencode/service.json
