@@ -894,9 +894,6 @@ It just guesses as the filename for the spec is rather arbitrary."
   (agent-shell-transcript-file-path-function nil)
   (agent-shell-anthropic-authentication
       (agent-shell-anthropic-make-authentication :login t))
-  (agent-shell-google-authentication
-      (agent-shell-google-make-authentication
-       :api-key (lambda () (auth-source-pick-first-password :host "gemini.google.com"))))
   (agent-shell-preferred-agent-config '(preselect . opencode))
   (agent-shell-viewport-dismiss-on-send t)
   :config
