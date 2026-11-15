@@ -899,16 +899,17 @@ It just guesses as the filename for the spec is rather arbitrary."
        :api-key (lambda () (auth-source-pick-first-password :host "gemini.google.com"))))
   (agent-shell-preferred-agent-config '(preselect . opencode))
   (agent-shell-viewport-dismiss-on-send t)
-  (agent-shell-opencode-environment
-   (agent-shell-make-environment-variables
-    "OPENCODE_DISABLE_FREE_MODELS"
-    1
-    "EMACS_AI_GW_TOKEN"
-    (funcall (plist-get (car (auth-source-search :max 1 :host "aigw.cern.ch")) :secret))
-    "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA"
-    (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/kafka/self")
-    "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_MIG"
-    (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/mig/self"))))
+  :config
+  (setq agent-shell-opencode-environment
+        (agent-shell-make-environment-variables
+         "OPENCODE_DISABLE_FREE_MODELS"
+         1
+         "EMACS_AI_GW_TOKEN"
+         (lambda () (auth-source-pick-first-password :host "aigw.cern.ch"))
+         "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_KAFKA"
+         (lambda () (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/kafka/self"))
+         "EMACS_GRAFANA_MCP_SERVICE_ACCOUNT_TOKEN_MIG"
+         (lambda () (auth-source-pick-first-password :host "monit-grafana.cern.ch" :account "sa/mig/self")))))
 
 ;;;; Markup, scripting and conf
 (use-package json-mode
